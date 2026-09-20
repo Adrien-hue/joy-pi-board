@@ -1,6 +1,6 @@
 # Validation and release strategy
 
-Status: **product release plan; S00 foundation subset locally checked, full A/B/C acceptance NOT RUN**. Actual commands/results and the pending CI gate are in [S00 evidence](s00-evidence.md); none of the future functional or physical tests below has run. Normative for release evidence and requirement traceability (JPB-024). Product budgets are established in [the specification](specification-v0.1.0.md); durations/sampling/statistics remain **Proposed P-06**. Shell-only asset size observations are explicitly preliminary. Historical documentary checks are in [documentation review](documentation-review.md).
+Status: **S00 COMPLETE; foundation subset PASS locally and in CI, full A/B/C product acceptance NOT RUN**. [S00 evidence](s00-evidence.md) records the local results and verified run 35527458889 for `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. S01 is ready, not started; none of the future functional or physical tests below has run. Normative for release evidence and requirement traceability (JPB-024). Product budgets are established in [the specification](specification-v0.1.0.md); durations/sampling/statistics remain **Proposed P-06**. Shell-only asset size observations are explicitly preliminary. Historical documentary checks are in [documentation review](documentation-review.md).
 
 Numeric expectations are adopted through [ADR-001](adr-001-exact-json-integers.md), not an open library proposal. S00 [shared fixture](../testdata/README.md) byte checks are not B-03 end-to-end validation. Future tests must cover original number tokens, uint64 bounds, nulls and schema-driven float/BigInt conversion across Health → Board → browser → display. Unknown-member compatibility remains a separate S01 decision.
 
@@ -14,7 +14,7 @@ Build the candidate once after source checks; identify it with SHA-256. Run bina
 
 ## Class A — build and correctness
 
-All IDs are planned tests, not existing commands/scripts. Future command names/package tools are fixed by S00.
+These IDs define product gates. S00 commands now execute the foundation subsets traced below; later functional extensions and full product acceptance remain planned. A passing subset does not mark the whole product gate PASS.
 
 | ID | Planned check and measurable PASS condition | First responsible sprint |
 |---|---|---|
@@ -102,7 +102,7 @@ The operator may need to stop/start test services during **future** acceptance; 
 
 ## Requirement traceability
 
-Each row maps an established requirement to planned verification and the sprint responsible for delivery. Detailed case matrices above define the oracles. A spanning row does not mark an earlier sprint complete.
+Each row maps an established requirement to planned verification and the sprint responsible for delivery. Detailed case matrices above define the oracles. A spanning row does not mark all its delivery sprints complete. The S00 evidence mapping below records the completed foundation scope separately.
 
 | Requirement | Planned verification | Delivery sprint(s) |
 |---|---|---|
@@ -130,6 +130,20 @@ Each row maps an established requirement to planned verification and the sprint 
 | JPB-022 | B-09, C-06 | S02 |
 | JPB-023 | A-03/A-05/A-06, C-01/C-06 | S00, S04 |
 | JPB-024 | A-01–A-06, B-01–B-11, C-01–C-06; checksum/release review | S04 |
-| JPB-025 | Historic documentary review, plus S00 diff/boundary review and actual evidence; no S01–S04 execution | Documentary foundation, S00 |
+| JPB-025 | Historic documentary review, plus S00 diff/boundary review and dated CI/exit evidence; S00-10 closed, no S01–S04 execution | Documentary foundation, S00 |
 
 Future test implementations should cite these IDs in case names/comments or a manifest so evidence can be audited without guessing. Keep this mapping current if a sprint or proposal changes.
+
+### Completed S00 foundation trace
+
+Evidence IDs refer to [S00 evidence](s00-evidence.md). CI-01–CI-05 belong only to run 35527458889 and its exact tested commit; L-xx identify the separately preserved local runs. This table adds execution status without changing requirement scope.
+
+| Requirements / planned gates | Responsible tasks | Executed evidence / status | Remaining scope |
+|---|---|---|---|
+| JPB-003/JPB-004; A-01 boundary review | S00-03, S00-09 | Local source review, L-12; no Health imports, collectors or functional scope added. PASS for S00. | Repeat boundary review as S01–S04 introduce code. |
+| JPB-005; A-01–A-03, A-04 shell subset | S00-02–S00-06, S00-08–S00-09 | L-01–L-11 and CI-01–CI-05: exact tools, clean builds, source/race tests, embed smoke and preliminary sizes. PASS for foundation. | Final dashboard, interactive/browser/mobile checks and production resource acceptance NOT RUN. |
+| JPB-006; configuration design | S00-01, S00-07 | Approved defaults and implemented minimal flags recorded in foundation choices; L-03/L-05 and CI-02/CI-04 cover shell behavior only. DONE for S00. | A-05 full production configuration and B-09 functional API NOT RUN (S02). |
+| JPB-023; A-03 standalone ARM64 build subset | S00-05, S00-09 | L-04/L-09/L-10 and CI-03: cross-build/ELF inspection. PASS for build only. | ARM64 hardware execution, A-05/A-06 packaging/lifecycle and C-01/C-06 NOT RUN. |
+| JPB-025; sprint evidence and scope | S00-08, S00-10 | Verified foundation/race success, exact commit/image/provenance and documentary exit review. DONE; S00 closed on 2026-09-20. | S01 ready, not started; no release/deployment. |
+
+JPB-024's release gate remains unsatisfied: full Class A, all B-01–B-11 and C-01–C-06 are not accepted by this S00 closure. Interactive visual verification, complete browser-family validation and mobile visual acceptance remain **NOT RUN**, as does Raspberry Pi physical acceptance.

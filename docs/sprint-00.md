@@ -1,6 +1,6 @@
 # Sprint 00 — work package and execution status
 
-Status: **IMPLEMENTED AND LOCALLY VERIFIED; CLOSURE PENDING FIRST SUCCESSFUL CI RUN**. The later user instruction explicitly authorized S00, superseding the documentary-only restriction. Detailed executed commands, versions and results are in [S00 evidence](s00-evidence.md). No S01–S04 work is authorized or executed.
+Status: **COMPLETE — locally verified and CI verified on 2026-09-20**. The implementation instruction explicitly authorized S00; the subsequent closure instruction authorizes documentation updates only. [S00 evidence](s00-evidence.md) records local checks and successful run 35527458889 for exact commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. **S01 is ready, NOT STARTED**. No S01–S04 work is authorized or executed.
 
 Objective: establish a reproducible minimum build and test foundation so S01 can implement the pinned Health contract with no uncertainty about toolchain, assets or test ownership. [Architecture](architecture-v0.1.0.md) owns the proposed package layout; [roadmap](roadmap-v0.1.0.md) owns dependencies; [validation](validation-v0.1.0.md) owns gate IDs.
 
@@ -14,12 +14,12 @@ Objective: establish a reproducible minimum build and test foundation so S01 can
 
 ## Ordered work packages
 
-The original task definitions below retain their stable IDs. Local implementation is complete; the execution table immediately below them records which exit evidence remains unavailable. Dependencies were followed; a workflow file is not a passing CI run.
+The original task definitions below retain their stable IDs. Implementation and applicable exit criteria are complete; the execution ledger records local and hosted evidence. Dependencies were followed; closure relies on the verified CI run, not merely the workflow file.
 
-| Task | Future work and concrete output | Depends on | Completion evidence |
+| Task | Defined work and concrete output | Depends on | Completion evidence |
 |---|---|---|---|
 | S00-01 | Record foundation choices: approved/replaced/deferred P decisions, approved module `github.com/Adrien-hue/joy-pi-board`, exact tool versions, supported dev OS/CI platform, npm and browser bigint targets. | Entry review | Decisions separate established/proposed facts; no unresolved choice hidden in a manifest. |
-| S00-02 | Establish exact Go version (module/toolchain and CI enforcement), exact Node + package-manager versions, React/TS/Vite and minimal lint/test dependency versions with lockfile. Record licenses and selection rationale. | S00-01 | Tool-version mismatch fails clearly; no implicit auto-upgrade/latest/floating CI image; chosen versions verified compatible by a clean install. |
+| S00-02 | Establish exact Go version (module/toolchain and CI enforcement), exact Node + package-manager versions, React/TS/Vite and minimal lint/test dependency versions with lockfile. Record licenses and selection rationale. | S00-01 | Tool-version mismatch fails clearly; no implicit tool auto-upgrade; explicit OS label and actual hosted image identity recorded (contents may drift); chosen versions verified compatible by a clean install. |
 | S00-03 | Create only needed directories/files in the proposed `cmd`, coherent `internal` packages and `web` layout. Add module/manifests/ignore rules, formatter/linter config, concise contributor commands. Do not create empty future packages for architecture symmetry. | S00-02 | Tree builds with clear ownership, no Health internal dependency, no collectors, no unnecessary framework/global store/UI kit. |
 | S00-04 | Add a minimal frontend shell and Go entry point proving production asset embedding; build frontend into `web/dist`, embed via package `web` child path, serve shell and actual generated assets. This is a build smoke surface, not a functional dashboard. | S00-03 | Clean frontend build precedes Go compile; absent dist fails rather than falling back to local files; binary in empty directory serves exact assets. |
 | S00-05 | Establish frontend install/check/build and Go format/test/vet/module/build commands, including native and Linux ARM64 builds. Declare order/dependencies in a small build script/task entry point suited to CI and documented local use. | S00-04 | Clean checkout, no Node modules/dist/Go cache assumptions, succeeds twice from locked inputs with no source/lockfile changes; record artifact hashes and tool versions, without claiming bit-for-bit reproducibility unless actually compared. |
@@ -58,7 +58,7 @@ Clock seam must allow independent wall and elapsed-time advancement; fake Health
 
 Approved defaults: Board `0.0.0.0:8081`, Health existing URL on 8080. S00 implements the minimal --listen and --help surface only; remaining CLI/env precedence is a proposal for S02. No user-configurable freshness/timeout may silently break the established contract. Full configuration validation, version metadata, shutdown, admission and significant-transition logs are S02; Debian paths/env file/unit are S04.
 
-CI distinguishes source checks and binary smoke tests; it has no green hardware placeholder. Race on a suitable native platform is not replaced by cross-build. [The workflow](../.github/workflows/ci.yml) is implemented with pinned actions and explicit image identity recording, but **has not run on GitHub for this unpushed change**. No release credentials or deployment step is present.
+CI distinguishes source checks and binary smoke tests; it has no green hardware placeholder. Race on a suitable native platform is not replaced by cross-build. [The workflow](../.github/workflows/ci.yml) passed its first hosted run: **35527458889, foundation and race success**, for the exact commit identified above. The [evidence record](s00-evidence.md#verified-github-ci-evidence--2026-09-20) records actual image `ubuntu-24.04` / `20260907.300.1`, tools and logs. No release credentials or deployment step is present; later commits do not inherit this run's validation.
 
 ## Explicit sprint boundary
 
@@ -72,11 +72,11 @@ S00 ends with a reproducible build shell and validation scaffolding. It does **n
 | S00-02 | DONE | Exact tool checks, compatible dependency pins/lockfile, explicit no-auto-switch Go runner. |
 | S00-03 | DONE | Only cmd, internal/httpui and web Go packages; no future empty packages or Go external dependencies. |
 | S00-04 | DONE | Minimal React shell; compiled dist embedded from web; standalone binary byte checks. |
-| S00-05 | DONE LOCALLY | Native/cross builds and clean-source/fresh-cache repeat; see exact comparison scope in evidence. |
+| S00-05 | DONE | Local native/cross builds and clean-source/fresh-cache repeat; CI-03 adds hosted native/cross evidence. See exact comparison scope in evidence. |
 | S00-06 | DONE | Real shell/asset tests and byte-preserving shared fixtures; no fake provider/cache framework. |
 | S00-07 | DONE | Minimal shell flags documented separately from future full configuration. |
-| S00-08 | IMPLEMENTED; CI NOT RUN | Workflow/action/tool/image choices present; first successful hosted run remains required. |
-| S00-09 | DONE LOCALLY | S00 A-01–A-04 subset, asset inventory and preliminary shell-only size report. |
-| S00-10 | REVIEW RECORDED; EXIT OPEN | Evidence and S01 handoff updated; do not mark S00 complete until applicable CI exit evidence exists. |
+| S00-08 | DONE; CI PASS | Run 35527458889: foundation/race success; CI-01–CI-05 and actual hosted image recorded in evidence. |
+| S00-09 | DONE | Local and CI S00 A-01–A-04 subset, asset inventory and preliminary shell-only size report. |
+| S00-10 | DONE; EXIT CLOSED | Dated exit review identifies tested commit, local/CI provenance and every applicable criterion; S01 ready, not started. |
 
-The [original documentation review](documentation-review.md) is historical; [S00 evidence](s00-evidence.md) records this authorized implementation. Full Class A product checks, functional B and physical C acceptance are not claimed by completing local foundation tests.
+The [original documentation review](documentation-review.md) is historical; [S00 evidence](s00-evidence.md) records implementation and the subsequent documentary closure. Interactive visual checks and full browser/mobile validation remain NOT RUN. Full Class A product checks, functional B and physical C acceptance are not claimed by completing S00 foundation checks locally and in CI. No release or deployment was performed.

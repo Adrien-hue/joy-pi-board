@@ -6,7 +6,7 @@ Joy Pi Board is the second microservice of Joy Pi Home: a lightweight web overvi
 
 ## Current state
 
-This repository contains the **v0.1.0 specifications and implemented Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closure is pending actual CI execution; see [S00 evidence](docs/s00-evidence.md). The Health client, overview API, parser/validator, cache, dashboard, packages and production service are not implemented. Functional and physical validation remain NOT RUN; there is no release candidate.
+This repository contains the **v0.1.0 specifications and completed Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closed on 2026-09-20 after [CI run 35527458889](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35527458889) passed for commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`; see [S00 evidence](docs/s00-evidence.md) for its exact scope. **S01 is ready, not started.** The Health client, overview API, parser/validator, cache, dashboard, packages and production service are not implemented. Interactive visual checks, full browser/mobile acceptance, functional and physical validation remain NOT RUN; there is no release candidate, release or deployment.
 
 The product target is one page (`/`), one host and one provider. React/TypeScript/Vite assets are already embedded for the S00 shell. Production targets Raspberry Pi OS 64-bit / Trixie on Linux ARM64; Board acceptance uses a Raspberry Pi 3B+.
 
@@ -41,7 +41,7 @@ The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built 
 | [Roadmap](docs/roadmap-v0.1.0.md) | Dependency-based sprint objectives and completion criteria |
 | [Sprint 00 work package](docs/sprint-00.md) | Foundation tasks and execution status |
 | [Foundation choices](docs/s00-foundation.md) | Exact toolchains/dependencies, browsers, implemented shell and commands |
-| [S00 evidence](docs/s00-evidence.md) | Actual local results, artifact hashes, CI gap and deferred gates |
+| [S00 evidence](docs/s00-evidence.md) | Local results and hashes, verified CI run/environment, S00 closure and deferred gates |
 | [Exact JSON integers ADR](docs/adr-001-exact-json-integers.md) | Adopted common convention inherited from Health |
 | [Shared fixtures](testdata/README.md) | Authoritative numeric data and future contract taxonomy |
 | [Decision register](docs/decisions.md) | Approved, replaced and deferred choices |

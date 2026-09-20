@@ -1,6 +1,6 @@
 # Joy Pi Board v0.1.0 specification
 
-Status: **consolidated product requirements; S00 build shell implemented, functional product not implemented**. Actual checks and remaining S00 exit conditions are in [S00 evidence](s00-evidence.md). This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
+Status: **consolidated product requirements; S00 COMPLETE, functional product not implemented**. [S00 evidence](s00-evidence.md) identifies the locally and CI-verified scaffold commit, closure criteria and remaining product validations. S01 is ready, not started. This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
 
 ## Authority and status
 
