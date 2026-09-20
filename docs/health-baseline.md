@@ -2,6 +2,8 @@
 
 Inspected on 2026-09-20, read-only, through commit-pinned GitHub file retrieval. Baseline: **`be7a0d824f62b94c842d8e5326110b1852c5a0bc`** in `Adrien-hue/joy-pi-health`. No newer revision was used; there is therefore no silent baseline change or latest-branch compatibility claim. Health was not modified, cloned into Board, imported or tested during this documentation task.
 
+S00 follow-up: the user reports a read-only local comparison at `581b16f1a2b42db0484d62c08e0bf760cb557d84` confirming unchanged HTTP contract, snapshot encoder/tests and large-integer fixture. That reported comparison does not replace this baseline. S00 additionally retrieved the pinned [requirements](https://github.com/Adrien-hue/joy-pi-health/blob/be7a0d824f62b94c842d8e5326110b1852c5a0bc/docs/requirements-v0.1.md) (blob `7435baae459374cbdf22156347d2756646d6bd2f`) and [numeric fixture](https://github.com/Adrien-hue/joy-pi-health/blob/be7a0d824f62b94c842d8e5326110b1852c5a0bc/internal/snapshot/testdata/large-integers.json) (blob `88e7b1bb4443635e9421e1cf62b55819be8e707d`). [ADR-001](adr-001-exact-json-integers.md) records the adopted convention; the fixture's copied bytes are verified without running Health or changing its repository.
+
 ## Inspected sources
 
 Every link below resolves against the baseline commit, not a moving branch. Blob IDs identify the retrieved file content.

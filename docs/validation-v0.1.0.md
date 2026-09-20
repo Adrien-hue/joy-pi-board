@@ -1,6 +1,8 @@
 # Validation and release strategy
 
-Status: **plan only; every A/B/C check below is NOT RUN**. Normative for release evidence and requirement traceability (JPB-024). Numerical budgets are established in [the specification](specification-v0.1.0.md); durations, sampling, tools and statistical procedures here are **Proposed P-06** and must be ratified before measuring. Documentation checks are recorded separately in [documentation review](documentation-review.md).
+Status: **product release plan; S00 foundation subset locally checked, full A/B/C acceptance NOT RUN**. Actual commands/results and the pending CI gate are in [S00 evidence](s00-evidence.md); none of the future functional or physical tests below has run. Normative for release evidence and requirement traceability (JPB-024). Product budgets are established in [the specification](specification-v0.1.0.md); durations/sampling/statistics remain **Proposed P-06**. Shell-only asset size observations are explicitly preliminary. Historical documentary checks are in [documentation review](documentation-review.md).
+
+Numeric expectations are adopted through [ADR-001](adr-001-exact-json-integers.md), not an open library proposal. S00 [shared fixture](../testdata/README.md) byte checks are not B-03 end-to-end validation. Future tests must cover original number tokens, uint64 bounds, nulls and schema-driven float/BigInt conversion across Health → Board → browser → display. Unknown-member compatibility remains a separate S01 decision.
 
 ## Evidence and release rules
 
@@ -16,7 +18,7 @@ All IDs are planned tests, not existing commands/scripts. Future command names/p
 
 | ID | Planned check and measurable PASS condition | First responsible sprint |
 |---|---|---|
-| A-01 | Go formatting has no diff; `go test ./...`, `go vet ./...` succeed; race-enabled tests on supported native platform succeed with no race; module verification/tidy leaves tracked files unchanged. No imports of Health internals or metric-collection code. | S00, expanded S01/S02 |
+| A-01 | Go formatting has no diff; test/vet all first-party packages (`./cmd/... ./internal/... ./web` in S00, excluding Go files inside npm dependencies); native race tests succeed with no race; module verification/tidy leaves tracked files unchanged. No Health internal imports or metric collection. S00 subset results are in the evidence record. | S00, expanded S01/S02 |
 | A-02 | Clean locked frontend install; type-check, lint, meaningful unit tests and production Vite build exit zero with no lockfile drift. Parser/types/formatting tests added by S01/S03. | S00 |
 | A-03 | Clean native build and `GOOS=linux GOARCH=arm64` cross-build succeed from pinned tools in documented order; approved flags and module metadata recorded; inspect architecture and runtime dynamic dependencies. | S00 |
 | A-04 | Exact candidate serves index and every initial embedded asset from an empty working directory without source/dist/Node; each MIME/byte checksum is correct; production CSP works; both compressed resource budgets pass. | S00 smoke, final S04 |
@@ -128,6 +130,6 @@ Each row maps an established requirement to planned verification and the sprint 
 | JPB-022 | B-09, C-06 | S02 |
 | JPB-023 | A-03/A-05/A-06, C-01/C-06 | S00, S04 |
 | JPB-024 | A-01–A-06, B-01–B-11, C-01–C-06; checksum/release review | S04 |
-| JPB-025 | Documentary diff/content/link/example review only; see review record | Documentary foundation; S00 prepared only |
+| JPB-025 | Historic documentary review, plus S00 diff/boundary review and actual evidence; no S01–S04 execution | Documentary foundation, S00 |
 
 Future test implementations should cite these IDs in case names/comments or a manifest so evidence can be audited without guessing. Keep this mapping current if a sprint or proposal changes.

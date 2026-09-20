@@ -2,6 +2,8 @@
 
 Date: 2026-09-20. Scope: repository documentation only, **not product acceptance**. Repository identity was verified as `C:/src/joy-pi-board`, origin `https://github.com/Adrien-hue/joy-pi-board.git`, starting commit `4fdeb4a` (`Initial commit`). Initial tree contained only a minimal README; there were no existing repository/ancestor AGENTS instructions found and no pending changes to preserve. The README was expanded, not replaced with an application scaffold.
 
+**Historical record:** this describes the earlier documentary assignment, committed as `98503f2`. The subsequent user instruction authorizes S00 implementation. Current code/test/CI status belongs to [S00 evidence](s00-evidence.md); statements below about no application files describe the original review only.
+
 ## Review scope
 
 - Read the six requested Health sources at commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; pin source URLs and file hashes in [Health evidence](health-baseline.md). No newer revision or modified Health content used.

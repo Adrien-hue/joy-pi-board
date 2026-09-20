@@ -1,0 +1,27 @@
+{
+  "scope": "S00 shell only, no overview; gzip is measured offline, server serves identity bytes",
+  "node": "24.21.0",
+  "zlib": "1.3.2.1-motley-8002e91",
+  "jsCSSGzip9": 68495,
+  "allGzip9": 68790,
+  "files": [
+    {
+      "name": "index.html",
+      "bytes": 475,
+      "gzip9": 295,
+      "sha256": "ab66299aa3583666085c8f5a2769db43ffb37d2cd958e73991bc7fa250eeedb6"
+    },
+    {
+      "name": "assets/index-B7cnKOOC.js",
+      "bytes": 220427,
+      "gzip9": 68054,
+      "sha256": "a62e1c2de6e04a3c5865f04985f0a1979a98021093d5a61a5b36895ce781b0de"
+    },
+    {
+      "name": "assets/index-CxJ9SqO5.css",
+      "bytes": 742,
+      "gzip9": 441,
+      "sha256": "608633df2318e4811d5851864c2388b52efd235c1a4177d98f4e9e28f59f1cc2"
+    }
+  ]
+}

@@ -2,6 +2,8 @@
 
 Status: **consolidated established overview contract; not implemented**. This is normative for JPB-008–013. Supplemental routing/headers are explicitly **Proposed P-02/P-05**. [Health integration](health-integration-v1.0.md) owns `HealthSnapshot`; [UX](ux-v0.1.0.md) owns browser interpretation.
 
+S00 implements only the page/assets [shell](s00-foundation.md); `/api/v1/overview` is deliberately absent (404). Exact numeric transport is adopted under [ADR-001](adr-001-exact-json-integers.md): uint64 remains unquoted numeric JSON; a future validated RawMessage snapshot is an object, not a string/base64. No functional API proposal is ratified by implementing the shell.
+
 ## Overview
 
 `GET /api/v1/overview` returns one object with required fields:

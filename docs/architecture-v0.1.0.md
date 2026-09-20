@@ -1,6 +1,6 @@
 # Architecture
 
-Status: **established boundaries, proposed realization; not implemented**. Requirements JPB-003–013, JPB-021–023. [Specification](specification-v0.1.0.md) owns scope; [Board API](board-api-v0.1.0.md) owns observable semantics; [decisions](decisions.md) identifies pending choices.
+Status: **established boundaries; S00 shell implemented; functional realization still proposed**. Requirements JPB-003–013, JPB-021–023. [Specification](specification-v0.1.0.md) owns scope; [Board API](board-api-v0.1.0.md) owns observable semantics; [decisions](decisions.md) identifies approved and pending choices. [S00 foundation](s00-foundation.md) is the source of truth for the minimal implemented subset; provider calls, volatile state and lifecycle below remain S01–S04 work.
 
 ## Boundaries and flow
 
@@ -22,7 +22,7 @@ Only one main route `/`; frontend talks only to relative Board endpoints. No bro
 
 ## Future package layout and build
 
-**Proposed P-02**; this is a design diagram, not an instruction to create empty directories now:
+**Future functional layout under P-02**; S00 implements only cmd, internal/httpui and web. The build/embed layout and stack are approved; empty future packages are not created:
 
 ```text
 cmd/joy-pi-board/       main, wiring, signals, version/help
@@ -30,12 +30,12 @@ internal/config/       startup settings and validation
 internal/health/       HTTP client, schema validation, Board-owned DTOs
 internal/overview/     one-slot state, clock, demand coordinator
 internal/httpapi/      routing, API/static responses and security headers
-web/                   frontend sources, manifests and tests in future S00
+web/                   frontend sources, manifests and S00 tests
   assets.go            Go package embedding its own dist subtree
-  dist/                generated Vite output; absent until frontend build
+  dist/                generated Vite output; ignored, required before Go build
 ```
 
-`web/assets.go` may declare `//go:embed dist` and use `fs.Sub(embedded, "dist")`; `cmd/joy-pi-board` consumes that package through Board's module. The directive references a child directory, with **no `../`** traversal. Keep deployable assets under `web/dist`; configure Vite output accordingly. Build from clean sources: pinned frontend install → checks/tests → Vite production build → verify output inventory → Go build embedding `web/dist`. A missing dist should fail the production Go build; do not ship dummy assets to disguise an incomplete build. Generated dist is proposed to be ignored by Git and regenerated in CI; S00 must prove a clean checkout works in that order. Test Go packages needing embed only after asset generation.
+S00 `web/assets.go` declares `//go:embed dist` and uses `fs.Sub(compiled, "dist")`; `cmd/joy-pi-board` consumes that package through Board's module. The directive references a child directory, with **no `../`** traversal. Vite emits `web/dist`, ignored by Git. The implemented build order is pinned frontend install → checks/tests → Vite production build → Go compilation with embedded dist. No dummy assets or filesystem fallback exist. The isolated missing-dist check confirms compilation fails; the clean-source repeat and standalone binary checks are recorded in [S00 evidence](s00-evidence.md).
 
 The binary serves actual embedded bytes, not files resolved from the current working directory. Validate by moving the binary into an empty directory and starting it without Node, source tree or dist. No service/package is created in this task.
 
@@ -61,9 +61,9 @@ This serializes publication without network I/O under a global lock and keeps te
 
 ## Startup, configuration and operations
 
-**Proposed P-01/P-02 configuration surface:** flags `--listen`, `--health-url`, `--help`, `--version`; environment `JOY_PI_BOARD_LISTEN` and `JOY_PI_BOARD_HEALTH_URL`; precedence explicit flag → environment → default. Unknown flags, malformed socket addresses/URLs, credentials/fragments/query in provider URL or missing endpoint path fail startup with safe diagnostics and nonzero exit. Proposed provider URL policy: HTTP only for this trusted LAN baseline, absolute host/port and exact `/v1/snapshot` path. This configurable destination comes only from startup settings, never an API/browser parameter. Review before permitting other schemes or endpoint forms. Timeout and freshness constants remain established, not freely configurable behavior.
+**Proposed P-02 production configuration surface:** flags `--listen`, `--health-url`, `--help`, `--version`; environment `JOY_PI_BOARD_LISTEN` and `JOY_PI_BOARD_HEALTH_URL`; precedence explicit flag → environment → default. Only shell --listen/--help exist in S00. Unknown flags, malformed socket addresses/URLs, credentials/fragments/query in provider URL or missing endpoint path should fail startup with safe diagnostics and nonzero exit under the proposed S02 policy. Proposed provider URL policy: HTTP only for this trusted LAN baseline, absolute host/port and exact `/v1/snapshot` path. This configurable destination comes only from startup settings, never an API/browser parameter. Review before permitting other schemes or endpoint forms. Timeout and freshness constants remain established, not freely configurable behavior.
 
-Proposed defaults: Board `0.0.0.0:8081`; Health `http://127.0.0.1:8080/v1/snapshot`. An occupied Board port is a clear Board startup error, never a reason to change Health's port. No reachability probe blocks startup/readiness. Readiness means the bound listener can serve embedded `/` and its assets; it does not mean Health is available. P-02 proposes using `/` as the readiness probe rather than adding another public endpoint.
+Approved defaults (P-01): Board `0.0.0.0:8081`; Health `http://127.0.0.1:8080/v1/snapshot`. S00 implements only the Board listener; full configuration above remains P-02/S02. An occupied Board port is a clear Board startup error, never a reason to change Health's port. No reachability probe blocks startup/readiness. Readiness means the bound listener can serve embedded `/` and its assets; it does not mean Health is available. P-02 proposes using `/` as the readiness probe rather than adding another public endpoint.
 
 Handle SIGTERM/SIGINT by closing admission, cancelling provider work and gracefully draining within the established 5 s bound, then exiting. Emit startup settings without secrets, build identity, readiness, significant provider/issue-state transitions, recovery and shutdown to stdout/stderr. Suppress repeated identical failures and routine poll successes; do not log snapshots, raw upstream bodies or unsafe error strings. Transition keys use provider reason and issue path/code, not changing metric values. Logging configuration and suppression must be testable.
 

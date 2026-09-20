@@ -6,11 +6,26 @@ Joy Pi Board is the second microservice of Joy Pi Home: a lightweight web overvi
 
 ## Current state
 
-This repository contains the **consolidated documentary foundation for v0.1.0**. The application, build manifests, CI, packages and deployment service are not implemented. Sprint 00 is prepared, **not executed**. All planned product validation is **NOT RUN**; no release candidate or hardware acceptance exists.
+This repository contains the **v0.1.0 specifications and implemented Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closure is pending actual CI execution; see [S00 evidence](docs/s00-evidence.md). The Health client, overview API, parser/validator, cache, dashboard, packages and production service are not implemented. Functional and physical validation remain NOT RUN; there is no release candidate.
 
-The target is one page (`/`), one host and one provider. React/TypeScript/Vite assets will be embedded in a Go HTTP server, shipped as one binary. Production targets Raspberry Pi OS 64-bit / Trixie on Linux ARM64; Board acceptance uses a Raspberry Pi 3B+.
+The product target is one page (`/`), one host and one provider. React/TypeScript/Vite assets are already embedded for the S00 shell. Production targets Raspberry Pi OS 64-bit / Trixie on Linux ARM64; Board acceptance uses a Raspberry Pi 3B+.
 
-Board will serve its UI even without Health. The browser will call Board on the same origin; Board will consume Health's existing `http://127.0.0.1:8080/v1/snapshot`. The proposed Board listener is `0.0.0.0:8081`, **pending ratification**. The Board port was not previously decided. There is no runnable service or installation command yet.
+The shell serves its UI without Health and makes no provider calls. The **approved** Board listener defaults to `0.0.0.0:8081`; the future Health endpoint remains `http://127.0.0.1:8080/v1/snapshot`. The minimal page identifies the development foundation and displays no fake health values. `/api/v1/overview` returns 404 until S02.
+
+## Build the S00 shell
+
+Use Go **1.27.1**, Node.js **24.21.0**, npm **11.19.0**. From the repository root:
+
+```text
+node scripts/tasks.mjs tools
+npm --prefix web ci
+npm --prefix web run check
+npm --prefix web run build
+npm --prefix web run cross
+npm --prefix web run smoke
+```
+
+The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built binary is `out/joy-pi-board-linux-arm64`. Run the native binary with `--listen 127.0.0.1:8081` for local development. Build commands compile frontend before Go embed; no Node runtime is required to run the binary. See [foundation commands and choices](docs/s00-foundation.md) for formatting, development, sizes, missing-dist and native race checks. Production lifecycle and installation are future work.
 
 ## Documentation and authority
 
@@ -24,10 +39,14 @@ Board will serve its UI even without Health. The browser will call Board on the 
 | [UX contract](docs/ux-v0.1.0.md) | Presentation, availability, freshness and browser failure states |
 | [Validation and release](docs/validation-v0.1.0.md) | Planned tests, measurable gates, requirement-to-test-to-sprint traceability |
 | [Roadmap](docs/roadmap-v0.1.0.md) | Dependency-based sprint objectives and completion criteria |
-| [Sprint 00 preparation](docs/sprint-00.md) | Detailed future foundation tasks; no execution authorization implied |
-| [Proposals to ratify](docs/decisions.md) | Complementary choices awaiting review |
-| [Documentation review](docs/documentation-review.md) | Checks performed on these documents, distinct from product validation |
+| [Sprint 00 work package](docs/sprint-00.md) | Foundation tasks and execution status |
+| [Foundation choices](docs/s00-foundation.md) | Exact toolchains/dependencies, browsers, implemented shell and commands |
+| [S00 evidence](docs/s00-evidence.md) | Actual local results, artifact hashes, CI gap and deferred gates |
+| [Exact JSON integers ADR](docs/adr-001-exact-json-integers.md) | Adopted common convention inherited from Health |
+| [Shared fixtures](testdata/README.md) | Authoritative numeric data and future contract taxonomy |
+| [Decision register](docs/decisions.md) | Approved, replaced and deferred choices |
+| [Original documentation review](docs/documentation-review.md) | Historical documentary-only checks; not S00/product acceptance |
 
-The user-established decisions are consolidated, not newly approved implementation choices. Sections marked **Proposed P-xx** require review. Upstream observations are marked **Verified H-xx** and pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; they are not evidence of Board implementation or of passing upstream tests in this session.
+Only decisions explicitly adopted in the register are approved. Remaining **Proposed P-xx** sections require their sprint's review. Upstream observations are **Verified H-xx**, pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; reading those sources is not executing Health tests. S00 does not change that baseline or authorize S01–S04.
 
 No system collection, database, history, administration, authentication or public Internet exposure belongs to v0.1.0. Health is a read-only reference: do not modify it or import its Go `internal` packages. See [AGENTS.md](AGENTS.md).

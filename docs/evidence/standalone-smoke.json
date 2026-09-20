@@ -1,0 +1,19 @@
+{
+  "scope": "S00 native binary, empty working directory except binary, PATH empty; not hardware acceptance",
+  "platform": "win32",
+  "arch": "x64",
+  "binarySHA256": "c75c48cc1558fa1ecdafba017fd2f20bcf3fd502d48efb2be9c2cc4ba626069d",
+  "healthTrap": "127.0.0.1:8080, zero connections through startup/requests/6 s idle",
+  "assets": [
+    {
+      "path": "/assets/index-B7cnKOOC.js",
+      "bytes": 220427,
+      "sha256": "a62e1c2de6e04a3c5865f04985f0a1979a98021093d5a61a5b36895ce781b0de"
+    },
+    {
+      "path": "/assets/index-CxJ9SqO5.css",
+      "bytes": 742,
+      "sha256": "608633df2318e4811d5851864c2388b52efd235c1a4177d98f4e9e28f59f1cc2"
+    }
+  ]
+}

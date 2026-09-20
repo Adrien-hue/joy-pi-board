@@ -1,6 +1,6 @@
-# Sprint 00 — detailed preparation
+# Sprint 00 — work package and execution status
 
-Status: **PREPARED, NOT EXECUTED**. This document is the future implementation work package, not evidence that tasks have been done or authorization to run them during this documentation mission. No application directories, dependency manifests, CI workflows or packages have been created as part of this sprint now.
+Status: **IMPLEMENTED AND LOCALLY VERIFIED; CLOSURE PENDING FIRST SUCCESSFUL CI RUN**. The later user instruction explicitly authorized S00, superseding the documentary-only restriction. Detailed executed commands, versions and results are in [S00 evidence](s00-evidence.md). No S01–S04 work is authorized or executed.
 
 Objective: establish a reproducible minimum build and test foundation so S01 can implement the pinned Health contract with no uncertainty about toolchain, assets or test ownership. [Architecture](architecture-v0.1.0.md) owns the proposed package layout; [roadmap](roadmap-v0.1.0.md) owns dependencies; [validation](validation-v0.1.0.md) owns gate IDs.
 
@@ -8,17 +8,17 @@ Objective: establish a reproducible minimum build and test foundation so S01 can
 
 - Confirm `Adrien-hue/joy-pi-board`, preserve current documentation and verify the working tree before any future scaffolding.
 - Review the requirement/source-of-truth map and pinned Health revision. No moving-branch schema or copying Health internals.
-- Ratify or explicitly replace foundation-affecting P-01/P-02 (ports, CLI/env and build/static layout) and P-03 (strict validation and exact parsing direction). Record owner/review evidence in the decision record when a real review occurs; none is invented now.
+- Apply the S00 instruction's approvals: P-01/defaults, module/stack/npm/embed layout and exact-integer convention. Record P-02's limited shell choices and P-03's separated concerns; unknown-member policy and parser selection remain S01 and do not block S00. See [decisions](decisions.md).
 - Identify native build/race runner and target Linux ARM64. Verify available supported Go/Node toolchains at execution time, then lock exact versions. Do not infer contemporary tool versions from this document.
 - Make absence of hardware nonblocking for S00, while leaving all Class C gates NOT RUN.
 
 ## Ordered work packages
 
-All rows are **NOT STARTED**; each is intended to be a reviewable future change. Dependencies are explicit to avoid parallel tasks silently choosing incompatible conventions.
+The original task definitions below retain their stable IDs. Local implementation is complete; the execution table immediately below them records which exit evidence remains unavailable. Dependencies were followed; a workflow file is not a passing CI run.
 
 | Task | Future work and concrete output | Depends on | Completion evidence |
 |---|---|---|---|
-| S00-01 | Record short foundation decision notes: approved/replaced P choices, Go module identity proposed as `github.com/Adrien-hue/joy-pi-board`, exact tool versions, supported dev OS/CI platform, frontend package manager and browser bigint target. | Entry review | Decisions separate established/proposed facts; no unresolved choice hidden in a manifest. |
+| S00-01 | Record foundation choices: approved/replaced/deferred P decisions, approved module `github.com/Adrien-hue/joy-pi-board`, exact tool versions, supported dev OS/CI platform, npm and browser bigint targets. | Entry review | Decisions separate established/proposed facts; no unresolved choice hidden in a manifest. |
 | S00-02 | Establish exact Go version (module/toolchain and CI enforcement), exact Node + package-manager versions, React/TS/Vite and minimal lint/test dependency versions with lockfile. Record licenses and selection rationale. | S00-01 | Tool-version mismatch fails clearly; no implicit auto-upgrade/latest/floating CI image; chosen versions verified compatible by a clean install. |
 | S00-03 | Create only needed directories/files in the proposed `cmd`, coherent `internal` packages and `web` layout. Add module/manifests/ignore rules, formatter/linter config, concise contributor commands. Do not create empty future packages for architecture symmetry. | S00-02 | Tree builds with clear ownership, no Health internal dependency, no collectors, no unnecessary framework/global store/UI kit. |
 | S00-04 | Add a minimal frontend shell and Go entry point proving production asset embedding; build frontend into `web/dist`, embed via package `web` child path, serve shell and actual generated assets. This is a build smoke surface, not a functional dashboard. | S00-03 | Clean frontend build precedes Go compile; absent dist fails rather than falling back to local files; binary in empty directory serves exact assets. |
@@ -31,9 +31,11 @@ All rows are **NOT STARTED**; each is intended to be a reviewable future change.
 
 ## Toolchain and build details to lock
 
-Go: pin an exact supported patch version after review; module identity remains Board's. Prefer standard library; any introduced module needs a specific purpose. Run module consistency checks after the full intended files exist, not against this documentation-only repository. Record `GOOS`, `GOARCH`, CGO setting and build metadata strategy; proposed release build disables CGO where dependencies permit and uses reproducible path/build flags. Verify runtime independence rather than assuming “Go binary” means static.
+The choices below describe the preparation intent. Exact selections and implemented commands are now recorded in [foundation choices](s00-foundation.md), which supersedes the earlier unselected-toolchain text. In particular, the npm choice is approved, tool versions are locked, and first-party Go package selection excludes npm dependency source files.
 
-Frontend: proposed package manager is npm with an exact pinned version and committed lockfile, installed through `npm ci` (review as part of S00-01). Exact dependency versions/lock entries must resolve reproducibly. Set TypeScript strict null checking and a bigint-capable compilation/browser target; document the minimum browser versions selected during S00. Avoid `any`-based assertion of fetched payloads. A browser data parser needs raw numeric tokens, not standard `response.json()`.
+Go: exact supported patch version locked and explicitly checked; module identity is Board's. Standard library only in S00; any later module needs a specific purpose. Module consistency checks run against the implemented tree. Native/cross target and CGO=0 build choices are recorded in foundation/evidence; race uses a native compiler with CGO=1. Runtime independence is verified, not inferred from the language.
+
+Frontend: approved npm is pinned exactly with a committed lockfile and installed through `npm ci`. TypeScript strict null checking and bigint-capable browser targets are configured. Avoid `any`-based assertions of future fetched payloads. The S01 browser parser will recover original numeric tokens, not rounded values from standard `response.json()`.
 
 Build chain: clean locked frontend install → type-check/lint/tests → Vite production build → generated asset inventory/precompression if adopted → Go checks requiring embed → native/cross binaries → actual embedded-asset smoke. Use package `web` with directive `dist`, never a parent traversal. The production command must build assets before Go; a Go-only convenience command must fail clearly if assets are missing. Generated output should not create unrelated source diffs or leak dev-server endpoints.
 
@@ -41,7 +43,7 @@ No bit-for-bit reproducibility promise is established merely by dependency locki
 
 ## Tests and fixture preparation
 
-Proposed future locations: `internal/health/testdata` for upstream wire fixtures and invalid mutations, plus `web` test data referencing the same authoritative fixture source or a checked synchronization step. Avoid two independently edited fixture copies. JSON examples under [docs/examples](examples/overview-current.json) are explanatory Board envelopes; extract their snapshots deliberately, preserving raw integer tokens. Do not run a JavaScript parse/stringify step that rounds them while generating fixtures.
+Implemented S00 choice: repository-level [testdata](../testdata/README.md) is the authoritative shared numeric source, with no duplicated Go/TypeScript copies. No empty internal/health package is created. JSON examples under [docs/examples](examples/overview-current.json) remain the single source for explanatory Board envelopes; future S01 extraction must preserve raw snapshot tokens. Do not use a lossy JavaScript numeric parse/stringify cycle.
 
 S00 defines fixture IDs/expected outcomes; S01 writes the complete cases and validators. Required taxonomy:
 
@@ -54,12 +56,27 @@ Clock seam must allow independent wall and elapsed-time advancement; fake Health
 
 ## Configuration and CI handoff
 
-Document intended defaults and help text semantics before wiring real behavior: Board proposed `0.0.0.0:8081`, Health fixed existing default URL on 8080, CLI/env precedence from architecture; invalid config exits cleanly with safe diagnostics. No user-configurable freshness/timeout that silently breaks the established contract. Full configuration validation, help/version metadata, shutdown, admission and significant-transition logs are S02; Debian paths/env file/unit are S04.
+Approved defaults: Board `0.0.0.0:8081`, Health existing URL on 8080. S00 implements the minimal --listen and --help surface only; remaining CLI/env precedence is a proposal for S02. No user-configurable freshness/timeout may silently break the established contract. Full configuration validation, version metadata, shutdown, admission and significant-transition logs are S02; Debian paths/env file/unit are S04.
 
-CI must distinguish source checks, binary smoke tests and unavailable physical tests. Hardware jobs must not be green placeholders. Race on suitable native platform is not replaced by cross-build. CI workflow definitions are future S00 outputs; **none exists or is executed as part of this preparation**. No release publishing credentials or production deployment step is needed.
+CI distinguishes source checks and binary smoke tests; it has no green hardware placeholder. Race on a suitable native platform is not replaced by cross-build. [The workflow](../.github/workflows/ci.yml) is implemented with pinned actions and explicit image identity recording, but **has not run on GitHub for this unpushed change**. No release credentials or deployment step is present.
 
 ## Explicit sprint boundary
 
 S00 ends with a reproducible build shell and validation scaffolding. It does **not** deliver a validated Health decoder/parser (S01), live provider fetch or overview/cache/recovery (S02), metric dashboard/freshness UI (S03), Debian/systemd artifacts or performance/physical acceptance (S04). A preliminary small shell bundle does not pass the final frontend budget gate. No Health code or deployment is changed at any sprint without its own scope; this project remains a consumer.
 
-All work above remains future work after this documentary task. See [documentation review](documentation-review.md) for the much narrower checks actually performed now.
+## Task execution ledger
+
+| Task | Actual S00 status | Evidence / outstanding condition |
+|---|---|---|
+| S00-01 | DONE | Updated decision register, ADR-001, module identity and foundation/browser choices. |
+| S00-02 | DONE | Exact tool checks, compatible dependency pins/lockfile, explicit no-auto-switch Go runner. |
+| S00-03 | DONE | Only cmd, internal/httpui and web Go packages; no future empty packages or Go external dependencies. |
+| S00-04 | DONE | Minimal React shell; compiled dist embedded from web; standalone binary byte checks. |
+| S00-05 | DONE LOCALLY | Native/cross builds and clean-source/fresh-cache repeat; see exact comparison scope in evidence. |
+| S00-06 | DONE | Real shell/asset tests and byte-preserving shared fixtures; no fake provider/cache framework. |
+| S00-07 | DONE | Minimal shell flags documented separately from future full configuration. |
+| S00-08 | IMPLEMENTED; CI NOT RUN | Workflow/action/tool/image choices present; first successful hosted run remains required. |
+| S00-09 | DONE LOCALLY | S00 A-01–A-04 subset, asset inventory and preliminary shell-only size report. |
+| S00-10 | REVIEW RECORDED; EXIT OPEN | Evidence and S01 handoff updated; do not mark S00 complete until applicable CI exit evidence exists. |
+
+The [original documentation review](documentation-review.md) is historical; [S00 evidence](s00-evidence.md) records this authorized implementation. Full Class A product checks, functional B and physical C acceptance are not claimed by completing local foundation tests.

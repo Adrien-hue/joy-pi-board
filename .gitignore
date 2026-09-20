@@ -1,0 +1,6 @@
+/.tools/
+/.cache/
+/out/
+/web/node_modules/
+/web/dist/
+*.tsbuildinfo

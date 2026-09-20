@@ -1,6 +1,6 @@
 # Joy Pi Board v0.1.0 specification
 
-Status: **consolidated requirements; not implemented**. This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
+Status: **consolidated product requirements; S00 build shell implemented, functional product not implemented**. Actual checks and remaining S00 exit conditions are in [S00 evidence](s00-evidence.md). This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
 
 ## Authority and status
 
@@ -41,7 +41,7 @@ Board is the second Joy Pi Home microservice. It makes Health observations reada
 | JPB-022 | Log to stdout/stderr for journald: startup, shutdown and significant transitions. No full snapshots or per-poll success logging by default. |
 | JPB-023 | Target Raspberry Pi OS 64-bit / Trixie, Linux ARM64; future autonomous ARM64 binary, Debian package, systemd unit with dedicated unprivileged user, checksums and build metadata. No production Node/npm/Vite or mandatory reverse proxy. Packaging must not depend on Health availability to start Board. |
 | JPB-024 | Official release requires Classes A, B and C PASS on the exact candidate bytes/checksums. Physical tests use Raspberry Pi 3B+, distinct from Health's own hardware gates. Unexecuted physical validation is NOT RUN. |
-| JPB-025 | Keep this mission documentary: prepare reproducible Sprint 00 and functional roadmap without executing the sprint, creating application code/manifests/CI/packages, publishing or deploying. |
+| JPB-025 | Respect the authorized sprint boundary. The initial documentation-only task is complete; the subsequent user instruction authorizes S00 foundations only. Do not execute S01–S04, publish a release or deploy services. Preserve the historic documentation review separately from actual S00 evidence. |
 
 ## Established non-functional budgets
 
@@ -62,4 +62,4 @@ Board is the second Joy Pi Home microservice. It makes Health observations reada
 
 MiB = 2^20 bytes; KiB = 2^10 bytes. The 250 ms gate does **not** apply to a genuine network timeout. CPU is process CPU time divided by elapsed wall time, expressed as percent of one core, not divided by four on the Pi. No separate ten-client CPU percentage limit has been established; [validation](validation-v0.1.0.md) proposes a concrete capacity protocol without inventing one.
 
-All operational measurement protocols and supplemental transport defaults are proposals pending review. No budget has been measured in this repository.
+Operational measurement protocols and remaining supplemental transport defaults are proposals pending review; see the updated [decision register](decisions.md). Only the minimal shell's asset sizes have been measured in S00, not final product or physical budgets. The exact-integer convention is adopted in [ADR-001](adr-001-exact-json-integers.md).
