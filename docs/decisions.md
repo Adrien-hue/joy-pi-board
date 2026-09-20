@@ -1,0 +1,14 @@
+# Complementary proposals awaiting ratification
+
+Status: **all P-xx are PROPOSED**, none is an approved historical decision. Established scope remains in [the specification](specification-v0.1.0.md). These choices make future work reviewable; this documentary task does not implement them.
+
+| ID | Concrete proposal and rationale | Review / owning sprint |
+|---|---|---|
+| P-01 | Default Board listener `0.0.0.0:8081`; 8081 was not previously fixed. Keep Health at `127.0.0.1:8080`. Validate configurable addresses at startup. | Confirm LAN binding and port; S00 configuration contract, S02 implementation. |
+| P-02 | Small exact-route HTTP surface, bounded bodies, stable Board error envelope, static asset policy, security headers and CLI/environment configuration as detailed in [architecture](architecture-v0.1.0.md) and [API](board-api-v0.1.0.md). | Review transport and configuration policy in S00; deliver in S02/S04. |
+| P-03 | Strict known-field validator for schema 1.0; accept any non-empty network state string, while recognizing observed up/down/unknown labels. Preserve validated raw JSON in Go. Browser uses a bounded token-preserving parser with bigint conversion by schema before any Number conversion. No dependency chosen; a targeted lossless-parser library may replace the proposed owned parser after size/license/security/API review. | Freeze validator compatibility and parser approach in S00/S01; no broad UI dependency implied. |
+| P-04 | Coalesce only simultaneously active upstream calls in one demand-created flight; protect immutable result/cache publication with a mutex. No completed-flight reuse and no retry. | Review lifecycle/cancellation and sequence rules in S02; see [architecture](architecture-v0.1.0.md). |
+| P-05 | Add an HTTP `X-Joy-Pi-Snapshot-Age-Ms` header carrying monotonic server age; use it with conservative browser elapsed-time accounting, a 2 s browser request timeout and skipped 5 s ticks while busy. This resolves first-load stale age and Pi clock adjustments without changing the prescribed JSON envelope. | Review public header and browser failure behavior before S02/S03. See [API](board-api-v0.1.0.md) and [UX](ux-v0.1.0.md). |
+| P-06 | Presentation conventions (binary byte units, exact counter detail, rounding), accessibility checks and reproducible measurement durations/compression/statistics in [UX](ux-v0.1.0.md) and [validation](validation-v0.1.0.md). Budgets themselves are established. | Ratify protocol before implementation-dependent measurements; S03/S04. |
+
+Toolchain versions, dependency versions and CI runner images are deliberately **not selected in this documentary mission**. [S00](sprint-00.md) includes their compatibility review and exact locking. They must not appear as unlocked “latest” in the future reproducible build. No unresolved proposal justifies importing Health internals, changing Health's port, loosening numeric fidelity or claiming unrun gates have passed.

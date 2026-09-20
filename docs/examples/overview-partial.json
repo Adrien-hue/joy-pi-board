@@ -1,0 +1,111 @@
+{
+  "generated_at": "2026-09-20T12:00:05.110Z",
+  "health": {
+    "availability": "available",
+    "snapshot_state": "current",
+    "last_success_at": "2026-09-20T12:00:05.100Z",
+    "reason": null,
+    "snapshot": {
+      "schema_version": "1.0",
+      "observed_at": "2026-09-20T12:00:05.000Z",
+      "host": {
+        "hostname": "joy-pi"
+      },
+      "cpu": {
+        "utilization_percent": null,
+        "logical_cpu_count": 4
+      },
+      "load": {
+        "one_minute": null,
+        "five_minutes": null,
+        "fifteen_minutes": null
+      },
+      "memory": {
+        "total_bytes": null,
+        "available_bytes": null,
+        "used_bytes": null
+      },
+      "root_filesystem": {
+        "total_bytes": null,
+        "available_bytes": null,
+        "used_bytes": null
+      },
+      "uptime_seconds": 0,
+      "network": {
+        "interfaces": [
+          {
+            "name": "eth0",
+            "state": null,
+            "rx_bytes": null,
+            "tx_bytes": 0
+          },
+          {
+            "name": "wlan0",
+            "state": "down",
+            "rx_bytes": 123,
+            "tx_bytes": 456
+          }
+        ]
+      },
+      "raspberry_pi": {
+        "soc_temperature_celsius": 48.25,
+        "thermal_throttling_active": null,
+        "thermal_throttling_occurred_since_boot": null,
+        "undervoltage_active": null,
+        "undervoltage_occurred_since_boot": null
+      },
+      "issues": [
+        {
+          "path": "/load",
+          "code": "unsupported",
+          "message": "The metric is unsupported on this platform."
+        },
+        {
+          "path": "/memory",
+          "code": "permission_denied",
+          "message": "The metric is not accessible to the service account."
+        },
+        {
+          "path": "/root_filesystem",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/raspberry_pi/thermal_throttling_active",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/raspberry_pi/thermal_throttling_occurred_since_boot",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/raspberry_pi/undervoltage_active",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/raspberry_pi/undervoltage_occurred_since_boot",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/network/interfaces/0/state",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        },
+        {
+          "path": "/network/interfaces/0/rx_bytes",
+          "code": "permission_denied",
+          "message": "The metric is not accessible to the service account."
+        },
+        {
+          "path": "/cpu/utilization_percent",
+          "code": "temporarily_unavailable",
+          "message": "The metric is temporarily unavailable."
+        }
+      ]
+    }
+  }
+}

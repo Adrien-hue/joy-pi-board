@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-09-20T12:00:00.110Z",
+  "health": {
+    "availability": "available",
+    "snapshot_state": "current",
+    "last_success_at": "2026-09-20T12:00:00.100Z",
+    "reason": null,
+    "snapshot": {
+      "schema_version": "1.0",
+      "observed_at": "2026-09-20T12:00:00.000Z",
+      "host": {
+        "hostname": "joy-pi"
+      },
+      "cpu": {
+        "utilization_percent": 0.5037,
+        "logical_cpu_count": 4
+      },
+      "load": {
+        "one_minute": 0.12,
+        "five_minutes": 0.18,
+        "fifteen_minutes": 0.21
+      },
+      "memory": {
+        "total_bytes": 1000000000,
+        "available_bytes": 600000000,
+        "used_bytes": 400000000
+      },
+      "root_filesystem": {
+        "total_bytes": 32000000000,
+        "available_bytes": 20000000000,
+        "used_bytes": 12000000000
+      },
+      "uptime_seconds": 86400,
+      "network": {
+        "interfaces": [
+          {
+            "name": "eth0",
+            "state": "up",
+            "rx_bytes": 9007199254740993,
+            "tx_bytes": 18446744073709551615
+          }
+        ]
+      },
+      "raspberry_pi": {
+        "soc_temperature_celsius": 48.25,
+        "thermal_throttling_active": false,
+        "thermal_throttling_occurred_since_boot": false,
+        "undervoltage_active": true,
+        "undervoltage_occurred_since_boot": true
+      },
+      "issues": []
+    }
+  }
+}
