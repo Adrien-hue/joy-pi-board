@@ -37,6 +37,6 @@ The public API's wording “group ... null” is ambiguous for load, memory and 
 
 The public issue example uses `Firmware status is not accessible to the service account.` The coordinator actually emits the generic `The metric is not accessible to the service account.` with the same code. Board examples use the actual emitted messages. Board's behavior depends on code/path, not a literal message comparison; it preserves and safely renders valid message text.
 
-Public network `state` is a string; the observed coordinator emits three values. [P-03](decisions.md) proposes accepting other non-empty strings, displaying their text without inventing semantics. The observed implementation does not silently narrow the public type.
+Public network `state` is a string; the observed coordinator emits three values. [P-03](decisions.md) now approves accepting other non-empty strings in S01, with neutral future presentation and no invented semantics. The observed implementation does not silently narrow the public type.
 
 The [integration contract](health-integration-v1.0.md) translates this evidence into a Board consumer design. The [validation plan](validation-v0.1.0.md) references these tests as evidence to reproduce with Board-owned fixtures; none of their names is a Board test result.

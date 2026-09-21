@@ -1,0 +1,9 @@
+{
+  "corpus": 264,
+  "acceptedGoOutputsParsedInTS": 76,
+  "seededMutations": 512,
+  "seed": 20260920,
+  "acceptedMutations": 1,
+  "result": "PASS",
+  "scope": "in-memory contract and test-only envelope, no HTTP/cache/dashboard"
+}

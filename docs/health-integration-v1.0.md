@@ -1,8 +1,8 @@
 # Integration with Health snapshot schema 1.0
 
-Status: **consolidated consumed contract**, with implementation proposals explicitly marked. Normative for Board's consumed field names, units, nulls and issue semantics. Source: [pinned Health evidence H-01–H-09](health-baseline.md), never Health Go package imports. Requirements JPB-014–016.
+Status: **normative consumed contract; S01 validator/parser implemented and locally verified, hosted CI pending**. Normative for Board's consumed field names, units, nulls and issue semantics. Source: [pinned Health evidence H-01–H-09](health-baseline.md), never Health Go package imports. Requirements JPB-014–016.
 
-S00 adopts the common exact-number convention in [ADR-001](adr-001-exact-json-integers.md). This contract's validator/parser remains S01 work; no Health client or business parser exists in the S00 shell. [P-03](decisions.md) now separates the adopted convention, Go realization and browser parser selection.
+The common exact-number convention is adopted in [ADR-001](adr-001-exact-json-integers.md). S01 implements Go validation and TypeScript lossless parsing without a Health client or UI integration. [P-03](decisions.md) records the approved consumption rules separately from inherited Health facts and ordinary implementation choices. [S01 evidence](s01-evidence.md) owns actual results and limits.
 
 ## Transport and envelope
 
@@ -65,48 +65,13 @@ The notation `{i}` denotes the canonical decimal array index, without leading ze
 
 ## Go types and required-field presence
 
-**Proposed P-03 realization.** Board owns independent DTOs. Plain `*uint64` alone cannot distinguish missing from explicit null on input. Decode every required member with presence tracking, including required object/array nodes. A documentation-only type sketch:
+The implemented [Go types](../internal/healthschema/types.go) belong to Board. `Decode([]byte) (Validated, error)` first walks standard-library JSON tokens with `UseNumber`, preserving each numeric token and checking every decoded object key. A map lookup returns both the value and a **presence bit**: an absent required key fails before nullability is interpreted. Known keys are matched exactly and case-sensitively. No case-insensitive struct decoding or plain pointer alone establishes input presence.
 
-```go
-type Field[T any] struct {
-    Seen  bool // set only if the exact JSON key occurs
-    Null  bool // explicit JSON null; valid only for nullable fields
-    Value T
-}
-type Issue struct { Path, Code, Message Field[string] }
-type Host struct { Hostname Field[string] }
-type CPU struct {
-    UtilizationPercent Field[float64]
-    LogicalCPUCount    Field[uint64]
-}
-type Load struct { OneMinute, FiveMinutes, FifteenMinutes Field[float64] }
-type ByteGroup struct { TotalBytes, AvailableBytes, UsedBytes Field[uint64] }
-type NetworkInterface struct {
-    Name, State Field[string]
-    RXBytes, TXBytes Field[uint64]
-}
-type Network struct { Interfaces Field[[]NetworkInterface] }
-type RaspberryPi struct {
-    SoCTemperatureCelsius Field[float64]
-    ThermalThrottlingActive, ThermalThrottlingOccurredSinceBoot Field[bool]
-    UndervoltageActive, UndervoltageOccurredSinceBoot Field[bool]
-}
-type HealthSnapshot struct {
-    SchemaVersion, ObservedAt Field[string]
-    Host Field[Host]
-    CPU Field[CPU]
-    Load Field[Load]
-    Memory, RootFilesystem Field[ByteGroup]
-    UptimeSeconds Field[uint64]
-    Network Field[Network]
-    RaspberryPi Field[RaspberryPi]
-    Issues Field[[]Issue]
-}
-```
+After those checks, `Snapshot` is a known-field projection: `Host`, `CPU`, `Load`, `ByteGroup`, `Network`, `NetworkInterface`, `RaspberryPi`, `Issue`. Nullable metrics are `*uint64`, `*float64`, `*bool` or `*string`; `Network` alone is a nullable object pointer. Required strings/objects/arrays have already been checked, and integer tokens have passed lexical checks and `strconv.ParseUint` bounds. Projection pointers mean explicit null only, never absent.
 
-The sketch is not executable decoder code: the future decoder must bind **exact snake_case keys from the table**, through explicit tags or key dispatch, without Go's permissive case-insensitive matching. All `Seen` flags must be true; check `Null` against each field's permitted nullability before reading `Value`. Do not allow the zero value of `Value` to act as a missing-field marker. Reject null object/array nodes except `network`. Use `uint64` decoding or `json.Number` plus `strconv.ParseUint` from the original token, never a `float64` intermediary for integers.
+`Validated` privately owns a copy of the original input bytes. `Bytes()` and `MarshalJSON()` return fresh copies; `Snapshot()` re-decodes the validated bytes into independent typed data. Mutation of the input after Decode, returned buffers, or a returned projection cannot change the validated payload. The zero value is invalid and refuses serialization. Concurrent reads are safe; callers must not modify input during Decode itself.
 
-After validation, an immutable copy of the original snapshot bytes (`json.RawMessage`) can be embedded as the **object** value of `health.snapshot` and retained in the one-slot cache. Do not marshal bytes as base64 or a quoted JSON string. Original values, issues and numeric tokens remain unchanged; object whitespace/order need not be preserved contractually. Never forward unvalidated raw JSON.
+Its `json.Marshaler` implementation permits a future envelope to include the snapshot as an **object**, preserving unquoted number tokens and unknown members. `encoding/json` may compact whitespace or change equivalent string escaping; the private original bytes remain unchanged. Optional HTML escaping can increase serialized byte size; S02 must account for encoder behavior when defining transport and full-envelope limits. The typed projection intentionally omits unknown fields and must not replace the transport payload. This implements no cache or production overview envelope.
 
 ## TypeScript types after successful runtime validation
 
@@ -155,26 +120,28 @@ interface HealthSnapshot {
 
 ## Lossless browser parsing and presentation
 
-**Adopted convention / S01 implementation choice:** recover original numeric tokens using an evaluated focused lossless JSON library, or a native token-source facility supported by every [retained browser target](s00-foundation.md). Fetch the body as bounded bytes/text and validate UTF-8 and schema. **`response.json()` followed by Number-to-bigint conversion is forbidden.** An ordinary JSON.parse reviver relying on an already-rounded Number is insufficient; a native original-source API would require explicit compatibility verification. Never rewrite numbers with a regular expression. No parser is implemented or installed during S00.
+Implemented parsing uses **lossless-json 4.3.1** and a narrow defensive preflight; [the S01 evaluation](sprint-01.md#parser-decision-and-primary-source-evaluation) records its primary sources, gaps, browser assumptions and bundle measurement. `parseSnapshot(Uint8Array | string)` validates byte size, Unicode, structure and schema before returning `HealthSnapshot`. Bytes use fatal UTF-8 decoding without BOM stripping; string input is checked for unpaired UTF-16 before measuring its UTF-8 byte size. No Fetch client exists yet. **`response.json()` followed by Number-to-bigint conversion is forbidden.**
 
-At a uint64 field, accept only an unquoted nonnegative decimal integer token (`0` or a nonzero digit followed by digits), then `BigInt(raw)` and range-check. Fractional/exponent notation and negative tokens at integer fields are rejected under P-03's strict emitted-token policy. At a floating metric, convert its raw number token to `Number`, check finite/range, and retain the documented floating-point semantics. Strings such as `"9007199254740993"` are invalid at numeric fields. The browser must never call `Number(counter)` before formatting or calculating a ratio. The same fixtures drive Go and TypeScript checks.
+At uint64 positions, accept only an unquoted token matching `0` or a nonzero digit followed by digits, then checked conversion in range 0..18446744073709551615. Reject negative tokens including `-0`, fractions, exponents, strings and booleans. At floating metric positions, convert the original numeric token to Number/float64 and enforce finitude and the field domain; integer-looking tokens are still floating metrics. Floating `-0` is preserved, and a subnormal underflow to zero follows IEEE-754 conversion in both languages. No temperature/load health threshold is added. Numbers in unknown fields are not interpreted as known measures.
 
-The initial preference for an owned general-purpose parser is superseded by the S00 instruction. S01 evaluates library/native compatibility, license, maintenance, resource bounds, invalid/duplicate-key behavior and measured bundle contribution before choosing. Fixtures and adversarial/differential tests remain S01 deliverables. All uint64 fields use bigint even when small, with explicit 0..18446744073709551615 bounds; floating measures use number even when their token is written without a decimal part. Conversion is schema-driven. Go uses uint64 or checked original json.Number conversion; UseNumber preserves tokens but does not validate their domain.
-
-Formatting preserves integers: exact decimal text from `bigint.toString()`; binary unit summaries and percentages use bigint division/remainder with explicit rounding. For tenths of a percent, when total > 0, use `(used * 1000n + total / 2n) / total`, then format the resulting integer tenths; no unsafe cast of the operands. Display the exact cumulative byte number alongside, or in an accessible expandable detail, so a rounded GiB summary never replaces the exact counter. See [UX](ux-v0.1.0.md).
+The browser never converts a counter to Number. `decimalUInt64(bigint)` verifies bounds and returns exact base-10 text, including small values. It does not prescribe visual units or rounding. **Proposed P-06 presentation** (still deferred): binary-unit summaries and percentages can use bigint division/remainder; an exact value must remain available alongside rounded summaries. No such UI is implemented in S01.
 
 ## Validator policy and failure boundary
 
-**Proposed P-03 supplemental strictness:** bound Health body to 65,536 bytes, read at most limit+1, JSON nesting to 32, and a Board overview body to 80 KiB in the browser. Duplicate-key handling and these defensive limits require S01 review. Reject trailing JSON/text, malformed UTF-8, invalid strings, non-object roots, missing/null-required members, wrong types, out-of-range values and incoherent issues. Empty `issues` and interface arrays are allowed under their semantic constraints. Do not normalize, repair, sort or merge malformed snapshots.
+**Approved S01 Board consumption rules**, distinct from Health's producer guarantees:
 
-**Separate pending compatibility policy:** strict rejection of unknown members remains the initial P-03 proposal, not an adopted numeric requirement and not inherited from Health. S01 must ratify rejection or deliberate forward-compatible tolerance before claiming that case PASS. This does not block the S00 build shell.
+- Limit the snapshot to **65,536 bytes inclusive before parsing**, including whitespace. Count encoded UTF-8 bytes, not JavaScript string length. The root object is container 1; each nested object/array adds one, including empty containers and unknown subtrees. Maximum simultaneous depth is **32**, inclusive. Strings containing brackets do not increase depth. Future HTTP bounded reads and the proposed full overview limit remain S02.
+- Validate the entire JSON document, including unknown content, before version dispatch. Reject trailing documents/non-JSON whitespace, malformed syntax/UTF-8, BOM, unpaired escaped or literal surrogates, and duplicate decoded keys anywhere. Valid surrogate pairs and a genuinely encoded U+FFFD are accepted without normalization/replacement. Go's otherwise permissive Unicode replacement is explicitly guarded.
+- For schema 1.0, **tolerate extra members** at any object level, including issues, and preserve them in the validated Go payload. The baseline producer emits only the documented issue members. Extras cannot replace a required known key, contribute useful measures, relax invariants, or authorize unknown issue codes/paths. TypeScript returns only known fields.
+- Required keys are exact-case. Missing, explicit null and present values are distinct. Known objects/arrays are never null except network. Reject incoherent groups, invalid domains and mismatched issue count/path/order. Never sort, complete, repair or merge input.
+- Network state accepts any non-empty Unicode string. `up`, `down`, `unknown` are observed producer values, not a closed wire enum. Message text is non-empty Unicode, not compared with generic literals; the four firmware issues must share code/message.
 
-Validate a syntactically well-formed root and a present string `schema_version` before interpreting version-specific metric fields. A string other than `1.0` is `unsupported_schema_version`; an absent/non-string version is `invalid_response`. Remaining schema 1.0 violations are `invalid_response`. A structurally malformed document is always `invalid_response`, even if a fragment contains an unknown version. A future compatible schema must be reviewed explicitly rather than guessed.
+After global structural checks, a root object with a present string `schema_version` other than `1.0` yields **unsupported_schema_version**, before any version-specific interpretation (even if other fields are absent). Every malformed/global-limit case, non-object root, absent/non-string version, or schema 1.0 violation yields **invalid_response**. Diagnostics identify a bounded rule/known path without echoing values or whole payloads. No HTTP error envelope is implemented here.
 
-Network state is deliberately an open non-empty string in this proposed Board validator; recognize up/down/unknown in presentation but render other text neutrally. The stricter three-value coordinator behavior is H-06, not an invented public enum. Validation of text messages ensures non-empty UTF-8 and firmware-group equality; no general message-literal matching.
+`observed_at` is preserved and must be a nonzero, valid Gregorian RFC3339 UTC timestamp ending in uppercase Z; no offset, comma fraction or leap second. Health cannot encode Go's zero time. Fractional seconds are accepted; zero-time detection uses nanosecond interpretation consistently with Go. Hostname alone never makes a snapshot useful; neither does an empty interface array or an unknown field. **Each interface name counts as useful**, even with state/RX/TX all null. Otherwise any available metric suffices; no health verdict is implied.
 
-## Documentary examples and future fixtures
+## Documentary examples and shared fixtures
 
-[Complete](examples/overview-current.json) includes exact RX `9007199254740993` and TX `18446744073709551615`, plus CPU `0.5037` and an active true firmware flag with no issue. [Partial](examples/overview-partial.json) includes all three issue codes, null group leaves, independent temperature, four null firmware flags and an interface-local failure. [Stale](examples/overview-stale.json), [expired](examples/overview-expired.json) and [never successful](examples/overview-never-success.json) exercise Board envelopes. These are documentation examples, not an executed test suite.
+[Complete](examples/overview-current.json) includes exact RX `9007199254740993` and TX `18446744073709551615`, plus CPU `0.5037` and an active true firmware flag with no issue. [Partial](examples/overview-partial.json) includes all three issue codes, null group leaves, independent temperature, four null firmware flags and an interface-local failure. [Stale](examples/overview-stale.json), [expired](examples/overview-expired.json) and [never successful](examples/overview-never-success.json) exercise Board envelopes. The complete/partial snapshots seed the shared S01 corpus; the other envelope states remain documentary S02/S03 examples, not executed API tests.
 
-Future B-01–B-05 must also cover network null with `/network`, each group's all-null form, all-unavailable rejection, empty/unsorted/duplicate interfaces, issue reordering, absent versus null, exact numeric boundaries and HTTP provider outcomes. The exact upstream tests establishing those rules are listed in [Health evidence](health-baseline.md).
+The [shared corpus](../testdata/README.md) now covers B-01–B-04 snapshot rules, including network null, unavailable groups, useful-observation rules, interfaces, issues, presence/nulls, exact tokens, unknown members, Unicode and defensive boundaries. HTTP provider outcomes remain S02. The exact upstream tests establishing those rules are listed in [Health evidence](health-baseline.md).

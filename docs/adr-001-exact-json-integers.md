@@ -23,16 +23,16 @@ Health uses nullable `*uint64` fields, standard `encoding/json`, and exact-digit
 
 ## Board application, implemented in S01–S03
 
-Go validation will use uint64 directly or original `json.Number` tokens followed by checked conversion and range validation. `UseNumber()` retains a token; it does **not** validate signedness, integer syntax or range. Retaining validated `json.RawMessage` is compatible: embed it as an object, never as quoted JSON or base64. No complete validator or provider transport is implemented in S00.
+S01 Go validation uses original `json.Number` tokens followed by checked uint64 conversion and range validation. `UseNumber()` retains a token; it does **not** validate signedness, integer syntax or range. Retaining validated `json.RawMessage` is compatible: embed it as an object, never as quoted JSON or base64. S00 had no validator; S01 implements it without provider transport.
 
 TypeScript snapshot uint64 fields use `bigint` at every magnitude, bounded to `0n..18446744073709551615n`. Floating fields remain `number`, including a CPU percentage or temperature written as an integer-looking token. Conversion is driven by the schema. `response.json()` followed by bigint conversion of an already-rounded Number is forbidden.
 
-S01 evaluates a focused lossless JSON library first, or a native facility that exposes original number tokens if **all retained browser targets** support it. Evaluate compatibility, license, maintenance, invalid inputs, duplicate keys, limits and actual production bundle contribution. Do not automatically select a package. No unused parsing dependency or general-purpose homemade parser is introduced in S00. See [foundation choices](s00-foundation.md) for browser targets.
+S01 selected lossless-json 4.3.1 after evaluating the native source-token facility and unchanged browser floors; see [the evaluation](sprint-01.md#parser-decision-and-primary-source-evaluation). Evaluate compatibility, license, maintenance, invalid inputs, duplicate keys, limits and actual production bundle contribution. Do not automatically select a package. No unused parsing dependency or general-purpose homemade parser is introduced in S00. See [foundation choices](s00-foundation.md) for browser targets.
 
-Unknown-member policy is independent: rejecting versus tolerating unknown fields is still a **P-03 compatibility proposal for S01**, not a numerical requirement or an inherited Health decision. Required fields, nullability, types, bounds and exactness remain mandatory whichever compatibility policy is selected.
+Unknown-member policy is independent: **S01 approves tolerance** under the structural/duplicate limits in P-03, not as a numerical requirement or an inherited Health decision. Required fields, nullability, types, bounds and exactness remain mandatory whichever compatibility policy is selected.
 
 ## Verification and consequences
 
-The authoritative [shared fixtures](../testdata/README.md) preserve numeric tokens without a JavaScript numeric parse/stringify round trip. S00 checks fixture integrity, not business validation. Planned B-03 must cover Health snapshot → Board object envelope → browser parse → exact display, including uint64 extremes. That end-to-end test remains NOT RUN until the components exist.
+The authoritative [shared fixtures](../testdata/README.md) preserve numeric tokens without a JavaScript numeric parse/stringify round trip. S00 checks fixture integrity, not business validation. Planned B-03 must cover Health snapshot → Board object envelope → browser parse → exact display, including uint64 extremes. S01 now verifies Go validated bytes → test-only object envelope and TypeScript parsing → exact decimal primitives in memory. Real HTTP integration and dashboard display remain NOT RUN until S02/S03; see [S01 evidence](s01-evidence.md).
 
 This ADR supersedes P-03's initial preference for an owned tokenizer. It does not ratify unrelated validation, HTTP, concurrency, freshness or release measurement proposals. References: [integration](health-integration-v1.0.md), [Board API](board-api-v0.1.0.md), [validation](validation-v0.1.0.md), [decision register](decisions.md).

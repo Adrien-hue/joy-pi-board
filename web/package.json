@@ -12,6 +12,8 @@
     "preinstall": "node ../scripts/tasks.mjs tools",
     "tools": "node ../scripts/tasks.mjs tools",
     "check": "node ../scripts/tasks.mjs check",
+    "contract": "node ../scripts/tasks.mjs contract",
+    "fuzz": "node ../scripts/tasks.mjs fuzz",
     "build": "node ../scripts/tasks.mjs build",
     "cross": "node ../scripts/tasks.mjs cross",
     "race": "node ../scripts/tasks.mjs race",
@@ -27,6 +29,7 @@
     "build:frontend": "node ../scripts/tasks.mjs frontend"
   },
   "dependencies": {
+    "lossless-json": "4.3.1",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

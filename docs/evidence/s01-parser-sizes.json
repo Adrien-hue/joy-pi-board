@@ -1,0 +1,8 @@
+{
+  "scope": "Dedicated S01 parser + runtime validator + decimal formatter, not shell/dashboard; all public exports retained",
+  "node": "24.21.0",
+  "zlib": "1.3.2.1-motley-8002e91",
+  "bytes": 17400,
+  "gzip9": 5550,
+  "sha256": "c5d9f605b355731b04cc6231741d1b03ba3078967febd69625ebc84363f5cf70"
+}

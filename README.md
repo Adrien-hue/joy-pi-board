@@ -6,7 +6,7 @@ Joy Pi Board is the second microservice of Joy Pi Home: a lightweight web overvi
 
 ## Current state
 
-This repository contains the **v0.1.0 specifications and completed Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closed on 2026-09-20 after [CI run 35527458889](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35527458889) passed for commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`; see [S00 evidence](docs/s00-evidence.md) for its exact scope. **S01 is ready, not started.** The Health client, overview API, parser/validator, cache, dashboard, packages and production service are not implemented. Interactive visual checks, full browser/mobile acceptance, functional and physical validation remain NOT RUN; there is no release candidate, release or deployment.
+This repository contains the **v0.1.0 specifications and completed Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closed on 2026-09-20 after [CI run 35527458889](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35527458889) passed for commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`; see [S00 evidence](docs/s00-evidence.md) for its exact scope. **S01 is implemented and locally verified; CI closure is pending.** Board-owned Go/TypeScript validators, lossless parsing and shared contract tests are documented in [S01 scope](docs/sprint-01.md) and [S01 evidence](docs/s01-evidence.md). The Health client, overview API, cache, dashboard, packages and production service are not implemented. Interactive visual checks, full browser/mobile acceptance, later functional and physical validation remain NOT RUN; there is no release candidate, release or deployment.
 
 The product target is one page (`/`), one host and one provider. React/TypeScript/Vite assets are already embedded for the S00 shell. Production targets Raspberry Pi OS 64-bit / Trixie on Linux ARM64; Board acceptance uses a Raspberry Pi 3B+.
 
@@ -23,6 +23,7 @@ npm --prefix web run check
 npm --prefix web run build
 npm --prefix web run cross
 npm --prefix web run smoke
+npm --prefix web run fuzz
 ```
 
 The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built binary is `out/joy-pi-board-linux-arm64`. Run the native binary with `--listen 127.0.0.1:8081` for local development. Build commands compile frontend before Go embed; no Node runtime is required to run the binary. See [foundation commands and choices](docs/s00-foundation.md) for formatting, development, sizes, missing-dist and native race checks. Production lifecycle and installation are future work.
@@ -40,6 +41,8 @@ The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built 
 | [Validation and release](docs/validation-v0.1.0.md) | Planned tests, measurable gates, requirement-to-test-to-sprint traceability |
 | [Roadmap](docs/roadmap-v0.1.0.md) | Dependency-based sprint objectives and completion criteria |
 | [Sprint 00 work package](docs/sprint-00.md) | Foundation tasks and execution status |
+| [Sprint 01 scope](docs/sprint-01.md) | Implemented in-memory contracts, parser evaluation and boundaries |
+| [S01 evidence](docs/s01-evidence.md) | Local contract/build results, measured parsing cost and pending CI |
 | [Foundation choices](docs/s00-foundation.md) | Exact toolchains/dependencies, browsers, implemented shell and commands |
 | [S00 evidence](docs/s00-evidence.md) | Local results and hashes, verified CI run/environment, S00 closure and deferred gates |
 | [Exact JSON integers ADR](docs/adr-001-exact-json-integers.md) | Adopted common convention inherited from Health |
@@ -47,6 +50,6 @@ The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built 
 | [Decision register](docs/decisions.md) | Approved, replaced and deferred choices |
 | [Original documentation review](docs/documentation-review.md) | Historical documentary-only checks; not S00/product acceptance |
 
-Only decisions explicitly adopted in the register are approved. Remaining **Proposed P-xx** sections require their sprint's review. Upstream observations are **Verified H-xx**, pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; reading those sources is not executing Health tests. S00 does not change that baseline or authorize S01–S04.
+Only decisions explicitly adopted in the register are approved. Remaining **Proposed P-xx** sections require their sprint's review. Upstream observations are **Verified H-xx**, pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; reading those sources is not executing Health tests. The explicit S01 instruction authorizes the contract implementation without changing that baseline; S02–S04 remain out of scope.
 
 No system collection, database, history, administration, authentication or public Internet exposure belongs to v0.1.0. Health is a read-only reference: do not modify it or import its Go `internal` packages. See [AGENTS.md](AGENTS.md).

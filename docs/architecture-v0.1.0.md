@@ -1,6 +1,6 @@
 # Architecture
 
-Status: **established boundaries; S00 shell implemented; functional realization still proposed**. Requirements JPB-003–013, JPB-021–023. [Specification](specification-v0.1.0.md) owns scope; [Board API](board-api-v0.1.0.md) owns observable semantics; [decisions](decisions.md) identifies approved and pending choices. [S00 foundation](s00-foundation.md) is the source of truth for the minimal implemented subset; provider calls, volatile state and lifecycle below remain S01–S04 work.
+Status: **established boundaries; S00 shell and S01 in-memory contract implemented; S02–S04 functional realization still proposed**. Requirements JPB-003–013, JPB-021–023. [Specification](specification-v0.1.0.md) owns scope; [Board API](board-api-v0.1.0.md) owns observable semantics; [decisions](decisions.md) identifies approved and pending choices. [S00 foundation](s00-foundation.md) is the source of truth for the minimal implemented subset; [S01](sprint-01.md) adds independent contract packages; provider calls, volatile state and lifecycle below remain S02–S04 work.
 
 ## Boundaries and flow
 
@@ -22,12 +22,13 @@ Only one main route `/`; frontend talks only to relative Board endpoints. No bro
 
 ## Future package layout and build
 
-**Future functional layout under P-02**; S00 implements only cmd, internal/httpui and web. The build/embed layout and stack are approved; empty future packages are not created:
+**Future functional layout under P-02**; S00 implements cmd, internal/httpui and web; S01 adds internal/healthschema and web/src/health. The build/embed layout and stack are approved; empty future packages are not created:
 
 ```text
 cmd/joy-pi-board/       main, wiring, signals, version/help
 internal/config/       startup settings and validation
-internal/health/       HTTP client, schema validation, Board-owned DTOs
+internal/healthschema/ implemented S01 schema validation and Board-owned DTOs
+internal/health/       future HTTP client (S02)
 internal/overview/     one-slot state, clock, demand coordinator
 internal/httpapi/      routing, API/static responses and security headers
 web/                   frontend sources, manifests and S00 tests

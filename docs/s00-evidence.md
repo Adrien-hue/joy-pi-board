@@ -1,5 +1,7 @@
 # Sprint 00 execution evidence
 
+Historical S00 record: subsequent explicitly authorized S01 work and its current status are tracked separately in [S01 scope](sprint-01.md) and [S01 evidence](s01-evidence.md). Statements about S01 not being started below describe the S00 closure, not the later working tree.
+
 Local implementation and CI closure review date: 2026-09-20. Repository: `Adrien-hue/joy-pi-board`. Local implementation started from clean documentary baseline `98503f2`; the scaffold was subsequently committed and pushed as `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. This is not an official release candidate. Health code, documents, ports and deployment were not modified; no Health internal packages were imported.
 
 **Conclusion: S00 COMPLETE**, supported by the preserved local checks and the first successful hosted CI run verified below. S00-08's hosted-run criterion and S00-10's exit review are satisfied for the identified scaffold commit. **S01 is ready to start, NOT STARTED**; S02–S04 have not started. Physical acceptance and functional contract/end-to-end validation remain NOT RUN.

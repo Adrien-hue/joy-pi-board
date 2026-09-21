@@ -1,4 +1,4 @@
-name: S00 foundation
+name: Board foundation and contracts
 
 on:
   push:
@@ -40,6 +40,8 @@ jobs:
         run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00"
       - name: Check sources and tests, frontend before Go embed
         run: npm --prefix web run check
+      - name: Bounded Health schema fuzzing (S01)
+        run: npm --prefix web run fuzz
       - name: Native and Linux ARM64 binaries
         run: |
           npm --prefix web run build
@@ -55,12 +57,14 @@ jobs:
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
-          name: s00-foundation-evidence
+          name: board-check-evidence
           path: |
             out/*.json
             out/*.txt
             out/joy-pi-board
             out/joy-pi-board-linux-arm64
+            out/s01-parser/contract.mjs
+            out/s01-interop/
           retention-days: 7
 
   race:

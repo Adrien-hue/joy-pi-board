@@ -137,6 +137,17 @@ function checkGo() {
   execute("go", ["test", "-count=1", ...goPackages]);
 }
 
+function contract() {
+  execute(
+    "go",
+    ["test", "-count=1", "-run=^TestExportInterop$", "./internal/healthschema"],
+    {
+      env: { ...env, S01_INTEROP_DIR: join(root, "out/s01-interop") },
+    },
+  );
+  execute(process.execPath, ["scripts/contract.mjs"]);
+}
+
 function build(cross) {
   requireDist();
   mkdirSync(join(root, "out"), { recursive: true });
@@ -254,6 +265,20 @@ try {
       execute(process.execPath, ["--test", "scripts/fixtures.test.mjs"]);
       frontend();
       checkGo();
+      contract();
+      break;
+    case "contract":
+      contract();
+      break;
+    case "fuzz":
+      execute("go", [
+        "test",
+        "-run=^$",
+        "-fuzz=^FuzzDecode$",
+        "-fuzztime=10s",
+        "-parallel=2",
+        "./internal/healthschema",
+      ]);
       break;
     case "build":
       frontend();
@@ -288,7 +313,7 @@ try {
       break;
     default:
       throw new Error(
-        "Expected tools, check, frontend, build, cross, race, smoke, sizes, missing-dist, lint or dev",
+        "Expected tools, check, contract, fuzz, frontend, build, cross, race, smoke, sizes, missing-dist, lint or dev",
       );
   }
 } catch (error) {

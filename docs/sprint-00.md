@@ -1,5 +1,7 @@
 # Sprint 00 — work package and execution status
 
+Historical S00 record: subsequent explicitly authorized S01 work and its current status are tracked separately in [S01 scope](sprint-01.md) and [S01 evidence](s01-evidence.md). Statements about S01 not being started below describe the S00 closure, not the later working tree.
+
 Status: **COMPLETE — locally verified and CI verified on 2026-09-20**. The implementation instruction explicitly authorized S00; the subsequent closure instruction authorizes documentation updates only. [S00 evidence](s00-evidence.md) records local checks and successful run 35527458889 for exact commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. **S01 is ready, NOT STARTED**. No S01–S04 work is authorized or executed.
 
 Objective: establish a reproducible minimum build and test foundation so S01 can implement the pinned Health contract with no uncertainty about toolchain, assets or test ownership. [Architecture](architecture-v0.1.0.md) owns the proposed package layout; [roadmap](roadmap-v0.1.0.md) owns dependencies; [validation](validation-v0.1.0.md) owns gate IDs.

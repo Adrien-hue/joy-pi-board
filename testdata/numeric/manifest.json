@@ -1,5 +1,5 @@
 {
-  "scope": "Fixture integrity only in S00; contract outcomes are future expectations, not executed validator results",
+  "scope": "Shared numeric seeds; approved S01 uint64 token policy. Full snapshot outcomes are exercised by s01/cases.json.",
   "cases": [
     {
       "id": "zero",
@@ -65,13 +65,13 @@
       "id": "decimal-integer",
       "file": "decimal-integer.json",
       "token": "1.0",
-      "expectation": "pending_s01_token_policy"
+      "expectation": "invalid_uint64"
     },
     {
       "id": "exponent",
       "file": "exponent.json",
       "token": "1e3",
-      "expectation": "pending_s01_token_policy"
+      "expectation": "invalid_uint64"
     },
     {
       "id": "null",
