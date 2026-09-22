@@ -1,6 +1,6 @@
 # Joy Pi Board v0.1.0 specification
 
-Status: **consolidated product requirements; S00 COMPLETE, functional product not implemented**. [S00 evidence](s00-evidence.md) identifies the locally and CI-verified scaffold commit, closure criteria and remaining product validations. S01 in-memory contracts are implemented and locally verified; [S01 evidence](s01-evidence.md) records pending CI and unexecuted product gates. This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
+Status: **consolidated product requirements; S00 COMPLETE, functional product not implemented**. [S00 evidence](s00-evidence.md) identifies the locally and CI-verified scaffold commit, closure criteria and remaining product validations. S01 in-memory contracts are complete with local and verified hosted CI evidence; [S01 evidence](s01-evidence.md) records closure and unexecuted product gates. S02 is ready to be prepared, NOT STARTED. This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
 
 ## Authority and status
 

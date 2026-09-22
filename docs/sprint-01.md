@@ -1,6 +1,6 @@
 # Sprint 01 — Health contract foundation
 
-Status: **IMPLEMENTED; local verification recorded in [S01 evidence](s01-evidence.md); CI closure pending**. S00 is complete. The S01 instruction supersedes the temporary documentation-only restriction in AGENTS.md. S02–S04 are neither started nor authorized.
+Status: **COMPLETE, closed on 2026-09-21 with local verification and verified hosted CI**, recorded in [S01 evidence](s01-evidence.md#verified-hosted-ci). S00 remains complete. The current instruction authorizes documentary closure only and supersedes the temporary S01 implementation authorization. S02 is ready to be prepared, but NOT STARTED; S02–S04 implementation is not authorized.
 
 ## Scope and ownership
 
@@ -14,7 +14,7 @@ Implemented packages: Go [internal/healthschema](../internal/healthschema/types.
 | S01-02 | Board-owned Go types, standard-library token decoding, exact presence/type/range/issue checks and immutable original payload. Depends on S01-01. | Shared corpus, mutation isolation, object serialization, race and fuzz tests. |
 | S01-03 | Token-preserving TypeScript parsing, runtime validation, bigint uint64 fields and exact decimal primitive. Depends on S01-01. | Same corpus/oracles, strict types/lint/tests and dedicated bundle measurement. Browser executions separately identified. |
 | S01-04 | Shared positive/negative corpus and genuine Go → TypeScript handoff with a test-only envelope. Depends on S01-02/S01-03. | All reviewed cases agree with expectations; seeded differential mutations agree; original fixture bytes unchanged. |
-| S01-05 | Integrate checks/fuzz in CI, repeat install/build/embed/race checks, update evidence and traceability. Depends on S01-04. | Local checks PASS for exact recorded inputs; a new successful hosted run is still required for CI closure. S00's run cannot satisfy this criterion. |
+| S01-05 | Integrate checks/fuzz in CI, repeat install/build/embed/race checks, update evidence and traceability. Depends on S01-04. | DONE: local checks plus S01-CI-01–S01-CI-05 PASS at `ccd1245a64fc372faa4ebc85eb000f78a01bd396`, run 35637699325 attempt 1. S00 evidence remains separate. |
 
 ## Parser decision and primary-source evaluation
 
@@ -34,4 +34,4 @@ Existing `npm --prefix web run check` now runs TS/component tests, fixture integ
 
 `scripts/contract.mjs` creates a dedicated browser-targeted ESM module from `web/contract-entry.ts`, retaining its exported functions, then measures its bytes and offline gzip-9 bytes. It is not an application entry, not served by the shell, and not part of final dashboard size acceptance. The Go test envelope adds one container around the snapshot; it is parsed by the library in the test harness without imposing a premature S02 envelope limit. The actual snapshot is separately passed through Board's bounded TS validator.
 
-S01 closes B-01 snapshot-only, B-02, B-03 exact in-memory parsing/decimal primitives and B-04 consumption-policy subsets locally. HTTP statuses, provider failures, cache, full overview envelopes, browser scheduling and dashboard display remain NOT RUN. Future S02 can consume `healthschema.Decode`, its stable error classification and immutable JSON marshaler; no network or stateful seam is prebuilt here.
+S01 closes B-01 snapshot-only, B-02, B-03 exact in-memory parsing/decimal primitives and B-04 consumption-policy subsets with local and hosted CI evidence. HTTP statuses, provider failures, cache, full overview envelopes, browser scheduling and dashboard display remain NOT RUN. Future S02 can consume `healthschema.Decode`, its stable error classification and immutable JSON marshaler; no network or stateful seam is prebuilt here.

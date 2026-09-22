@@ -1,6 +1,6 @@
 # Integration with Health snapshot schema 1.0
 
-Status: **normative consumed contract; S01 validator/parser implemented and locally verified, hosted CI pending**. Normative for Board's consumed field names, units, nulls and issue semantics. Source: [pinned Health evidence H-01–H-09](health-baseline.md), never Health Go package imports. Requirements JPB-014–016.
+Status: **normative consumed contract; S01 validator/parser complete with local and verified hosted CI evidence; browser execution remains NOT RUN**. Normative for Board's consumed field names, units, nulls and issue semantics. Source: [pinned Health evidence H-01–H-09](health-baseline.md), never Health Go package imports. Requirements JPB-014–016.
 
 The common exact-number convention is adopted in [ADR-001](adr-001-exact-json-integers.md). S01 implements Go validation and TypeScript lossless parsing without a Health client or UI integration. [P-03](decisions.md) records the approved consumption rules separately from inherited Health facts and ordinary implementation choices. [S01 evidence](s01-evidence.md) owns actual results and limits.
 

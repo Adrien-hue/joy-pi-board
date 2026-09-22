@@ -1,12 +1,12 @@
 # Decision register
 
-Updated for the S01 user instruction, 2026-09-21. Explicit S00 foundation and S01 consumer approvals are recorded below, **not all previous documentation or every P-xx detail**. Product scope remains in [the specification](specification-v0.1.0.md).
+Updated for the S01 user instruction and documentary CI closure, 2026-09-21. This closure changes no technical decision and ratifies none of P-02/P-04/P-05/P-06's deferred details. Explicit S00 foundation and S01 consumer approvals are recorded below, **not all previous documentation or every P-xx detail**. Product scope remains in [the specification](specification-v0.1.0.md).
 
 | ID | Status and decision | Remaining review / sprint |
 |---|---|---|
 | P-01 | **APPROVED**: Board default `0.0.0.0:8081`; Health default remains `http://127.0.0.1:8080/v1/snapshot`. S00 shell implements `--listen`; it has no Health setting/client. | Full configuration/validation is S02. |
 | P-02 | **PARTIAL / DEFERRED**: Go module `github.com/Adrien-hue/joy-pi-board`, React/TS/Vite/npm, standard Go HTTP/embed, `web/dist`, one binary are approved. Ordinary S00 shell routing/security choices are recorded in [foundation choices](s00-foundation.md). | Overview errors/method policy, full CLI/env, bounds, production lifecycle and compression remain proposals for S02/S04. No blanket ratification. |
-| P-03 | **APPROVED S01 CONSUMER POLICY / IMPLEMENTED LOCALLY**: see the three independent concerns below. | Hosted S01 CI pending; browser-floor execution NOT RUN. Numeric convention remains distinct from compatibility and library selection. |
+| P-03 | **APPROVED S01 CONSUMER POLICY / S01 COMPLETE**: see the three independent concerns below. | Local and hosted S01 contract checks PASS; [CI evidence](s01-evidence.md#verified-hosted-ci). Browser-floor execution NOT RUN. Numeric convention remains distinct from compatibility and library selection. |
 | P-04 | **PROPOSED, DEFERRED S02**: coalesce only simultaneously active upstream calls. [Architecture](architecture-v0.1.0.md) contains a candidate algorithm, not an implementation. | Ratify cancellation, shared deadline, atomic publication/sequence ordering, orphan completion and no completed-flight reuse; no autonomous polling or immediate retry. |
 | P-05 | **PROPOSED, DEFERRED S02/S03**: elapsed-age header; candidate calculation in [API](board-api-v0.1.0.md)/[UX](ux-v0.1.0.md). Nothing implemented in S00. | Finalize moment of calculation, transit accounting, missing/invalid headers, suspension and browser expiry after 30 s. Existing detailed text remains a proposal, not an approval. |
 | P-06 | **BUDGETS ESTABLISHED; DETAILS PROPOSED**: product budgets remain mandatory. Shell size observations do not validate the final dashboard. | Ratify detailed units/accessibility conventions and performance/compression/physical protocols before corresponding S03/S04 gates. |
