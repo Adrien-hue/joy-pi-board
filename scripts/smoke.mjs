@@ -25,23 +25,18 @@ const trap = createServer((socket) => {
   healthConnections++;
   socket.destroy();
 });
-let trapBound = false;
-await new Promise((done) => {
-  trap.once("error", (error) => {
-    if (error.code !== "EADDRINUSE") throw error;
-    done();
-  });
-  trap.listen(8080, "127.0.0.1", () => {
-    trapBound = true;
-    done();
-  });
-});
-const child = spawn(executable, ["--listen", "127.0.0.1:0"], {
-  cwd: directory,
-  env: { ...process.env, PATH: "" },
-  stdio: ["ignore", "pipe", "pipe"],
-  windowsHide: true,
-});
+await new Promise((done) => trap.listen(0, "127.0.0.1", done));
+const healthURL = `http://127.0.0.1:${trap.address().port}/v1/snapshot`;
+const child = spawn(
+  executable,
+  ["--listen", "127.0.0.1:0", "--health-url", healthURL],
+  {
+    cwd: directory,
+    env: { ...process.env, PATH: "" },
+    stdio: ["ignore", "pipe", "pipe"],
+    windowsHide: true,
+  },
+);
 let logs = "";
 child.stderr.on("data", (data) => {
   logs += data.toString();
@@ -55,7 +50,9 @@ try {
   let origin;
   for (let i = 0; i < 100; i++) {
     if (spawnError) throw spawnError;
-    const match = logs.match(/S00 shell listening on (127\.0\.0\.1:\d+)/);
+    const match = logs.match(
+      /"event":"listening"[^\n]*"address":"(127\.0\.0\.1:\d+)"/,
+    );
     if (match) {
       origin = `http://${match[1]}`;
       break;
@@ -94,20 +91,42 @@ try {
     );
     inventory.push({ path, bytes: bytes.length, sha256: sha256(bytes) });
   }
-  assert.equal((await request("/api/v1/overview")).status, 404);
+  assert.equal(
+    healthConnections,
+    0,
+    "startup and assets must not contact Health",
+  );
+  const overview = await request("/api/v1/overview");
+  assert.equal(overview.status, 200);
+  assert.equal(overview.headers.get("content-type"), "application/json");
+  assert.equal(overview.headers.get("cache-control"), "no-store");
+  // No numbers exist in this failure envelope; this is not an exact-integer oracle.
+  const unavailable = JSON.parse(await overview.text());
+  assert.deepEqual(unavailable.health, {
+    availability: "unavailable",
+    snapshot_state: "none",
+    last_success_at: null,
+    reason: "connection_failed",
+    snapshot: null,
+  });
+  assert.equal(healthConnections, 1);
   assert.equal((await request("/not-a-page")).status, 404);
   assert.equal((await request("/", { method: "HEAD" })).status, 200);
   await delay(6000);
-  assert.equal(healthConnections, 0);
+  assert.equal(
+    healthConnections,
+    1,
+    "no background retry during six seconds of idle",
+  );
   const report = {
     scope:
-      "S00 native binary, empty working directory except binary, PATH empty; not hardware acceptance",
+      "S02 native binary, embedded S00 shell plus unavailable Health overview, empty working directory, PATH empty; not hardware acceptance",
     platform: process.platform,
     arch: process.arch,
     binarySHA256: sha256(readFileSync(executable)),
-    healthTrap: trapBound
-      ? "127.0.0.1:8080, zero connections through startup/requests/6 s idle"
-      : "NOT RUN: port already occupied; static source review still applies",
+    healthTrap:
+      "ephemeral loopback reset server: zero startup/asset calls, one overview attempt, no calls during 6 s idle",
+    healthConnections,
     assets: inventory,
   };
   writeFileSync(
@@ -118,5 +137,5 @@ try {
 } finally {
   if (child.exitCode === null) child.kill();
   await exited;
-  if (trapBound) await new Promise((done) => trap.close(done));
+  await new Promise((done) => trap.close(done));
 }

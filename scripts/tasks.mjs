@@ -146,6 +146,19 @@ function contract() {
     },
   );
   execute(process.execPath, ["scripts/contract.mjs"]);
+  execute(
+    "go",
+    [
+      "test",
+      "-count=1",
+      "-v",
+      "-run=^TestHTTPTypeScriptInterop$",
+      "./internal/httpapi",
+    ],
+    {
+      env: { ...env, S02_NODE: process.execPath },
+    },
+  );
 }
 
 function build(cross) {

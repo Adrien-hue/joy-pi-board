@@ -1,5 +1,7 @@
 # S00 implementation choices and development commands
 
+Historical S00 foundation choices are preserved below. For current S02 configuration, JSON errors, overview and lifecycle use [the API](board-api-v0.1.0.md), [architecture](architecture-v0.1.0.md) and [S02 evidence](s02-evidence.md); S00's overview-404/plain-text-error statements describe its original shell only. Existing build commands now include S01/S02 regression checks.
+
 Scope: buildable development shell only. The user approved the stack/module/asset layout/default port and [exact-integer convention](adr-001-exact-json-integers.md). This document records ordinary foundation choices made during S00; it does not approve P-02 through P-06 wholesale.
 
 ## Toolchains and dependencies

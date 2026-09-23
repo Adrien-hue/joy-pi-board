@@ -1,13 +1,14 @@
-// Package httpui serves only the embedded S00 shell and its static assets.
+// Package httpui owns the embedded shell's static route selection.
 package httpui
 
 import (
-	"bytes"
 	"io/fs"
 	"net/http"
 	"path"
+	"strconv"
 	"strings"
-	"time"
+
+	"github.com/Adrien-hue/joy-pi-board/internal/httpwire"
 )
 
 const contentSecurityPolicy = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'none'"
@@ -15,9 +16,7 @@ const contentSecurityPolicy = "default-src 'none'; script-src 'self'; style-src 
 // NewHandler does not create clients, polling loops or provider state.
 func NewHandler(assets fs.FS) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("X-Content-Type-Options", "nosniff")
-		w.Header().Set("Referrer-Policy", "no-referrer")
-		w.Header().Set("Cache-Control", "no-store")
+		httpwire.Headers(w)
 
 		name := ""
 		if r.URL.EscapedPath() == r.URL.Path {
@@ -31,27 +30,27 @@ func NewHandler(assets fs.FS) http.Handler {
 			}
 		}
 		if name == "" {
-			http.NotFound(w, r)
+			httpwire.Error(w, r, 404)
 			return
 		}
 		info, err := fs.Stat(assets, name)
 		if err != nil || !info.Mode().IsRegular() {
-			http.NotFound(w, r)
+			httpwire.Error(w, r, 404)
 			return
 		}
 		if r.Method != http.MethodGet && r.Method != http.MethodHead {
 			w.Header().Set("Allow", "GET, HEAD")
-			http.Error(w, "Method not allowed.", http.StatusMethodNotAllowed)
+			httpwire.Error(w, r, 405)
 			return
 		}
-		if r.URL.RawQuery != "" || r.ContentLength != 0 || len(r.TransferEncoding) != 0 {
+		if httpwire.InvalidRequest(r) {
 			w.Header().Set("Connection", "close")
-			http.Error(w, "Invalid request.", http.StatusBadRequest)
+			httpwire.Error(w, r, 400)
 			return
 		}
 		body, err := fs.ReadFile(assets, name)
 		if err != nil {
-			http.Error(w, "Unable to serve the interface.", http.StatusInternalServerError)
+			httpwire.Error(w, r, 500)
 			return
 		}
 		switch path.Ext(name) {
@@ -63,6 +62,12 @@ func NewHandler(assets fs.FS) http.Handler {
 		case ".css":
 			w.Header().Set("Content-Type", "text/css; charset=utf-8")
 		}
-		http.ServeContent(w, r, name, time.Time{}, bytes.NewReader(body))
+		// Identity/no-store resources have no conditional or range semantics in
+		// S02. Avoid ServeContent's independent error and caching surface.
+		w.Header().Set("Content-Length", strconv.Itoa(len(body)))
+		w.WriteHeader(http.StatusOK)
+		if r.Method != http.MethodHead {
+			_, _ = w.Write(body)
+		}
 	})
 }

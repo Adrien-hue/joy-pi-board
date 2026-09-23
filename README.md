@@ -6,13 +6,13 @@ Joy Pi Board is the second microservice of Joy Pi Home: a lightweight web overvi
 
 ## Current state
 
-This repository contains the **v0.1.0 specifications and completed Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closed on 2026-09-20 after [CI run 35527458889](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35527458889) passed for commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`; see [S00 evidence](docs/s00-evidence.md) for its exact scope. **S01 is complete**, with local evidence and [CI run 35637699325](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35637699325), attempt 1, verified on 2026-09-21 for `ccd1245a64fc372faa4ebc85eb000f78a01bd396`. S02 is [PREPARED, NOT EXECUTED](docs/sprint-02.md); its P-02/P-04/P-05 recommendations await ratification. Board-owned Go/TypeScript validators, lossless parsing and shared contract tests are documented in [S01 scope](docs/sprint-01.md) and [S01 evidence](docs/s01-evidence.md). The Health client, overview API, cache, dashboard, packages and production service are not implemented. Interactive visual checks, full browser/mobile acceptance, later functional and physical validation remain NOT RUN; there is no release candidate, release or deployment.
+This repository contains the **v0.1.0 specifications and completed Sprint 00 build shell**: a minimal React page served by one Go binary with embedded assets, exact tool/dependency locks, useful source/integration tests and a GitHub Actions workflow. S00 closed on 2026-09-20 after [CI run 35527458889](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35527458889) passed for commit `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`; see [S00 evidence](docs/s00-evidence.md) for its exact scope. **S01 is complete**, with local evidence and [CI run 35637699325](https://github.com/Adrien-hue/joy-pi-board/actions/runs/35637699325), attempt 1, verified on 2026-09-21 for `ccd1245a64fc372faa4ebc85eb000f78a01bd396`. S02 is [implemented and locally verified; hosted CI closure pending](docs/sprint-02.md), following explicit approval of P-02/P-04/P-05. See [S02 evidence](docs/s02-evidence.md). Board-owned Go/TypeScript validators, lossless parsing and shared contract tests are documented in [S01 scope](docs/sprint-01.md) and [S01 evidence](docs/s01-evidence.md). The demand-only Health client, overview API, volatile cache, safe configuration, shutdown and transition logging are implemented. The dashboard, packaging and installed production service are not implemented. Interactive visual checks, full browser/mobile acceptance, later functional and physical validation remain NOT RUN; there is no release candidate, release or deployment.
 
 The product target is one page (`/`), one host and one provider. React/TypeScript/Vite assets are already embedded for the S00 shell. Production targets Raspberry Pi OS 64-bit / Trixie on Linux ARM64; Board acceptance uses a Raspberry Pi 3B+.
 
-The shell serves its UI without Health and makes no provider calls. The **approved** Board listener defaults to `0.0.0.0:8081`; the future Health endpoint remains `http://127.0.0.1:8080/v1/snapshot`. The minimal page identifies the development foundation and displays no fake health values. `/api/v1/overview` returns 404 until S02.
+The shell serves its UI without Health. Only valid overview demand starts a provider attempt; startup, assets and idle time make no provider calls. The **approved** Board listener defaults to `0.0.0.0:8081`; the Health endpoint remains `http://127.0.0.1:8080/v1/snapshot`. The minimal page identifies the development foundation and displays no fake health values. `GET /api/v1/overview` returns exact JSON; unavailable Health remains HTTP 200 with an explicit provider reason.
 
-## Build the S00 shell
+## Build and run Board
 
 Use Go **1.27.1**, Node.js **24.21.0**, npm **11.19.0**. From the repository root:
 
@@ -26,7 +26,7 @@ npm --prefix web run smoke
 npm --prefix web run fuzz
 ```
 
-The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built binary is `out/joy-pi-board-linux-arm64`. Run the native binary with `--listen 127.0.0.1:8081` for local development. Build commands compile frontend before Go embed; no Node runtime is required to run the binary. See [foundation commands and choices](docs/s00-foundation.md) for formatting, development, sizes, missing-dist and native race checks. Production lifecycle and installation are future work.
+The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built binary is `out/joy-pi-board-linux-arm64`. Run the native binary with `--listen 127.0.0.1:8081` for local development. Build commands compile frontend before Go embed; no Node runtime is required to run the binary. See [foundation commands and choices](docs/s00-foundation.md) for formatting, development, sizes, missing-dist and native race checks. Use `--help` and `--version` without binding or contacting Health. `--health-url` / `JOY_PI_BOARD_HEALTH_URL` and `--listen` / `JOY_PI_BOARD_LISTEN` follow explicit flag > present env > default. SIGTERM/SIGINT stop admission and cancel work under one 5 s budget; installation/systemd remain S04.
 
 ## Documentation and authority
 
@@ -42,7 +42,8 @@ The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built 
 | [Roadmap](docs/roadmap-v0.1.0.md) | Dependency-based sprint objectives and completion criteria |
 | [Sprint 00 work package](docs/sprint-00.md) | Foundation tasks and execution status |
 | [Sprint 01 scope](docs/sprint-01.md) | Implemented in-memory contracts, parser evaluation and boundaries |
-| [Sprint 02 preparation](docs/sprint-02.md) | Planned overview/transport/resilience tasks, seams and exit gates; not executed |
+| [Sprint 02 work package](docs/sprint-02.md) | Implemented overview/transport/resilience tasks and remaining hosted CI gate |
+| [S02 evidence](docs/s02-evidence.md) | Exact local source, HTTP/resilience tests, builds and CI status |
 | [S01 evidence](docs/s01-evidence.md) | Local contract/build results, measured parsing cost and verified S01 CI closure |
 | [Foundation choices](docs/s00-foundation.md) | Exact toolchains/dependencies, browsers, implemented shell and commands |
 | [S00 evidence](docs/s00-evidence.md) | Local results and hashes, verified CI run/environment, S00 closure and deferred gates |
@@ -51,6 +52,6 @@ The native binary is in `out/joy-pi-board` (`.exe` on Windows); the cross-built 
 | [Decision register](docs/decisions.md) | Approved, replaced and deferred choices |
 | [Original documentation review](docs/documentation-review.md) | Historical documentary-only checks; not S00/product acceptance |
 
-Only decisions explicitly adopted in the register are approved. Remaining **Proposed P-xx** sections require their sprint's review. Upstream observations are **Verified H-xx**, pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; reading those sources is not executing Health tests. The current assignment authorizes S02 documentary preparation only; S02–S04 implementation remains unauthorized. The historical S01 evidence covers its implementation commit, not later documentary commits or future S02 changes. Preparation changes neither the upstream baseline nor deferred technical decisions.
+Only decisions explicitly adopted in the register are approved. Remaining **Proposed P-xx** sections require their sprint's review. Upstream observations are **Verified H-xx**, pinned to Health commit `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; reading those sources is not executing Health tests. The current assignment authorizes S02 implementation and local verification only; S03/S04 remain unauthorized. The historical S01 evidence covers its implementation commit, not later documentary commits or future S02 changes. S02 changes neither the upstream baseline nor deferred P-06/S04 decisions.
 
 No system collection, database, history, administration, authentication or public Internet exposure belongs to v0.1.0. Health is a read-only reference: do not modify it or import its Go `internal` packages. See [AGENTS.md](AGENTS.md).

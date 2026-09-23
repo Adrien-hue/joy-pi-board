@@ -17,7 +17,7 @@ func TestHelpDoesNotStartAListener(t *testing.T) {
 }
 
 func TestInvalidArgumentsFailBeforeServing(t *testing.T) {
-	for _, args := range [][]string{{"--health-url", "http://127.0.0.1:8080/v1/snapshot"}, {"unexpected"}, {"--listen", "not-an-address"}} {
+	for _, args := range [][]string{{"--health-url", "http://invalid/private-secret"}, {"unexpected"}, {"--listen", "not-an-address"}} {
 		var output bytes.Buffer
 		if err := run(args, &output); err == nil {
 			t.Fatalf("run(%v) unexpectedly succeeded", args)

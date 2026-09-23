@@ -1,6 +1,6 @@
 # Architecture
 
-Status: **established boundaries; S00 shell and S01 in-memory contract implemented; S02 PREPARED, NOT EXECUTED; S03–S04 functional realization still proposed**. Requirements JPB-003–013, JPB-021–023. [Specification](specification-v0.1.0.md) owns scope; [Board API](board-api-v0.1.0.md) owns observable semantics; [decisions](decisions.md) identifies approved and pending choices. [S00 foundation](s00-foundation.md) is the source of truth for the minimal implemented subset; [S01](sprint-01.md) adds independent contract packages; provider calls, volatile state and lifecycle below remain S02–S04 work.
+Status: **S00/S01 complete; S02 implemented and verified locally; CI closure pending**. Current S02 P-02/P-04/P-05 approval comes from the explicit implementation instruction, not the earlier documentary preparation. See [decisions](decisions.md) and [S02 evidence](s02-evidence.md). S03/S04 remain unimplemented.
 
 ## Boundaries and flow
 
@@ -20,18 +20,20 @@ Frontend: React/TypeScript, Vite build, CSS/CSS Modules, system fonts, local Rea
 
 Only one main route `/`; frontend talks only to relative Board endpoints. No browser Health URL, CORS policy or public provider proxy. A development Vite proxy may forward `/api` to Go; it never forwards browser requests directly to Health. A `.local` hostname is supplied by existing network resolution; Board provides no mDNS service.
 
-## Future package layout and build
+## Package layout and build
 
-**Future functional layout under P-02**; S00 implements cmd, internal/httpui and web; S01 adds internal/healthschema and web/src/health. The build/embed layout and stack are approved; empty future packages are not created:
+**Implemented through S02**; no empty future packages are reserved:
 
 ```text
 cmd/joy-pi-board/       main, wiring, signals, version/help
 internal/config/       startup settings and validation
 internal/healthschema/ implemented S01 schema validation and Board-owned DTOs
-internal/health/       future HTTP client (S02)
+internal/health/       dedicated demand-only HTTP client (S02)
 internal/overview/     one-slot state, clock, demand coordinator
 internal/httpapi/      outer exact dispatcher, overview and safe common errors
 internal/httpui/       existing embedded static asset handler, retained
+internal/httpwire/     fixed shared errors and security headers
+internal/eventlog/     bounded nonblocking transition sink
 web/                   frontend sources, manifests and S00 tests
   assets.go            Go package embedding its own dist subtree
   dist/                generated Vite output; ignored, required before Go build
@@ -43,7 +45,7 @@ The binary serves actual embedded bytes, not files resolved from the current wor
 
 ## Provider call and volatile state
 
-An overview request triggers one Health attempt, or joins an attempt still active under **PROPOSED P-04**. No startup probe, scheduler, cache-hit shortcut or completed-flight reuse. The [API transport policy](board-api-v0.1.0.md#proposed-health-http-transport) owns P-02's dedicated HTTP-only client, one-second deadline, bounded read, no redirect/proxy/decompression/replay and single-address dial recommendation. Do not duplicate those constants in a frontend setting. S01 Decode is the only schema-validation authority.
+An overview request triggers one Health attempt, or joins an attempt still active under **APPROVED P-04**. No startup probe, scheduler, cache-hit shortcut or completed-flight reuse. The [API transport policy](board-api-v0.1.0.md#health-http-transport) owns P-02's dedicated HTTP-only client, one-second deadline, bounded read, no redirect/proxy/decompression/replay and single-address dial policy. Do not duplicate those constants in a frontend setting. S01 Decode is the only schema-validation authority.
 
 Success stores exactly one immutable S01 Validated value with paired wall UTC success time and an elapsed origin. A valid partial snapshot replaces the whole value; no merging null leaves. Failure leaves the cache and success metadata unchanged. Snapshot expiry only affects presentation; retaining the one expired value or dropping its bytes is permissible, while metadata remains. Restart resets everything. Detached response views may temporarily retain an older immutable value while a newer one is published; their number/lifetime is bounded by admission and response deadlines, not a queryable history. No files, database, persistence or periodic cleanup worker is required.
 
@@ -51,7 +53,7 @@ Use a paired clock reading; retain the monotonic-bearing Go time value for elaps
 
 ## Concurrent demand and ordering
 
-**PROPOSED P-04 — recommended single active shared flight.** This limits duplicate Health work for the established ten-client target while ensuring each request after completion starts a new attempt. It is not implemented or ratified. Keep one mutex around coordinator state: accepting flag, active flight/sequence, cache value/success anchor, worker/waiter counts and last transition key. Network, decoding, snapshot compaction, response assembly/writes and log output happen outside the mutex.
+**APPROVED P-04 — single active shared flight.** This limits duplicate Health work for the established ten-client target while ensuring each request after completion starts a new attempt. It is implemented in S02; hosted CI closure remains separate. Keep one mutex around coordinator state: accepting flag, active flight/sequence, cache value/success anchor, worker/waiter counts and last transition key. Network, decoding, snapshot compaction, response assembly/writes and log output happen outside the mutex.
 
 ### Flight lifecycle and terminal events
 
@@ -68,7 +70,7 @@ Tests S02-T06/T07 use barriers before candidate publication, after timeout, befo
 
 ## Startup, configuration and operations
 
-All supplemental choices here are **PROPOSED P-02**; P-01's defaults and the established 1 s/30 s/5 s budgets remain approved. See [S02 tasks](sprint-02.md#tasks-and-dependency-order) and planned S02-T01/T10/T11.
+All supplemental choices here are **APPROVED S02 P-02**; P-01's defaults and the established 1 s/30 s/5 s budgets remain approved. See [S02 tasks](sprint-02.md#tasks-and-dependency-order) and S02-T01/T10/T11.
 
 ### Configuration recommendation
 
@@ -78,7 +80,7 @@ All supplemental choices here are **PROPOSED P-02**; P-01's defaults and the est
 | Health endpoint | `--health-url` / `JOY_PI_BOARD_HEALTH_URL` | **http://127.0.0.1:8080/v1/snapshot**, unchanged. Absolute `http` only, explicit numeric port 1–65535, literal IP or ASCII DNS hostname, exact literal `/v1/snapshot`; reject credentials, fragment (even empty delimiter), query (even bare `?`), escaped path aliases, opaque URLs, whitespace, zones and empty host. No startup resolution or reachability check. |
 | Informational actions | `--help` (`-h` compatibility), `--version`; no environment equivalent | Print fixed help/build identity and exit 0 without bind, Health work or operational config validation. Version uses build metadata with honest `unknown` defaults, not a forged release identifier. |
 
-Precedence is explicit flag → **present** environment variable → default; an explicitly empty flag/environment is invalid rather than falling back. Use presence-aware flag tracking. Reject duplicate flags, positionals and unknown flags with exit 2. Parse syntax first; conflicting help+version or informational flags mixed with operational flags fail with exit 2, otherwise informational actions bypass invalid environment. Validate only the effective setting: an explicit valid flag can override an invalid environment value. Unknown unrelated environment variables have no effect. Diagnostics identify the setting and rule, not the rejected value/URL or raw flag-parser error. Emit usage without reflecting supplied arguments. Configuration is not exposed via HTTP/UI. Timeout/freshness/capacity constants have no tuning flags in S02.
+Precedence is explicit flag → **present** environment variable → default; an explicitly empty flag/environment is invalid rather than falling back. Use presence-aware flag tracking. Reject duplicate flags, positionals and unknown flags with exit 2. Parse syntax first; conflicting help+version or informational flags mixed with operational flags fail with exit 2, otherwise informational actions bypass invalid environment. Validate only the effective setting: an explicit valid flag can override an invalid environment value. Unknown unrelated environment variables have no effect. Diagnostics identify the setting and rule, not the rejected value/URL or raw flag-parser error. Help emits fixed usage; configuration failure emits a setting/rule diagnostic without reflecting supplied arguments. Configuration is not exposed via HTTP/UI. Timeout/freshness/capacity constants have no tuning flags in S02.
 
 These restrictions deliberately prefer a predictable LAN-only baseline; HTTP-only and explicit provider port/path refine previous P-02 prose, not Health configuration. Do not change Health to match Board. DNS is allowed only for the provider and uses existing resolution; Board adds no mDNS. Binding failure is a safe Board startup error (exit 1), not a provider reason; never auto-pick a replacement port. Test busy-port, malformed/empty settings, flag/env precedence and no-network help/version paths.
 
@@ -92,4 +94,12 @@ Use fixed structured fields to stdout/stderr suitable for journald: starting, li
 
 Assign transition sequence under the mutex but emit outside it. Recommend a bounded 64-event nonblocking sink; when the sink is blocked, aggregate a dropped-event count and later emit one fixed diagnostic instead of blocking HTTP or growing a queue. Shutdown does not exceed 5 s waiting for a blocked writer. Tests capture the sink, flood identical outcomes, inject malicious issue/URL/error text and block output. A bounded sanitized net/http ErrorLog adapter must not bypass this policy. Physical journald/service checks stay S04.
 
-Future systemd uses a dedicated unprivileged `joy-pi-board` user, restrictive filesystem/service settings and no sensor/device privileges. Debian packaging must not add `Requires=joy-pi-health.service`, wait for Health in `ExecStartPre`, or require a Health package to start. No hard dependency on network-online or Internet is needed to bind the LAN address. Exact unit hardening and package scripts belong to S04 review and physical acceptance, not this documentation task.
+Future systemd uses a dedicated unprivileged `joy-pi-board` user, restrictive filesystem/service settings and no sensor/device privileges. Debian packaging must not add `Requires=joy-pi-health.service`, wait for Health in `ExecStartPre`, or require a Health package to start. No hard dependency on network-online or Internet is needed to bind the LAN address. Exact unit hardening and package scripts belong to S04 review and physical acceptance, not S02.
+
+## S02 realization details
+
+`overview.Coordinator` owns one mutex, a 32-worker bound and immutable flight views. A checked clock serializes paired readings and latches elapsed-clock regressions invalid. The real source uses `time.Time.Sub` on an unmodified process monotonic origin, and formats a UTC copy separately. Its duration range is bounded by Go; saturated elapsed durations are expired, never wrapped to young ages. Fake clocks explicitly fire deadline timers, without real 30 s waits.
+
+`httpapi.Handler` composes `httpui`, enforces 32 request permits and performs at most three response assemblies when the conservative age bucket/eligibility changes before commitment. `httpapi.LimitedListener` caps open connections at 64. Static identity responses intentionally ignore conditional/range headers and return complete GET/HEAD resources; no new caching semantics or secondary static error router. `eventlog` keeps at most 64 queued events plus one writer goroutine. Publication assigns sequence numbers; the sink discards out-of-order older transitions. Shutdown does not wait beyond its original context for a blocked writer. The second signal cancels that same context before forced Close.
+
+No production TypeScript consumer was added. The unchanged shell does not call overview. The test-only adapter, exact HTTP path and actual validation results are in [S02 evidence](s02-evidence.md).

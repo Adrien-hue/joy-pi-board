@@ -21,3 +21,7 @@ Go `TestSharedCorpus` and TS `snapshot.test.ts` consume the same expectations. G
 ## Boundaries for following sprints
 
 The test envelope is not a production Board API. Real HTTP limits/outcomes, controllable Health server, clock/cache semantics and UI display/scheduling belong to S02/S03. No generic fake-server/clock framework is created in S01. The full future path remains Health HTTP → Board overview → browser → dashboard. S01 proves its in-memory validation, object serialization, lossless parsing and decimal-primitive segments only. See [ADR-001](../docs/adr-001-exact-json-integers.md) and [validation](../docs/validation-v0.1.0.md).
+
+## S02 HTTP use
+
+The unchanged S01 corpus remains authoritative. `internal/httpapi/interop_test.go` replays its 264 base64 inputs through real simulated Health and composed Board HTTP servers, adding two byte-derived cases in memory (maximum markup/Unicode and depth 32). `scripts/http-contract.mjs` uses original snapshot text extracted from the test-known fixed envelope, then the S01 runtime parser; no numeric Number round-trip or independently edited fixture copies. See [S02 evidence](../docs/s02-evidence.md). Browser/dashboard execution remains S03.

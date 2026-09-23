@@ -1,0 +1,20 @@
+{
+  "scope": "S02 native binary, embedded S00 shell plus unavailable Health overview, empty working directory, PATH empty; not hardware acceptance",
+  "platform": "win32",
+  "arch": "x64",
+  "binarySHA256": "dc5f60e2d73b68fea7fecc01fbffb63d49c767d1d4a4a8d218697f5206454855",
+  "healthTrap": "ephemeral loopback reset server: zero startup/asset calls, one overview attempt, no calls during 6 s idle",
+  "healthConnections": 1,
+  "assets": [
+    {
+      "path": "/assets/index-B7cnKOOC.js",
+      "bytes": 220427,
+      "sha256": "a62e1c2de6e04a3c5865f04985f0a1979a98021093d5a61a5b36895ce781b0de"
+    },
+    {
+      "path": "/assets/index-CxJ9SqO5.css",
+      "bytes": 742,
+      "sha256": "608633df2318e4811d5851864c2388b52efd235c1a4177d98f4e9e28f59f1cc2"
+    }
+  ]
+}

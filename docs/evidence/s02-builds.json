@@ -1,0 +1,19 @@
+{
+  "scope": "Local final build bytes, not CI artifacts or release candidates",
+  "source_inputs_sha256": "f58a2d94ba91b91c614994f71226a23f625ca79fc57e5b0f411d31dfd3ed7634",
+  "go": "1.27.1",
+  "flags": "-trimpath -buildvcs=false; CGO_ENABLED=0; GOTOOLCHAIN=local",
+  "artifacts": [
+    {
+      "path": "out/joy-pi-board.exe",
+      "bytes": 11447808,
+      "sha256": "dc5f60e2d73b68fea7fecc01fbffb63d49c767d1d4a4a8d218697f5206454855"
+    },
+    {
+      "path": "out/joy-pi-board-linux-arm64",
+      "bytes": 10495796,
+      "sha256": "45bd17ddbb1e11408cf61a1b535eb3042f9ed84a3176145c5544a939e0378939"
+    }
+  ],
+  "arm64_inspection": "ELF64 little-endian AArch64 EXEC; six program headers, no INTERP"
+}

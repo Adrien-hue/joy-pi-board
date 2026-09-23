@@ -38,7 +38,7 @@ jobs:
           node scripts/tasks.mjs tools
       - name: Locked install without restored dependency caches
         run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00"
-      - name: Check sources and tests, frontend before Go embed
+      - name: Check S00-S02 sources, HTTP contracts and tests, frontend before Go embed
         run: npm --prefix web run check
       - name: Bounded Health schema fuzzing (S01)
         run: npm --prefix web run fuzz
@@ -48,7 +48,7 @@ jobs:
           npm --prefix web run cross
           file out/joy-pi-board out/joy-pi-board-linux-arm64 | tee out/binary-formats.txt
           if readelf -l out/joy-pi-board-linux-arm64 | grep -q INTERP; then exit 1; fi
-      - name: Embedded binary and missing-dist checks
+      - name: Embedded binary, S02 unavailable overview and missing-dist checks
         run: |
           npm --prefix web run smoke
           npm --prefix web run missing-dist

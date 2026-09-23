@@ -1,0 +1,200 @@
+{
+  "scope": "Local Docker Linux amd64 Go race test, not GitHub CI or Pi hardware",
+  "date": "2026-09-23",
+  "image": "golang@sha256:69a7b9788769bec032d238959b61854e9ae87f57be9029ec04e9885fabf99195",
+  "observed": "Go1.27.1 linux/amd64; Debian12 bookworm; Linux6.18.33.2-microsoft-standard-WSL2 x86_64",
+  "command": "go test -race -count=1 -v -timeout=90s ./cmd/... ./internal/... ./web",
+  "result": "PASS",
+  "source_inputs_sha256": "f58a2d94ba91b91c614994f71226a23f625ca79fc57e5b0f411d31dfd3ed7634",
+  "top_level_tests_passed": [
+    [
+      "TestStartupAndShutdownWithHealthAbsent",
+      "0.01s"
+    ],
+    [
+      "TestSafeStartupExitCodes",
+      "0.00s"
+    ],
+    [
+      "TestSignalProcessHelper",
+      "0.00s"
+    ],
+    [
+      "TestRealSIGTERMProcess",
+      "1.02s"
+    ],
+    [
+      "TestBlockedLogShutdownBudgetAndSecondSignal",
+      "5.00s"
+    ],
+    [
+      "TestHelpDoesNotStartAListener",
+      "0.00s"
+    ],
+    [
+      "TestInvalidArgumentsFailBeforeServing",
+      "0.00s"
+    ],
+    [
+      "TestConfiguration",
+      "0.00s"
+    ],
+    [
+      "TestBlockedSinkAndSanitizedErrors",
+      "0.00s"
+    ],
+    [
+      "TestTransportPolicy",
+      "0.03s"
+    ],
+    [
+      "TestBodySizeBoundary",
+      "0.03s"
+    ],
+    [
+      "TestWireFailuresAndNoReplay",
+      "0.01s"
+    ],
+    [
+      "TestSingleAddressProxyAndRedirect",
+      "0.00s"
+    ],
+    [
+      "TestCancellationAndRefusal",
+      "0.00s"
+    ],
+    [
+      "TestCountedBodyLimitAndEarlyTransportTimeout",
+      "0.00s"
+    ],
+    [
+      "TestSharedCorpus",
+      "0.23s"
+    ],
+    [
+      "TestRequiredFieldPresence",
+      "0.06s"
+    ],
+    [
+      "TestImmutableAndObjectTransport",
+      "0.05s"
+    ],
+    [
+      "TestPreservesUnknownAndOriginalTokens",
+      "0.10s"
+    ],
+    [
+      "TestZeroValueAndDiagnostics",
+      "0.00s"
+    ],
+    [
+      "TestRoundtripAtLimitWithMarkup",
+      "0.07s"
+    ],
+    [
+      "FuzzDecode",
+      "0.26s"
+    ],
+    [
+      "TestServerDeadlineWiring",
+      "0.00s"
+    ],
+    [
+      "TestRealHeaderAndWriteTimeouts",
+      "5.00s"
+    ],
+    [
+      "TestRoutesErrorsAndHeaders",
+      "0.00s"
+    ],
+    [
+      "TestDelayedFinalization",
+      "0.01s"
+    ],
+    [
+      "TestRequestCapacityAndBlockedWriters",
+      "0.01s"
+    ],
+    [
+      "TestConnectionCapacityAndHTTPParser",
+      "0.07s"
+    ],
+    [
+      "TestMaximumMarkupEnvelope",
+      "0.01s"
+    ],
+    [
+      "TestExpirationDuringAssembly",
+      "0.00s"
+    ],
+    [
+      "TestCompiledAssetsAreServedExactly",
+      "0.00s"
+    ],
+    [
+      "TestShellRoutesDoNotPretendToImplementOverview",
+      "0.00s"
+    ],
+    [
+      "TestStateTimeAndReplacement",
+      "0.01s"
+    ],
+    [
+      "TestActiveSharingAndCancellation",
+      "0.00s"
+    ],
+    [
+      "TestOrphanTimeoutLateWorkerAndSaturation",
+      "0.01s"
+    ],
+    [
+      "TestOrphanCanBeRejoinedAndStopDoesNotInventReason",
+      "0.00s"
+    ],
+    [
+      "TestDeadlinePriorityAndImmutableViews",
+      "0.01s"
+    ],
+    [
+      "TestResponseGuardsAndAgeArithmetic",
+      "0.00s"
+    ],
+    [
+      "TestTransitionLogsAndLateResultDiscard",
+      "0.01s"
+    ],
+    [
+      "TestRealDeadlineHeadersBodyAndProgress",
+      "3.01s"
+    ],
+    [
+      "TestValidationAnchorAndLatePublication",
+      "0.01s"
+    ],
+    [
+      "TestClockRegressionAndShutdownRace",
+      "0.00s"
+    ],
+    [
+      "TestTenCallersShareOneRealHealthGET",
+      "0.01s"
+    ]
+  ],
+  "top_level_tests_skipped": [
+    "TestExportInterop",
+    "TestHTTPTypeScriptInterop"
+  ],
+  "observed_timing_lines": [
+    "lifecycle_test.go:217: real Linux SIGTERM exit=1.0034997s; no Pi acceptance",
+    "lifecycle_test.go:263: blocked logger shutdown second=false duration=5.0012782s, one absolute 5s context",
+    "lifecycle_test.go:263: blocked logger shutdown second=true duration=133.3µs, one absolute 5s context",
+    "client_test.go:227: loopback refusal duration=305.8µs (workstation, not Pi gate)",
+    "deadlines_test.go:121: real headers timeout=2.0008679s; net.Pipe workstation, not Pi",
+    "deadlines_test.go:121: real write timeout=3.0010456s; net.Pipe workstation, not Pi",
+    "coordinator_test.go:485: real headers deadline=1.0002539s; one loopback attempt, workstation only",
+    "coordinator_test.go:485: real body deadline=1.0006606s; one loopback attempt, workstation only",
+    "coordinator_test.go:485: real progress deadline=1.0008299s; one loopback attempt, workstation only"
+  ],
+  "raw_log_sha256": "aea3d77f63dbae3479c0de0ce5a8cce54cb8f303712d0ae01ac8d98efc9ce0d5",
+  "log_transcoding_note": "PowerShell replaced the non-ASCII microsecond symbol in Go time.Duration output with U+FFFD. The summary restores that known Go unit as microseconds; raw captured log hash is retained."
+}

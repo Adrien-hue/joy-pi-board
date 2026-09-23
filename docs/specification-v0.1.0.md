@@ -1,6 +1,6 @@
 # Joy Pi Board v0.1.0 specification
 
-Status: **consolidated product requirements; S00 COMPLETE, functional product not implemented**. [S00 evidence](s00-evidence.md) identifies the locally and CI-verified scaffold commit, closure criteria and remaining product validations. S01 in-memory contracts are complete with local and verified hosted CI evidence; [S01 evidence](s01-evidence.md) records closure and unexecuted product gates. S02 is [PREPARED, NOT EXECUTED](sprint-02.md). This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
+Status: **consolidated product requirements; S00/S01 COMPLETE, S02 locally implemented; final product incomplete**. [S00 evidence](s00-evidence.md) identifies the locally and CI-verified scaffold commit, closure criteria and remaining product validations. S01 in-memory contracts are complete with local and verified hosted CI evidence; [S01 evidence](s01-evidence.md) records closure and unexecuted product gates. S02 is [implemented and verified locally; hosted CI closure pending](sprint-02.md). This is normative for established product scope, requirement IDs and budgets. Details are owned by the documents linked below, not duplicated as competing definitions.
 
 ## Authority and status
 
@@ -41,7 +41,7 @@ Board is the second Joy Pi Home microservice. It makes Health observations reada
 | JPB-022 | Log to stdout/stderr for journald: startup, shutdown and significant transitions. No full snapshots or per-poll success logging by default. |
 | JPB-023 | Target Raspberry Pi OS 64-bit / Trixie, Linux ARM64; future autonomous ARM64 binary, Debian package, systemd unit with dedicated unprivileged user, checksums and build metadata. No production Node/npm/Vite or mandatory reverse proxy. Packaging must not depend on Health availability to start Board. |
 | JPB-024 | Official release requires Classes A, B and C PASS on the exact candidate bytes/checksums. Physical tests use Raspberry Pi 3B+, distinct from Health's own hardware gates. Unexecuted physical validation is NOT RUN. |
-| JPB-025 | Respect the currently authorized sprint boundary. S00/S01 implementation and closure are historical completed work with separate evidence; the current instruction authorizes S02 documentary preparation only. Do not implement S02–S04, publish a release or deploy services. Preserve historical reviews and exact-commit evidence; preparation never implies execution. |
+| JPB-025 | Respect the currently authorized sprint boundary. S00/S01 implementation and closure are historical completed work with separate evidence; the current instruction authorizes S02 implementation only. Do not implement S03/S04, publish a release or deploy services. Preserve historical reviews and exact-commit evidence; preparation never implies execution. |
 
 ## Established non-functional budgets
 
