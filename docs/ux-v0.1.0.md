@@ -1,6 +1,6 @@
 # Overview UX contract
 
-Status: **established behavior plus proposed presentation details; not implemented**. Normative for JPB-017–019. [Board API](board-api-v0.1.0.md) defines server state; [Health integration](health-integration-v1.0.md) defines metric meaning. Do not derive a global health score from either.
+Status: **S03 PREPARED, NOT EXECUTED**. Established behavior and approved P-05 obligations remain fixed; S03 scheduling realization and P-06 presentation/accessibility details below remain **PROPOSED**. See [Sprint 03](sprint-03.md) for tasks and closure evidence. Normative for JPB-017–019. [Board API](board-api-v0.1.0.md) defines server state; [Health integration](health-integration-v1.0.md) defines metric meaning. Do not derive a global health score from either.
 
 ## Layout and reading order
 
@@ -37,7 +37,7 @@ Services are availability information, not service-management controls or placeh
 
 ## Scheduling and browser freshness
 
-Established: fetch overview on opening and every 5 seconds, with no overlapping refresh requests. No immediate retries. **S03 scheduling realization, still proposed**: start on a 5 s cadence measured from mount; skip a tick while an attempt is in flight, do not queue catch-up requests. Use a 2 s AbortController deadline for Board fetch including body reading; it is separate from Board's 1 s upstream deadline. Completion/error does not schedule an immediate retry; next scheduled tick is the next attempt. Cleanup timers and requests on unmount; guard publication with a request generation so a late aborted response cannot overwrite a later one. Tests must account for React development effect cleanup without intentional duplicate production requests.
+Established: fetch overview on opening and every 5 seconds, without overlapping refreshes or immediate retry. **Proposed S03-R02** is defined once in [the scheduling work package](sprint-03.md#scheduling-and-lifecycle-realization): immediate visible mount; mount-anchored slots, skip busy/missed slots; 2 s full-body/validation deadline; request/lifecycle generations; abort and clean effects. Hide/abort on hidden/pagehide/freeze, suppress ticks while hidden, and resume only on the next strictly future slot. Initial pageshow, BFCache and StrictMode replay have distinct handling. No completed response is reused as a refresh.
 
 Under the P-05 protocol approved by the S02 implementation instruction (browser code still NOT RUN), at request start record monotonic time `m0`; on response completion record `m1`. Validate overview and the age header from [Board API](board-api-v0.1.0.md). For a supplied snapshot:
 
@@ -59,7 +59,7 @@ Missing/invalid age information under the approved P-05 protocol is a Board cont
 
 Established semantics: `0.5037` CPU means approximately **0.5%**, not 50.37%. Null means unavailable, never zero/false/no problem. Load is dimensionless, not a percentage. Network numbers are cumulative bytes, not bytes per second. True firmware flags are observations, not collection issues. Active and since-boot flags must never share an ambiguous single indicator.
 
-**Proposed P-06 conventions:** CPU and derived memory/storage percentages to one decimal; temperature to one decimal °C; load to two decimals; logical CPU count exact integer. Bytes use B, KiB, MiB, GiB, TiB (powers of 1024), with at most one fractional digit and exact bytes accessible for all capacities/counters. RX/TX labels include “cumulative”; show exact decimal counters in an accessible detail using bigint arithmetic. Uptime uses integer days/hours/minutes/seconds from the received value, not a fabricated extrapolated uptime. Stale age updates in seconds with an “approximately” cue when showing the conservative upper bound. Display observation time and last-success time with distinct labels.
+**Proposed P-06 conventions:** CPU and derived memory/storage percentages to one decimal; temperature to one decimal °C; load to two decimals; logical CPU count exact integer. Bytes use B, KiB, MiB, GiB, TiB, PiB, EiB (powers of 1024, covering all uint64 values), with at most one fractional digit and exact bytes accessible for all capacities/counters. RX/TX labels include “cumulative”; show exact decimal counters in an accessible detail using bigint arithmetic. Uptime uses integer days/hours/minutes/seconds from the received value, not a fabricated extrapolated uptime. Stale age updates in seconds with an “approximately” cue when showing the conservative upper bound. Display observation time and last-success time with distinct labels.
 
 Byte percentage exists only when required values are non-null and total > 0. For total 0, show known byte values and percentage “Not applicable”; do not produce Infinity/NaN. Derived rounding belongs solely to presentation; API values remain unchanged. Use the integration contract's bigint ratio/division strategy, including for large totals.
 
@@ -70,3 +70,81 @@ Boolean display is “Yes”, “No”, or “Unavailable”; false is not missi
 Established states require text or meaningful icons with accessible labels in addition to color. **Proposed P-06 checks:** semantic heading/region structure, keyboard-operable details, visible focus, accessible status names, adequate contrast (WCAG AA), 200% text zoom and reduced-motion support. Announce state transitions through a restrained live region; do not announce every five-second metric change or steal focus on refresh. No required animations, images, remote fonts or third-party runtime resources.
 
 Plan visual and interaction cases at 360/390 px mobile, 768 px tablet and 1280 px desktop; include long names, all-null groups, maximum counters, multiple interfaces and long issues. See B-10/B-11 and physical C-05 in [validation](validation-v0.1.0.md). These sizes/checks are proposed acceptance procedures, not completed design testing.
+
+## Proposed S03 page and component contract
+
+**P-06 presentation/accessibility subset, PROPOSED (S03-R03)**. This section specifies the recommended design; it is not an implemented mockup. Retain the shell's English language, system fonts and restrained dark palette, subject to measured contrast. Use English (`lang=en`), fixed en-GB number conventions and explicit UTC timestamps for consistent tests. Health messages remain verbatim text in their supplied language; do not translate by matching their wording. No automatic theme setting, animation, notification, refresh button or service control is needed in this scope.
+
+```text
+Joy Pi Home / Joy Pi Board
+<Health hostname when eligible>
+Board: response state   Health: latest/last-reported outcome
+Observation: Current | Partial | Stale | No presentable data
+
+CPU                 Memory              Root filesystem       SoC temperature
+utilization / CPUs  used / available / total                    degrees Celsius
+
+Load averages: 1 min / 5 min / 15 min     Uptime at observation
+
+Network interfaces
+<name>  State: <observed text>
+Received (RX, cumulative)                Transmitted (TX, cumulative)
+
+Raspberry Pi indicators
+Active at observation                   Occurred since boot
+Thermal throttling / Undervoltage        Thermal throttling / Undervoltage
+
+Board / Joy Pi Health service information
+Conservative data age / Last successful retrieval / Observed by Health /
+Response generated by Board / measurement availability details
+```
+
+Proposed components: OverviewHeader/ResponseStatus, MetricCard/ByteGroup, LoadAndUptime, NetworkList/InterfaceRow, FirmwareIndicators, IssueText and ServiceFreshness. The view receives validated typed data plus a guarded presentation state; it does not fetch or recompute schema validity. Keep DOM/heading order identical at every width. One-column at 360/390 px; two primary cards per row around 768 px; four around 1280 px if text fits, with wrap-safe grid columns and no minimum content width. Secondary/network/firmware sections follow sequentially. Use a bounded content width with fluid gutters, not fixed card heights or clipped values.
+
+Show every interface (up to 64), keep Health order, use interface name for React identity but current snapshot index for issue paths. No pagination, virtualization or hidden omitted rows is needed at this bound. An empty valid array says “No interfaces reported”; network null says “Network observations unavailable” with its group issue. Vertical scrolling is acceptable. Wrap full hostnames, interface state text, counters and messages (`min-width: 0`, overflow-wrap); do not ellipsize away the only exact value. Use generated opaque DOM IDs, not untrusted names/paths as markup identifiers. User/provider strings render only as React text nodes, never innerHTML or URL/style content.
+
+### Concrete state copy and retention
+
+| State / trigger | Recommended visible outcome |
+|---|---|
+| Initial | “Loading observations”; Board “Checking”; Health “Not yet known”; no invented hostname/zero values. Shell remains navigable. |
+| Usable current, no issues | “Current observation”; Board “Responding”; Health “Available”; every supplied value shown. No “Healthy” badge. |
+| Usable current, issues | “Current observation — some measurements unavailable”; Board/Health still responding/available. Null leaves show “Unavailable”, associated issue text once at its actual scope. |
+| Usable stale | Board “Responding”; Health “Unavailable” plus fixed reason text; “Stale observation” and conservative age; only still-eligible values shown. |
+| Usable none | Board “Responding”; Health “Unavailable”; “No presentable data”. Show last successful retrieval only if supplied; clear all old metrics immediately. |
+| Board HTTP error | “Board returned HTTP <status>”; Health “Unknown — last reported …”; prior eligible metrics explicitly stale, then expire. This is not “could not connect”. |
+| Network failure / 2 s timeout | “Board could not be reached” / “Board response timed out”; Health unknown/last reported; eligible previous metrics stale, no age reset. |
+| Contract/age/clock error | “Board data could not be verified” / “Data age could not be verified”; metrics masked immediately; no fallback to an old live badge. No raw exception or response body. |
+| Hidden / resume waiting | “Observations paused; waiting for a fresh response”; no metric values or live Health availability until a new valid response with eligible age. |
+| Locally expired usable response | Board “Last response received”; Health “Last reported …”; “No presentable data — observation expired”. Received current/stale is historical metadata, never an indefinitely live state. |
+| Recovery | Atomically replace the view; one polite “Observations available again” announcement when an outage/paused/none episode ends. A normal successful poll does not announce recovery. |
+
+When no metric snapshot is presentable, heading returns to Joy Pi Board. Optional last hostname belongs only in explicitly labeled historical metadata; recommend omitting it from the headline. Do not clear useful last-success metadata merely because snapshot values expire. Display Board HTTP failures separately from a valid Health failure, and availability failures separately from observed true firmware flags. An empty issues array never becomes “No health problems”.
+
+### Exact presentation algorithms
+
+Retain source bigint/number/null values unchanged. No counter passes through Number, including derived percentage inputs. Pure formatting functions own rounding, not components or transport.
+
+| Field | Proposed formatting and exact-value access |
+|---|---|
+| CPU utilization | One fractional digit plus %, directly from the supplied percentage: 0.5037 → 0.5%. No multiplication by 100, thresholds or warning color. |
+| Logical CPUs | decimalUInt64 exact digits, no conversion to floating point. |
+| Memory/root bytes | Show used, available and total. Binary summary B through EiB; for B use integer text, otherwise one decimal digit. A keyboard-operable native details section reveals all exact ungrouped decimal byte values with units. “Available” means the supplied unprivileged availability, not an invented free value. |
+| Memory/root percentage | Only if all required leaves are non-null and total >0. For used u and total t, tenths of percent q = floor((2 × u × 1000 + t) / (2 × t)), using bigint throughout; render q/10 and q mod 10 as decimal digits. This is round-nearest, ties up for nonnegative ratios. Zero total → “Not applicable”; known 0 bytes remains visible. |
+| RX/TX | Label “Received (RX, cumulative)” and “Transmitted (TX, cumulative)”; show exact ungrouped decimal bytes as visible text and optional binary summary. No rates/deltas. `9007199254740993` and `18446744073709551615` must be readable/copyable without tooltip-only access. |
+| Binary summaries | Choose largest divisor 1024^k <= value (k 0..6); for one decimal use floor((2 × value × 10 + divisor)/(2 × divisor)). Carry a rounded 1024.0 into the next unit when available. No Number conversion. Preserve exact digits in details, including 0 and uint64 max. |
+| SoC temperature / load | Temperature one fractional digit °C; load two fractional digits with “1 min / 5 min / 15 min”, dimensionless. Use explicit Intl.NumberFormat fraction options for floating fields; normalize displayed negative zero to zero without changing stored value. For extremely large finite floats, a scientific summary is permitted with the full Number decimal representation in details; no clipping or invented bound. |
+| Uptime | bigint quotient/remainder into days, hours, minutes, seconds; all uint64 seconds accepted. No ticking extrapolation. Exact seconds remain in details; label “Uptime at observation”. |
+| Firmware | “Yes” / “No” / “Unavailable”; active and since-boot rows separate. Null is not No; true is not a collection issue or global diagnosis. |
+| Network state | Display supplied nonempty string as neutral text; up/down/unknown are observations, not a closed enum. Unknown string is not acquisition null. |
+| Timestamps / age | Explicit labels “Observed by Health”, “Last successful retrieval by Board”, “Response generated by Board”. Show preserved UTC text (wrappable, fractional precision retained); missing time “Not yet”. Conservative age label “Data age: at most approximately … s”, rounded up to whole seconds, but eligibility uses the exact millisecond bound. Never derive age from these timestamps. |
+
+Use path/code to associate issues. Render each issue's message **once** at its metric/group scope; use aria-describedby to link affected leaves to that text. For /load, /memory and /root_filesystem, one group issue describes three unavailable leaves. Firmware has four actual issues: retain their separate paths; sharing a visually grouped message is permitted only with all four associations preserved, not changing the issue count. Recommend one message per supplied issue for simplest auditability. Network index paths attach to the current snapshot rows; removed rows cannot retain prior issue text. A footer summary may count and link to issues, not repeat every message. Keep provider order in the summary. No message matching, invented severity or duplicate synthetic issues.
+
+### Accessibility acceptance proposal
+
+Use semantic main/section/headings, definition lists or correctly labeled tables, and native details/summary for exact values. Every details control has an explicit metric-specific accessible name and visible keyboard focus. Preserve focus and open details across ordinary value refreshes by stable semantic identity; if the focused interface disappears, move focus only as needed to the network heading and announce that removal once. Do not move focus on normal refresh/recovery. On expiry remove values from both visual and accessibility presentation, including expanded details.
+
+Target the relevant [WCAG 2.2](https://www.w3.org/TR/WCAG22/) AA checks: normal text contrast >=4.5:1, large text >=3:1, focus/control boundaries >=3:1, no color-only state, keyboard operation and meaningful labels. Verify 200% zoom and large text, responsive reflow, reduced-motion preference, reading order and no horizontal overview overflow. Avoid animations altogether. Give one polite atomic status region concise Board/Health/freshness/measurement-availability transitions; deduplicate unchanged states and coalesce related changes from one refresh. Never announce every metric/age tick, read all issues automatically, or use an assertive alert for routine loss/recovery. Screen-reader checks complement visual and DOM checks; an automated accessibility scan alone cannot certify these behaviors.
+
+S03 owns these software/browser/visual checks; S04 repeats installed-device C-05 and physical acceptance. [S03-T08–T12](validation-v0.1.0.md#prepared-s03-validation-matrix) define proof, including 360/390, 768 and 1280 px, 200% zoom, long strings, all 64 interfaces and many issues. All remain NOT RUN. Physical measurement and actual server compression protocols are a separate P-06/S04 review, not ratified by this presentation proposal.

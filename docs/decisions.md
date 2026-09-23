@@ -1,6 +1,6 @@
 # Decision register
 
-Updated for S02 implementation, 2026-09-23. **Approval provenance:** the user's explicit S02 implementation instruction approved the concrete P-02/P-04/P-05 recommendations prepared on 2026-09-22; implementation was resumed on 2026-09-23. The preparation itself approved nothing. S00/S01 evidence and decisions retain their original provenance. This approval excludes S04 compression/packaging/physical extensions and P-06. Product scope remains in [the specification](specification-v0.1.0.md).
+Updated for S03 documentary preparation, 2026-09-23. New S03 recommendations remain PROPOSED; no prior approval changed. **Approval provenance:** the user's explicit S02 implementation instruction approved the concrete P-02/P-04/P-05 recommendations prepared on 2026-09-22; implementation was resumed on 2026-09-23. The preparation itself approved nothing. S00/S01 evidence and decisions retain their original provenance. This approval excludes S04 compression/packaging/physical extensions and P-06. Product scope remains in [the specification](specification-v0.1.0.md).
 
 | ID | Status and decision | Remaining review / sprint |
 |---|---|---|
@@ -33,7 +33,7 @@ Toolchain/dependency versions and browser targets selected for S00 are recorded 
 
 ## S02 approval and implementation choices
 
-The [S02 work package](sprint-02.md) is authorized for implementation. The following approved recommendations retain their rationale, consequences and test ownership; detailed rules have one authority location rather than competing copies.
+The [S02 work package](sprint-02.md) was authorized by the implementation instruction and is now complete with local and verified CI evidence. That closure is historical; the current assignment is S03 documentary preparation only. The following approved recommendations retain their rationale, consequences and test ownership; detailed rules have one authority location rather than competing copies.
 
 | Proposal | Recommendation and rationale | Observable consequence / planned tests |
 |---|---|---|
@@ -45,4 +45,17 @@ The [S02 work package](sprint-02.md) is authorized for implementation. The follo
 
 Ordinary implementation choices: Board-owned config/health/overview/httpapi packages reuse httpui routing and S01 Validated. A checked paired clock detects regressions; response assembly retries at most three times if the age bucket or eligibility changed before commitment. The fixed wrapper is encoded with HTML escaping disabled, then the private precompacted validated object is inserted into its final snapshot field; no numeric conversion or general JSON rewriting occurs. The test-only HTTP adapter extracts that fixed field's original JSON text, avoiding lossless-json stringify's prototype/duck-type behavior on unknown members. These are realizations of approved behavior, not changes to the schema or browser floors.
 
-P-06's existing row, budgets and deferred presentation/measurement review are unchanged. The platform monotonic clock may pause during server suspension; no wall-clock subtraction replaces it. New S02 hosted CI is required for closure; see [S02 evidence](s02-evidence.md).
+P-06's existing row, budgets and deferred presentation/measurement review are unchanged. The platform monotonic clock may pause during server suspension; no wall-clock subtraction replaces it. S02 hosted CI closure is verified in [S02 evidence](s02-evidence.md#verified-hosted-ci). S03 is prepared, not executed; this closure neither implements its browser obligations nor ratifies P-06 or S04 extensions.
+
+## S03 preparation recommendations
+
+Status: **PROPOSED**, not ratified by documentary preparation. Existing P-02/P-04/P-05 S02 decisions and ADR-001 remain approved; none of the recommendations below changes the server envelope or Health policy. See [Sprint 03](sprint-03.md) and [planned validation](validation-v0.1.0.md#prepared-s03-validation-matrix).
+
+| Review ID / relationship | Concrete recommendation / rationale | Observable consequence / tests |
+|---|---|---|
+| S03-R01 — new Board consumer policy, separate from P-03 Health tolerance | Bounded Fetch and exact wrapper validation; reject unknown Board root/health members while preserving approved Health extras. Reuse the guarded lossless parser with explicit envelope profile and a narrow original-source span for /health/snapshot, then existing parseSnapshot. Avoid schema duplication, prototype/stringify hazards and raw-byte limit drift. | Arbitrary property order accepted; invalid headers/body/combinations mask data; exact bigint and 65,536/32 nested vs 81,920/34 envelope boundaries retained. S03-T01–T03. No producer change or new runtime library recommended. |
+| S03-R02 — P-05 browser realization | Immediate visible mount, fixed 5 s slots, skip busy/missed slots, proposed 2 s deadline through body/validation, abort and generation guards. Hide/abort on lifecycle invalidation; no hidden requests; next strictly future slot on resume. StrictMode cleanup retained with cancellable initial launch. | No overlap/retry burst, old response restoration or indefinite available badge; independent expiration and safe HTTP/network/contract distinctions. Approved age/visibility obligations stay fixed. S03-T04–T07. |
+| S03-R03 — P-06 presentation/accessibility subset | English matching shell; binary B..EiB, exact counter text, bigint ratios, UTC timestamp labels, scoped text issues, responsive DOM reading order, native exact-value details, focus/contrast/zoom and restrained announcements. [UX](ux-v0.1.0.md#proposed-s03-page-and-component-contract) owns specifics. | Every prescribed metric/state readable across full uint64/long data range; no invented score, rate, zeros or service controls. S03-T08/T09/T12. No approval of physical/compression protocols. |
+| S03-R04 — tooling and evidence proposal | Exactly pin/evaluate one Playwright development runner during implementation; preserve Node unit tests. Separate current engines, branded browser floors, actual Safari/iOS and reviewed visual evidence. Preliminary gzip-9 dashboard/first-overview-inclusive inventory alongside actual identity transfer bytes. | New CI and local/manual evidence required; unavailable required targets keep S03 closure pending. S03-T10–T14. No dependencies installed, minimum versions raised or S04 compressed delivery claimed now. |
+
+P-06 is deliberately split by scope: presentation/accessibility and preliminary frontend cost procedure are proposed for S03; physical sampling/statistics, actual compressed delivery and package/installed-Pi acceptance remain deferred to S04. Established numeric semantics, inclusive freshness boundary and product budgets are not new proposals. Exact implementation tool versions will be recorded after compatibility/license review; preparation does not approve a floating dependency version.

@@ -1,6 +1,6 @@
 # Architecture
 
-Status: **S00/S01 complete; S02 implemented and verified locally; CI closure pending**. Current S02 P-02/P-04/P-05 approval comes from the explicit implementation instruction, not the earlier documentary preparation. See [decisions](decisions.md) and [S02 evidence](s02-evidence.md). S03/S04 remain unimplemented.
+Status: **S00/S01/S02 complete; S02 verified locally and in hosted CI**. Current S02 P-02/P-04/P-05 approval comes from the explicit implementation instruction, not the earlier documentary preparation. See [decisions](decisions.md) and [S02 evidence](s02-evidence.md). [S03](sprint-03.md) is PREPARED, NOT EXECUTED; S04 is not started. Browser design recommendations below are proposals, not completed modules.
 
 ## Boundaries and flow
 
@@ -103,3 +103,15 @@ Future systemd uses a dedicated unprivileged `joy-pi-board` user, restrictive fi
 `httpapi.Handler` composes `httpui`, enforces 32 request permits and performs at most three response assemblies when the conservative age bucket/eligibility changes before commitment. `httpapi.LimitedListener` caps open connections at 64. Static identity responses intentionally ignore conditional/range headers and return complete GET/HEAD resources; no new caching semantics or secondary static error router. `eventlog` keeps at most 64 queued events plus one writer goroutine. Publication assigns sequence numbers; the sink discards out-of-order older transitions. Shutdown does not wait beyond its original context for a blocked writer. The second signal cancels that same context before forced Close.
 
 No production TypeScript consumer was added. The unchanged shell does not call overview. The test-only adapter, exact HTTP path and actual validation results are in [S02 evidence](s02-evidence.md).
+
+## Proposed S03 browser composition
+
+**PROPOSED S03-R01/R02/R03**, layered onto the completed server without changing its API, limits, CSP, ports or cache. [Sprint 03](sprint-03.md#scope-and-inspected-seams) describes inspected interfaces and task dependencies; [UX](ux-v0.1.0.md) owns the page contract.
+
+Data flow: bounded same-origin Fetch → guarded envelope JSON/header validation → original snapshot slice → S01 parseSnapshot → one atomic validated view with paired local age samples → controller eligibility gate → React presentation. The narrow source-span guard is order-independent and reuses the existing string/container scan; lossless-json still owns grammar. It must not become a general-purpose parser or use the test harness's fixed-final-field assumption. Exact integer tokens reach bigint without reserialization/Number conversion. Envelope and snapshot byte/depth limits remain separate.
+
+One page-local hook owns controller, request AbortController, attempt/lifecycle generations and timers. Controller/state/format functions are independently testable with injected request/clock/timer seams. Components do not fetch, reinterpret schema or create their own freshness anchors. No global store, history, persistent snapshot, service worker or completed-request cache is introduced. The scheduling/expiry rules have one realization authority in [S03](sprint-03.md#scheduling-and-lifecycle-realization), implementing approved P-05 and the [UX age budget](ux-v0.1.0.md#scheduling-and-browser-freshness).
+
+All metric content passes a current eligibility gate, including hostname and expanded exact-value details. Clock/lifecycle/contract invalidation masks the view; Board network/HTTP failure can retain only explicitly stale, still-eligible observations. Health report, local Board response outcome and metric availability/freshness are separate state dimensions. Atomic partial/none replacements cannot resurrect prior values. Bound transient request buffers, clear timers/listeners/readers on teardown and never log upstream body/messages from browser diagnostics.
+
+Proposed browser tests start the real embedded native binary with controlled Health, alongside separate intercepted-response tests for invalid envelopes. A test-only browser harness may exercise components/StrictMode with injected controllers; it must be excluded from production assets and API routes. No testing endpoint or window-global clock control is added to the delivered application. Existing S01/S02 Node handoffs remain distinct regression lanes; actual-browser and visual evidence are required by [S03 closure](sprint-03.md#size-regression-and-closure-gates). Production runtime still needs neither Node nor external network resources.

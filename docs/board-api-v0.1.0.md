@@ -1,6 +1,6 @@
 # Board HTTP/JSON API v0.1.0
 
-Status: **S02 implementation; verified locally, hosted CI closure pending**. Normative for JPB-008–013. The current user instruction approves the prepared S02 P-02/P-04/P-05 policies; see [approval provenance](decisions.md). [Health integration](health-integration-v1.0.md) owns HealthSnapshot, [UX](ux-v0.1.0.md) owns future browser behavior. The shell remains minimal; the production overview now exists. [ADR-001](adr-001-exact-json-integers.md) governs exact object transport. See [S02 evidence](s02-evidence.md) for results and limits.
+Status: **S02 complete; verified locally and in hosted CI**. Normative for JPB-008–013. The earlier S02 implementation instruction approved the prepared P-02/P-04/P-05 policies; see [approval provenance](decisions.md). [Health integration](health-integration-v1.0.md) owns HealthSnapshot, [UX](ux-v0.1.0.md) owns future browser behavior. The shell remains minimal; the production overview now exists. [ADR-001](adr-001-exact-json-integers.md) governs exact object transport. See [S02 evidence](s02-evidence.md) for results and limits.
 
 ## Overview
 

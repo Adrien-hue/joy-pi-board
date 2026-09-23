@@ -1,6 +1,6 @@
 # Sprint 02 — Overview API, Health transport and resilience
 
-Status: **IMPLEMENTED AND VERIFIED LOCALLY; CI CLOSURE PENDING**, 2026-09-23. S00/S01 are closed with their separate historical proofs. The user explicitly authorized S02 implementation and approved the concrete P-02/P-04/P-05 recommendations after the 2026-09-22 preparation. That instruction, reaffirmed by resume on 2026-09-23, supersedes documentary-only restrictions. S03/S04 are not started. No commit, push, tag, release or deployment has been performed.
+Status: **COMPLETE**, 2026-09-23, with preserved local results and verified hosted CI for `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4` (run 35908782107, attempt 1). S00/S01 remain closed with separate historical proofs. The earlier implementation instruction approved the concrete P-02/P-04/P-05 recommendations prepared on 2026-09-22; this documentary closure changes no technical decision. S03 is ready for preparation, NOT STARTED; S04 is NOT STARTED. The current task permits documentation only, with no application build/test, commit, push, tag, release or deployment.
 
 ## Starting point and authority
 
@@ -33,14 +33,14 @@ Clock exposes paired wall/elapsed reads and a cancellable deadline timer. Produc
 
 | Task | Dependencies | Delivered result | Status / evidence |
 |---|---|---|---|
-| S02-01 — ratify and freeze | S01 closure | Current-instruction P-02/P-04/P-05 approval recorded; P-06/S04 remain deferred. | DONE, decision register. |
-| S02-02 — configuration and seams | S02-01 | Presence-aware flag/env/default parsing, safe actions/errors, paired clock, timer/test barriers. | LOCAL PASS: S02-T01. |
-| S02-03 — Health transport | S02-02 | Dedicated bounded HTTP/1 attempt, one selected address/dial, no proxy/reuse/redirect/decompression; S01 Decode. | LOCAL PASS: S02-T02/T03/T04. |
-| S02-04 — coordinator and RAM state | S02-03 | Active sharing, one cache, immutable views, atomic completion/deadline/shutdown, late-worker rejection. | LOCAL PASS: S02-T05/T06/T07 and Linux race. |
-| S02-05 — HTTP overview and age | S02-04 | Exact object envelope, fixed errors, age header, single-view finalization and byte/depth boundaries. | LOCAL PASS: S02-T08/T09. |
-| S02-06 — compose server and operations | S02-02/S02-05 | Static/API composition, admission/connection limits, signals, bounded logs and unchanged page. | LOCAL PASS: S02-T10/T11. |
-| S02-07 — real HTTP interop and regression | S02-03–S02-06 | Shared corpus through Health HTTP → Board HTTP → TypeScript; socket/deadline tests and standalone smoke. | LOCAL PASS: S02-T01–T11. |
-| S02-08 — evidence and CI closure | S02-07 | Local ledger, source fingerprint, regression/build artifacts and existing CI integration. | LOCAL PART DONE; new exact-commit hosted CI NOT RUN, sprint not closed. |
+| S02-01 — ratify and freeze | S01 closure | Implementation-instruction P-02/P-04/P-05 approval recorded; P-06/S04 remain deferred. | DONE, decision register. |
+| S02-02 — configuration and seams | S02-01 | Presence-aware flag/env/default parsing, safe actions/errors, paired clock, timer/test barriers. | LOCAL AND CI PASS: S02-T01. |
+| S02-03 — Health transport | S02-02 | Dedicated bounded HTTP/1 attempt, one selected address/dial, no proxy/reuse/redirect/decompression; S01 Decode. | LOCAL AND CI PASS: S02-T02/T03/T04. |
+| S02-04 — coordinator and RAM state | S02-03 | Active sharing, one cache, immutable views, atomic completion/deadline/shutdown, late-worker rejection. | LOCAL AND CI PASS: S02-T05/T06/T07 and Linux race. |
+| S02-05 — HTTP overview and age | S02-04 | Exact object envelope, fixed errors, age header, single-view finalization and byte/depth boundaries. | LOCAL AND CI PASS: S02-T08/T09. |
+| S02-06 — compose server and operations | S02-02/S02-05 | Static/API composition, admission/connection limits, signals, bounded logs and unchanged page. | LOCAL AND CI PASS: S02-T10/T11. |
+| S02-07 — real HTTP interop and regression | S02-03–S02-06 | Shared corpus through Health HTTP → Board HTTP → TypeScript; socket/deadline tests and standalone smoke. | LOCAL AND CI PASS: S02-T01–T11. |
+| S02-08 — evidence and CI closure | S02-07 | Local ledger, source fingerprint, regression/build artifacts and existing CI integration. | DONE: local ledger plus S02-CI-01–S02-CI-06, exact-commit hosted run and documentary exit review. |
 
 ## Real envelope and exact-number regression
 
@@ -56,7 +56,7 @@ The real HTTP corpus adds byte-derived maximum `<>&`/Unicode and depth-32 cases 
 
 Existing `check` now includes the S02 Go suites and real HTTP → TypeScript contract harness after the dedicated parser build. Existing `race` covers all new Go packages. CI action/tool pins and OS label are unchanged; workflow labels explain expanded coverage. `build` and `cross` still build frontend before embed; smoke now expects unavailable-Health HTTP 200 while checking identical embedded assets, empty PATH and no idle provider calls.
 
-**Closure remains pending:** a new hosted foundation/race run must cover the exact committed S02 source and record run/attempt/event/branch/SHA, actual tools/image and artifacts. No S00/S01 run is reused. Target browsers, dashboard B-10/B-11, visual/mobile acceptance, Debian/systemd, real Health physical C-01–C-06 and release remain NOT RUN. S02 local subsets do not imply full A/B/C product acceptance.
+**Closure satisfied:** [verified hosted CI](s02-evidence.md#verified-hosted-ci) records run 35908782107 attempt 1, successful foundation/race jobs, exact source, observed environments and confirmed S02-T01–T12 coverage. The implementation commit matches local HEAD and remote main at verification; the 77 historical local input hashes also match its Git blobs. No S00/S01 run is reused. Target browsers, dashboard B-10/B-11, visual/mobile acceptance, Debian/systemd, real Health physical C-01–C-06 and release remain NOT RUN. S02 local and CI subsets do not imply full A/B/C product acceptance.
 
 ## Review points before later sprints
 
