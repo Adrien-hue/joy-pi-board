@@ -1,0 +1,515 @@
+{
+  "scope": "Local final engine run, DPR 1, headless Linux. Agent image inspection 2026-09-25; no branded browser/device or screen-reader acceptance.",
+  "binary_sha256": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a",
+  "images": [
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-chromium/board-http.png",
+      "engine": "chromium",
+      "case": "board-http",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "8dca704a98435ded7c154681a4f1e1de5166e6147720e3556b597e45f14e8c12",
+      "review": "Board HTTP 503 is distinguished from network failure; values remain masked after contract invalidation.",
+      "retained": "docs/evidence/s03-visual/chromium-board-http.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-chromium/invalid-board.png",
+      "engine": "chromium",
+      "case": "invalid-board",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "ed70870f75324d225b413d2fd3f2342ae9355bc4dea16379d753955f83676d78",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-firefox/board-http.png",
+      "engine": "firefox",
+      "case": "board-http",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "3b952cf463629e97536b0a1c1c37be7ccc70a3a228b87127c222206ecaa20400",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-firefox/invalid-board.png",
+      "engine": "firefox",
+      "case": "invalid-board",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "e1a12d6db6ad3cd16f52e1043923c70295da1827cfd0ee029be6be2e66c2645a",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-webkit/board-http.png",
+      "engine": "webkit",
+      "case": "board-http",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "e042237d040ac45d36856d7a11aeef81217395dc9ea396d8ac179baecf50c5a4",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T02-T07-interc-0e19e-y-HTTP-differs-from-network-webkit/invalid-board.png",
+      "engine": "webkit",
+      "case": "invalid-board",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "675ec1e31adf37d6139fc62aeefd2a29bae3745c48b4b768900a6c7bd11ac20d",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-chromium/board-unreachable-stale.png",
+      "engine": "chromium",
+      "case": "board-unreachable-stale",
+      "pixels": [
+        1280,
+        1713
+      ],
+      "sha256": "b9bf792f704e7bd0b805fbd7bc440955cfe0d4cf4be9738be62f6aa18590d4e4",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-chromium/expired-without-server.png",
+      "engine": "chromium",
+      "case": "expired-without-server",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "cbec9688b9e04d9d40b527593c57248170b2c55baf00fc698affd614c900760d",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox/board-unreachable-stale.png",
+      "engine": "firefox",
+      "case": "board-unreachable-stale",
+      "pixels": [
+        1280,
+        1713
+      ],
+      "sha256": "24713c26dcce6d25ff40a21969c2f259d59a32e3cd07af2d1b6fc0bf7ae7ab20",
+      "review": "Old eligible metrics explicitly stale, with Board unreachable and Health availability unknown.",
+      "retained": "docs/evidence/s03-visual/firefox-board-unreachable-stale.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox/expired-without-server.png",
+      "engine": "firefox",
+      "case": "expired-without-server",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "f2c8088f3784e25518d4131c281b5806432a9d90347dc5d3dcb7dfb60bef4a20",
+      "review": "No old hostname/counters/observation; Board unreachable and Health unknown remain distinct from last success metadata.",
+      "retained": "docs/evidence/s03-visual/firefox-expired-without-server.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit/board-unreachable-stale.png",
+      "engine": "webkit",
+      "case": "board-unreachable-stale",
+      "pixels": [
+        1280,
+        1712
+      ],
+      "sha256": "b8ecf121050091f97c357ce2b5c9240b8608e17b0875b0ff10ac171bfd734933",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit/expired-without-server.png",
+      "engine": "webkit",
+      "case": "expired-without-server",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "a993df86eb94f858ec415b04f08f2d29b4cb4292229c8c1a621aecd86adeb23c",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T07-T12-Health-20e59-ins-a-usable-Board-response-chromium/none-before-first-success.png",
+      "engine": "chromium",
+      "case": "none-before-first-success",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "69d25972500493c7342e63f7ab6ef5f77d1c18cca65e24a6d091c684be85a371",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T07-T12-Health-20e59-ins-a-usable-Board-response-firefox/none-before-first-success.png",
+      "engine": "firefox",
+      "case": "none-before-first-success",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "2b9490ae8801bca1483208e6b38821810a023ecb69687c901a974f0418b2b7df",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T07-T12-Health-20e59-ins-a-usable-Board-response-webkit/none-before-first-success.png",
+      "engine": "webkit",
+      "case": "none-before-first-success",
+      "pixels": [
+        1280,
+        900
+      ],
+      "sha256": "0e1a8bcc4d5854bc83e134afecdcb6a88daf066ea0e365585cd1554826f42458",
+      "review": "Board reachable, Health unavailable, no success and no fabricated values.",
+      "retained": "docs/evidence/s03-visual/webkit-none-before-first-success.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/nominal-1280.png",
+      "engine": "chromium",
+      "case": "nominal-1280",
+      "pixels": [
+        1280,
+        1713
+      ],
+      "sha256": "ea1343d5d117ef4a6cf5a874c681f0a1b7e9da7e5afac4055a7d142f8dc176be",
+      "review": "Desktop hierarchy, focused exact CPU disclosure, exact RX/TX digits and separate firmware groups readable.",
+      "retained": "docs/evidence/s03-visual/chromium-nominal-1280.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/nominal-360.png",
+      "engine": "chromium",
+      "case": "nominal-360",
+      "pixels": [
+        360,
+        3166
+      ],
+      "sha256": "e12fc6342e3aaaaae98550d53dd88e47d5f02e23880bf8de33b6bee15025bb77",
+      "review": "Single column, counters and UTC timestamps wrap inside viewport without horizontal overflow.",
+      "retained": "docs/evidence/s03-visual/chromium-nominal-360.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/nominal-390.png",
+      "engine": "chromium",
+      "case": "nominal-390",
+      "pixels": [
+        390,
+        3138
+      ],
+      "sha256": "63deab4181395665ea0dd151ead97aab825500698ef4e3e66a041f0a1e3d9de2",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/nominal-768.png",
+      "engine": "chromium",
+      "case": "nominal-768",
+      "pixels": [
+        768,
+        2161
+      ],
+      "sha256": "dab1ebaec6ce736d0c0afb49bf676e008e5b1c619ba3a8f2e8b22c181d7a8589",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/text-200-percent.png",
+      "engine": "chromium",
+      "case": "text-200-percent",
+      "pixels": [
+        360,
+        7989
+      ],
+      "sha256": "4dbe17142cd437129795f7eb630b39a41aa0a2ecbbf8ae9ff13ecac9dd00453e",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox/nominal-1280.png",
+      "engine": "firefox",
+      "case": "nominal-1280",
+      "pixels": [
+        1280,
+        1713
+      ],
+      "sha256": "06705420727624c40e4dead1f61a7d40d8183bc83493cee611dc8b14864c4189",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox/nominal-360.png",
+      "engine": "firefox",
+      "case": "nominal-360",
+      "pixels": [
+        360,
+        3167
+      ],
+      "sha256": "604522356b7e8678f799656dd4d254573e7cfbf9b9a7c3ad107a959fb32462a7",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox/nominal-390.png",
+      "engine": "firefox",
+      "case": "nominal-390",
+      "pixels": [
+        390,
+        3139
+      ],
+      "sha256": "b6a983cbffba2c6e16a784c2d0ab94a2c5f0d2f618f515faf94dca0673d7ca49",
+      "review": "Mobile-width single column, all prescribed metric groups and exact counters retained.",
+      "retained": "docs/evidence/s03-visual/firefox-nominal-390.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox/nominal-768.png",
+      "engine": "firefox",
+      "case": "nominal-768",
+      "pixels": [
+        768,
+        2162
+      ],
+      "sha256": "0875e251ad2618c2c217d77125bcd06c0f39458381b427e2722d96a4daed44c7",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox/text-200-percent.png",
+      "engine": "firefox",
+      "case": "text-200-percent",
+      "pixels": [
+        360,
+        7886
+      ],
+      "sha256": "1707db082007f15011fffefafd49e8cb71240ac399f30a757ba2c0deac9eb191",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit/nominal-1280.png",
+      "engine": "webkit",
+      "case": "nominal-1280",
+      "pixels": [
+        1280,
+        1712
+      ],
+      "sha256": "f54e02b9ef685ace305ab1bb48bb0a9f0d80f0a2971d3dda5d688a9112763a54",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit/nominal-360.png",
+      "engine": "webkit",
+      "case": "nominal-360",
+      "pixels": [
+        360,
+        3165
+      ],
+      "sha256": "57ee963cf753fd1f303aeab49b6f9cd14291b582f4613bf91bfd26fc0cf7c082",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit/nominal-390.png",
+      "engine": "webkit",
+      "case": "nominal-390",
+      "pixels": [
+        390,
+        3137
+      ],
+      "sha256": "2059e0934a654dd1925747f3b6ce0af5c11c8987aec85a20e9fc4289b4626b4b",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit/nominal-768.png",
+      "engine": "webkit",
+      "case": "nominal-768",
+      "pixels": [
+        768,
+        2161
+      ],
+      "sha256": "ad46c42b8b061ddaec5a8bc4670833cf59e1f122113817dd4fdcb624ac9c3407",
+      "review": "Two-column tablet layout and long timestamps fit.",
+      "retained": "docs/evidence/s03-visual/webkit-nominal-768.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit/text-200-percent.png",
+      "engine": "webkit",
+      "case": "text-200-percent",
+      "pixels": [
+        360,
+        7988
+      ],
+      "sha256": "7c7f73f8c798b5929d39e8b210dc0d62184cf0a1b891b7109ddc766c91c06065",
+      "review": "200% text at 360 px: load values reflow into one column after correction; long counters wrap without truncation. Not native zoom.",
+      "retained": "docs/evidence/s03-visual/webkit-text-200-percent.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-chromium/long-64-interfaces.png",
+      "engine": "chromium",
+      "case": "long-64-interfaces",
+      "pixels": [
+        360,
+        20123
+      ],
+      "sha256": "3e63cd5a7d05a47b1671bc148879147caa636ed1ad834a36bea6edcfacadae88",
+      "review": "Full-page overview structure and wrapping inspected at reduced scale; individual rows additionally covered by DOM/count/overflow assertions. Not a pixel-by-pixel review of every row.",
+      "retained": "docs/evidence/s03-visual/chromium-long-64-interfaces.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-chromium/long-text-issue.png",
+      "engine": "chromium",
+      "case": "long-text-issue",
+      "pixels": [
+        360,
+        4281
+      ],
+      "sha256": "92d189451362c6fdf2d0ddf136f103d7bdcc932f1fa4943dca49e7f1fea8c606",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-firefox/long-64-interfaces.png",
+      "engine": "firefox",
+      "case": "long-64-interfaces",
+      "pixels": [
+        360,
+        20126
+      ],
+      "sha256": "36baf7fff5771e30d87002ac21df0b2360548c92903fd40ba2a50c340c2e1fb1",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-firefox/long-text-issue.png",
+      "engine": "firefox",
+      "case": "long-text-issue",
+      "pixels": [
+        360,
+        4281
+      ],
+      "sha256": "5be8df82c66dd43b8ed6ac4af163a95a67946edb4e31adce55962ca26ebb4238",
+      "review": "Long issue is rendered as literal text, wraps vertically and does not hide subsequent sections.",
+      "retained": "docs/evidence/s03-visual/firefox-long-text-issue.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-webkit/long-64-interfaces.png",
+      "engine": "webkit",
+      "case": "long-64-interfaces",
+      "pixels": [
+        360,
+        20116
+      ],
+      "sha256": "33021a20a1be427f9d14b23c95b5f0de47c82a9e313cb4a4d6e0e31e8df3a14d",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T09-T12-long-l-d355c-es-and-untrusted-issue-text-webkit/long-text-issue.png",
+      "engine": "webkit",
+      "case": "long-text-issue",
+      "pixels": [
+        360,
+        4280
+      ],
+      "sha256": "c75e74b6249ef4f477ffcae9ca88b1ad38e515c4479488ceff8350783cd68318",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-chromium/partial.png",
+      "engine": "chromium",
+      "case": "partial",
+      "pixels": [
+        1280,
+        1807
+      ],
+      "sha256": "d45ab136683c7971a502969e4d987e84540ae8fcf8e02ce4a03270ee5247ab6f",
+      "review": "Memory leaves unavailable with one group issue; focused/open exact disclosure retained.",
+      "retained": "docs/evidence/s03-visual/chromium-partial.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-chromium/recovered-maximum.png",
+      "engine": "chromium",
+      "case": "recovered-maximum",
+      "pixels": [
+        1280,
+        1743
+      ],
+      "sha256": "8cbfc51f2186838d4a8eadaf7543822671f93a568588c2215b6e2bb667c89ee9",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-chromium/stale.png",
+      "engine": "chromium",
+      "case": "stale",
+      "pixels": [
+        1280,
+        1835
+      ],
+      "sha256": "b76e1ca56dd59b9eb6ec247a6f8a693b9718424d265e8faf08d877abe8ba3e10",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-firefox/partial.png",
+      "engine": "firefox",
+      "case": "partial",
+      "pixels": [
+        1280,
+        1808
+      ],
+      "sha256": "5ff11d081dd6046c6e116f7bb1b73ffe4bd3b0959a6beb41f05697e38cf4ec8a",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-firefox/recovered-maximum.png",
+      "engine": "firefox",
+      "case": "recovered-maximum",
+      "pixels": [
+        1280,
+        1744
+      ],
+      "sha256": "4ace26a5af831532720a7c6cbafc2e31e50a0d53d70ebe7bce1b8f4bcb9aab30",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-firefox/stale.png",
+      "engine": "firefox",
+      "case": "stale",
+      "pixels": [
+        1280,
+        1836
+      ],
+      "sha256": "f0d08c983e1481d566c21d9309466eb22561d461f0ecaa6671a04e497db3bce0",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-webkit/partial.png",
+      "engine": "webkit",
+      "case": "partial",
+      "pixels": [
+        1280,
+        1807
+      ],
+      "sha256": "6db6dffdb08a7d64cb735751fc823886f14650513ba13bc37f4a33b2cc37c6cd",
+      "review": "NOT INDIVIDUALLY REVIEWED"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-webkit/recovered-maximum.png",
+      "engine": "webkit",
+      "case": "recovered-maximum",
+      "pixels": [
+        1280,
+        1743
+      ],
+      "sha256": "82e6b84de22158b6bfaf526482f1bb02185a60c96a5bae8ffb07746ee972f53f",
+      "review": "Recovery restores all current fields from maximum-markup snapshot; exact values and focused disclosure remain valid.",
+      "retained": "docs/evidence/s03-visual/webkit-recovered-maximum.png"
+    },
+    {
+      "source": "out/browser-results/browser-S03-T10-real-parti-938b6-and-maximum-original-markup-webkit/stale.png",
+      "engine": "webkit",
+      "case": "stale",
+      "pixels": [
+        1280,
+        1835
+      ],
+      "sha256": "615f73734a4e90cf29842675ba503acd2d1a49a0312eaa500f2271639fe14d1a",
+      "review": "Explicit stale label, Health unavailable, old partial measures and conservative age visible.",
+      "retained": "docs/evidence/s03-visual/webkit-stale.png"
+    }
+  ]
+}

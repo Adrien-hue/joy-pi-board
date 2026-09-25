@@ -14,6 +14,10 @@ export default [
     rules: reactHooks.configs.recommended.rules,
   },
   {
+    files: ["scripts/browser.spec.mjs"],
+    languageOptions: { globals: globals.browser },
+  },
+  {
     files: ["web/*.js", "web/*.ts", "scripts/*.mjs"],
     languageOptions: { globals: globals.node },
   },

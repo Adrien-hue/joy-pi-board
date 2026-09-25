@@ -1,0 +1,75 @@
+{
+  "scope": "Calculated WCAG relative luminance for declared CSS solid-color text/focus pairs; not full accessibility or actual-device acceptance.",
+  "pairs": [
+    {
+      "foreground": "#203d34",
+      "background": "#f2f5f0",
+      "ratio": 10.736
+    },
+    {
+      "foreground": "#203d34",
+      "background": "#ffffff",
+      "ratio": 11.808
+    },
+    {
+      "foreground": "#52675d",
+      "background": "#f2f5f0",
+      "ratio": 5.524
+    },
+    {
+      "foreground": "#53655c",
+      "background": "#f2f5f0",
+      "ratio": 5.643
+    },
+    {
+      "foreground": "#52645b",
+      "background": "#f2f5f0",
+      "ratio": 5.729
+    },
+    {
+      "foreground": "#586b60",
+      "background": "#f2f5f0",
+      "ratio": 5.179
+    },
+    {
+      "foreground": "#586b60",
+      "background": "#ffffff",
+      "ratio": 5.696
+    },
+    {
+      "foreground": "#52645b",
+      "background": "#ffffff",
+      "ratio": 6.301
+    },
+    {
+      "foreground": "#745018",
+      "background": "#f2f5f0",
+      "ratio": 6.577
+    },
+    {
+      "foreground": "#75511c",
+      "background": "#fff8e9",
+      "ratio": 6.73
+    },
+    {
+      "foreground": "#203d34",
+      "background": "#e5ede5",
+      "ratio": 9.883
+    },
+    {
+      "foreground": "#235a47",
+      "background": "#ffffff",
+      "ratio": 8.0
+    },
+    {
+      "foreground": "#1e6750",
+      "background": "#ffffff",
+      "ratio": 6.75
+    },
+    {
+      "foreground": "#1e6750",
+      "background": "#f2f5f0",
+      "ratio": 6.138
+    }
+  ]
+}

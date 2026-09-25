@@ -6,12 +6,10 @@ import {
   mkdtempSync,
   readdirSync,
   readFileSync,
-  writeFileSync,
 } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
-import { gzipSync } from "node:zlib";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const web = join(root, "web");
@@ -192,40 +190,7 @@ function hash(bytes) {
 
 function sizes() {
   requireDist();
-  const names = [
-    "index.html",
-    ...readdirSync(join(web, "dist/assets")).map((n) => `assets/${n}`),
-  ];
-  const files = names.map((name) => {
-    const body = readFileSync(join(web, "dist", name));
-    return {
-      name,
-      bytes: body.length,
-      gzip9: gzipSync(body, { level: 9 }).length,
-      sha256: hash(body),
-    };
-  });
-  const jsCSS = files
-    .filter((f) => /\.(js|css)$/.test(f.name))
-    .reduce((n, f) => n + f.gzip9, 0);
-  const all = files.reduce((n, f) => n + f.gzip9, 0);
-  if (jsCSS > 250 * 1024 || all > 500 * 1024)
-    throw new Error("Shell exceeds size budgets");
-  const report = {
-    scope:
-      "S00 shell only, no overview; gzip is measured offline, server serves identity bytes",
-    node: process.versions.node,
-    zlib: process.versions.zlib,
-    jsCSSGzip9: jsCSS,
-    allGzip9: all,
-    files,
-  };
-  mkdirSync(join(root, "out"), { recursive: true });
-  writeFileSync(
-    join(root, "out/shell-sizes.json"),
-    `${JSON.stringify(report, null, 2)}\n`,
-  );
-  console.log(JSON.stringify(report, null, 2));
+  execute(process.execPath, ["scripts/dashboard-sizes.mjs"]);
 }
 
 function missingDist() {
@@ -310,6 +275,41 @@ try {
     case "smoke":
       requireDist();
       execute(process.execPath, ["scripts/smoke.mjs"]);
+      break;
+    case "browser":
+      requireDist();
+      execute(process.execPath, ["scripts/build-browser-harness.mjs"]);
+      if (
+        capture(process.execPath, [
+          join(web, "node_modules/playwright/cli.js"),
+          "--version",
+        ]) !== "Version 1.63.0"
+      )
+        throw new Error("Unexpected Playwright version");
+      if (
+        JSON.stringify(
+          JSON.parse(
+            readFileSync(join(web, "playwright-browsers.json"), "utf8"),
+          ),
+        ) !==
+        JSON.stringify(
+          JSON.parse(
+            readFileSync(
+              join(web, "node_modules/playwright-core/browsers.json"),
+              "utf8",
+            ),
+          ),
+        )
+      )
+        throw new Error(
+          "Playwright browser revisions differ from reviewed lock",
+        );
+      execute(process.execPath, [
+        join(web, "node_modules/playwright/cli.js"),
+        "test",
+        "--config",
+        "web/playwright.config.ts",
+      ]);
       break;
     case "sizes":
       sizes();

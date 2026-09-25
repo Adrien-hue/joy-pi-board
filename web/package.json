@@ -23,10 +23,11 @@
     "dev": "node ../scripts/tasks.mjs dev",
     "typecheck": "tsc --noEmit",
     "lint": "node ../scripts/tasks.mjs lint",
-    "format:check": "prettier --check src index.html *.json *.ts *.js ../scripts/*.mjs ../toolchains.json ../.github/workflows/*.yml",
-    "format": "prettier --write src index.html *.json *.ts *.js ../scripts/*.mjs ../toolchains.json ../.github/workflows/*.yml",
+    "format:check": "prettier --check src index.html *.json *.ts *.tsx *.js ../scripts/*.mjs ../toolchains.json ../.github/workflows/*.yml",
+    "format": "prettier --write src index.html *.json *.ts *.tsx *.js ../scripts/*.mjs ../toolchains.json ../.github/workflows/*.yml",
     "test": "vitest run",
-    "build:frontend": "node ../scripts/tasks.mjs frontend"
+    "build:frontend": "node ../scripts/tasks.mjs frontend",
+    "browser": "node ../scripts/tasks.mjs browser"
   },
   "dependencies": {
     "lossless-json": "4.3.1",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
+    "@playwright/test": "1.63.0",
     "@types/node": "24.13.6",
     "@types/react": "19.3.0",
     "@types/react-dom": "19.3.0",

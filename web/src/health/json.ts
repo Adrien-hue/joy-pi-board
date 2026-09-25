@@ -45,7 +45,7 @@ function unicode(text: string): void {
 // Defensive preflight, NOT a JSON parser. It produces no values and does not
 // recognize numbers/keywords or validate grammar. The library owns parsing.
 // Native JSON.parse is used ONLY on individual quoted string tokens, never numbers.
-function preflight(text: string): void {
+function preflight(text: string, maximumDepth: number): void {
   const containers: (Set<string> | null)[] = [];
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
@@ -73,8 +73,8 @@ function preflight(text: string): void {
       }
     } else if (c === "{" || c === "[") {
       containers.push(c === "{" ? new Set<string>() : null);
-      if (containers.length > MAXIMUM_DEPTH)
-        invalid("/", "depth exceeds 32 containers");
+      if (containers.length > maximumDepth)
+        invalid("/", "container depth exceeded");
     } else if (c === "}" || c === "]") {
       containers.pop();
     }
@@ -83,17 +83,22 @@ function preflight(text: string): void {
 
 // Exported for bounded, in-memory JSON composition tests and future consumers.
 // Schema validation is separate; no parsed value is trusted by this function.
-export function parseDocument(input: Uint8Array | string): unknown {
+function guarded(
+  input: Uint8Array | string,
+  maximumBytes: number,
+  maximumDepth: number,
+): { value: unknown; text: string } {
   let text: string;
   if (typeof input === "string") {
-    if (input.length > MAXIMUM_BYTES) invalid("/", "size exceeds 65536 bytes");
+    if (input.length > maximumBytes)
+      invalid("/", "document byte limit exceeded");
     unicode(input); // TextEncoder must not replace ill-formed UTF-16.
-    if (new TextEncoder().encode(input).length > MAXIMUM_BYTES)
-      invalid("/", "size exceeds 65536 bytes");
+    if (new TextEncoder().encode(input).length > maximumBytes)
+      invalid("/", "document byte limit exceeded");
     text = input;
   } else {
-    if (input.byteLength > MAXIMUM_BYTES)
-      invalid("/", "size exceeds 65536 bytes");
+    if (input.byteLength > maximumBytes)
+      invalid("/", "document byte limit exceeded");
     try {
       text = new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(
         input,
@@ -102,9 +107,9 @@ export function parseDocument(input: Uint8Array | string): unknown {
       invalid("/", "malformed UTF-8");
     }
   }
-  preflight(text);
+  preflight(text, maximumDepth);
   try {
-    return parse(text, undefined, {
+    const value: unknown = parse(text, undefined, {
       parseNumber: (token) => {
         // Validate raw grammar as well as retaining tokens: custom callbacks
         // must not inadvertently accept a permissive numeric library path.
@@ -114,8 +119,20 @@ export function parseDocument(input: Uint8Array | string): unknown {
       },
       onDuplicateKey: () => invalid("/", "duplicate object key"),
     });
+    return { value, text };
   } catch {
     // Library messages can echo input. Never expose them as our diagnostics.
     invalid("/", "malformed JSON");
   }
+}
+
+export function parseDocument(input: Uint8Array | string): unknown {
+  return guarded(input, MAXIMUM_BYTES, MAXIMUM_DEPTH).value;
+}
+// Two fixed profiles, not caller-controlled relaxation of Health limits.
+export function parseEnvelopeDocument(input: Uint8Array | string): {
+  value: unknown;
+  text: string;
+} {
+  return guarded(input, 81920, 34);
 }

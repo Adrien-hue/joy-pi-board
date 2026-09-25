@@ -1,0 +1,11 @@
+{
+  "scope": "S02 real simulated Health HTTP -> Board HTTP -> S01 TypeScript parser in Node, not browser/dashboard",
+  "node": "24.21.0",
+  "cases": 266,
+  "valid": 78,
+  "invalid": 188,
+  "healthAttempts": 266,
+  "maximumEnvelopeBytes": 65738,
+  "maximumEnvelopeDepth": 34,
+  "result": "PASS"
+}

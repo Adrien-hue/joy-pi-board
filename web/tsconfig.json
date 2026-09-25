@@ -17,5 +17,11 @@
     "noEmit": true,
     "types": ["node", "vite/client"]
   },
-  "include": ["src", "vite.config.ts", "contract-entry.ts"]
+  "include": [
+    "src",
+    "vite.config.ts",
+    "contract-entry.ts",
+    "playwright.config.ts",
+    "strictmode-entry.tsx"
+  ]
 }

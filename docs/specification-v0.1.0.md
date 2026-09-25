@@ -41,7 +41,7 @@ Board is the second Joy Pi Home microservice. It makes Health observations reada
 | JPB-022 | Log to stdout/stderr for journald: startup, shutdown and significant transitions. No full snapshots or per-poll success logging by default. |
 | JPB-023 | Target Raspberry Pi OS 64-bit / Trixie, Linux ARM64; future autonomous ARM64 binary, Debian package, systemd unit with dedicated unprivileged user, checksums and build metadata. No production Node/npm/Vite or mandatory reverse proxy. Packaging must not depend on Health availability to start Board. |
 | JPB-024 | Official release requires Classes A, B and C PASS on the exact candidate bytes/checksums. Physical tests use Raspberry Pi 3B+, distinct from Health's own hardware gates. Unexecuted physical validation is NOT RUN. |
-| JPB-025 | Respect the currently authorized sprint boundary. S00/S01/S02 implementation and closure are completed work with separate evidence; the current instruction authorizes S03 documentary preparation only. S03 is prepared, not executed; S04 is not started. Do not implement S03/S04, publish a release or deploy services. Preserve historical reviews and exact-commit evidence; preparation never implies execution. |
+| JPB-025 | Respect the currently authorized sprint boundary. S00/S01/S02 implementation and closure are completed work with separate evidence; the current instruction authorizes S03 implementation, testing and documentation. S03 closure remains pending its required evidence; S04 is not started. Do not implement S04, publish a release or deploy services. Preserve historical reviews and exact-commit evidence; preparation never implies execution. |
 
 ## Established non-functional budgets
 

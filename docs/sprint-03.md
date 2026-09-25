@@ -1,16 +1,18 @@
 # Sprint 03 — Overview interface and browser resilience
 
-Status: **PREPARED, NOT EXECUTED**, 2026-09-23. All S03 validations are **NOT RUN**. This assignment authorizes documentation only, not application/test/fixture/dependency/script/workflow changes. S00/S01/S02 are closed; S04 is not started. No commit, push, tag, release or deployment.
+Status: **IMPLEMENTED AND LOCALLY VERIFIED; CLOSURE PENDING**, 2026-09-25. The current user instruction authorizes S03 implementation and approves S03-R01/R02/R04, P-06 presentation/accessibility and preliminary size protocols prepared on 2026-09-23. S00/S01/S02 remain closed; S04 is not started. No commit, push, tag, release or deployment. [S03 evidence](s03-evidence.md) records actual checks; unavailable required browsers or new CI keep closure pending.
 
 ## Starting point and authority
 
-Board HEAD is `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4`. The ten Markdown modifications from S02 closure were already present at the start of preparation and are preserved. In particular, S02's evidence record is not rewritten. The [S01 proof](s01-evidence.md) covers implementation `ccd1245a64fc372faa4ebc85eb000f78a01bd396` / run 35637699325; [S02 proof](s02-evidence.md) covers `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4` / run 35908782107 attempt 1. Neither proves these uncommitted documentary changes or S03. Historical closure wording in those ledgers describes its dated assignment.
+Historical preparation started at Board HEAD `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4`. The ten Markdown modifications from S02 closure were already present at the start of preparation and are preserved. In particular, S02's evidence record is not rewritten. The [S01 proof](s01-evidence.md) covers implementation `ccd1245a64fc372faa4ebc85eb000f78a01bd396` / run 35637699325; [S02 proof](s02-evidence.md) covers `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4` / run 35908782107 attempt 1. Neither proves the subsequent documentary changes or S03 implementation. Historical closure wording in those ledgers describes its dated assignment.
 
-[Specification](specification-v0.1.0.md) owns requirements/budgets, [Board API](board-api-v0.1.0.md) the approved server wire contract, [Health integration](health-integration-v1.0.md) the snapshot, [ADR-001](adr-001-exact-json-integers.md) exact integers, [UX](ux-v0.1.0.md) presentation and approved browser freshness obligations. This work package owns proposed S03 consumer/scheduling realization, tasks and closure procedure; the [validation matrix](validation-v0.1.0.md#prepared-s03-validation-matrix) owns planned test oracles. [Decisions](decisions.md#s03-preparation-recommendations) separates S03-R01–R04 proposals from existing approvals. No server-contract or Health-baseline change is proposed.
+[Specification](specification-v0.1.0.md) owns requirements/budgets, [Board API](board-api-v0.1.0.md) the approved server wire contract, [Health integration](health-integration-v1.0.md) the snapshot, [ADR-001](adr-001-exact-json-integers.md) exact integers, [UX](ux-v0.1.0.md) presentation and approved browser freshness obligations. This work package owns the approved S03 consumer/scheduling realization, tasks and closure procedure; the [validation matrix](validation-v0.1.0.md#prepared-s03-validation-matrix) owns planned test oracles. [Decisions](decisions.md#s03-preparation-recommendations) records the current instruction's S03-R01–R04 approval separately from earlier decisions. No server-contract or Health-baseline change is proposed.
 
 ## Scope and inspected seams
 
 Deliver a production same-origin overview consumer, bounded exact envelope validation, single-request scheduling, independent freshness expiry, responsive metric presentation, accessible transitions and browser evidence. Keep React/TypeScript/Vite, CSS, system fonts, local React state and Fetch. One page, host and provider; no UI framework, global store, chart library, history, snapshot persistence, remote resources or service controls. Packaging, systemd, server compression, deployment and physical Pi acceptance remain S04.
+
+The following seam inventory is retained from the 2026-09-23 preparation; descriptions of then-current code are historical. Implemented modules and results are in [S03 evidence](s03-evidence.md).
 
 | Inspected code | S03 responsibility / proposed seam |
 |---|---|
@@ -25,7 +27,7 @@ Proposed modules under web/src: overview/contract (untrusted bytes → validated
 
 ## Tasks and dependencies
 
-Every task below is **NOT RUN**; defining it is not implementation.
+The table retains the prepared task definitions; execution and remaining proof obligations are tracked in [S03 evidence](s03-evidence.md).
 
 | Task | Depends on | Deliverable / verifiable completion |
 |---|---|---|
@@ -40,11 +42,11 @@ Every task below is **NOT RUN**; defining it is not implementation.
 
 ## Production envelope consumer
 
-**S03-R01, PROPOSED** consumption choices; approved server and Health rules are unchanged.
+**S03-R01, APPROVED by the current implementation instruction** consumption choices; approved server and Health rules are unchanged.
 
 ### Bounded HTTP acquisition
 
-Fetch only `/api/v1/overview`, GET, no query/body, same-origin mode/credentials, cache no-store, redirect error. No retry or response cache. Use an explicit AbortController/timer (no dependency on newer timeout-combination APIs at the browser floors). Start timing immediately before Fetch; include headers, complete body, validation and eligibility for publication in the proposed 2 s deadline. A timer cannot interrupt synchronous parsing; check elapsed time again afterwards and reject a completion at or beyond 2,000 ms even if the timeout callback was delayed.
+Fetch only `/api/v1/overview`, GET, no query/body, same-origin mode/credentials, cache no-store, redirect error. No retry or response cache. Use an explicit AbortController/timer (no dependency on newer timeout-combination APIs at the browser floors). Start timing immediately before Fetch; include headers, complete body, validation and eligibility for publication in the approved 2 s deadline. A timer cannot interrupt synchronous parsing; check elapsed time again afterwards and reject a completion at or beyond 2,000 ms even if the timeout callback was delayed.
 
 Distinguish rejection without an HTTP response (connection failure/timeout), received non-200 (Board HTTP error with status), and HTTP 200 with invalid contract. For non-200, cancel the body and show a fixed local status message; do not parse or display arbitrary server error text. A Health-unavailable HTTP 200 is a usable Board response.
 
@@ -62,7 +64,7 @@ S03-T03 must prove this narrow adapter before UI integration: shuffled/escaped r
 
 ### Envelope and age invariants
 
-Require an object with own generated_at and health members; health is a non-null object with own availability, snapshot_state, last_success_at, reason and snapshot. **Proposed Board-envelope unknown policy: reject additional members at the Board root and health wrapper.** Unlike Health schema 1.0's approved tolerance, the versioned Board wrapper is small and fixed; accepting future additions requires an explicit consumer compatibility review. This does not close unknown members inside Health. All subtrees still receive global duplicate/Unicode/depth checks before field interpretation.
+Require an object with own generated_at and health members; health is a non-null object with own availability, snapshot_state, last_success_at, reason and snapshot. **Approved S03-R01 Board-envelope unknown policy: reject additional members at the Board root and health wrapper.** Unlike Health schema 1.0's approved tolerance, the versioned Board wrapper is small and fixed; accepting future additions requires an explicit consumer compatibility review. This does not close unknown members inside Health. All subtrees still receive global duplicate/Unicode/depth checks before field interpretation.
 
 Validate Gregorian RFC3339 UTC uppercase Z timestamps, four-digit year 0000–9999, real date/time, optional decimal fraction, no leap seconds/offset/comma. Retain exact strings. Do not infer timestamp ordering: Pi wall changes can reverse generated_at and last_success_at. Board timestamps do not inherit Health's nonzero-time restriction; observed_at continues through S01. No Date.parse-only acceptance or timestamp subtraction for freshness.
 
@@ -81,7 +83,7 @@ A valid header <=30000 plus transit can already be too old to display: that is a
 
 ## Scheduling and lifecycle realization
 
-**S03-R02, PROPOSED**, implements established 5 s/no-overlap/no-retry and approved P-05 lifecycle rules. One controller owns clock, timer, lifecycle generation, attempt ID and active reader/controller. Inject these dependencies for tests; do not expose test controls in production globals.
+**S03-R02, APPROVED by the current implementation instruction**, implements established 5 s/no-overlap/no-retry and approved P-05 lifecycle rules. One controller owns clock, timer, lifecycle generation, attempt ID and active reader/controller. Inject these dependencies for tests; do not expose test controls in production globals.
 
 - On visible initial mount, issue the first attempt immediately (a same-turn cancellable microtask is permitted for effect replay). Subsequent slots are mount epoch + n × 5,000 ms. Use one rescheduled timeout, not a backlog of interval events. A busy slot is skipped, never queued. After any completion/error, wait for the next strictly future slot; no immediate retry. If event-loop delay passes multiple slots, discard missed slots and arm the next future one, without catch-up calls.
 - Timeout at 2 s invalidates that attempt, aborts Fetch/reader and publishes timeout once. Keep the in-flight permit until reader/request cleanup settles; generation/attempt checks prevent late publication. Cleanup does not create a provider failure. Do not start a second active reader while cancellation is settling. A pathological never-settling test transport cannot cause unbounded replacement work.
@@ -108,7 +110,7 @@ Keep three dimensions, not one overloaded status:
 
 ## Browser tooling and proof requirements
 
-**S03-R04, PROPOSED.** Add one justified, exactly pinned `@playwright/test` development dependency during implementation after checking its license, Node 24 compatibility, transitive lock and browser-revision requirements. No dependency is installed now. Retain Vitest for pure consumer/clock/format/state tests and static component structure; use actual browser DOM tests for effects/interactions instead of claiming existing Node static rendering is a DOM test. No DOM simulator is proposed; if later introduced, report it separately.
+**S03-R04, APPROVED by the current implementation instruction.** Add one justified, exactly pinned `@playwright/test` development dependency during implementation after checking its license, Node 24 compatibility, transitive lock and browser-revision requirements. Playwright 1.63.0 is now installed and locked; evaluation and observed engines are recorded in [S03 evidence](s03-evidence.md). Retain Vitest for pure consumer/clock/format/state tests and static component structure; use actual browser DOM tests for effects/interactions instead of claiming existing Node static rendering is a DOM test. No DOM simulator is proposed; if later introduced, report it separately.
 
 Primary documentation reviewed 2026-09-23: [Playwright installation/platforms](https://playwright.dev/docs/intro), [browser engines/channels](https://playwright.dev/docs/browsers). Ubuntu 24.04 CI and Node 24 are supported choices. The historical local Windows 10 host is not in current Playwright's native Windows support list; use a supported Linux/WSL environment for automation rather than changing project toolchains. Package and downloaded browser revisions must be locked/recorded during implementation, not invented now. Playwright WebKit is not branded Safari, nor an iPhone/device proof.
 
@@ -116,9 +118,9 @@ Read-only installed-file inventory on 2026-09-23 found Chrome **153.0.8010.53**,
 
 | Evidence lane | Required S03 evidence / availability |
 |---|---|
-| Node/Vitest | Deterministic stream, envelope, state and time tests. Not browser or DOM proof. Existing tools available; new S03 assertions NOT RUN. |
-| Automated engines | Production app served by the native Go binary with controlled Health; Chromium, Firefox and WebKit in supported CI. Record exact engine/build, OS/image, package lock, binary/asset hashes, traces and screenshots. All NOT RUN; download/install belongs to implementation. |
-| Branded desktop browsers | Execute critical parsing, timing/lifecycle, keyboard and degraded-state flows in Chrome, Edge, Firefox and Safari; record exact runtime version and OS. Local first three versions above available for manual runs; Safari requires a macOS operator/environment. |
+| Node/Vitest | Deterministic stream, envelope, state and time tests. Not browser or DOM proof. Local S03 assertions PASS; exact scope/counts are in the dated evidence ledger. |
+| Automated engines | Production app served by the native Go binary with controlled Health; Chromium, Firefox and WebKit in supported CI. Record exact engine/build, OS/image, package lock, binary/asset hashes, traces and screenshots. Local Chromium/Firefox/WebKit execution PASS; hosted S03 CI is NOT RUN. See the dated ledger. |
+| Branded desktop browsers | Execute critical parsing, timing/lifecycle, keyboard and degraded-state flows in Chrome, Edge, Firefox and Safari; record exact runtime version and OS. The versions above were preparation-time candidates; current native/browser tools were unavailable during implementation, so branded runs remain NOT RUN; Safari requires a macOS operator/environment. |
 | Compatibility floors | Chrome **111**, Edge **111**, Firefox **115**, Safari **16.4** and iOS Safari **16.4** stay supported. Require the critical consumer/uint64/expiry/lifecycle suite on actual minimum versions plus current family smoke/visual evidence. Obtain isolated browser/OS images or an explicitly available operator test environment; record actual patch versions. Current engines/transpilation are not substitute floor execution. |
 | Actual mobile Safari | Safari/iOS UI, background/foreground and back-navigation, exact-value details and touch/focus/zoom on an identified real iOS device; pair with desktop Safari checks. Device emulation or Linux WebKit is supplemental only. No device availability is assumed. |
 
@@ -130,18 +132,20 @@ For actual production tests, build frontend then native Go binary once, record c
 
 Measure the **actual dashboard build**, now importing parser/validator/formatter. Inventory entry HTML, all JS/CSS/modulepreloads and any first-render lazy chunks/local assets, with hashes and raw bytes; exclude test fixtures, reports and source maps from production output. Inventory the initial overview body separately and include it in a conservative all-initial-response total so it cannot hide behind the shell-only report. Report both resource-only and resource-plus-first-overview totals for complete, partial and maximum payload scenarios.
 
-Preserve established compressed limits **JS+CSS <=250 KiB; all initial resources <=500 KiB**. Proposed preliminary protocol: gzip-9 each resource independently under the pinned Node/zlib, sum bytes, record tool versions; actual S02 delivery is **identity**, so record HTTP response body bytes/Content-Encoding separately, never call offline gzip bytes transferred bytes. Use the conservative first-overview-inclusive total as the S03 preliminary gate. S04 still ratifies final compression/measurement protocols and validates actual compressed delivery and physical performance. Existing S00/S01 isolated parser/shell measurements are baselines, not the dashboard cost; do not add their independent sizes as a predicted total or treat tree-shaken parser cost as zero.
+Preserve established compressed limits **JS+CSS <=250 KiB; all initial resources <=500 KiB**. Approved S03 preliminary protocol: gzip-9 each resource independently under the pinned Node/zlib, sum bytes, record tool versions; actual S02 delivery is **identity**, so record HTTP response body bytes/Content-Encoding separately, never call offline gzip bytes transferred bytes. Use the conservative first-overview-inclusive total as the S03 preliminary gate. S04 still ratifies final compression/measurement protocols and validates actual compressed delivery and physical performance. Existing S00/S01 isolated parser/shell measurements are baselines, not the dashboard cost; do not add their independent sizes as a predicted total or treat tree-shaken parser cost as zero.
 
-Required to close S03 (all currently NOT RUN): S03-T01–T14 pass within scope; B-03 exact visible output and B-10/B-11 browser/visual obligations fulfilled, including target/floor evidence above; existing A/S01/S02 regression checks preserved; preliminary dashboard sizes within budgets; no remote resources/CSP violations; new hosted CI for the exact S03 commit and a dated local/manual ledger. Record source hash (or explicit dirty manifest), native binary/embedded asset checksums, tools, exact browsers/OS/devices, test IDs, fixture identities, timings, screenshots and limitations. No test retry may erase a failed observation. Unavailable required manual/floor proof means implementation may be locally/CI verified but **S03 closure remains pending**.
+Required to close S03 (see the current execution ledger): S03-T01–T14 pass within scope; B-03 exact visible output and B-10/B-11 browser/visual obligations fulfilled, including target/floor evidence above; existing A/S01/S02 regression checks preserved; preliminary dashboard sizes within budgets; no remote resources/CSP violations; new hosted CI for the exact S03 commit and a dated local/manual ledger. Record source hash (or explicit dirty manifest), native binary/embedded asset checksums, tools, exact browsers/OS/devices, test IDs, fixture identities, timings, screenshots and limitations. No test retry may erase a failed observation. Unavailable required manual/floor proof means implementation may be locally/CI verified but **S03 closure remains pending**.
 
 S04 retains A-06 Debian/systemd, deployment hardening/compression, exact final ARM64 candidate and physical C-01–C-06 on Raspberry Pi 3B+, including real Health, CPU/RSS/latency/readiness/shutdown and repeated installed-device UI checks. S03 browser tests on another host do not satisfy those C gates. No full A/B/C acceptance or release is implied.
 
-## Review and remaining decisions
+## Approval and remaining decisions
 
-Ratify S03-R01 (strict wrapper consumption and guarded source-span reuse), S03-R02 (cadence/lifecycle/2 s realization), P-06's S03 presentation/accessibility subset, and S03-R04 (tooling and explicit browser/visual closure lanes) before implementation. The fixed server envelope, P-05 age/lifecycle obligations, Health policies, stack and numeric convention need no renewed approval. P-06 physical/compression details remain deferred to S04. No material contract contradiction was found; Apple/minimum-version test availability is a future closure dependency, not a reason to claim PASS now.
+The current implementation instruction approves S03-R01/R02/R04 and the S03 subset of P-06. The fixed server envelope, P-05 obligations, Health policies, stack and numeric convention remain unchanged. P-06 physical/compression details remain deferred to S04. Apple/minimum-version execution and fresh exact-commit hosted CI remain closure dependencies, never inferred from other tests.
 
-## Documentary preparation checks
+## Historical documentary preparation checks
 
-Preparation audit, 2026-09-23: 22 Markdown documents, 283 internal links/anchors and JSON documentation blocks checked; eight S03 tasks and fourteen planned validation rows traced to stable requirements. All new application/browser/visual/size checks remain NOT RUN. Read-only installed-browser inventory is not execution evidence. No application build/test or dependency installation ran.
+Preparation audit, 2026-09-23: 22 Markdown documents, 283 internal links/anchors and JSON documentation blocks checked; eight S03 tasks and fourteen planned validation rows traced to stable requirements. At that preparation audit all new application/browser/visual/size checks were NOT RUN. Read-only installed-browser inventory is not execution evidence. No application build/test or dependency installation ran.
 
-This assignment adds this work package and updates UX, architecture, decisions, validation, roadmap, README and AGENTS. The specification also receives the necessary JPB-025 current-authorization correction, preventing its obsolete S02-closure restriction from contradicting the new task. The approved Board/Health contracts, ADR-001, S00/S01/S02 evidence (including pending local S02 closure edits), application code, fixtures, dependencies, toolchains, scripts and workflows are preserved. The change set is compared with the already-dirty starting tree, not mistaken for a fresh implementation diff. No commit, push, tag, release or deployment.
+That documentary assignment added this work package and updates UX, architecture, decisions, validation, roadmap, README and AGENTS. The specification also receives the necessary JPB-025 current-authorization correction, preventing its obsolete S02-closure restriction from contradicting the new task. The approved Board/Health contracts, ADR-001, S00/S01/S02 evidence (including pending local S02 closure edits), application code, fixtures, dependencies, toolchains, scripts and workflows are preserved. The change set is compared with the already-dirty starting tree, not mistaken for a fresh implementation diff. No commit, push, tag, release or deployment.
+
+Implementation started from clean commit `7d9dc98` (which includes the prior documentary closure/preparation). No pre-existing uncommitted changes were present. The history above is retained as preparation provenance, not an assertion about the current tree.

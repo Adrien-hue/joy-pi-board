@@ -1,0 +1,21 @@
+{
+  "scope": "Local S03 builds; no hosted CI artifact equivalence or physical execution claim.",
+  "inputs_sha256": "57f2da4ee0ec963b625efd956ef60af50c07fc3f4fcf4214d70ec5b04ca94e6f",
+  "builds": [
+    {
+      "path": "out/joy-pi-board.exe",
+      "bytes": 11482624,
+      "sha256": "91e542d4fddba40b76a82b33f618cbdb2e8c4f88aaa207452223e9a9983c4eb8"
+    },
+    {
+      "path": "out/joy-pi-board-linux-amd64",
+      "bytes": 11340064,
+      "sha256": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+    },
+    {
+      "path": "out/joy-pi-board-linux-arm64",
+      "bytes": 10561388,
+      "sha256": "c7e05e1d6357e00a1556fbdf66b79017619f2001bd5efbcb15896d3a837b382d"
+    }
+  ]
+}

@@ -120,7 +120,7 @@ try {
   );
   const report = {
     scope:
-      "S02 native binary, embedded S00 shell plus unavailable Health overview, empty working directory, PATH empty; not hardware acceptance",
+      "S03 native binary, embedded dashboard assets plus unavailable Health overview (raw HTTP, JavaScript not executed), empty working directory, PATH empty; not hardware acceptance",
     platform: process.platform,
     arch: process.arch,
     binarySHA256: sha256(readFileSync(executable)),

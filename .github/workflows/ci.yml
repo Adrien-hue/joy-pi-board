@@ -38,7 +38,7 @@ jobs:
           node scripts/tasks.mjs tools
       - name: Locked install without restored dependency caches
         run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00"
-      - name: Check S00-S02 sources, HTTP contracts and tests, frontend before Go embed
+      - name: Check S00-S03 sources, HTTP contracts and tests, frontend before Go embed
         run: npm --prefix web run check
       - name: Bounded Health schema fuzzing (S01)
         run: npm --prefix web run fuzz
@@ -93,3 +93,49 @@ jobs:
       - run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00-race"
       - name: Native Linux race detector, frontend built first
         run: npm --prefix web run race
+
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: "1.27.1"
+          check-latest: false
+          cache: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24.21.0"
+          check-latest: false
+          package-manager-cache: false
+      - name: Record browser host and exact tools
+        run: |
+          mkdir -p out
+          printenv ImageOS ImageVersion RUNNER_OS RUNNER_ARCH > out/browser-host.txt
+          uname -a >> out/browser-host.txt
+          cat /etc/os-release >> out/browser-host.txt
+          node scripts/tasks.mjs tools
+      - run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s03-browser"
+      - name: Install locked Playwright engine revisions on supported Linux
+        run: |
+          node web/node_modules/playwright/cli.js install --with-deps chromium firefox webkit
+          cat web/node_modules/playwright-core/browsers.json >> out/browser-host.txt
+      - name: Build embedded production app and exercise all three engines
+        run: |
+          npm --prefix web run build
+          npm --prefix web run browser
+          npm --prefix web run sizes
+          git diff --exit-code
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        if: always()
+        with:
+          name: board-browser-evidence
+          path: |
+            out/browser-report.json
+            out/browser-host.txt
+            out/browser-results/
+            out/dashboard-sizes.json
+          retention-days: 7
