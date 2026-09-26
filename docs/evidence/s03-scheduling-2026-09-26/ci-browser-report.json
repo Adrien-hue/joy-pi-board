@@ -1,0 +1,1867 @@
+{
+  "config": {
+    "argv": [
+      "/opt/hostedtoolcache/node/24.21.0/x64/bin/node",
+      "/home/runner/work/joy-pi-board/joy-pi-board/web/node_modules/playwright/cli.js",
+      "test",
+      "--config",
+      "web/playwright.config.ts"
+    ],
+    "configFile": "/home/runner/work/joy-pi-board/joy-pi-board/web/playwright.config.ts",
+    "rootDir": "/home/runner/work/joy-pi-board/joy-pi-board/scripts",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/Adrien-hue/joy-pi-board/commit/12108b60861582cab040b9d5a029279e5768bcea",
+        "commitHash": "12108b60861582cab040b9d5a029279e5768bcea",
+        "buildHref": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215"
+      },
+      "gitCommit": {
+        "shortHash": "12108b6",
+        "hash": "12108b60861582cab040b9d5a029279e5768bcea",
+        "subject": "feat: implement Sprint 03 dashboard and browser resilience",
+        "body": "feat: implement Sprint 03 dashboard and browser resilience\n",
+        "author": {
+          "name": "Adrien_hue",
+          "email": "adrien.houee1@gmail.com",
+          "time": 1790362969000
+        },
+        "committer": {
+          "name": "Adrien_hue",
+          "email": "adrien.houee1@gmail.com",
+          "time": 1790362969000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/Adrien-hue/joy-pi-board/commit/12108b60861582cab040b9d5a029279e5768bcea",
+            "commitHash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "buildHref": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215"
+          },
+          "gitCommit": {
+            "shortHash": "12108b6",
+            "hash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "subject": "feat: implement Sprint 03 dashboard and browser resilience",
+            "body": "feat: implement Sprint 03 dashboard and browser resilience\n",
+            "author": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "committer": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/joy-pi-board/joy-pi-board/scripts",
+        "testIgnore": [],
+        "testMatch": [
+          "browser.spec.mjs"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/Adrien-hue/joy-pi-board/commit/12108b60861582cab040b9d5a029279e5768bcea",
+            "commitHash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "buildHref": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215"
+          },
+          "gitCommit": {
+            "shortHash": "12108b6",
+            "hash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "subject": "feat: implement Sprint 03 dashboard and browser resilience",
+            "body": "feat: implement Sprint 03 dashboard and browser resilience\n",
+            "author": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "committer": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/runner/work/joy-pi-board/joy-pi-board/scripts",
+        "testIgnore": [],
+        "testMatch": [
+          "browser.spec.mjs"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/Adrien-hue/joy-pi-board/commit/12108b60861582cab040b9d5a029279e5768bcea",
+            "commitHash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "buildHref": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215"
+          },
+          "gitCommit": {
+            "shortHash": "12108b6",
+            "hash": "12108b60861582cab040b9d5a029279e5768bcea",
+            "subject": "feat: implement Sprint 03 dashboard and browser resilience",
+            "body": "feat: implement Sprint 03 dashboard and browser resilience\n",
+            "author": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "committer": {
+              "name": "Adrien_hue",
+              "email": "adrien.houee1@gmail.com",
+              "time": 1790362969000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/home/runner/work/joy-pi-board/joy-pi-board/scripts",
+        "testIgnore": [],
+        "testMatch": [
+          "browser.spec.mjs"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "browser.spec.mjs",
+      "file": "browser.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6757,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:04:19.792Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-09e585bf24190f6cdad7",
+          "file": "browser.spec.mjs",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 16338,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:04:26.764Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-b508a54b30f8a23fea21",
+          "file": "browser.spec.mjs",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "S03-T06/T10 independent real expiry after Board stops",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30659,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:04:43.116Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-3b1ae568c8a05d6e7d00",
+          "file": "browser.spec.mjs",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5605,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:13.791Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-2ec12d8c48d1cf8785ba",
+          "file": "browser.spec.mjs",
+          "line": 181,
+          "column": 1
+        },
+        {
+          "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10549,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:19.409Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-193fd55b7c0cb3a28bfc",
+          "file": "browser.spec.mjs",
+          "line": 206,
+          "column": 1
+        },
+        {
+          "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8501,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:29.970Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-bfc0042160e18e0b7b8c",
+          "file": "browser.spec.mjs",
+          "line": 239,
+          "column": 1
+        },
+        {
+          "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 777,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:38.485Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-5cd437879dcb5c989b0c",
+          "file": "browser.spec.mjs",
+          "line": 263,
+          "column": 1
+        },
+        {
+          "title": "S03-T04 actual React development StrictMode effect replay",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7293,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 7000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 7000ms exceeded while waiting on the predicate\n    at /home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs:328:66",
+                    "location": {
+                      "file": "/home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs",
+                      "column": 66,
+                      "line": 328
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 326 |\u001b[39m   )\u001b[33m;\u001b[39m\n \u001b[90m 327 |\u001b[39m   expect(server\u001b[33m.\u001b[39mstate\u001b[33m.\u001b[39mcalls)\u001b[33m.\u001b[39mtoBe(\u001b[35m1\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 328 |\u001b[39m   \u001b[36mawait\u001b[39m expect\u001b[33m.\u001b[39mpoll(() \u001b[33m=>\u001b[39m server\u001b[33m.\u001b[39mstate\u001b[33m.\u001b[39mcalls\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m7000\u001b[39m })\u001b[33m.\u001b[39mtoBe(\u001b[35m2\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 329 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"about:blank\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 330 |\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 331 |\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs",
+                        "column": 66,
+                        "line": 328
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m2\u001b[39m\nReceived: \u001b[31m3\u001b[39m\n\nCall Log:\n- Timeout 7000ms exceeded while waiting on the predicate\n\n  326 |   );\n  327 |   expect(server.state.calls).toBe(1);\n> 328 |   await expect.poll(() => server.state.calls, { timeout: 7000 }).toBe(2);\n      |                                                                  ^\n  329 |   await page.goto(\"about:blank\");\n  330 | });\n  331 |\n    at /home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs:328:66"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:39.275Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results/browser-S03-T04-actual-Rea-c5e31-nt-StrictMode-effect-replay-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results/browser-S03-T04-actual-Rea-c5e31-nt-StrictMode-effect-replay-chromium/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/home/runner/work/joy-pi-board/joy-pi-board/out/browser-results/browser-S03-T04-actual-Rea-c5e31-nt-StrictMode-effect-replay-chromium/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs",
+                    "column": 66,
+                    "line": 328
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-1765625b1a9d404a403e",
+          "file": "browser.spec.mjs",
+          "line": 305,
+          "column": 1
+        },
+        {
+          "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "153.0.8010.12"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 347,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:47.075Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "153.0.8010.12"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-23712a09f6aeb3f84e7d",
+          "file": "browser.spec.mjs",
+          "line": 332,
+          "column": 1
+        },
+        {
+          "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6515,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:47.936Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-57467c878c42065015b0",
+          "file": "browser.spec.mjs",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15412,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:05:55.059Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-a4364be68970917784c1",
+          "file": "browser.spec.mjs",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "S03-T06/T10 independent real expiry after Board stops",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30820,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:06:10.490Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-497875e665e5254cb4b9",
+          "file": "browser.spec.mjs",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5843,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:06:41.327Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-2f7268aa9a9843e47faa",
+          "file": "browser.spec.mjs",
+          "line": 181,
+          "column": 1
+        },
+        {
+          "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10965,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:06:47.184Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-9c5a3ad421730a55bf38",
+          "file": "browser.spec.mjs",
+          "line": 206,
+          "column": 1
+        },
+        {
+          "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 12864,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:06:58.165Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-e348ad8afb393f6f53a4",
+          "file": "browser.spec.mjs",
+          "line": 239,
+          "column": 1
+        },
+        {
+          "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 739,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:11.043Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-abb918ffeadf1e1e4c17",
+          "file": "browser.spec.mjs",
+          "line": 263,
+          "column": 1
+        },
+        {
+          "title": "S03-T04 actual React development StrictMode effect replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6378,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:11.796Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-81127c15cf39a4552065",
+          "file": "browser.spec.mjs",
+          "line": 305,
+          "column": 1
+        },
+        {
+          "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "155.0"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 410,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:18.191Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "155.0"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-90c7a925881acaaad461",
+          "file": "browser.spec.mjs",
+          "line": 332,
+          "column": 1
+        },
+        {
+          "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:19.276Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-e35ecfb4dd89f909fed5",
+          "file": "browser.spec.mjs",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15516,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:26.490Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-cf3af00a60c29068ac0d",
+          "file": "browser.spec.mjs",
+          "line": 115,
+          "column": 1
+        },
+        {
+          "title": "S03-T06/T10 independent real expiry after Board stops",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30447,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:07:42.020Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-da36fadf132ee5adc0bb",
+          "file": "browser.spec.mjs",
+          "line": 162,
+          "column": 1
+        },
+        {
+          "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 5812,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:12.482Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-57d83cd36c2bb168910a",
+          "file": "browser.spec.mjs",
+          "line": 181,
+          "column": 1
+        },
+        {
+          "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 10781,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:18.308Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-e5cab03607dcd128efa8",
+          "file": "browser.spec.mjs",
+          "line": 206,
+          "column": 1
+        },
+        {
+          "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 9558,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:29.104Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-15125857c2b0599c0665",
+          "file": "browser.spec.mjs",
+          "line": 239,
+          "column": 1
+        },
+        {
+          "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1036,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:38.676Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-240ed06ef57d8af079b9",
+          "file": "browser.spec.mjs",
+          "line": 263,
+          "column": 1
+        },
+        {
+          "title": "S03-T04 actual React development StrictMode effect replay",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6373,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:39.730Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-e94c6c386dc676357b63",
+          "file": "browser.spec.mjs",
+          "line": 305,
+          "column": 1
+        },
+        {
+          "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [
+                {
+                  "type": "engine",
+                  "description": "26.6"
+                },
+                {
+                  "type": "platform",
+                  "description": "linux/x64; Node 24.21.0"
+                },
+                {
+                  "type": "binary-sha256",
+                  "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                }
+              ],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 482,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-09-25T19:08:46.117Z",
+                  "annotations": [
+                    {
+                      "type": "engine",
+                      "description": "26.6"
+                    },
+                    {
+                      "type": "platform",
+                      "description": "linux/x64; Node 24.21.0"
+                    },
+                    {
+                      "type": "binary-sha256",
+                      "description": "a26c6442f4638f423608500177c4f0fd1a0f7828af7b21dea84ba5e7d843e42a"
+                    }
+                  ],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "aed1748819d3efb96fac-94283a0943c934de841d",
+          "file": "browser.spec.mjs",
+          "line": 332,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-09-25T19:04:19.308Z",
+    "duration": 267352.986,
+    "expected": 26,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}

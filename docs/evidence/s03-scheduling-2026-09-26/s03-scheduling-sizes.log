@@ -1,0 +1,93 @@
+
+> joy-pi-board-web@0.1.0-s00 sizes
+> node ../scripts/tasks.mjs sizes
+
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+{
+  "scope": "S03 dashboard including production parser; independent offline gzip-9, actual HTTP identity; no S04 compression or physical acceptance",
+  "node": "24.21.0",
+  "zlib": "1.3.2.1-motley-8002e91",
+  "binarySHA256": "6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7",
+  "jsCSSGzip9": 79522,
+  "resourcesGzip9": 79817,
+  "resourcesHTTPBytes": 256971,
+  "files": [
+    {
+      "name": "index.html",
+      "bytes": 475,
+      "gzip9": 295,
+      "sha256": "73e4e91987858f459285fab450d0c1b344e534717ec5571cfef9870f2dc71a85",
+      "httpBodyBytes": 475,
+      "contentEncoding": "identity (header absent)"
+    },
+    {
+      "name": "assets/index-C2saZNkU.css",
+      "bytes": 3489,
+      "gzip9": 1336,
+      "sha256": "466c8ff6d19e85a5d317083aa2314163bdab85f50fead2116019338c147b9189",
+      "httpBodyBytes": 3489,
+      "contentEncoding": "identity (header absent)"
+    },
+    {
+      "name": "assets/index-CX_H3VPY.js",
+      "bytes": 253007,
+      "gzip9": 78186,
+      "sha256": "887354a9e865afc3cce33a38e1aadf2d773f70ad69b7dbf46a48cd129250d8f3",
+      "httpBodyBytes": 253007,
+      "contentEncoding": "identity (header absent)"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "complete",
+      "health": {
+        "bytes": 759,
+        "gzip9": 418,
+        "sha256": "00865883f9477e8fe12a1aac4cd08cb1b6b71dc8da3c17e4507a51fcaaa9038e"
+      },
+      "overview": {
+        "bytes": 947,
+        "gzip9": 498,
+        "sha256": "9e19060131b0a1507eded1b344ad3edcfca1008ae5b95513bae85a53103e7df7"
+      },
+      "httpBodyBytes": 947,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80315,
+      "resourcePlusOverviewHTTPBytes": 257918
+    },
+    {
+      "name": "partial",
+      "health": {
+        "bytes": 1992,
+        "gzip9": 544,
+        "sha256": "dfc3aded6cf6f8074b12ecc7b15fef8fca5ef1105a41b668bcc72d78905ea2cb"
+      },
+      "overview": {
+        "bytes": 2180,
+        "gzip9": 621,
+        "sha256": "a349574fbc908f096edb1bdfa2f6ca71a110a418f028770cab44ebe7d8685b82"
+      },
+      "httpBodyBytes": 2180,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80438,
+      "resourcePlusOverviewHTTPBytes": 259151
+    },
+    {
+      "name": "maximum-markup",
+      "health": {
+        "bytes": 65536,
+        "gzip9": 566,
+        "sha256": "49533f8c6d262849aa6b3cb1ff3003a4c90f0a2280612a3ae5a074c437c29b5a"
+      },
+      "overview": {
+        "bytes": 65724,
+        "gzip9": 654,
+        "sha256": "37c0ee86d9310d8aca6a9095c9e2e756756d139ee129aba89ef70bf8cb50ab36"
+      },
+      "httpBodyBytes": 65724,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80471,
+      "resourcePlusOverviewHTTPBytes": 322695
+    }
+  ]
+}

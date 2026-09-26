@@ -1,0 +1,45 @@
+
+> joy-pi-board-web@0.1.0-s00 test
+> vitest run src/overview/controller.test.ts -t never launches before a fractional
+
+
+ RUN  v5.0.1 C:/src/joy-pi-board/web
+
+ ❯ src/overview/controller.test.ts (22 tests | 1 failed | 21 skipped) 15ms
+   × S03-T04 never launches before a fractional deadline or twice in its slot 13ms
+node.exe : 
+Au caractère Ligne:1 : 1
++ & "C:\src\joy-pi-board\.tools\node-v24.21.0-win-x64/node.exe" "C:\src ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/overview/controller.test.ts > S03-T04 never launches before a fractional deadline or twice in its slot
+AssertionError: expected [ 100.25, 5100 ] to deeply equal [ 100.25 ]
+
+- Expected
++ Received
+
+  [
+    100.25,
++   5100,
+  ]
+
+ ❯ src/overview/controller.test.ts:131:17
+    129|   fire(5100);
+    130|   await settle();
+    131|   expect(calls).toEqual([100.25]);
+       |                 ^
+    132|   expect(onlyTimer()[1].delay).toBeGreaterThan(0);
+    133|   // Even a second premature delivery must not admit a request.
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 21 skipped (22)
+   Start at  21:42:14
+   Duration  406ms (transform 54%, import 31%, tests 9%, worker 5%)
+

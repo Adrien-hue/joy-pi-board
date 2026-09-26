@@ -108,7 +108,7 @@ export class OverviewController {
       if (id !== undefined) this.runtime.cancel(id);
     this.cadence = this.ageTimer = this.expiry = undefined;
   }
-  private schedule(): void {
+  private schedule(minimumDue = -Infinity): void {
     if (!this.mounted || !this.visible) return;
     if (this.cadence !== undefined) this.runtime.cancel(this.cadence);
     const now = this.runtime.now().mono;
@@ -118,13 +118,35 @@ export class OverviewController {
     }
     if (!Number.isFinite(this.epoch) || now < this.epoch) this.epoch = now;
     const delay = 5000 - ((now - this.epoch) % 5000);
-    const due = now + delay;
-    this.cadence = this.runtime.later(() => {
-      this.cadence = undefined;
-      // Discard slots missed through suspension/event-loop delay.
-      if (this.runtime.now().mono < due + 5000) this.launch();
-      this.schedule();
-    }, delay);
+    const due = Math.max(minimumDue, now + delay);
+    const generation = this.generation;
+    const timer = this.runtime.later(
+      () => {
+        if (
+          this.cadence !== timer ||
+          generation !== this.generation ||
+          !this.mounted ||
+          !this.visible
+        )
+          return;
+        this.cadence = undefined;
+        const woke = this.runtime.now().mono;
+        if (woke < due) {
+          // Timers can truncate fractional delays. Keep this slot pending;
+          // only the clock check, never timer delivery, grants admission.
+          this.schedule(due);
+          return;
+        }
+        // Discard slots missed through suspension/event-loop delay.
+        if (woke < due + 5000) this.launch();
+        // Consume this slot even when busy. A rapid completion cannot reuse it.
+        this.schedule(due + 5000);
+      },
+      Math.max(1, Math.ceil(due - now)),
+    );
+    // Positive whole-ms waits avoid zero-delay rearming; the callback still
+    // verifies the unrounded deadline, so rounding is not the correctness guard.
+    this.cadence = timer;
   }
   private invalidate(): void {
     this.anchor = null;

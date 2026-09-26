@@ -66,6 +66,101 @@ const settle = async () => {
   await Promise.resolve();
   await Promise.resolve();
 };
+
+// Deliver timers explicitly: fake-timer libraries commonly quantize fractional
+// delays and cannot by themselves prove behavior when a callback arrives early.
+function fractionalSchedule() {
+  vi.useFakeTimers();
+  let now = 100.25;
+  const calls: number[] = [];
+  const timers = new Map<
+    ReturnType<typeof setTimeout>,
+    { fn: () => void; due: number; delay: number }
+  >();
+  const c = new OverviewController(
+    {
+      now: () => ({ mono: now, wall: 100000 + now }),
+      microtask: queueMicrotask,
+      later: (fn, delay) => {
+        const id = setTimeout(() => {}, delay);
+        timers.set(id, { fn, due: now + delay, delay });
+        return id;
+      },
+      cancel: (id) => {
+        clearTimeout(id);
+        timers.delete(id);
+      },
+      request: async () => {
+        calls.push(now);
+        return parseOverview(
+          '{"generated_at":"2026-09-26T00:00:00Z","health":{"availability":"unavailable","snapshot_state":"none","last_success_at":null,"reason":"connection_failed","snapshot":null}}',
+          null,
+        );
+      },
+    },
+    () => {},
+  );
+  const onlyTimer = () => {
+    expect(timers.size).toBe(1);
+    return [...timers.entries()][0]!;
+  };
+  return {
+    c,
+    calls,
+    timers,
+    onlyTimer,
+    fire: (at: number) => {
+      const [id, timer] = onlyTimer();
+      now = at;
+      clearTimeout(id);
+      timers.delete(id);
+      timer.fn();
+      return timer.fn;
+    },
+  };
+}
+
+it("S03-T04 never launches before a fractional deadline or twice in its slot", async () => {
+  const { c, calls, fire, onlyTimer, timers } = fractionalSchedule();
+  c.start(true);
+  await settle();
+  expect(calls).toEqual([100.25]);
+  expect(onlyTimer()[1].due).toBe(5100.25);
+  fire(5100);
+  await settle();
+  expect(calls).toEqual([100.25]);
+  expect(onlyTimer()[1].delay).toBe(1);
+  // Even a second premature delivery must not admit a request.
+  fire(5100.125);
+  await settle();
+  expect(calls).toEqual([100.25]);
+  fire(5100.25);
+  await settle(); // fast successful response releases admission immediately
+  expect(calls).toEqual([100.25, 5100.25]);
+  expect(onlyTimer()[1].due).toBe(10100.25);
+  c.stop();
+  expect(timers.size).toBe(0);
+});
+
+it.each([
+  [5100.25, 2, 10100.25],
+  [5100.5, 2, 10100.25],
+  [10100.25, 1, 15100.25],
+  [15101, 1, 20100.25],
+])(
+  "S03-T04 delayed fractional callback at %s admits %s total attempts",
+  async (at, count, next) => {
+    const { c, calls, fire, onlyTimer, timers } = fractionalSchedule();
+    c.start(true);
+    await settle();
+    fire(at!);
+    await settle();
+    expect(calls).toHaveLength(count!);
+    expect(onlyTimer()[1].delay).toBe(Math.ceil(next! - at!));
+    c.stop();
+    expect(timers.size).toBe(0);
+  },
+);
 describe("S03-T04/T05 scheduling and lifecycle", () => {
   it("survives StrictMode replay with one initial launch, fixed slots and no retry", async () => {
     const { c, pending, tick } = setup();
@@ -252,4 +347,26 @@ it("S03-T06 accumulates paired segments across body receipt and synchronous vali
   setTime({ mono: 301, wall: 100251 });
   expect(c.view().metrics).toBe("none");
   c.stop();
+});
+
+it("S03-T04 ignores an already-consumed or lifecycle-cancelled cadence callback", async () => {
+  const { c, calls, fire, onlyTimer, timers } = fractionalSchedule();
+  c.start(true);
+  await settle();
+  const consumed = fire(5100.25);
+  await settle();
+  consumed();
+  await settle();
+  expect(calls).toEqual([100.25, 5100.25]);
+  expect(onlyTimer()[1].due).toBe(10100.25);
+  const cancelled = onlyTimer()[1].fn;
+  c.pause();
+  c.resume();
+  const resumed = onlyTimer()[0];
+  cancelled();
+  await settle();
+  expect(calls).toEqual([100.25, 5100.25]);
+  expect(onlyTimer()[0]).toBe(resumed);
+  c.stop();
+  expect(timers.size).toBe(0);
 });

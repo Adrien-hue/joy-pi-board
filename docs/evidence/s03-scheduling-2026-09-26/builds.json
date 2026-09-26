@@ -1,0 +1,26 @@
+{
+  "scope": "Local corrected artifacts, not CI artifacts; StrictMode module is test-only and unembedded.",
+  "inputs_sha256": "75e587ca8dbeadc5f4ec9a25f91de53b8cd22d2d35240321196447f72fbcf700",
+  "builds": [
+    {
+      "path": "out/joy-pi-board.exe",
+      "bytes": 11483136,
+      "sha256": "6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7"
+    },
+    {
+      "path": "out/joy-pi-board-linux-amd64",
+      "bytes": 11340064,
+      "sha256": "4c6f137642478fc8e82177f28715e1e483e46abd40c38d8e48aace99d0bf1c5c"
+    },
+    {
+      "path": "out/joy-pi-board-linux-arm64",
+      "bytes": 10561388,
+      "sha256": "867468003ea3a4219d2f8c72051b50e1c3a92774abc7423090678f72c01abb8e"
+    },
+    {
+      "path": "out/s03-strictmode/strictmode.mjs",
+      "bytes": 1038155,
+      "sha256": "2a58beb2c02d310134ae5ddbc54d671c8db9947ef0cb1adcbd1c975b18e6d7a6"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+
+> joy-pi-board-web@0.1.0-s00 build
+> node ../scripts/tasks.mjs build
+
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 33 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.47 kB │ gzip:  0.29 kB
+dist/assets/index-C2saZNkU.css    3.48 kB │ gzip:  1.33 kB
+dist/assets/index-CX_H3VPY.js   253.00 kB │ gzip: 79.17 kB
+
+✓ built in 114ms
+joy-pi-board.exe sha256 6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7

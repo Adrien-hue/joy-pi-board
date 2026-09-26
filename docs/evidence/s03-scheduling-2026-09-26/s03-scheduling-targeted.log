@@ -1,0 +1,13 @@
+
+> joy-pi-board-web@0.1.0-s00 test
+> vitest run src/overview/controller.test.ts
+
+
+ RUN  v5.0.1 C:/src/joy-pi-board/web
+
+
+ Test Files  1 passed (1)
+      Tests  23 passed (23)
+   Start at  21:45:32
+   Duration  266ms (transform 51%, import 24%, tests 22%, worker 4%)
+

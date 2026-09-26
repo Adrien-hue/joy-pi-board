@@ -1,0 +1,25 @@
+
+> joy-pi-board-web@0.1.0-s00 smoke
+> node ../scripts/tasks.mjs smoke
+
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+{
+  "scope": "S03 native binary, embedded dashboard assets plus unavailable Health overview (raw HTTP, JavaScript not executed), empty working directory, PATH empty; not hardware acceptance",
+  "platform": "win32",
+  "arch": "x64",
+  "binarySHA256": "6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7",
+  "healthTrap": "ephemeral loopback reset server: zero startup/asset calls, one overview attempt, no calls during 6 s idle",
+  "healthConnections": 1,
+  "assets": [
+    {
+      "path": "/assets/index-CX_H3VPY.js",
+      "bytes": 253007,
+      "sha256": "887354a9e865afc3cce33a38e1aadf2d773f70ad69b7dbf46a48cd129250d8f3"
+    },
+    {
+      "path": "/assets/index-C2saZNkU.css",
+      "bytes": 3489,
+      "sha256": "466c8ff6d19e85a5d317083aa2314163bdab85f50fead2116019338c147b9189"
+    }
+  ]
+}

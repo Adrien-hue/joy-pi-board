@@ -1,0 +1,26 @@
+{
+  "artifact_id": 10883565483,
+  "artifact_sha256": "6716769536f6ca29c9ee9d704718a7d5a22daf9dc08494667a9d4a3ed589aa0d",
+  "trace_sha256": "b87fc1266bc463934aab7236fab786a304fe25d3258e3c333efbf7c2b36b3589",
+  "overview_requests": [
+    {
+      "wall": "2026-09-25T19:05:39.508Z",
+      "trace_monotonic_ms": 80723.265,
+      "duration_ms": 10.725,
+      "status": 200
+    },
+    {
+      "wall": "2026-09-25T19:05:44.506Z",
+      "trace_monotonic_ms": 85717.418,
+      "duration_ms": 3.028,
+      "status": 200
+    },
+    {
+      "wall": "2026-09-25T19:05:44.520Z",
+      "trace_monotonic_ms": 85730.855,
+      "duration_ms": 2.544,
+      "status": 200
+    }
+  ],
+  "interpretation": "Three HTTP 200 overviews; starts 2 and 3 are 13.437 ms apart in trace time. Supports the reproduced mechanism; trace has no controller epoch/due values and does not directly prove an early timer callback."
+}

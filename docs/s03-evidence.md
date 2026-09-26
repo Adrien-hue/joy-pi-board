@@ -1,6 +1,6 @@
 # Sprint 03 implementation and evidence
 
-Date: 2026-09-25. **S03 implementation delivered; local automated verification complete; hosted CI and full sprint closure PENDING.** No S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
+Historical implementation ledger: 2026-09-25. The [2026-09-26 scheduling correction](#2026-09-26--early-cadence-callback-correction) below records the first S03 CI failure and its targeted fix; earlier measurements/manifests remain historical. **S03 implementation delivered; local automated verification complete; hosted CI and full sprint closure PENDING.** No S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
 
 ## Source and authorization
 
@@ -143,10 +143,77 @@ Operator procedure (use an isolated trusted test environment and the recorded bi
 
 ## Hosted CI and sprint status
 
-The existing workflow retains immutable action pins and Ubuntu 24.04 labels; foundation/race remain, and a browser job installs exact package-selected revisions, builds the embedded app, runs all three engines and uploads results. It records hosted ImageOS/ImageVersion, OS/kernel and browser revision data; the hosted image label is not claimed immutable. **S03 hosted CI NOT RUN** for these uncommitted changes. An edited workflow is not a green run.
+The existing workflow retains immutable action pins and Ubuntu 24.04 labels; foundation/race remain, and a browser job installs exact package-selected revisions, builds the embedded app, runs all three engines and uploads results. It records hosted ImageOS/ImageVersion, OS/kernel and browser revision data; the hosted image label is not claimed immutable. **At the 2026-09-25 local delivery, S03 hosted CI was NOT RUN** for that then-uncommitted state. The subsequent run on commit 12108b60861582cab040b9d5a029279e5768bcea failed as recorded in the addendum below; corrected code still needs new CI. An edited workflow is not a green run.
 
 S03's production implementation is delivered, but full validation and closure are **PENDING**, including the mandatory operator targets above. S04 packaging/systemd, server compression, Raspberry Pi/real-Health integration, physical budgets and global A/B/C acceptance are **NOT RUN**. There is no release, deployment or implicit authorization to start S04.
 
 ## Final repository review
 
 Reviewed the implementation/configuration/CI diff and untracked S03 additions; no Go server code, shared Health fixture, toolchain pin or S00/S01/S02 evidence file changed. Documentation includes the foundation-command note because sizes now measures the actual dashboard and a browser command has been added. Source manifest verification matched all 87 inputs. Markdown links/anchors, JSON documentation examples, eight-task/fourteen-test-ID traceability and git diff --check were checked after harmonizing current and historical statuses. The final audit covered 23 Markdown files, 321 internal links/anchors and 1 JSON documentation example; no application test is inferred from these checks. A final process inventory found no remaining test Node/Board process (only the unrelated computer-use runtime); no deployed service was created.
+
+## 2026-09-26 — Early cadence callback correction
+
+### Starting point and verified CI incident
+
+This targeted task started with a clean Board working tree at `12108b60861582cab040b9d5a029279e5768bcea`, matching the failed S03 implementation commit. It authorizes only the scheduling fix, regression tests and S03 evidence. No S04 work, Health/server contract change, dependency/toolchain/workflow change, commit, push, release or deployment.
+
+GitHub was read directly through its repository connector on 2026-09-26: [run 36177274215](https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215), **attempt 1**, workflow **Board foundation and contracts**, **push/main**, created **2026-09-25T19:03:05Z**, SHA above, conclusion **failure**. Jobs foundation `108210820287` and race `108210820317` concluded success; browser `108210819984` failed its build/browser step. Its log records **26 PASS / 1 FAIL**, specifically Chromium's `S03-T04 actual React development StrictMode effect replay`, expected 2 calls, received 3 at scripts/browser.spec.mjs:328. The 7-second assertion and retries=0 are unchanged.
+
+[CI summary/log excerpts](evidence/s03-scheduling-2026-09-26/ci-summary.json), [original CI browser report](evidence/s03-scheduling-2026-09-26/ci-browser-report.json) and [observed hosted image](evidence/s03-scheduling-2026-09-26/ci-browser-host.txt) preserve these new facts separately from the prior local PASS. The actual image was ubuntu24 **20260920.314.1**, Ubuntu **24.04.5 LTS**, Linux **6.17.0-1022-azure** x86_64. The log's exact-tool check observed Go 1.27.1, Node 24.21.0, npm 11.19.0. Browser revisions remained Chromium 1243 / Firefox 1543 / WebKit 2359. A hosted image label is not immutable.
+
+The downloaded browser artifact `10883565483` matched GitHub's SHA-256 `6716769536f6ca29c9ee9d704718a7d5a22daf9dc08494667a9d4a3ed589aa0d`. Its Chromium trace contains three successful overview requests starting at **19:05:39.508Z**, **19:05:44.506Z**, **19:05:44.520Z**. Starts 2 and 3 are **13.437 ms apart** in the trace's monotonic coordinates. [Trace extraction and archive identities](evidence/s03-scheduling-2026-09-26/ci-trace-summary.json) distinguish observation from inference: this is consistent with a premature callback followed by rearming the same slot after a fast response, but the trace does not contain the controller's epoch/deadline or callback clock readings. The precise early-callback mechanism is established by the deterministic reproduction, not asserted from HTTP timing alone.
+
+### Established defect and correction
+
+The old callback checked only `now < due + 5000`. It admitted an early callback, then recomputed the next timeout for the same still-future deadline. Once the request released admission, that deadline could launch again. The new deterministic test starts at **100.25 ms**, expects **5100.25 ms**, and explicitly delivers the callback at **5100 ms**. Before changing production code, it failed with actual calls `[100.25, 5100]` instead of `[100.25]`. The [red result](evidence/s03-scheduling-2026-09-26/s03-scheduling-red-test.log) is retained, rather than relabelled PASS.
+
+`OverviewController.schedule` now:
+
+- Checks timer identity, lifecycle generation, mounted and visible state before any effect; cancelled/already-consumed callbacks cannot clear or replace a newer timer.
+- Checks the unrounded deadline at callback time. If early, retains that deadline and rearms one timeout without calling Fetch.
+- Uses positive whole-millisecond waits (ceil, minimum 1 ms) so fractional rearming does not create a zero-delay spin. This is only wake-up quantization; admission still depends on the explicit deadline comparison, with no epsilon.
+- Consumes a due slot even when busy and sets the minimum next deadline to that slot +5 seconds. The existing strictly-future epoch calculation discards missed slots. A fast completion cannot reuse the consumed slot.
+- Retains one cadence timer, existing active-request cleanup admission, no overlap/retry/catch-up, next-slot foreground resume and StrictMode cleanup.
+
+Six added deterministic cases cover repeated early delivery, exact fractional deadline, slight lateness within the slot, an entire missed slot at its boundary, several missed slots, fast successful completion and stale/cancelled callback replay. Existing tests retain busy/aborted-cleanup, visibility/resume, timeout and StrictMode assertions. The real browser test's exact `toBe(2)` assertion, StrictMode, timeout and Playwright retry policy are unchanged.
+
+### Correction execution ledger
+
+All executions in this correction are recorded, including infrastructure failures and the expected red test. Local tools remain Go **1.27.1**, Node **24.21.0**, npm **11.19.0**. Production changes are confined to controller.ts; controller.test.ts adds regressions.
+
+| Execution | Result / evidence |
+|---|---|
+| Initial targeted Vitest launch in sandbox | Did not execute tests: Vite child-process spawn EPERM. [Launch log](evidence/s03-scheduling-2026-09-26/s03-scheduling-red.log). |
+| Same early-callback regression outside sandbox, old controller | Expected FAIL: 1 failed, 21 filtered/skipped; observed request before its deadline. Red log above. |
+| `npm --prefix web test -- src/overview/controller.test.ts`, corrected controller | **23 PASS**. [Targeted log](evidence/s03-scheduling-2026-09-26/s03-scheduling-targeted.log). |
+| `npm --prefix web run check` | **PASS**: format, strict types, lint, **591 frontend tests**, two fixture-integrity checks, frontend-before-Go, gofmt/modules/vet/Go tests, 264-case corpus, 76 Go→TS valid outputs, 512 seeded mutations and 266 real S02 HTTP→TS cases. [Full check log](evidence/s03-scheduling-2026-09-26/s03-scheduling-check.log). |
+| `npm --prefix web run build` and `cross`; Linux amd64 Go build | **PASS**, same new compiled assets in native Windows, Linux ARM64 and Linux amd64 binaries. [Native log](evidence/s03-scheduling-2026-09-26/s03-scheduling-build.log), [cross log](evidence/s03-scheduling-2026-09-26/s03-scheduling-cross.log). Linux uses GOOS=linux, GOARCH=amd64, CGO_ENABLED=0, GOTOOLCHAIN=local, GOENV/GOWORK=off, `go build -trimpath -buildvcs=false -o out/joy-pi-board-linux-amd64 ./cmd/joy-pi-board`. |
+| `node scripts/build-browser-harness.mjs` | **PASS**, rebuilt unembedded development StrictMode entry from corrected controller; its separate hash is inventoried. |
+| `npm --prefix web run smoke` and `sizes` | **PASS**: exact embedded assets from empty cwd/PATH, unavailable overview HTTP 200 and one Health attempt, no idle call; updated dashboard cost below. [Smoke](evidence/s03-scheduling-2026-09-26/standalone-smoke.json), [size inventory](evidence/s03-scheduling-2026-09-26/dashboard-sizes.json). |
+| First Docker browser command | Did not execute tests: Docker Linux engine pipe absent. Started Docker Desktop hidden, verified engine **29.7.2**, then launched the suite once. This is not a Playwright test retry. |
+| Full corrected browser suite after Docker startup | **27 PASS (9 per engine), 0 skipped/unexpected/flaky, retries=0**, one completed invocation. Chromium StrictMode retains exact toBe(2). [Report](evidence/s03-scheduling-2026-09-26/browser-report.json), [complete output](evidence/s03-scheduling-2026-09-26/browser.log). |
+| CI artifact retrieval | Connector download succeeded; first local HTTP transfer failed during receive. Fresh signed download outside sandbox succeeded and archive digest matched. No trace evidence is invented from the failed transfer. |
+
+Go race/fuzz and missing-dist were not rerun for this frontend scheduling-only diff; their earlier local/CI results remain dated historical evidence, not new correction results. No Go, embed layout, lockfile, CI policy or schema changed. The full check and real rebuilt-binary browser integration provide the relevant regression lanes.
+
+The corrected browser run began **2026-09-26T19:52:01.644Z** and took **270,783.325 ms**. Observed engines: Chromium **153.0.8010.12**, Firefox **155.0**, WebKit **26.6**, all Linux x64 under Node **24.21.0**, using the same pinned Playwright 1.63.0 Ubuntu image described above. Every test annotation identifies corrected Linux binary SHA-256 4c6f137642478fc8e82177f28715e1e483e46abd40c38d8e48aace99d0bf1c5c. The development-only StrictMode harness was rebuilt too; this case is not misrepresented as production React behavior.
+
+Invocation was the same documented Docker command with S03_BINARY pointing at the newly built Linux amd64 binary and the exact .tools/node-v24.21.0-linux-x64 executable, output retained in browser.log. The production-browser cases exercise the rebuilt embedded assets, while StrictMode uses its separate development entry. No extra browser test run, retry, timeout relaxation or assertion weakening was used to obtain this PASS. These automated engines do not fill any existing branded/minimum-version/iOS/operator gap.
+
+### Corrected source and artifact provenance
+
+[Correction input manifest](evidence/s03-scheduling-2026-09-26/inputs.json): **87 files**, aggregate SHA-256 `75e587ca8dbeadc5f4ec9a25f91de53b8cd22d2d35240321196447f72fbcf700`, same sorted-line algorithm as the original manifest, based on the clean commit above plus the uncommitted fix. [Build inventory](evidence/s03-scheduling-2026-09-26/builds.json) identifies the local corrected artifacts:
+
+| Artifact | SHA-256 |
+|---|---|
+| Windows amd64 binary | `6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7` |
+| Linux amd64 browser binary | `4c6f137642478fc8e82177f28715e1e483e46abd40c38d8e48aace99d0bf1c5c` |
+| Linux ARM64 cross-build | `867468003ea3a4219d2f8c72051b50e1c3a92774abc7423090678f72c01abb8e` |
+| Production JS | `887354a9e865afc3cce33a38e1aadf2d773f70ad69b7dbf46a48cd129250d8f3` |
+| Test-only development StrictMode module | `2a58beb2c02d310134ae5ddbc54d671c8db9947ef0cb1adcbd1c975b18e6d7a6` |
+
+JS+CSS is **79,522 bytes offline gzip-9**; initial static resources **79,817 gzip / 256,971 HTTP identity bytes**. Including the maximum-markup first overview gives **80,471 gzip / 322,695 identity bytes**. Preliminary S03 budgets still pass. No server compression or physical performance claim. Earlier hashes and screenshots above remain evidence for their earlier artifacts, not for these corrected builds.
+
+Corrected hosted CI is **NOT RUN**. S03 remains **IMPLEMENTED, LOCALLY VERIFIED WITHIN EXECUTED SCOPE; CLOSURE PENDING**, subject to the new exact-commit CI and all existing required operator/browser-floor/Safari/iOS/native-zoom/screen-reader/lifecycle proofs. This correction neither waives those gates nor starts S04.
+
+Correction finishing checks: format/types/lint passed within the full check; git diff --check is clean. Internal links/anchors and the 87-file input manifest were rechecked. Final diff is limited to the controller, deterministic tests, S03 evidence and its validation trace; browser test, StrictMode entry, dependencies, toolchains, workflows, Go server and historical evidence artifacts are unchanged.

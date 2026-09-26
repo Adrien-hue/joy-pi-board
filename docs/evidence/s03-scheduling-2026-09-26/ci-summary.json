@@ -1,0 +1,29 @@
+{
+  "verified_on": "2026-09-26",
+  "run": {
+    "id": 36177274215,
+    "attempt": 1,
+    "workflow": "Board foundation and contracts",
+    "sha": "12108b60861582cab040b9d5a029279e5768bcea",
+    "branch": "main",
+    "event": "push",
+    "created_at": "2026-09-25T19:03:05Z",
+    "conclusion": "failure",
+    "url": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36177274215"
+  },
+  "jobs": {
+    "foundation": {
+      "id": 108210820287,
+      "conclusion": "success"
+    },
+    "race": {
+      "id": 108210820317,
+      "conclusion": "success"
+    },
+    "browser": {
+      "id": 108210819984,
+      "conclusion": "failure"
+    }
+  },
+  "browser_log_excerpt": "2026-09-25T19:03:09.1600972Z Image: ubuntu-24.04\n2026-09-25T19:03:09.1601856Z Version: 20260920.314.1\n2026-09-25T19:03:20.2184052Z Exact toolchains: {\"go\":\"1.27.1\",\"node\":\"24.21.0\",\"npm\":\"11.19.0\"}; GOTOOLCHAIN=local\n2026-09-25T19:03:24.0139403Z Exact toolchains: {\"go\":\"1.27.1\",\"node\":\"24.21.0\",\"npm\":\"11.19.0\"}; GOTOOLCHAIN=local\n2026-09-25T19:04:06.2965232Z ##[group]Run npm --prefix web run build\n2026-09-25T19:04:06.5090878Z Exact toolchains: {\"go\":\"1.27.1\",\"node\":\"24.21.0\",\"npm\":\"11.19.0\"}; GOTOOLCHAIN=local\n2026-09-25T19:04:18.0040140Z Exact toolchains: {\"go\":\"1.27.1\",\"node\":\"24.21.0\",\"npm\":\"11.19.0\"}; GOTOOLCHAIN=local\n2026-09-25T19:05:46.6686280Z   ✘   8 [chromium] › scripts/browser.spec.mjs:305:1 › S03-T04 actual React development StrictMode effect replay (7.3s)\n2026-09-25T19:07:18.1924212Z   ✓  17 [firefox] › scripts/browser.spec.mjs:305:1 › S03-T04 actual React development StrictMode effect replay (6.4s)\n2026-09-25T19:08:46.1174208Z   ✓  26 [webkit] › scripts/browser.spec.mjs:305:1 › S03-T04 actual React development StrictMode effect replay (6.4s)\n2026-09-25T19:08:46.6630231Z   1) [chromium] › scripts/browser.spec.mjs:305:1 › S03-T04 actual React development StrictMode effect replay \n2026-09-25T19:08:46.6632357Z     Expected: 2\n2026-09-25T19:08:46.6632739Z     Received: 3\n2026-09-25T19:08:46.6639790Z         at /home/runner/work/joy-pi-board/joy-pi-board/scripts/browser.spec.mjs:328:66\n2026-09-25T19:08:46.6656810Z   1 failed\n2026-09-25T19:08:46.6657903Z     [chromium] › scripts/browser.spec.mjs:305:1 › S03-T04 actual React development StrictMode effect replay \n2026-09-25T19:08:46.6658801Z   26 passed (4.5m)"
+}

@@ -1,0 +1,42 @@
+
+> joy-pi-board-web@0.1.0-s00 test
+> vitest run src/overview/controller.test.ts -t never launches before a fractional
+
+node.exe : failed to load config from C:\src\joy-pi-board\web\vite.config.ts
+Au caractère Ligne:1 : 1
++ & "C:\src\joy-pi-board\.tools\node-v24.21.0-win-x64/node.exe" "C:\src ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (failed to load ...\vite.config.ts:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+⎯⎯⎯⎯⎯⎯⎯ Startup Error ⎯⎯⎯⎯⎯⎯⎯⎯
+Error: Build failed with 1 error:
+
+[plugin externalize-deps]
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:458:11)
+    at spawn (node:child_process:813:9)
+    at Object.execFile (node:child_process:349:17)
+    at exec (node:child_process:236:25)
+    at optimizeSafeRealPathSync (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:2438:2)
+    at windowsSafeRealPathSync (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:2424:3)
+    at getRealPath (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:28972:36)
+    at tryResolveRealFileOrType (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:28966:9)
+    at tryCleanFsResolve (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:28715:21)
+    at tryFsResolve (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:28708:14)
+    at aggregateBindingErrorsIntoJsError (file:///C:/src/joy-pi-board/web/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:48:18)
+    at unwrapBindingResult (file:///C:/src/joy-pi-board/web/node_modules/rolldown/dist/shared/error-CGhV1ebk.mjs:18:128)
+    at #build (file:///C:/src/joy-pi-board/web/node_modules/rolldown/dist/shared/rolldown-Ld3ZGGCt.mjs:133:34)
+    at async bundleConfigFile (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:37448:12)
+    at async bundleAndLoadConfigFile (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:37344:18)
+    at async loadConfigFromFile (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:37305:42)
+    at async resolveConfig (file:///C:/src/joy-pi-board/web/node_modules/vite/dist/node/chunks/node.js:36906:22)
+    at async resolveConfig$1 (file:///C:/src/joy-pi-board/web/node_modules/vitest/dist/chunks/index.DzobfTyw.js:14777:25)
+    at async createVitest (file:///C:/src/joy-pi-board/web/node_modules/vitest/dist/chunks/cli-api.DcLieX4F.js:26:17)
+    at async prepareVitest (file:///C:/src/joy-pi-board/web/node_modules/vitest/dist/chunks/cli-api.DcLieX4F.js:421:14) {
+  errors: [Getter/Setter]
+}
+
+
+
