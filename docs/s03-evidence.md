@@ -1,10 +1,10 @@
 # Sprint 03 implementation and evidence
 
-Historical implementation ledger: 2026-09-25. The [2026-09-26 scheduling correction](#2026-09-26--early-cadence-callback-correction) below records the first S03 CI failure and its targeted fix; earlier measurements/manifests remain historical. **S03 implementation delivered; local automated verification complete; hosted CI and full sprint closure PENDING.** No S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
+Historical implementation ledger: 2026-09-25. The [2026-09-26 scheduling correction](#2026-09-26--early-cadence-callback-correction) below records the first S03 CI failure and its targeted fix; earlier measurements/manifests remain historical. **Current status (2026-09-27): implemented, CI verified; closure pending operator verification.** See the [corrected CI/operator addendum](#2026-09-27--verified-corrected-ci-and-operator-status) and [remaining checklist](#remaining-acceptance-checklist). No S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
 
 ## Source and authorization
 
-Work began in the correct Board repository with a clean tree at `7d9dc989dbbb31409450d5f5ff394ccffb5e43c0` (`docs: prepare Sprint 03 dashboard and browser resilience`). That commit already contains the prior S02 closure and S03 preparation. There were no pre-existing uncommitted changes to overwrite. S02 implementation remains `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4`; the later documentary commit is not attributed its CI results. Current changes are uncommitted, identified by the accompanying input manifest, not by inventing a new SHA. Health remains read-only at baseline `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; no Go server behavior, Health contract, shared fixture bytes or toolchain version changed.
+Work began in the correct Board repository with a clean tree at `7d9dc989dbbb31409450d5f5ff394ccffb5e43c0` (`docs: prepare Sprint 03 dashboard and browser resilience`). That commit already contains the prior S02 closure and S03 preparation. There were no pre-existing uncommitted changes to overwrite. S02 implementation remains `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4`; the later documentary commit is not attributed its CI results. At the 2026-09-25 implementation delivery, changes were uncommitted, identified by the accompanying input manifest, not by inventing a new SHA. Health remains read-only at baseline `be7a0d824f62b94c842d8e5326110b1852c5a0bc`; no Go server behavior, Health contract, shared fixture bytes or toolchain version changed.
 
 Approval comes from the user's S03 implementation instruction (resumed 2026-09-25), not from the 2026-09-23 preparation: S03-R01/R02/R04 and the S03 P-06 presentation/accessibility/preliminary-size subset. P-02/P-04/P-05 retain their established scope. P-06 physical/packaging/compressed-delivery protocols remain deferred to S04. Server monotonic time can pause during suspension; no browser wall-time subtraction replaces the server clock.
 
@@ -109,10 +109,10 @@ The approved preliminary ≤250 KiB JS+CSS / ≤500 KiB all-initial offline-comp
 | Work item | Local status / remaining gate |
 |---|---|
 | S03-01–S03-04 | Implemented; bounded consumer, exact parsing, controller/freshness and formatting assertions PASS. S03-T01–T08 implemented deterministic/engine assertions are mapped in the validation document. |
-| S03-05 | Dashboard implemented; static, engine keyboard/reflow and reviewed-image subsets PASS. Screen reader, native zoom and actual-device portions of S03-T09/T12 remain NOT RUN. |
+| S03-05 | Dashboard implemented; static, engine keyboard/reflow and reviewed-image subsets PASS. Screen reader, native zoom and actual-device portions of S03-T09/T12 remain NOT RUN; see the dated operator checklist. |
 | S03-06 | Three supported automated engines and real HTTP chain PASS (S03-T10). Actual branded/floor/mobile evidence S03-T11 and real lifecycle/device portions of T05/T12 remain NOT RUN. |
-| S03-07 | Local regression/build/size checks PASS (T13); workflow extended, new hosted CI NOT RUN. |
-| S03-08 | Local provenance/traceability recorded; T14 and sprint closure PENDING until all mandatory browser/manual/CI evidence exists. |
+| S03-07 | Local regression/build/size checks PASS (T13); corrected hosted CI now verified in the 2026-09-27 addendum. |
+| S03-08 | Local provenance/traceability recorded; T14 and sprint closure PENDING until all mandatory operator evidence exists; corrected CI is verified separately below. |
 
 Passing implemented assertions does not waive an unexecuted acceptance lane. The fourteen prepared test IDs retain their full scope in the validation matrix.
 
@@ -130,20 +130,91 @@ Passing implemented assertions does not waive an unexecuted acceptance lane. The
 
 ## Remaining browser and operator procedure
 
-**NOT RUN / closure blockers:** actual Chrome/Edge 111, Firefox 115, Safari 16.4 and iOS Safari 16.4; current branded Chrome/Edge/Firefox/Safari manual flows; actual iOS device; screen-reader transitions/associations; native 200% browser zoom; actual tab/background/device suspension and verified BFCache restore. Required targets remain S03, not silently moved to S04. Engine tests are supplemental.
+The [remaining acceptance checklist](#remaining-acceptance-checklist) is the current source of status per environment; the older local ledger is historical. These procedures refine the existing S03 operator work, not its acceptance policy. Record **date/time UTC, test IDs, operator, exact source SHA or manifest, binary/asset SHA-256, browser patch/version page, OS/build, device model, viewport/DPR and native zoom** for every run. Name screenshots/traces by browser, case and identity. Never infer PASS from an inventory or accessibility tree.
 
-Operator procedure (use an isolated trusted test environment and the recorded binary; no production Health changes):
+### OP-1 - Desktop setup and exact data
 
-1. Record source manifest/commit, binary and asset SHA-256, exact browser patch, OS/build, device model, DPR, viewport and zoom. Obtain actual floor-version environments; do not substitute a spoofed user agent. Build changes require new identities and appropriate reruns.
-2. Install pinned tools/dependencies, build frontend then native Board, and run the engine suite above (or `npm --prefix web run browser` on supported Linux with installed engines). Retain `out/browser-report.json`, screenshots/traces and inventory. For interactive local desktop testing, start `node --experimental-repl-await`; use `const h = await import('./scripts/browser-harness.mjs'); const b = await h.startBoard(); console.log(b.origin)`. Open that loopback origin in the actual browser. Set `b.state.body=h.fixture('partial-documentary')`, `b.state.status=503`, restore 200/complete or `h.markup()`, and await the next ordinary slot. `await b.kill()` tests Board-down expiry; `await b.stop()` cleans up.
-3. For an actual iOS device, use an operator-controlled LAN test host and a controlled Health server on loopback; serve the same binary with `--listen <test-host-LAN-IP>:8081 --health-url http://127.0.0.1:<controlled-provider-port>/v1/snapshot`. Reuse original fixture bytes and the same status transitions. Record the host artifact hash separately if a different native build is needed. Do not expose Health or Board to the Internet or install a service. This is software browser acceptance, not Raspberry Pi C acceptance.
-4. Verify complete/partial/none/stale/recovery and separate Board HTTP/connection failure text; exact visible 9007199254740993/18446744073709551615; keyboard focus and disclosure state; 360/390/768/1280 reflow, native zoom 200%, long labels/messages/64 interfaces and copyable counters. Use a screen reader to verify group issue associations and one moderated status transition, with no announcements on every poll or age tick.
-5. Hide the tab, switch apps/lock/unlock the device, navigate away/back and record whether pageshow.persisted really is true. Metrics must stay masked until a new valid next-slot response; no pre-hide result can revive them. Stop Board after success and observe values/hostname/exact details disappear by the conservative 30-second limit without a new response. Capture screenshots/video and request timing/counts.
-6. Record PASS/FAIL/NOT RUN per S03-T05/T09/T11/T12 with the actual identities and reviewer. Any missing target keeps S03 closure pending. A new hosted run on the exact future S03 commit must independently pass foundation/race/browser; this mission performs no commit or push to obtain it.
+Use an existing isolated/trusted environment and the pinned Node/Go/npm tools in [foundation commands](s00-foundation.md). Prefer the identified corrected binary; rebuild only if necessary with `npm --prefix web run build`, then record the new checksum and source. The interactive harness below is the existing `scripts/browser-harness.mjs`, not a production server control endpoint. From the repository root, start the pinned Node executable (on this Windows checkout: `.\.tools\node-v24.21.0-win-x64\node.exe --experimental-repl-await`):
+
+```javascript
+const h = await import('./scripts/browser-harness.mjs');
+let b = await h.startBoard();
+console.log(b.origin, b.binary);
+```
+
+Open only the printed loopback origin in the actual Chrome/Edge/Firefox/Safari browser and record its built-in version page (Chrome `chrome://version`, Edge `edge://version`, Firefox `about:support`, Safari About Safari and macOS version). Expect current observations, CPU **0.5%** with exact **0.5037%**, visible exact RX/TX **9007199254740993** and **18446744073709551615**, and distinct active/since-boot flags. Compare all ordinary metrics with the authoritative `complete` fixture without Number parse/stringify. Capture the native page, not only its accessibility tree.
+
+Use actual isolated Chrome 111 / Edge 111 / Firefox 115 / macOS Safari 16.4 environments for the same critical parsing, expiry and lifecycle flows; record the actual patch. Do not overwrite daily browsers or spoof user agents. If no environment exists, record NOT RUN and ask the operator to provide an isolated image/device.
+
+### OP-2 - Partial, failure, recovery and local expiry
+
+In the same REPL, use only these existing controls, waiting for observable ordinary refreshes rather than forcing retries:
+
+```javascript
+b.state.body = h.fixture('partial-documentary');
+b.state.status = 503;
+b.state.status = 200; b.state.body = h.markup();
+b.state.body = h.fixture('interfaces-64');
+b.state.body = h.fixture();
+```
+
+Execute each line as a separate phase, after recording the prior result. Partial must replace previous values with Unavailable and scoped issues, never merge old values. Health 503 must leave Board reachable and produce stale then none after the inclusive 30 s eligibility window; last-success remains. Restore 200 plus markup to check recovery, 65,536-byte Health payload and unchanged exact counters. Check 64 interfaces for retained information/reflow. These are test fixtures, never real host observations.
+
+After complete success, execute `await b.kill()`. Keep the page foreground, record the last response/age and a timestamped video or request trace: Board becomes unreachable, Health becomes unknown, and old hostname/metrics/exact disclosures disappear when the conservative age exceeds 30 s without another server response. Do not refresh the page to make them disappear. `await b.stop()` closes the controlled provider too; `b = await h.startBoard()` creates a fresh process/cache and a new printed origin for another case.
+
+A provider `state.status=503` is **not** a Board HTTP 503. The existing intercepted Board-error case in `scripts/browser.spec.mjs` tests that distinct path under Playwright. There is no manual Board-error injection CLI in the harness. For additional branded-browser adversarial HTTP proof, an operator-controlled response-interception setup is needed; document that setup/result rather than inventing a harness flag or substituting the provider failure. No such new tool is introduced by this documentary assignment.
+
+### OP-3 - Keyboard, native zoom, screen reader and visual review
+
+With a working native desktop, use Tab/Shift+Tab and Enter/Space only to reach the skip link and exact-value disclosures. Keep one disclosure focused/open through several normal polls, then switch to partial and confirm focus/open state survives with Unavailable. Record any actual unexpected movement as FAIL. Check visible focus and logical headings/group associations. Review full page at 360/390, 768 and 1280 CSS px, long strings/issues and 64 interfaces; no horizontal overview overflow or loss of exact information.
+
+Set **native browser zoom to 200% using the browser menu**, record its indicator plus viewport/DPR, inspect layout and exact values, then reset to the original zoom. CSS root-font enlargement or device viewport emulation is supplemental only. Capture readable screenshots; an inaccessible capture surface leaves the visual check NOT RUN.
+
+Use an available real screen reader (Narrator/NVDA/VoiceOver) with audible output and an operator who can hear it. Read headings and the affected metric/issue association; induce complete -> partial -> provider failure once. Record spoken announcements, no repeated metric/age announcements over normal polls, keyboard operation and association observations. Do not mark this PASS from DOM/AX structure alone. Stop the reader and restore its original state afterwards.
+
+### OP-4 - Real visibility, lifecycle and BFCache
+
+Keep one Board tab open. Record the browser's Network timeline with preserved logs and `b.state.calls` before/after a real switch to a blank tab for more than two slots. Return: no polling while hidden, metrics masked until a new valid **future 5 s slot**, no immediate catch-up burst or old response restoration. Repeat leaving during a request and actual app background/foreground. Inspect successful and failed refresh cases; retain timestamps and whether the page was actually visible.
+
+For actual back navigation, enable preserved console logs and temporarily observe real events in the test page's DevTools console (instrumentation only, no product edits):
+```javascript
+for (const type of ['pagehide', 'pageshow', 'visibilitychange', 'freeze', 'resume']) {
+  const target = ['visibilitychange', 'freeze', 'resume'].includes(type) ? document : window;
+  target.addEventListener(type, e => console.info('S03 lifecycle', type,
+    performance.now(), document.visibilityState, e.persisted));
+}
+```
+Navigate to a blank/local page and use the browser Back action. Require evidence of actual `pageshow.persisted=true` for the BFCache-restoration row, plus the same masking/next-slot behavior. A reload, synthetic event or `persisted=false` is not BFCache PASS. DevTools or platform policy may affect eligibility: record the stated reason and use an eligible isolated environment with a remote/preserved event recording method if needed. If no such method is available, keep that row NOT RUN; do not change server cache/security headers.
+
+With the operator physically present, lock/suspend and resume the actual device, then test background/foreground on mobile. Preserve before/after event/network records; old data must remain masked until a new valid response. Do not claim a browser tab switch proves OS suspension. No OS protection needs to be disabled.
+
+### OP-5 - Real Safari/iOS setup
+
+Requires an identified macOS/Safari environment and real iOS device (minimum 16.4 and current-family evidence). `startBoard()` binds loopback and cannot itself serve the LAN; there is no `--lan` harness option. On an operator-controlled LAN test host, reuse `h.fixture()` as exact bytes in a temporary Node HTTP server in the REPL:
+
+```javascript
+const { createServer } = await import('node:http');
+const state = { body: h.fixture(), status: 200, calls: 0 };
+const provider = createServer((_req, res) => {
+  state.calls++;
+  res.writeHead(state.status, { 'Content-Type': 'application/json' });
+  res.end(state.body);
+});
+await new Promise(done => provider.listen(0, '127.0.0.1', done));
+console.log(provider.address().port);
+```
+
+In another terminal run the recorded native Board binary with `--listen <test-host-LAN-IP>:8081 --health-url http://127.0.0.1:<printed-port>/v1/snapshot` (replace placeholders with the host's actual address/port). Verify existing trusted LAN access first; do not expose Health, add a public tunnel, change firewall protections or install a service. If networking is unavailable, the operator must supply an already permitted test host. A different host build needs its own checksum; this is software browser testing, not Pi Class C acceptance.
+
+Open that host in actual Safari/iOS, run OP-1 through OP-4 using `state` instead of `b.state` for provider transitions, and inspect touch disclosures, native zoom, background/app switch and back navigation. Retain exact OS/browser/device model and whether BFCache restore actually occurred. To stop Board for expiry use its terminal Ctrl+C; to clean up close the browser test tab, stop Board if still running and `await new Promise(done => provider.close(done))`. Exit the test REPL. Do not substitute Linux WebKit, a mobile viewport or a user-agent string for an Apple device.
+
+### OP-6 - Evidence and cleanup
+
+Retain PASS/FAIL/NOT RUN per environment and S03-T05/T09/T11/T12, screenshots/video or speech observations, event/timing traces and source/binary/fixture identities. Preserve every failed attempt and distinguish tooling failures from product defects. After each local harness run use `await b.stop()` and exit its REPL, close only task-created tabs/windows, reset changed zoom and stop any reader started for the test. Do not erase pre-existing work or personal browser tabs. The corrected hosted CI gate is already satisfied on the exact SHA below; incomplete operator rows still block S03 closure.
 
 ## Hosted CI and sprint status
 
-The existing workflow retains immutable action pins and Ubuntu 24.04 labels; foundation/race remain, and a browser job installs exact package-selected revisions, builds the embedded app, runs all three engines and uploads results. It records hosted ImageOS/ImageVersion, OS/kernel and browser revision data; the hosted image label is not claimed immutable. **At the 2026-09-25 local delivery, S03 hosted CI was NOT RUN** for that then-uncommitted state. The subsequent run on commit 12108b60861582cab040b9d5a029279e5768bcea failed as recorded in the addendum below; corrected code still needs new CI. An edited workflow is not a green run.
+The existing workflow retains immutable action pins and Ubuntu 24.04 labels; foundation/race remain, and a browser job installs exact package-selected revisions, builds the embedded app, runs all three engines and uploads results. It records hosted ImageOS/ImageVersion, OS/kernel and browser revision data; the hosted image label is not claimed immutable. **At the 2026-09-25 local delivery, S03 hosted CI was NOT RUN** for that then-uncommitted state. The subsequent run on commit 12108b60861582cab040b9d5a029279e5768bcea failed as recorded in the addendum below; at the time of that correction, new CI was still required. The 2026-09-27 addendum records its subsequent verified success. An edited workflow is not a green run.
 
 S03's production implementation is delivered, but full validation and closure are **PENDING**, including the mandatory operator targets above. S04 packaging/systemd, server compression, Raspberry Pi/real-Health integration, physical budgets and global A/B/C acceptance are **NOT RUN**. There is no release, deployment or implicit authorization to start S04.
 
@@ -214,6 +285,111 @@ Invocation was the same documented Docker command with S03_BINARY pointing at th
 
 JS+CSS is **79,522 bytes offline gzip-9**; initial static resources **79,817 gzip / 256,971 HTTP identity bytes**. Including the maximum-markup first overview gives **80,471 gzip / 322,695 identity bytes**. Preliminary S03 budgets still pass. No server compression or physical performance claim. Earlier hashes and screenshots above remain evidence for their earlier artifacts, not for these corrected builds.
 
-Corrected hosted CI is **NOT RUN**. S03 remains **IMPLEMENTED, LOCALLY VERIFIED WITHIN EXECUTED SCOPE; CLOSURE PENDING**, subject to the new exact-commit CI and all existing required operator/browser-floor/Safari/iOS/native-zoom/screen-reader/lifecycle proofs. This correction neither waives those gates nor starts S04.
+At the 2026-09-26 local correction handoff, corrected hosted CI was **NOT RUN** (superseded by the verified run below). S03 then remained **IMPLEMENTED, LOCALLY VERIFIED WITHIN EXECUTED SCOPE; CLOSURE PENDING**, subject to the new exact-commit CI and all existing required operator/browser-floor/Safari/iOS/native-zoom/screen-reader/lifecycle proofs. This correction neither waives those gates nor starts S04.
 
 Correction finishing checks: format/types/lint passed within the full check; git diff --check is clean. Internal links/anchors and the 87-file input manifest were rechecked. Final diff is limited to the controller, deterministic tests, S03 evidence and its validation trace; browser test, StrictMode entry, dependencies, toolchains, workflows, Go server and historical evidence artifacts are unchanged.
+
+## 2026-09-27 — Verified corrected CI and operator status
+
+**Current status: IMPLEMENTED, CI VERIFIED; CLOSURE PENDING OPERATOR VERIFICATION.** This assignment authorizes evidence consolidation and S03 validation only, not further product changes or S04. It started from a clean working tree. Local HEAD, the GitHub main branch read directly on 2026-09-27, and the tested SHA all equal `24d527a301d66b49d86ad11fbd75393254f02094` (`fix: prevent early and duplicate overview refresh attempts`). Its parent is the failed implementation commit `12108b60861582cab040b9d5a029279e5768bcea`. These new documentary changes are not attributed that CI.
+
+### Corrected hosted CI
+
+[Run 36269739581](https://github.com/Adrien-hue/joy-pi-board/actions/runs/36269739581), attempt **1**, workflow **Board foundation and contracts**, event **push**, branch **main**, started **2026-09-26T20:30:08Z**, last updated **20:35:41Z**, conclusion **success**. Metadata, all job steps, complete job logs and the browser artifact were inspected directly through GitHub. Retained job logs normalize line-end whitespace only; artifact reports/images retain their downloaded bytes. [Run/jobs/artifacts provenance](evidence/s03-operator-2026-09-27/ci-summary.json) records the exact identities.
+
+| Job / ID | Executed evidence / confirmed scope |
+|---|---|
+| foundation / 108481283244 — PASS | [Log](evidence/s03-operator-2026-09-27/ci-foundation.log): exact tools, locked install, format/types/lint, **591 frontend tests in 5 files**, 2 fixture-integrity tests, frontend-before-embed, Go format/modules/vet/tests; 264 shared corpus cases, 76 Go-to-TypeScript outputs, 512 seeded mutations; **266 real HTTP-to-TypeScript cases / 266 Health attempts**. Bounded Go fuzzing reports 359,795 executions over its observed 11 s completion (requested fuzztime 10 s). Native Linux and Linux ARM64 build, ELF/static check, standalone unavailable-overview smoke, missing-dist rejection and size inventory passed. |
+| race / 108481283155 — PASS | [Log](evidence/s03-operator-2026-09-27/ci-race.log): locked install, frontend build before native Linux `go test -race -count=1` with CGO enabled. Package results include command lifecycle, config, eventlog, Health, schema, HTTP API/UI and overview. Packages reported with no test files are not invented test counts. |
+| browser / 108481283237 — PASS | [Log](evidence/s03-operator-2026-09-27/ci-browser.log) and [original report](evidence/s03-operator-2026-09-27/ci-browser-report.json): **27 PASS, 9 per engine; 0 skipped/unexpected/flaky**, retries=0. Exact StrictMode `toBe(2)` passed in Chromium, Firefox and WebKit. Embedded production Health HTTP → Board HTTP → browser lanes, uint64/corpus/maximum-markup cases, independent Board-down expiry, keyboard/reflow and CSP/resource checks ran. Intercepted invalid envelopes and the separate development StrictMode entry retain their explicit test-only scope. Synthetic lifecycle and CSS text enlargement are not real BFCache/device/native zoom proof. |
+
+The unchanged workflow and scripts at the tested local HEAD were inspected to map these steps to `tasks.mjs` check/contract/fuzz/race/build/cross/smoke/missing-dist/browser/sizes and `browser.spec.mjs`. The nine browser cases per engine cover real HTTP/reflow/CSP; partial/failure/recovery/maximum markup; Board-down expiry; synthetic lifecycle; intercepted contract/HTTP errors; all 76 valid shared snapshots; long text/64 interfaces; actual development StrictMode replay; and Health failure before first success. This establishes coverage, not a blanket PASS for every manual assertion in S03-T01–T14.
+
+**Configured versus observed:** ubuntu-24.04 was the configured label; logs and [host artifact](evidence/s03-operator-2026-09-27/ci-browser-host.txt) observe image **20260920.314.1**, Ubuntu **24.04.5 LTS**, Linux **6.17.0-1022-azure**, x64, runner **2.337.0**. Exact-tool execution confirms Go **1.27.1**, Node **24.21.0**, npm **11.19.0**; race compiler is GCC **13.3.0**. Playwright **1.63.0** and its revision lock were checked by the browser command. The report observes Chromium **153.0.8010.12**, Firefox **155.0**, WebKit **26.6**, Linux/x64, Node **24.21.0**. These are automated engines, not branded Chrome/Edge/Safari or minimum-version executions. Hosted image contents are not claimed immutable.
+
+Browser artifact **10915800376** (`board-browser-evidence`, 9,013,792 bytes) was downloaded and its archive SHA-256 matched **828c5cc6aa6d57ab9c666ffeb4ef030bfde506e4ca71045a06a4388464e4d9e3**. Every test annotation and the CI size report identify Linux binary **4c6f137642478fc8e82177f28715e1e483e46abd40c38d8e48aace99d0bf1c5c**. That reported identity matches the independently retained local Linux correction inventory; no new CI Windows checksum is asserted. [CI size data](evidence/s03-operator-2026-09-27/ci-dashboard-sizes.json) is preserved separately from local measurements, with its own first-response timestamps/hashes. No measure is inferred from a green job alone.
+
+Three **new CI** captures were extracted with [archive paths and hashes](evidence/s03-operator-2026-09-27/ci-image-provenance.json), then visually reviewed on 2026-09-27:
+- [Chromium nominal 360 px](evidence/s03-operator-2026-09-27/ci-chromium-nominal-360.png): single-column layout, exact 9007199254740993 / 18446744073709551615 visible, exact CPU disclosure and all metric groups retained, no observed clipping.
+- [Board-down stale](evidence/s03-operator-2026-09-27/ci-chromium-board-unreachable-stale.png): Board unreachable, Health unknown, explicit stale label and retained eligible counters.
+- [Expired without server](evidence/s03-operator-2026-09-27/ci-chromium-expired-without-server.png): hostname and metrics absent, no presentable observations, last successful receipt retained.
+
+This is a reviewed **CI engine-image subset**, not a new Windows screenshot or real mobile review. Earlier local captures retain their earlier binary provenance. The failed run, deterministic red reproduction and corrected local run remain unchanged above. The initial trace corroborates rapid duplicate HTTP calls; it still does not expose the exact internal early callback.
+
+### Operator execution on 2026-09-27
+
+The available host is a Windows x64 desktop, **Windows 10 Pro 22H2, build 19045.7725** (OS query/registry and Chrome version page agree). No Apple device or isolated historical browser environment was exposed by available tools; .tools contains the pinned Node installations, and the inspected conventional local VM locations had no provided environment. This is an availability statement, not a claim that the owner has no such device elsewhere.
+
+Installed-file inventory found Chrome **154.0.8037.57**, Edge **154.0.4258.37**, Firefox **156.0.1**, and Windows Narrator **10.0.19041.4522**. All three browsers were launched; **only Chrome's exact executed version was independently confirmed in chrome://version**. Edge's version page and Firefox's runtime version were not confirmed; their inventory versions must not be promoted to completed browser tests. No historical browser was installed, no protection changed and no paid service used.
+
+The existing native binary was reused: **6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7**. Its digest, all **87 source-manifest entries**, and local asset hashes were rechecked against the corrected 2026-09-26 inventory: no differences. The compiled JS is **887354a9e865afc3cce33a38e1aadf2d773f70ad69b7dbf46a48cd129250d8f3**, CSS **466c8ff6d19e85a5d317083aa2314163bdab85f50fead2116019338c147b9189**, HTML **73e4e91987858f459285fab450d0c1b344e534717ec5571cfef9870f2dc71a85**. The historical manifest was originally uncommitted; comparing its unchanged source entries with current HEAD now connects that local binary's source evidence to the committed fix without rewriting the old provenance. No build or full regression rerun was needed.
+
+The pinned Node **24.21.0** interactive REPL imported the unchanged `scripts/browser-harness.mjs` and called `startBoard()`. It served the native embedded app from an empty working directory/PATH, using loopback-only controlled Health; origin was `http://127.0.0.1:64430`. No mock data was added to production assets. Fixture complete SHA-256 is **00865883f9477e8fe12a1aac4cd08cb1b6b71dc8da3c17e4507a51fcaaa9038e**; partial-documentary is **dfc3aded6cf6f8074b12ecc7b15fef8fca5ef1105a41b668bcc72d78905ea2cb** (authoritative common corpus).
+
+[Session identities and limits](evidence/s03-operator-2026-09-27/operator-session.json) and [timestamped accessibility observations](evidence/s03-operator-2026-09-27/operator-observations.json) record the limited new execution:
+- Chrome loaded complete observations: Board reachable, Health available, CPU 0.5%, exact cumulative counters **9007199254740993** and **18446744073709551615**, distinct active/since-boot flags.
+- At **09:25:47.499Z**, controlled Health changed to partial-documentary. At **09:26:05.662Z**, Chrome's accessible page contained the partial label, null CPU/memory presentation as Unavailable, group messages and retained logical CPU count. This is PASS for the narrow real-Chrome parse/projection/text-update observation only.
+- A Health 503 was selected at **09:26:13.214Z**. The subsequent accessibility snapshot still represented the earlier partial page while another browser was being opened; foreground/paint state was not reliably established. Stale/none, recovery and exact expiry are **NOT RUN to a conclusive operator result**, not falsely PASS or diagnosed as a product FAIL. The CI has separate passing assertions for them.
+- Native Tab/F6 focus and screenshot attempts were inconclusive: captures failed with `FrameArrived timed out`, `window capture timed out` and `coordinate input geometry is unavailable`; a minimized-window recovery was attempted. The browser surface inventory exposed no alternate connected tabs. Windows reported an active console session, but this did not restore reliable interaction.
+- Finally the computer-use policy guard stopped UI work because it could not determine the current browser URL sufficiently to enforce policy. No further UI interaction or alternate automation route was attempted. The operator subsequently reported that the Windows session appeared open; no locked-session cause is established. This answer does not restore the stopped UI tool or turn an incomplete check into PASS.
+- Narrator is installed, but speech was not heard/recorded and no screen-reader interaction was verified. An accessibility tree is not speech experience evidence.
+
+Setup incidents are retained: direct import into the automation JavaScript runtime failed with `process is not defined`; the first pinned Node REPL launch could not spawn Board in the sandbox (`EPERM`). The authorized native REPL then started successfully. The initial restricted OS query was denied, then the approved read succeeded. These are environment/tool incidents, not product test failures.
+
+Cleanup executed `await b.stop()` and exited the Node REPL, confirming **S03 operator harness stopped**. The earlier failed REPL also exited; the automation JavaScript kernel was reset to release resources from its failed harness import. A final process check found no Board process. No Board service was installed. Because UI access was blocked, dedicated test/version tabs and newly launched browser windows could not be reliably closed; the operator should close those task tabs/windows without closing pre-existing personal tabs. No native zoom change was confirmed.
+
+### Chrome retry with restored extension access
+
+On **2026-09-27, 19:07–19:21 UTC**, the user-requested retry reached real installed Chrome through its restored extension connection. This supplements, and does not overwrite, the unsuccessful earlier native-tool attempts. HEAD remains **24d527a301d66b49d86ad11fbd75393254f02094** with pre-existing documentary changes. The same corrected Windows binary SHA-256 **6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7** and JS/CSS/HTML digests above were rechecked; no rebuild, code change or regression-suite rerun occurred.
+
+The running page's `userAgentData.getHighEntropyValues` reported **Google Chrome 154.0.8037.57**, Windows, platformVersion 10.0.0, non-mobile; the previously recorded host is Windows 10 Pro 22H2 19045.7725. This is runtime brand/version evidence, not an emulated user agent or proof of Chrome 111. The version-page navigation was denied by the browser tool's URL policy; it was not circumvented. No new built-in version-page capture is claimed.
+
+The unchanged pinned Node 24.21.0 harness served embedded Board at **http://127.0.0.1:50600**, using the authoritative complete/partial fixtures and `h.markup()` (65,536 bytes). Initial sandbox launch failed with spawn EPERM; that REPL exited, and the authorized launch succeeded. All product observations below used real Health HTTP → Board HTTP → installed Chrome, without response interception or synthetic lifecycle dispatch.
+
+| Executed subset | Observation / result |
+|---|---|
+| OP-1, T09/T11 exact nominal presentation | **PASS within this subset**: CPU 0.5%, keyboard-opened exact 0.5037%, RX 9007199254740993 and TX 18446744073709551615 visibly intact. Nulls, flags and other groups remain distinct. [360 px capture](evidence/s03-operator-2026-09-27/chrome-retry-nominal-360.jpg). |
+| OP-3, T09 keyboard/focus subset | **PASS**: Enter opens exact CPU disclosure, Tab reaches Memory exact-used, visible focus ring. Its focus and the CPU open disclosure survive ordinary refresh and the partial replacement. This does not establish all keyboard paths or screen-reader speech. |
+| OP-2, T10/T11 partial replacement | **PASS**: selected partial-documentary at 19:08:27.252Z; null CPU/memory become Unavailable, logical CPUs remain 4, zero TX remains 0, group issues appear once. [Partial capture](evidence/s03-operator-2026-09-27/chrome-retry-partial-360.jpg). |
+| OP-2, provider error and expiry | **PASS**: selected Health 503 at 19:08:42.857Z. Board remains reachable, Health unavailable, stale explicitly shown; subsequently no presentable observations and no hostname/metrics, preserving last receipt. [Stale](evidence/s03-operator-2026-09-27/chrome-retry-health-stale-390.jpg), [none](evidence/s03-operator-2026-09-27/chrome-retry-health-none.jpg). This observation does not replace deterministic boundary tests. |
+| OP-2, recovery / maximum markup | **PASS**: at 19:09:18.131Z restored HTTP 200 with `h.markup()`. Ordinary refresh restored current data and exact large counters, without restart or forced retry. [768 px capture](evidence/s03-operator-2026-09-27/chrome-retry-recovered-markup-768.jpg). |
+| OP-2, Board-down independent expiry | **PASS**: Board was killed at 19:10:18.399Z after its last successful receipt at 19:10:18.2797204Z. Chrome changed to Board could not be reached / Health availability unknown, retained explicitly stale values, then removed hostname/metrics without another successful server response. Receipt and generated timestamps remain unchanged. [Stale](evidence/s03-operator-2026-09-27/chrome-retry-board-down-stale.jpg), [expired](evidence/s03-operator-2026-09-27/chrome-retry-board-down-expired.jpg). |
+| OP-3, T12 selected responsive images | **PASS for reviewed images** at requested widths 360, 390, 768 and [1280](evidence/s03-operator-2026-09-27/chrome-retry-nominal-1280.jpg), with height 900. Full-page captures exclude the 15 px scrollbar; exact values and issues remain readable. At 360 and 1280, measured scrollWidth equals clientWidth (345 / 1265), with no horizontal overflow. Partial load labels wrap at 360 but retain all text. Viewport overrides are desktop responsive evidence, not native zoom or a physical mobile device. |
+
+[Timestamped DOM observations](evidence/s03-operator-2026-09-27/chrome-retry-observations.json), [network events](evidence/s03-operator-2026-09-27/chrome-retry-network.json) and [image dimensions/digests](evidence/s03-operator-2026-09-27/chrome-retry-images.json) preserve this retry independently of CI images. The network excerpt contains 19 overview starts, 15 responses and four failed loads, approximately five seconds apart; it is an excerpt, not a total session count or a no-overlap proof for all conditions. The harness counted 38 provider attempts before Board shutdown. Screenshot bytes are the tool's original JPEG output (extensions corrected without image re-encoding).
+
+**Limits/incidents:** the accessibility API labelled the disclosure a button, but the DOM locator reported no matching button; the observed Exact utilization text locator successfully sent Enter. A read-only evaluation did not expose navigator; documented CDP runtime inspection supplied version metadata. One full-page expired capture timed out; the subsequent viewport capture succeeded. After additional tabs were created, a requested 390 override did not change the Board tab: measured width remained 1280, so the Board-down captures are recorded at their actual width. An attempted local auxiliary navigation and later direct API-document navigation were blocked by the browser client; the latter tool call took about 581 s. No bypass was attempted. Opening an auxiliary tab had left Board visible with no visibility events, so it is **not** a passed background test. A fresh lifecycle harness at 50801 was started, but no conclusive actual background/BFCache/lock-resume check followed. These tool incidents establish no product FAIL.
+
+The actual-tab lifecycle, BFCache, suspension, native 200% zoom, full keyboard traversal, 64-interface/long-text manual review and screen-reader checks remain **NOT RUN** in this retry. Existing automated evidence is unchanged. Observation-only lifecycle listeners were attached to the test page but never triggered synthetically; the page was closed afterward. The viewport override was reset, all four agent-created tabs were closed, and both harness instances were stopped; final REPL cleanup completed at **19:21:29.005Z**. No persistent browser setting, service or production resource was changed.
+
+Retry documentary checks: 22 Markdown files / 367 internal links and anchors checked without errors; all three new evidence JSON files parsed and all eight image hashes verified. `git diff --check` passed. This retry changes only this evidence record, the S03 scope/validation status wording, README and the new observation/image artifacts; earlier documentary changes remain preserved. No application/test/build command was rerun.
+
+### Remaining acceptance checklist
+
+Evidence abbreviations: **CI7** = corrected run/report and Linux binary above; **W27** = native Windows binary and earlier timestamped observations; **CR27** = restored Chrome retry above; **L26** = historical corrected local ledger. PASS applies only to the named subset; all rows are existing S03 requirements, not additional gates.
+
+| Test / expected criterion | Required environment | Existing evidence / source | Status | Next action |
+|---|---|---|---|---|
+| T01–T04/T06–T08, T10/T13 automated assertions, exact parsing/expiry/regressions | Locked Node/Go and three supported automated engines | CI7; L26; exact same corrected source | PASS within implemented automated scope | Preserve logs; do not substitute for manual rows. |
+| T09/T12 selected corrected images: 360 px exact values, stale and expired labels | CI Chromium | Three reviewed CI7 captures linked above | PASS for these images | Other real-browser visual checks remain below. |
+| T09/T10/T11/T12 current Chrome executed subsets | Chrome 154.0.8037.57, Windows 10 19045.7725 desktop | CR27 real Health→Board→Chrome, reviewed nominal/partial/stale/none/recovery/Board-down expiry images and limited keyboard interaction | PASS for these subsets | Preserve actual scope; finish outstanding rows below. |
+| T05/T09/T11/T12 remaining current Chrome flow | Same real Chrome desktop, working interactive session | CR27 improved access; full manual critical flow incomplete | NOT RUN | OP-3/4: full keyboard traversal, native zoom, long data/64 interfaces, actual lifecycle/BFCache/suspension. |
+| T05/T09/T11/T12 current Edge flow | Actual Edge desktop, exact runtime patch/OS recorded | File inventory 154.0.4258.37; window launched, no completed Board flow | NOT RUN | OP-1–OP-4; confirm runtime version first. |
+| T05/T09/T11/T12 current Firefox flow | Actual Firefox desktop, exact runtime patch/OS recorded | File inventory 156.0.1; window launched, no completed Board flow | NOT RUN | OP-1–OP-4; confirm runtime version first. |
+| T11 current Safari desktop flow | Real Safari on macOS, exact patch/OS | No accessible Apple environment; WebKit CI7 is not Safari | NOT RUN | Apple operator runs OP-1–OP-4. |
+| T11 Chrome minimum | Isolated Chrome **111**, exact patch/OS | No isolated installation/image supplied | NOT RUN | Obtain existing isolated environment, then OP-1/2/4; do not replace daily browser. |
+| T11 Edge minimum | Isolated Edge **111**, exact patch/OS | Same gap | NOT RUN | Same floor procedure. |
+| T11 Firefox minimum | Isolated Firefox **115**, exact patch/OS | Same gap | NOT RUN | Same floor procedure. |
+| T11 Safari minimum | Safari **16.4** on matching macOS | No supplied environment | NOT RUN | Apple operator runs critical exact/expiry/lifecycle flow. |
+| T11/T12 iOS Safari minimum | **Real iOS device / Safari 16.4**, model/OS patch | No connected device | NOT RUN | OP-5 plus OP-1/2/4; retain touch/zoom/background/back evidence. |
+| T11/T12 current iOS Safari | Real iOS device, current exact version/model/OS | No connected device; mobile viewport is not device proof | NOT RUN | Same actual-device procedure. |
+| T09 screen-reader transition/association and restrained announcements | Real supported browser + Narrator/NVDA/VoiceOver and an operator able to hear output | Narrator installed; no speech evidence | NOT RUN | OP-3, record spoken output and quiet repeated polls. |
+| T09/T12 native 200% zoom and remaining keyboard/visual work | Actual desktop browser UI; target viewports 360/390/768/1280 | CR27 has reviewed current-Chrome responsive captures and Enter/Tab/focus subset; native zoom unchanged | NOT RUN for remaining scope | OP-3: full traversal, long data/64 interfaces, native zoom indicator and reviewed screenshots; do not substitute viewport overrides. |
+| T05 actual tab/background/foreground, no hidden requests/early restoration | Actual browser and request-timing capture | CI7 synthetic events only; W27 attempt inconclusive | NOT RUN | OP-4, retain visibility/events and outgoing request timeline. |
+| T05/T12 actual back navigation and BFCache restoration | Real browser capable of BFCache; record `pageshow.persisted` | No actual persisted=true evidence | NOT RUN | OP-4, document ineligibility and retry in an eligible isolated environment. |
+| T05/T12 device suspension/lock/resume | Real desktop/mobile device and operator | No executed suspension proof | NOT RUN | OP-4/5; metrics masked until next valid slot. |
+| T14 exact-commit hosted gate | GitHub run on corrected SHA | CI7 metadata/jobs/logs/report | PASS | Operator matrix still prevents whole T14/S03 closure. |
+
+**No new product defect was established in this assignment.** The blocked/inconclusive UI attempts do not justify weakening an assertion or changing the product. Implementation and executed local/CI subsets are complete; **S03 is not closed** until the NOT RUN rows above have actual evidence. S04 remains NOT STARTED; packaging/systemd/server compression, Raspberry Pi integration/physical budgets and global A/B/C acceptance remain NOT RUN. No commit, push, tag, release or deployment occurred.
+
+Documentary audit, 2026-09-27: internal links/anchors, fourteen S03 validation IDs, unchanged 87-entry executable-input manifest and retained local binary digests verified. Final diff contains documentation and evidence only; code, tests, fixtures, dependencies, toolchains, scripts/workflows and S00-S02 historical evidence are unchanged. Architecture/UX/specification/decision wording changed only to remove obsolete current-authorization/CI statements; no technical decision changed. No full application regression was rerun.

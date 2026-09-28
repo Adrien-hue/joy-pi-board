@@ -1,0 +1,22 @@
+{
+  "run": 36269739581,
+  "artifact": 10915800376,
+  "archive_sha256": "828c5cc6aa6d57ab9c666ffeb4ef030bfde506e4ca71045a06a4388464e4d9e3",
+  "images": [
+    {
+      "archive_path": "browser-results/browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium/nominal-360.png",
+      "file": "ci-chromium-nominal-360.png",
+      "sha256": "7fc783c904cc70a764ef0493861180a2f3cc9624f5b5729214889ac7287f1c1f"
+    },
+    {
+      "archive_path": "browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-chromium/board-unreachable-stale.png",
+      "file": "ci-chromium-board-unreachable-stale.png",
+      "sha256": "97501cab62db84fffe7ccc48f23f5ba3a35c43a4011d761408c07736abe710e8"
+    },
+    {
+      "archive_path": "browser-results/browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-chromium/expired-without-server.png",
+      "file": "ci-chromium-expired-without-server.png",
+      "sha256": "8946b54a5f1bcd2ad3df95f4f144f95c0dfa282d1b149b3faac688f1386bb6b5"
+    }
+  ]
+}

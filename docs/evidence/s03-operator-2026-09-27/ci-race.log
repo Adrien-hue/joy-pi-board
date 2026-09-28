@@ -1,0 +1,314 @@
+2026-09-26T20:30:11.1388739Z Current runner version: '2.337.0'
+2026-09-26T20:30:11.1424225Z ##[group]Runner Image Provisioner
+2026-09-26T20:30:11.1425877Z Hosted Compute Agent
+2026-09-26T20:30:11.1426896Z Version: 20260828.587
+2026-09-26T20:30:11.1428016Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-26T20:30:11.1429293Z Build Date: 2026-08-28T16:44:25Z
+2026-09-26T20:30:11.1430497Z Worker ID: {9e765733-9d47-440d-a084-03c76dd04a6f}
+2026-09-26T20:30:11.1431712Z Azure Region: eastus2
+2026-09-26T20:30:11.1433029Z ##[endgroup]
+2026-09-26T20:30:11.1435683Z ##[group]Operating System
+2026-09-26T20:30:11.1436737Z Ubuntu
+2026-09-26T20:30:11.1437638Z 24.04.5
+2026-09-26T20:30:11.1438533Z LTS
+2026-09-26T20:30:11.1439344Z ##[endgroup]
+2026-09-26T20:30:11.1440410Z ##[group]Runner Image
+2026-09-26T20:30:11.1441387Z Image: ubuntu-24.04
+2026-09-26T20:30:11.1442702Z Version: 20260920.314.1
+2026-09-26T20:30:11.1444841Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-26T20:30:11.1447628Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-26T20:30:11.1449375Z ##[endgroup]
+2026-09-26T20:30:11.1451767Z ##[group]GITHUB_TOKEN Permissions
+2026-09-26T20:30:11.1454851Z Contents: read
+2026-09-26T20:30:11.1455897Z Metadata: read
+2026-09-26T20:30:11.1456881Z ##[endgroup]
+2026-09-26T20:30:11.1459812Z Secret source: Actions
+2026-09-26T20:30:11.1461340Z Cache mode: write
+2026-09-26T20:30:11.1463427Z Prepare workflow directory
+2026-09-26T20:30:11.1931460Z Prepare all required actions
+2026-09-26T20:30:11.2001605Z Getting action download info
+2026-09-26T20:30:11.4122689Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-26T20:30:11.5217001Z Download action repository 'actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e' (SHA:b7ad1dad31e06c5925ef5d2fc7ad053ef454303e)
+2026-09-26T20:30:11.7397587Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+2026-09-26T20:30:11.9765125Z Complete job name: race
+2026-09-26T20:30:12.0527691Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-26T20:30:12.0528760Z with:
+2026-09-26T20:30:12.0529214Z   persist-credentials: false
+2026-09-26T20:30:12.0529762Z   repository: Adrien-hue/joy-pi-board
+2026-09-26T20:30:12.0534008Z   token: ***
+2026-09-26T20:30:12.0534481Z   ssh-strict: true
+2026-09-26T20:30:12.0534917Z   ssh-user: git
+2026-09-26T20:30:12.0535331Z   clean: true
+2026-09-26T20:30:12.0535785Z   sparse-checkout-cone-mode: true
+2026-09-26T20:30:12.0536300Z   fetch-depth: 1
+2026-09-26T20:30:12.0536726Z   fetch-tags: false
+2026-09-26T20:30:12.0537158Z   show-progress: true
+2026-09-26T20:30:12.0537601Z   lfs: false
+2026-09-26T20:30:12.0538012Z   submodules: false
+2026-09-26T20:30:12.0538454Z   set-safe-directory: true
+2026-09-26T20:30:12.0538959Z   allow-unsafe-pr-checkout: false
+2026-09-26T20:30:12.0539761Z ##[endgroup]
+2026-09-26T20:30:12.1593009Z Syncing repository: Adrien-hue/joy-pi-board
+2026-09-26T20:30:12.1594883Z ##[group]Getting Git version info
+2026-09-26T20:30:12.1595668Z Working directory is '/home/runner/work/joy-pi-board/joy-pi-board'
+2026-09-26T20:30:12.1619531Z [command]/usr/bin/git version
+2026-09-26T20:30:12.1775525Z git version 2.55.0
+2026-09-26T20:30:12.1799025Z ##[endgroup]
+2026-09-26T20:30:12.1812388Z Temporarily overriding HOME='/home/runner/work/_temp/e602dffb-4e9b-49da-8948-5ae2176e8a38' before making global git config changes
+2026-09-26T20:30:12.1815161Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-26T20:30:12.1820019Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/joy-pi-board/joy-pi-board
+2026-09-26T20:30:12.1878323Z Deleting the contents of '/home/runner/work/joy-pi-board/joy-pi-board'
+2026-09-26T20:30:12.1882667Z ##[group]Determining repository object format
+2026-09-26T20:30:12.1884655Z ##[endgroup]
+2026-09-26T20:30:12.1886565Z ##[group]Initializing the repository
+2026-09-26T20:30:12.1889937Z [command]/usr/bin/git init /home/runner/work/joy-pi-board/joy-pi-board
+2026-09-26T20:30:12.2035491Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-26T20:30:12.2037573Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-26T20:30:12.2039494Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-26T20:30:12.2041021Z hint: call:
+2026-09-26T20:30:12.2041924Z hint:
+2026-09-26T20:30:12.2043218Z hint: 	git config --global init.defaultBranch <name>
+2026-09-26T20:30:12.2044484Z hint:
+2026-09-26T20:30:12.2045711Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-26T20:30:12.2047544Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-26T20:30:12.2049080Z hint:
+2026-09-26T20:30:12.2050003Z hint: 	git branch -m <name>
+2026-09-26T20:30:12.2051028Z hint:
+2026-09-26T20:30:12.2052482Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-26T20:30:12.2054816Z Initialized empty Git repository in /home/runner/work/joy-pi-board/joy-pi-board/.git/
+2026-09-26T20:30:12.2059225Z [command]/usr/bin/git remote add origin https://github.com/Adrien-hue/joy-pi-board
+2026-09-26T20:30:12.2120738Z ##[endgroup]
+2026-09-26T20:30:12.2121877Z ##[group]Disabling automatic garbage collection
+2026-09-26T20:30:12.2125269Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-26T20:30:12.2193488Z ##[endgroup]
+2026-09-26T20:30:12.2195358Z ##[group]Setting up auth
+2026-09-26T20:30:12.2196541Z Removing SSH command configuration
+2026-09-26T20:30:12.2200704Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-26T20:30:12.2226386Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-26T20:30:12.2646872Z Removing HTTP extra header
+2026-09-26T20:30:12.2654591Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-26T20:30:12.2697052Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-26T20:30:12.2924701Z Removing includeIf entries pointing to credentials config files
+2026-09-26T20:30:12.2930130Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-26T20:30:12.2966376Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-26T20:30:12.3197607Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-26T20:30:12.3237490Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git.path /home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.3271974Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.3311170Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.3348033Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.3379533Z ##[endgroup]
+2026-09-26T20:30:12.3380884Z ##[group]Fetching the repository
+2026-09-26T20:30:12.3387551Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +24d527a301d66b49d86ad11fbd75393254f02094:refs/remotes/origin/main
+2026-09-26T20:30:12.7023143Z From https://github.com/Adrien-hue/joy-pi-board
+2026-09-26T20:30:12.7024412Z  * [new ref]         24d527a301d66b49d86ad11fbd75393254f02094 -> origin/main
+2026-09-26T20:30:12.7054233Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-26T20:30:12.7068871Z   origin/main
+2026-09-26T20:30:12.7081243Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-26T20:30:12.7111973Z 24d527a301d66b49d86ad11fbd75393254f02094
+2026-09-26T20:30:12.7125710Z ##[endgroup]
+2026-09-26T20:30:12.7127211Z ##[group]Determining the checkout info
+2026-09-26T20:30:12.7129009Z ##[endgroup]
+2026-09-26T20:30:12.7130315Z [command]/usr/bin/git sparse-checkout disable
+2026-09-26T20:30:12.7193338Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-26T20:30:12.7228107Z ##[group]Checking out the ref
+2026-09-26T20:30:12.7231146Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-26T20:30:12.7541538Z Switched to a new branch 'main'
+2026-09-26T20:30:12.7545935Z branch 'main' set up to track 'origin/main'.
+2026-09-26T20:30:12.7555769Z ##[endgroup]
+2026-09-26T20:30:12.7605516Z [command]/usr/bin/git log -1 --format=%H
+2026-09-26T20:30:12.7635342Z 24d527a301d66b49d86ad11fbd75393254f02094
+2026-09-26T20:30:12.7644816Z ##[group]Removing auth
+2026-09-26T20:30:12.7645647Z Removing SSH command configuration
+2026-09-26T20:30:12.7648067Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-26T20:30:12.7687722Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-26T20:30:12.7911209Z Removing HTTP extra header
+2026-09-26T20:30:12.7915012Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-26T20:30:12.7950202Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-26T20:30:12.8167550Z Removing includeIf entries pointing to credentials config files
+2026-09-26T20:30:12.8170027Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-26T20:30:12.8201743Z includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git.path
+2026-09-26T20:30:12.8205156Z includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git/worktrees/*.path
+2026-09-26T20:30:12.8207646Z includeif.gitdir:/github/workspace/.git.path
+2026-09-26T20:30:12.8209796Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-26T20:30:12.8214665Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git.path
+2026-09-26T20:30:12.8244861Z /home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.8255683Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-fa19cacc\-944a\-4dd6\-b3de\-2ec03fad0c41\.config
+2026-09-26T20:30:12.8293255Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git/worktrees/*.path
+2026-09-26T20:30:12.8324817Z /home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.8339378Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/joy-pi-board/joy-pi-board/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-fa19cacc\-944a\-4dd6\-b3de\-2ec03fad0c41\.config
+2026-09-26T20:30:12.8380851Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-26T20:30:12.8476557Z /github/runner_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.8488022Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-fa19cacc\-944a\-4dd6\-b3de\-2ec03fad0c41\.config
+2026-09-26T20:30:12.8534288Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-26T20:30:12.8552652Z /github/runner_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config
+2026-09-26T20:30:12.8560140Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-fa19cacc\-944a\-4dd6\-b3de\-2ec03fad0c41\.config
+2026-09-26T20:30:12.8597078Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-26T20:30:12.8814813Z Removing credentials config '/home/runner/work/_temp/git-credentials-fa19cacc-944a-4dd6-b3de-2ec03fad0c41.config'
+2026-09-26T20:30:12.8822775Z ##[endgroup]
+2026-09-26T20:30:12.9204204Z ##[group]Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e
+2026-09-26T20:30:12.9205796Z with:
+2026-09-26T20:30:12.9206643Z   go-version: 1.27.1
+2026-09-26T20:30:12.9207580Z   check-latest: false
+2026-09-26T20:30:12.9208518Z   cache: false
+2026-09-26T20:30:12.9217747Z   token: ***
+2026-09-26T20:30:12.9218638Z ##[endgroup]
+2026-09-26T20:30:13.0366323Z Setup go version spec 1.27.1
+2026-09-26T20:30:13.0375782Z Attempting to download 1.27.1...
+2026-09-26T20:30:13.4302564Z matching 1.27.1...
+2026-09-26T20:30:13.4323624Z Acquiring 1.27.1 from https://github.com/actions/go-versions/releases/download/1.27.1-33583469715/go-1.27.1-linux-x64.tar.gz
+2026-09-26T20:30:14.0948638Z Extracting Go...
+2026-09-26T20:30:14.1076558Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/6e216bd5-9abc-486f-bf62-47464a59e1d7 -f /home/runner/work/_temp/f1c87226-9f61-4005-baca-1bd6b713332e
+2026-09-26T20:30:15.7850602Z Successfully extracted go to /home/runner/work/_temp/6e216bd5-9abc-486f-bf62-47464a59e1d7
+2026-09-26T20:30:15.7851582Z Adding to the cache ...
+2026-09-26T20:30:21.7173239Z Successfully cached go to /opt/hostedtoolcache/go/1.27.1/x64
+2026-09-26T20:30:21.7175545Z Added go to the path
+2026-09-26T20:30:21.7179671Z Successfully set up Go version 1.27.1
+2026-09-26T20:30:21.7376213Z go version go1.27.1 linux/amd64
+2026-09-26T20:30:21.7376483Z
+2026-09-26T20:30:21.7376822Z ##[group]go env
+2026-09-26T20:30:22.5305180Z AR='ar'
+2026-09-26T20:30:22.5305654Z CC='gcc'
+2026-09-26T20:30:22.5306036Z CGO_CFLAGS='-O2 -g'
+2026-09-26T20:30:22.5306489Z CGO_CPPFLAGS=''
+2026-09-26T20:30:22.5306890Z CGO_CXXFLAGS='-O2 -g'
+2026-09-26T20:30:22.5307377Z CGO_ENABLED='1'
+2026-09-26T20:30:22.5307914Z CGO_FFLAGS='-O2 -g'
+2026-09-26T20:30:22.5308402Z CGO_LDFLAGS='-O2 -g'
+2026-09-26T20:30:22.5308904Z CXX='g++'
+2026-09-26T20:30:22.5309426Z GCCGO='gccgo'
+2026-09-26T20:30:22.5309897Z GO111MODULE=''
+2026-09-26T20:30:22.5310389Z GOAMD64='v1'
+2026-09-26T20:30:22.5310886Z GOARCH='amd64'
+2026-09-26T20:30:22.5311531Z GOAUTH='netrc'
+2026-09-26T20:30:22.5312304Z GOBIN='/home/runner/go/bin'
+2026-09-26T20:30:22.5312919Z GOCACHE='/home/runner/.cache/go-build'
+2026-09-26T20:30:22.5313575Z GOCACHEPROG=''
+2026-09-26T20:30:22.5314012Z GODEBUG=''
+2026-09-26T20:30:22.5314528Z GOENV='/home/runner/.config/go/env'
+2026-09-26T20:30:22.5315109Z GOEXE=''
+2026-09-26T20:30:22.5315538Z GOEXPERIMENT=''
+2026-09-26T20:30:22.5316005Z GOFIPS140='off'
+2026-09-26T20:30:22.5316434Z GOFLAGS=''
+2026-09-26T20:30:22.5317844Z GOGCCFLAGS='-fPIC -m64 -pthread -Wl,--no-gc-sections -fmessage-length=0 -ffile-prefix-map=/tmp/go-build1447531862=/tmp/go-build -gno-record-gcc-switches'
+2026-09-26T20:30:22.5319367Z GOHOSTARCH='amd64'
+2026-09-26T20:30:22.5319828Z GOHOSTOS='linux'
+2026-09-26T20:30:22.5320315Z GOINSECURE=''
+2026-09-26T20:30:22.5320942Z GOMOD='/home/runner/work/joy-pi-board/joy-pi-board/go.mod'
+2026-09-26T20:30:22.5321708Z GOMODCACHE='/home/runner/go/pkg/mod'
+2026-09-26T20:30:22.5322485Z GONOPROXY=''
+2026-09-26T20:30:22.5323281Z GONOSUMDB=''
+2026-09-26T20:30:22.5323635Z GOOS='linux'
+2026-09-26T20:30:22.5323980Z GOPACKAGESDRIVER=''
+2026-09-26T20:30:22.5324382Z GOPATH='/home/runner/go'
+2026-09-26T20:30:22.5324671Z GOPRIVATE=''
+2026-09-26T20:30:22.5324975Z GOPROXY='https://proxy.golang.org,direct'
+2026-09-26T20:30:22.5325332Z GOROOT='/opt/hostedtoolcache/go/1.27.1/x64'
+2026-09-26T20:30:22.5325654Z GOSUMDB='sum.golang.org'
+2026-09-26T20:30:22.5325906Z GOTELEMETRY='local'
+2026-09-26T20:30:22.5326191Z GOTELEMETRYDIR='/home/runner/.config/go/telemetry'
+2026-09-26T20:30:22.5326512Z GOTMPDIR=''
+2026-09-26T20:30:22.5326723Z GOTOOLCHAIN='local'
+2026-09-26T20:30:22.5327065Z GOTOOLDIR='/opt/hostedtoolcache/go/1.27.1/x64/pkg/tool/linux_amd64'
+2026-09-26T20:30:22.5327433Z GOVCS=''
+2026-09-26T20:30:22.5327640Z GOVERSION='go1.27.1'
+2026-09-26T20:30:22.5327892Z GOWORK=''
+2026-09-26T20:30:22.5328121Z PKG_CONFIG='pkg-config'
+2026-09-26T20:30:22.5328269Z
+2026-09-26T20:30:22.5328668Z ##[endgroup]
+2026-09-26T20:30:22.5549380Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+2026-09-26T20:30:22.5549814Z with:
+2026-09-26T20:30:22.5550022Z   node-version: 24.21.0
+2026-09-26T20:30:22.5550255Z   check-latest: false
+2026-09-26T20:30:22.5550490Z   package-manager-cache: false
+2026-09-26T20:30:22.5553419Z   token: ***
+2026-09-26T20:30:22.5553633Z env:
+2026-09-26T20:30:22.5553828Z   GOTOOLCHAIN: local
+2026-09-26T20:30:22.5554052Z ##[endgroup]
+2026-09-26T20:30:22.7099757Z Found in cache @ /opt/hostedtoolcache/node/24.21.0/x64
+2026-09-26T20:30:22.7103977Z ##[group]Environment details
+2026-09-26T20:30:25.8698719Z node: v24.21.0
+2026-09-26T20:30:25.8699618Z npm: 11.19.0
+2026-09-26T20:30:25.8699970Z yarn: 1.22.22
+2026-09-26T20:30:25.8700723Z ##[endgroup]
+2026-09-26T20:30:25.8825410Z ##[group]Run printenv ImageOS ImageVersion RUNNER_OS RUNNER_ARCH
+2026-09-26T20:30:25.8825936Z [36;1mprintenv ImageOS ImageVersion RUNNER_OS RUNNER_ARCH[0m
+2026-09-26T20:30:25.8826283Z [36;1muname -a[0m
+2026-09-26T20:30:25.8826494Z [36;1mgcc --version[0m
+2026-09-26T20:30:25.8826751Z [36;1mnode scripts/tasks.mjs tools[0m
+2026-09-26T20:30:25.9169486Z shell: /usr/bin/bash -e {0}
+2026-09-26T20:30:25.9169790Z env:
+2026-09-26T20:30:25.9170019Z   GOTOOLCHAIN: local
+2026-09-26T20:30:25.9170281Z ##[endgroup]
+2026-09-26T20:30:25.9352860Z ubuntu24
+2026-09-26T20:30:25.9353164Z 20260920.314.1
+2026-09-26T20:30:25.9353411Z Linux
+2026-09-26T20:30:25.9353620Z X64
+2026-09-26T20:30:25.9359312Z Linux runnervmtr4k5 6.17.0-1022-azure #22-Ubuntu SMP Mon Jul 27 17:24:03 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+2026-09-26T20:30:25.9370558Z gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+2026-09-26T20:30:25.9371019Z Copyright (C) 2023 Free Software Foundation, Inc.
+2026-09-26T20:30:25.9372240Z This is free software; see the source for copying conditions.  There is NO
+2026-09-26T20:30:25.9373436Z warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+2026-09-26T20:30:25.9373938Z
+2026-09-26T20:30:26.0651853Z Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+2026-09-26T20:30:26.0737098Z ##[group]Run npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00-race"
+2026-09-26T20:30:26.0737637Z [36;1mnpm --prefix web ci --cache "$RUNNER_TEMP/npm-s00-race"[0m
+2026-09-26T20:30:26.0804537Z shell: /usr/bin/bash -e {0}
+2026-09-26T20:30:26.0804795Z env:
+2026-09-26T20:30:26.0804997Z   GOTOOLCHAIN: local
+2026-09-26T20:30:26.0805231Z ##[endgroup]
+2026-09-26T20:30:30.9929295Z
+2026-09-26T20:30:30.9930356Z > joy-pi-board-web@0.1.0-s00 preinstall
+2026-09-26T20:30:30.9931157Z > node ../scripts/tasks.mjs tools
+2026-09-26T20:30:30.9931501Z
+2026-09-26T20:30:31.1170532Z Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+2026-09-26T20:30:31.1391425Z
+2026-09-26T20:30:31.1392235Z added 181 packages in 5s
+2026-09-26T20:30:31.1978534Z ##[group]Run npm --prefix web run race
+2026-09-26T20:30:31.1978899Z [36;1mnpm --prefix web run race[0m
+2026-09-26T20:30:31.2044195Z shell: /usr/bin/bash -e {0}
+2026-09-26T20:30:31.2044448Z env:
+2026-09-26T20:30:31.2044813Z   GOTOOLCHAIN: local
+2026-09-26T20:30:31.2045039Z ##[endgroup]
+2026-09-26T20:30:31.3050246Z
+2026-09-26T20:30:31.3051146Z > joy-pi-board-web@0.1.0-s00 race
+2026-09-26T20:30:31.3051606Z > node ../scripts/tasks.mjs race
+2026-09-26T20:30:31.3051822Z
+2026-09-26T20:30:31.4247406Z Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+2026-09-26T20:30:31.7702221Z [36mvite v8.3.0 [32mbuilding client environment for production...[36m[39m
+2026-09-26T20:30:31.7794630Z transforming...
+2026-09-26T20:30:31.8355737Z ✓ 33 modules transformed.
+2026-09-26T20:30:31.8544133Z rendering chunks...
+2026-09-26T20:30:31.8905636Z computing gzip size...
+2026-09-26T20:30:31.8951049Z dist/index.html                   0.47 kB │ gzip:  0.29 kB
+2026-09-26T20:30:31.8952412Z dist/assets/index-C2saZNkU.css    3.48 kB │ gzip:  1.33 kB
+2026-09-26T20:30:31.8953029Z dist/assets/index-CX_H3VPY.js   253.00 kB │ gzip: 79.17 kB
+2026-09-26T20:30:31.8953456Z
+2026-09-26T20:30:31.8955461Z [32m✓ built in 124ms[39m
+2026-09-26T20:31:00.1383927Z ok  	github.com/Adrien-hue/joy-pi-board/cmd/joy-pi-board	7.048s
+2026-09-26T20:31:00.1384614Z ok  	github.com/Adrien-hue/joy-pi-board/internal/config	1.008s
+2026-09-26T20:31:00.1385165Z ok  	github.com/Adrien-hue/joy-pi-board/internal/eventlog	1.011s
+2026-09-26T20:31:00.1387296Z ok  	github.com/Adrien-hue/joy-pi-board/internal/health	1.060s
+2026-09-26T20:31:00.1387873Z ok  	github.com/Adrien-hue/joy-pi-board/internal/healthschema	1.916s
+2026-09-26T20:31:00.4104338Z ok  	github.com/Adrien-hue/joy-pi-board/internal/httpapi	6.052s
+2026-09-26T20:31:00.4105171Z ok  	github.com/Adrien-hue/joy-pi-board/internal/httpui	1.013s
+2026-09-26T20:31:00.4106005Z ?   	github.com/Adrien-hue/joy-pi-board/internal/httpwire	[no test files]
+2026-09-26T20:31:00.4106720Z ok  	github.com/Adrien-hue/joy-pi-board/internal/overview	4.056s
+2026-09-26T20:31:00.4107472Z ?   	github.com/Adrien-hue/joy-pi-board/web	[no test files]
+2026-09-26T20:31:00.5336101Z Post job cleanup.
+2026-09-26T20:31:00.6611407Z Post job cleanup.
+2026-09-26T20:31:00.7928333Z Post job cleanup.
+2026-09-26T20:31:00.8787224Z [command]/usr/bin/git version
+2026-09-26T20:31:00.8831603Z git version 2.55.0
+2026-09-26T20:31:00.8875636Z Temporarily overriding HOME='/home/runner/work/_temp/ddd809be-3d23-4e1e-b764-5881d82f733c' before making global git config changes
+2026-09-26T20:31:00.8877302Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-26T20:31:00.8880993Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/joy-pi-board/joy-pi-board
+2026-09-26T20:31:00.8912810Z Removing SSH command configuration
+2026-09-26T20:31:00.8919305Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-26T20:31:00.8954927Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-26T20:31:00.9194102Z Removing HTTP extra header
+2026-09-26T20:31:00.9199765Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-26T20:31:00.9235924Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-26T20:31:00.9584257Z Removing includeIf entries pointing to credentials config files
+2026-09-26T20:31:00.9585998Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-26T20:31:00.9630098Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-26T20:31:01.0100269Z Cleaning up orphan processes

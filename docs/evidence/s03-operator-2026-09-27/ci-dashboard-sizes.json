@@ -1,0 +1,88 @@
+{
+  "scope": "S03 dashboard including production parser; independent offline gzip-9, actual HTTP identity; no S04 compression or physical acceptance",
+  "node": "24.21.0",
+  "zlib": "1.3.2.1-motley-8002e91",
+  "binarySHA256": "4c6f137642478fc8e82177f28715e1e483e46abd40c38d8e48aace99d0bf1c5c",
+  "jsCSSGzip9": 79522,
+  "resourcesGzip9": 79817,
+  "resourcesHTTPBytes": 256971,
+  "files": [
+    {
+      "name": "index.html",
+      "bytes": 475,
+      "gzip9": 295,
+      "sha256": "73e4e91987858f459285fab450d0c1b344e534717ec5571cfef9870f2dc71a85",
+      "httpBodyBytes": 475,
+      "contentEncoding": "identity (header absent)"
+    },
+    {
+      "name": "assets/index-C2saZNkU.css",
+      "bytes": 3489,
+      "gzip9": 1336,
+      "sha256": "466c8ff6d19e85a5d317083aa2314163bdab85f50fead2116019338c147b9189",
+      "httpBodyBytes": 3489,
+      "contentEncoding": "identity (header absent)"
+    },
+    {
+      "name": "assets/index-CX_H3VPY.js",
+      "bytes": 253007,
+      "gzip9": 78186,
+      "sha256": "887354a9e865afc3cce33a38e1aadf2d773f70ad69b7dbf46a48cd129250d8f3",
+      "httpBodyBytes": 253007,
+      "contentEncoding": "identity (header absent)"
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "complete",
+      "health": {
+        "bytes": 759,
+        "gzip9": 418,
+        "sha256": "00865883f9477e8fe12a1aac4cd08cb1b6b71dc8da3c17e4507a51fcaaa9038e"
+      },
+      "overview": {
+        "bytes": 951,
+        "gzip9": 500,
+        "sha256": "4d45771cf45596413511cfb9e7baf3a6e9f8aa400cb05ae68f64865b45f9e959"
+      },
+      "httpBodyBytes": 951,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80317,
+      "resourcePlusOverviewHTTPBytes": 257922
+    },
+    {
+      "name": "partial",
+      "health": {
+        "bytes": 1992,
+        "gzip9": 544,
+        "sha256": "dfc3aded6cf6f8074b12ecc7b15fef8fca5ef1105a41b668bcc72d78905ea2cb"
+      },
+      "overview": {
+        "bytes": 2184,
+        "gzip9": 630,
+        "sha256": "d620479108db29070c684d731e20c1b4eb87b1d41c3526e1fd5510919bf832fa"
+      },
+      "httpBodyBytes": 2184,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80447,
+      "resourcePlusOverviewHTTPBytes": 259155
+    },
+    {
+      "name": "maximum-markup",
+      "health": {
+        "bytes": 65536,
+        "gzip9": 566,
+        "sha256": "49533f8c6d262849aa6b3cb1ff3003a4c90f0a2280612a3ae5a074c437c29b5a"
+      },
+      "overview": {
+        "bytes": 65728,
+        "gzip9": 660,
+        "sha256": "ab40d757cc7fbb2987b6d13228866cad64efa7c32b90eb114e4f96a7c4d32c4c"
+      },
+      "httpBodyBytes": 65728,
+      "contentEncoding": "identity (header absent)",
+      "resourcePlusOverviewGzip9": 80477,
+      "resourcePlusOverviewHTTPBytes": 322699
+    }
+  ]
+}

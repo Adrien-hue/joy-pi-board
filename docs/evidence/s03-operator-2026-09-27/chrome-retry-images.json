@@ -1,0 +1,58 @@
+[
+  {
+    "file": "chrome-retry-board-down-expired.jpg",
+    "format": "JPEG",
+    "sha256": "8d331d2001c33ab01afbf7d88845cf28b464e9cd89a339ef563bf9ff80c63215",
+    "width": 1280,
+    "height": 900
+  },
+  {
+    "file": "chrome-retry-board-down-stale.jpg",
+    "format": "JPEG",
+    "sha256": "29f215a0312d534a690652ff63077200957aca4079519d3c9ca1ef8636171010",
+    "width": 1265,
+    "height": 1713
+  },
+  {
+    "file": "chrome-retry-health-none.jpg",
+    "format": "JPEG",
+    "sha256": "b3e21a60fbb8baaef6dd35ea9dbb07ef2f9ae565ccc33734a89ce35ce2c24568",
+    "width": 375,
+    "height": 936
+  },
+  {
+    "file": "chrome-retry-health-stale-390.jpg",
+    "format": "JPEG",
+    "sha256": "0ae36f5b98954d03c292958f6cd02e2f8fb864cd919551558f604590f41d5a94",
+    "width": 375,
+    "height": 4145
+  },
+  {
+    "file": "chrome-retry-nominal-1280.jpg",
+    "format": "JPEG",
+    "sha256": "dff09adcba4a949d58d307169b0745c50ed34c2bb46fd820ba598dea9f6ddf89",
+    "width": 1265,
+    "height": 1713
+  },
+  {
+    "file": "chrome-retry-nominal-360.jpg",
+    "format": "JPEG",
+    "sha256": "b6b90d54b7bb74294b1e396a27c792b1dadf9780925180f0c22e22f5cf20371a",
+    "width": 345,
+    "height": 3166
+  },
+  {
+    "file": "chrome-retry-partial-360.jpg",
+    "format": "JPEG",
+    "sha256": "2fb6dec48ec804fc27e5399ca61e41d5d69888ae474a20daad662d721b7d279a",
+    "width": 345,
+    "height": 4137
+  },
+  {
+    "file": "chrome-retry-recovered-markup-768.jpg",
+    "format": "JPEG",
+    "sha256": "6dd74c86be985ac4f73a62b22036259a71c10e46a33e34c837655ec76d2fc802",
+    "width": 753,
+    "height": 2161
+  }
+]

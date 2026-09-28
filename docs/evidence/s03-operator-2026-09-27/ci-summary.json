@@ -1,0 +1,324 @@
+{
+  "verified_at": "2026-09-27",
+  "run": {
+    "id": 36269739581,
+    "attempt": 1,
+    "url": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/36269739581",
+    "workflow": "Board foundation and contracts",
+    "event": "push",
+    "branch": "main",
+    "sha": "24d527a301d66b49d86ad11fbd75393254f02094",
+    "commit": "fix: prevent early and duplicate overview refresh attempts",
+    "started": "2026-09-26T20:30:08Z",
+    "updated": "2026-09-26T20:35:41Z",
+    "conclusion": "success"
+  },
+  "local_head": "24d527a301d66b49d86ad11fbd75393254f02094",
+  "remote_main": "24d527a301d66b49d86ad11fbd75393254f02094",
+  "jobs": [
+    {
+      "id": 108481283155,
+      "name": "race",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36269739581,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record race platform and compiler",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s00-race\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Native Linux race detector, frontend built first",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 108481283237,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36269739581,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record browser host and exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s03-browser\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Install locked Playwright engine revisions on supported Linux",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build embedded production app and exercise all three engines",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 108481283244,
+      "name": "foundation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 36269739581,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record actual hosted environment and enforce exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Locked install without restored dependency caches",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Check S00-S03 sources, HTTP contracts and tests, frontend before Go embed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Bounded Health schema fuzzing (S01)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Native and Linux ARM64 binaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Embedded binary, S02 unavailable overview and missing-dist checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 10915800376,
+      "name": "board-browser-evidence",
+      "size_in_bytes": 9013792,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/10915800376",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/10915800376/zip",
+      "expired": false,
+      "created_at": "2026-09-26T20:35:37Z",
+      "expires_at": "2026-10-03T20:35:36Z",
+      "updated_at": "2026-09-26T20:35:37Z",
+      "digest": "sha256:828c5cc6aa6d57ab9c666ffeb4ef030bfde506e4ca71045a06a4388464e4d9e3",
+      "workflow_run": {
+        "id": 36269739581,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "24d527a301d66b49d86ad11fbd75393254f02094"
+      }
+    },
+    {
+      "id": 10914973181,
+      "name": "board-check-evidence",
+      "size_in_bytes": 12286799,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/10914973181",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/10914973181/zip",
+      "expired": false,
+      "created_at": "2026-09-26T20:31:42Z",
+      "expires_at": "2026-10-03T20:31:40Z",
+      "updated_at": "2026-09-26T20:31:42Z",
+      "digest": "sha256:44e0324dd73f280f2ab33b090c82ffe8b7c3a5461137ce62276e961b571546d9",
+      "workflow_run": {
+        "id": 36269739581,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "24d527a301d66b49d86ad11fbd75393254f02094"
+      }
+    }
+  ]
+}

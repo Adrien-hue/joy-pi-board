@@ -1,12 +1,12 @@
 # Sprint 03 — Overview interface and browser resilience
 
-Status: **IMPLEMENTED AND LOCALLY VERIFIED; CLOSURE PENDING**, 2026-09-25. The current user instruction authorizes S03 implementation and approves S03-R01/R02/R04, P-06 presentation/accessibility and preliminary size protocols prepared on 2026-09-23. S00/S01/S02 remain closed; S04 is not started. No commit, push, tag, release or deployment. [S03 evidence](s03-evidence.md) records actual checks; unavailable required browsers or new CI keep closure pending.
+Status: **IMPLEMENTED, CI VERIFIED; CLOSURE PENDING OPERATOR VERIFICATION**, updated 2026-09-27. The present assignment authorizes evidence consolidation and operator validation only. The historical implementation instruction approved S03-R01/R02/R04, P-06 presentation/accessibility and preliminary size protocols prepared on 2026-09-23. S00/S01/S02 remain closed; S04 is not started. No commit, push, tag, release or deployment. [S03 evidence](s03-evidence.md) records actual checks; corrected CI run 36269739581 attempt 1 is verified on 24d527a301d66b49d86ad11fbd75393254f02094; the [operator checklist](s03-evidence.md#remaining-acceptance-checklist) still blocks closure.
 
 ## Starting point and authority
 
 Historical preparation started at Board HEAD `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4`. The ten Markdown modifications from S02 closure were already present at the start of preparation and are preserved. In particular, S02's evidence record is not rewritten. The [S01 proof](s01-evidence.md) covers implementation `ccd1245a64fc372faa4ebc85eb000f78a01bd396` / run 35637699325; [S02 proof](s02-evidence.md) covers `a11f07c85ff4071a13ca3ae9227920e9f1c7dda4` / run 35908782107 attempt 1. Neither proves the subsequent documentary changes or S03 implementation. Historical closure wording in those ledgers describes its dated assignment.
 
-[Specification](specification-v0.1.0.md) owns requirements/budgets, [Board API](board-api-v0.1.0.md) the approved server wire contract, [Health integration](health-integration-v1.0.md) the snapshot, [ADR-001](adr-001-exact-json-integers.md) exact integers, [UX](ux-v0.1.0.md) presentation and approved browser freshness obligations. This work package owns the approved S03 consumer/scheduling realization, tasks and closure procedure; the [validation matrix](validation-v0.1.0.md#prepared-s03-validation-matrix) owns planned test oracles. [Decisions](decisions.md#s03-preparation-recommendations) records the current instruction's S03-R01–R04 approval separately from earlier decisions. No server-contract or Health-baseline change is proposed.
+[Specification](specification-v0.1.0.md) owns requirements/budgets, [Board API](board-api-v0.1.0.md) the approved server wire contract, [Health integration](health-integration-v1.0.md) the snapshot, [ADR-001](adr-001-exact-json-integers.md) exact integers, [UX](ux-v0.1.0.md) presentation and approved browser freshness obligations. This work package owns the approved S03 consumer/scheduling realization, tasks and closure procedure; the [validation matrix](validation-v0.1.0.md#prepared-s03-validation-matrix) owns planned test oracles. [Decisions](decisions.md#s03-preparation-recommendations) records the historical implementation instruction's S03-R01–R04 approval separately from earlier decisions. No server-contract or Health-baseline change is proposed.
 
 ## Scope and inspected seams
 
@@ -42,7 +42,7 @@ The table retains the prepared task definitions; execution and remaining proof o
 
 ## Production envelope consumer
 
-**S03-R01, APPROVED by the current implementation instruction** consumption choices; approved server and Health rules are unchanged.
+**S03-R01, APPROVED by the historical implementation instruction** consumption choices; approved server and Health rules are unchanged.
 
 ### Bounded HTTP acquisition
 
@@ -83,7 +83,7 @@ A valid header <=30000 plus transit can already be too old to display: that is a
 
 ## Scheduling and lifecycle realization
 
-**S03-R02, APPROVED by the current implementation instruction**, implements established 5 s/no-overlap/no-retry and approved P-05 lifecycle rules. One controller owns clock, timer, lifecycle generation, attempt ID and active reader/controller. Inject these dependencies for tests; do not expose test controls in production globals.
+**S03-R02, APPROVED by the historical implementation instruction**, implements established 5 s/no-overlap/no-retry and approved P-05 lifecycle rules. One controller owns clock, timer, lifecycle generation, attempt ID and active reader/controller. Inject these dependencies for tests; do not expose test controls in production globals.
 
 - On visible initial mount, issue the first attempt immediately (a same-turn cancellable microtask is permitted for effect replay). Subsequent slots are mount epoch + n × 5,000 ms. Use one rescheduled timeout, not a backlog of interval events. A busy slot is skipped, never queued. After any completion/error, wait for the next strictly future slot; no immediate retry. If event-loop delay passes multiple slots, discard missed slots and arm the next future one, without catch-up calls.
 - Timeout at 2 s invalidates that attempt, aborts Fetch/reader and publishes timeout once. Keep the in-flight permit until reader/request cleanup settles; generation/attempt checks prevent late publication. Cleanup does not create a provider failure. Do not start a second active reader while cancellation is settling. A pathological never-settling test transport cannot cause unbounded replacement work.
@@ -110,7 +110,7 @@ Keep three dimensions, not one overloaded status:
 
 ## Browser tooling and proof requirements
 
-**S03-R04, APPROVED by the current implementation instruction.** Add one justified, exactly pinned `@playwright/test` development dependency during implementation after checking its license, Node 24 compatibility, transitive lock and browser-revision requirements. Playwright 1.63.0 is now installed and locked; evaluation and observed engines are recorded in [S03 evidence](s03-evidence.md). Retain Vitest for pure consumer/clock/format/state tests and static component structure; use actual browser DOM tests for effects/interactions instead of claiming existing Node static rendering is a DOM test. No DOM simulator is proposed; if later introduced, report it separately.
+**S03-R04, APPROVED by the historical implementation instruction.** Add one justified, exactly pinned `@playwright/test` development dependency during implementation after checking its license, Node 24 compatibility, transitive lock and browser-revision requirements. Playwright 1.63.0 is now installed and locked; evaluation and observed engines are recorded in [S03 evidence](s03-evidence.md). Retain Vitest for pure consumer/clock/format/state tests and static component structure; use actual browser DOM tests for effects/interactions instead of claiming existing Node static rendering is a DOM test. No DOM simulator is proposed; if later introduced, report it separately.
 
 Primary documentation reviewed 2026-09-23: [Playwright installation/platforms](https://playwright.dev/docs/intro), [browser engines/channels](https://playwright.dev/docs/browsers). Ubuntu 24.04 CI and Node 24 are supported choices. The historical local Windows 10 host is not in current Playwright's native Windows support list; use a supported Linux/WSL environment for automation rather than changing project toolchains. Package and downloaded browser revisions must be locked/recorded during implementation, not invented now. Playwright WebKit is not branded Safari, nor an iPhone/device proof.
 
@@ -119,8 +119,8 @@ Read-only installed-file inventory on 2026-09-23 found Chrome **153.0.8010.53**,
 | Evidence lane | Required S03 evidence / availability |
 |---|---|
 | Node/Vitest | Deterministic stream, envelope, state and time tests. Not browser or DOM proof. Local S03 assertions PASS; exact scope/counts are in the dated evidence ledger. |
-| Automated engines | Production app served by the native Go binary with controlled Health; Chromium, Firefox and WebKit in supported CI. Record exact engine/build, OS/image, package lock, binary/asset hashes, traces and screenshots. Local Chromium/Firefox/WebKit execution PASS; hosted S03 CI is NOT RUN. See the dated ledger. |
-| Branded desktop browsers | Execute critical parsing, timing/lifecycle, keyboard and degraded-state flows in Chrome, Edge, Firefox and Safari; record exact runtime version and OS. The versions above were preparation-time candidates; current native/browser tools were unavailable during implementation, so branded runs remain NOT RUN; Safari requires a macOS operator/environment. |
+| Automated engines | Production app served by the native Go binary with controlled Health; Chromium, Firefox and WebKit in supported CI. Record exact engine/build, OS/image, package lock, binary/asset hashes, traces and screenshots. Local engine execution and corrected hosted CI PASS; see the dated ledger and exact SHA. |
+| Branded desktop browsers | Execute critical parsing, timing/lifecycle, keyboard and degraded-state flows in Chrome, Edge, Firefox and Safari; record exact runtime version and OS. The versions above were preparation-time candidates. The early 2026-09-27 attempt was limited by native capture/input and policy. A later restored-extension retry in Chrome 154.0.8037.57 verified exact nominal/partial presentation, degraded states, recovery, independent Board-down expiry, selected keyboard actions and reviewed responsive captures. Full branded flows remain incomplete: native zoom, remaining keyboard/long-data review and actual lifecycle are still pending; see the checklist for exact executed scope. Safari requires a macOS operator/environment. |
 | Compatibility floors | Chrome **111**, Edge **111**, Firefox **115**, Safari **16.4** and iOS Safari **16.4** stay supported. Require the critical consumer/uint64/expiry/lifecycle suite on actual minimum versions plus current family smoke/visual evidence. Obtain isolated browser/OS images or an explicitly available operator test environment; record actual patch versions. Current engines/transpilation are not substitute floor execution. |
 | Actual mobile Safari | Safari/iOS UI, background/foreground and back-navigation, exact-value details and touch/focus/zoom on an identified real iOS device; pair with desktop Safari checks. Device emulation or Linux WebKit is supplemental only. No device availability is assumed. |
 
@@ -140,7 +140,7 @@ S04 retains A-06 Debian/systemd, deployment hardening/compression, exact final A
 
 ## Approval and remaining decisions
 
-The current implementation instruction approves S03-R01/R02/R04 and the S03 subset of P-06. The fixed server envelope, P-05 obligations, Health policies, stack and numeric convention remain unchanged. P-06 physical/compression details remain deferred to S04. Apple/minimum-version execution and fresh exact-commit hosted CI remain closure dependencies, never inferred from other tests.
+The historical implementation instruction approved S03-R01/R02/R04 and the S03 subset of P-06. The fixed server envelope, P-05 obligations, Health policies, stack and numeric convention remain unchanged. P-06 physical/compression details remain deferred to S04. The exact-commit hosted CI dependency is now satisfied; Apple/minimum-version and remaining operator evidence remain closure dependencies, never inferred from other tests.
 
 ## Historical documentary preparation checks
 

@@ -1,0 +1,83 @@
+{
+  "date": "2026-09-27",
+  "scope": "Limited real Windows browser observations; no product changes or full operator acceptance",
+  "source_sha": "24d527a301d66b49d86ad11fbd75393254f02094",
+  "binary": {
+    "path": "out/joy-pi-board.exe",
+    "sha256": "6bfbbfb96e47d1ec1baf07d0a8e19e1f3d541d774c420848346b1f1ca568dcf7",
+    "rebuilt": false,
+    "provenance": "2026-09-26 correction build; 87 source hashes matched current HEAD"
+  },
+  "os": {
+    "name": "Windows 10 Pro",
+    "version": "22H2",
+    "build": "19045.7725",
+    "architecture": "x64",
+    "evidence": "OS query, registry and Chrome version page"
+  },
+  "browser_inventory": [
+    {
+      "name": "Chrome",
+      "installed_file_version": "154.0.8037.57",
+      "executed_version": "154.0.8037.57",
+      "version_source": "chrome://version, official 64-bit build",
+      "scope": "complete/partial accessibility text projection observed; visual and critical operator suite incomplete"
+    },
+    {
+      "name": "Edge",
+      "installed_file_version": "154.0.4258.37",
+      "executed_version": null,
+      "scope": "window launched; version-page/Board flow not verified"
+    },
+    {
+      "name": "Firefox",
+      "installed_file_version": "156.0.1",
+      "executed_version": null,
+      "scope": "window launched; version-page/Board flow not verified"
+    },
+    {
+      "name": "Narrator",
+      "installed_file_version": "10.0.19041.4522",
+      "executed_version": null,
+      "scope": "not launched; no speech observation"
+    }
+  ],
+  "origin": "http://127.0.0.1:64430",
+  "node": "24.21.0",
+  "actions": [
+    {
+      "at": "2026-09-27T09:25:47.499Z",
+      "action": "provider partial-documentary",
+      "calls": 17
+    },
+    {
+      "at": "2026-09-27T09:26:13.214Z",
+      "action": "provider HTTP 503",
+      "calls": 18,
+      "result": "operator observation inconclusive"
+    },
+    {
+      "at": "2026-09-27T09:28:27.958Z",
+      "action": "provider restored to complete/200",
+      "calls": 25,
+      "result": "no verified recovery observation"
+    },
+    {
+      "action": "await b.stop(); process.exit(0)",
+      "result": "S03 operator harness stopped; REPL exited"
+    },
+    {
+      "action": "automation JavaScript kernel reset",
+      "result": "released failed initial harness attempt/runtime resources"
+    }
+  ],
+  "limitations": [
+    "Native screenshot timeouts and unavailable coordinate geometry",
+    "Tab/F6 focus movement not reliably verified",
+    "Computer-use policy guard stopped UI because current browser URL could not be established confidently",
+    "No UI workaround attempted",
+    "No screenshots from real Windows browsers; separate CI images only",
+    "No screen-reader/native zoom/real lifecycle/minimum/Apple proof",
+    "Task browser tabs/windows require operator cleanup; user tabs preserved"
+  ]
+}

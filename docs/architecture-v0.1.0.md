@@ -1,6 +1,6 @@
 # Architecture
 
-Status: **S00/S01/S02 complete; S02 verified locally and in hosted CI**. Current S02 P-02/P-04/P-05 approval comes from the explicit implementation instruction, not the earlier documentary preparation. See [decisions](decisions.md) and [S02 evidence](s02-evidence.md). [S03](sprint-03.md) is implemented and locally verified; mandatory browser/manual proof and exact-commit hosted CI keep closure pending. S04 is not started. The approved browser realization and its evidence are described below.
+Status: **S00/S01/S02 complete; S02 verified locally and in hosted CI**. Current S02 P-02/P-04/P-05 approval comes from the explicit implementation instruction, not the earlier documentary preparation. See [decisions](decisions.md) and [S02 evidence](s02-evidence.md). [S03](sprint-03.md) is implemented and verified within local/CI scope (corrected run 36269739581); mandatory operator proof keeps closure pending. S04 is not started. The approved browser realization and its evidence are described below.
 
 ## Boundaries and flow
 
