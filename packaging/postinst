@@ -1,0 +1,26 @@
+#!/bin/sh
+set -eu
+if [ "$1" = configure ]; then
+    if getent passwd joy-pi-board >/dev/null; then
+        entry=$(getent passwd joy-pi-board)
+        uid=$(printf '%s' "$entry" | cut -d: -f3)
+        gid=$(printf '%s' "$entry" | cut -d: -f4)
+        home=$(printf '%s' "$entry" | cut -d: -f6)
+        shell=$(printf '%s' "$entry" | cut -d: -f7)
+        group=$(getent group joy-pi-board || true)
+        groupid=$(printf '%s' "$group" | cut -d: -f3)
+        members=$(printf '%s' "$group" | cut -d: -f4)
+        if [ "$uid" -eq 0 ] || [ "$uid" -ge 1000 ] || [ "$gid" -eq 0 ] || [ "$gid" -ge 1000 ] || [ "$gid" != "$groupid" ] || [ "$home" != /nonexistent ] || [ "$shell" != /usr/sbin/nologin ] || [ -n "$members" ] || [ "$(id -G joy-pi-board)" != "$gid" ]; then
+            echo "Incompatible joy-pi-board account; administrator review required" >&2
+            exit 1
+        fi
+        case "$(getent shadow joy-pi-board | cut -d: -f2)" in '!'*|'*'*) ;; *) echo "Account is not locked" >&2; exit 1;; esac
+    else
+        if getent group joy-pi-board >/dev/null; then
+            echo "Existing joy-pi-board group requires administrator review" >&2
+            exit 1
+        fi
+        adduser --system --group --no-create-home --home /nonexistent --shell /usr/sbin/nologin joy-pi-board
+    fi
+fi
+#DEBHELPER#

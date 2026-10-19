@@ -14,6 +14,7 @@ import (
 	"strings"
 
 	"github.com/Adrien-hue/joy-pi-board/internal/healthschema"
+	"github.com/Adrien-hue/joy-pi-board/internal/timing"
 )
 
 type Reason string
@@ -104,6 +105,8 @@ func (c *Client) Fetch(ctx context.Context) Result {
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("Accept-Encoding", "identity")
 	req.Header.Set("User-Agent", "joy-pi-board")
+	endNetwork := timing.Network(ctx)
+	defer endNetwork(false)
 	res, err := c.http.Do(req)
 	if err != nil {
 		return failed(ctx, err, ConnectionFailed)
@@ -122,6 +125,8 @@ func (c *Client) Fetch(ctx context.Context) Result {
 	if len(body) > healthschema.MaximumBytes || len(res.Trailer) != 0 {
 		return Result{Reason: InvalidResponse}
 	}
+	_ = res.Body.Close()
+	endNetwork(true)
 	v, err := healthschema.Decode(body)
 	if err != nil {
 		var schema *healthschema.Error

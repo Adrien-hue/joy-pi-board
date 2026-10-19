@@ -1,0 +1,7 @@
+python : NOT RUN: requires --execute, --vm-id, two packages, output and isolated ARM64 VM marker; no action taken
+Au caractère Ligne:2 : 172
++ ... { exit 1 }; python packaging/lifecycle.py *> out/s04/lifecycle-defaul ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (NOT RUN: requir...no action taken:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

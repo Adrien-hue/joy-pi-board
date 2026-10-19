@@ -1,0 +1,2 @@
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+PASS: clean tree without dist fails at go:embed with a clear missing-files error.

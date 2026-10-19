@@ -10,9 +10,12 @@ import (
 	"sync/atomic"
 
 	"github.com/Adrien-hue/joy-pi-board/internal/overview"
+	"github.com/Adrien-hue/joy-pi-board/internal/timing"
 )
 
 type entry struct {
+	timing   *timing.Record
+	summary  *timing.Summary
 	Event    string `json:"event"`
 	Sequence uint64 `json:"sequence,omitempty"`
 	Outcome  string `json:"outcome,omitempty"`
@@ -52,7 +55,13 @@ func New(w io.Writer) *Log {
 				if n := l.dropped.Swap(0); n != 0 {
 					_, _ = fmt.Fprintf(w, "{\"event\":\"logs_dropped\",\"count\":%d}\n", n)
 				}
-				_ = json.NewEncoder(w).Encode(e)
+				if e.timing != nil {
+					_ = json.NewEncoder(w).Encode(e.timing)
+				} else if e.summary != nil {
+					_ = json.NewEncoder(w).Encode(e.summary)
+				} else {
+					_ = json.NewEncoder(w).Encode(e)
+				}
 			}
 		}
 	}()
@@ -94,6 +103,19 @@ func (l *Log) Flush(ctx context.Context) {
 	case <-ctx.Done():
 	}
 }
+
+func (l *Log) Timing(v timing.Record) bool {
+	if l.closed.Load() {
+		return false
+	}
+	select {
+	case l.queue <- entry{timing: &v}:
+		return true
+	default:
+		return false
+	}
+}
+func (l *Log) TimingSummary(v timing.Summary) { l.send(entry{summary: &v}) }
 
 // Write sanitizes net/http's arbitrary ErrorLog before entering the queue.
 func (l *Log) Write(p []byte) (int, error) {

@@ -11,9 +11,12 @@ import (
 
 const DefaultListen = "0.0.0.0:8081"
 const DefaultHealth = "http://127.0.0.1:8080/v1/snapshot"
-const Help = "Joy Pi Board\n  --listen IP:port (default 0.0.0.0:8081; JOY_PI_BOARD_LISTEN)\n  --health-url URL (default http://127.0.0.1:8080/v1/snapshot; JOY_PI_BOARD_HEALTH_URL)\n  --help, -h\n  --version\nExplicit flag > present environment > default.\n"
+const Help = "Joy Pi Board\n  --listen IP:port (default 0.0.0.0:8081; JOY_PI_BOARD_LISTEN)\n  --health-url URL (default http://127.0.0.1:8080/v1/snapshot; JOY_PI_BOARD_HEALTH_URL)\n  --diagnostic-timing (temporary bounded timing records; no value)\n  --help, -h\n  --version\nExplicit flag > present environment > default.\n"
 
-type Config struct{ Listen, HealthURL, Action string }
+type Config struct {
+	Listen, HealthURL, Action string
+	DiagnosticTiming          bool
+}
 
 func Parse(args []string, env func(string) (string, bool)) (Config, error) {
 	c := Config{Listen: DefaultListen, HealthURL: DefaultHealth}
@@ -27,6 +30,11 @@ func Parse(args []string, env func(string) (string, bool)) (Config, error) {
 			return c, errors.New("duplicate option")
 		}
 		switch name {
+		case "--diagnostic-timing":
+			if equal {
+				return c, errors.New("diagnostic-timing takes no value")
+			}
+			c.DiagnosticTiming = true
 		case "--help", "--version":
 			if equal {
 				return c, errors.New("informational option takes no value")

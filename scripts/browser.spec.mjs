@@ -64,6 +64,8 @@ test("S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP
     );
   });
   const response = await page.goto(server.origin);
+  expect(response.headers()["content-encoding"]).toBe("gzip");
+  expect(response.headers()["vary"]).toBe("Accept-Encoding");
   expect(response.headers()["content-security-policy"]).toContain(
     "connect-src 'self'",
   );

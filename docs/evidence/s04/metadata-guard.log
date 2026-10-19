@@ -1,0 +1,9 @@
+python : usage: build.py [-h] --artifact ARTIFACT --output OUTPUT [--metadata METADATA]
+Au caractère Ligne:2 : 1
++ python packaging/build.py --artifact out/artifacts/s04-dev-20261018-b ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (usage: build.py...adata METADATA]:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+                [--test-only]
+build.py: error: BLOCKED: established Maintainer and distribution copyright/license metadata required

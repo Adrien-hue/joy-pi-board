@@ -20,6 +20,9 @@ func TestCompiledAssetsAreServedExactly(t *testing.T) {
 		if err != nil || entry.IsDir() {
 			return err
 		}
+		if name == "manifest.json" || strings.HasSuffix(name, ".gz") {
+			return nil
+		}
 		assetCount++
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()

@@ -1,0 +1,27 @@
+{
+  "rawReportSHA256": "6736b4116e839a0ef17623166461e55e449db168f14fe04fd1420c528147ff77",
+  "binarySHA256": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d",
+  "scenarios": [
+    {
+      "name": "complete",
+      "healthSHA256": "00865883f9477e8fe12a1aac4cd08cb1b6b71dc8da3c17e4507a51fcaaa9038e",
+      "scope": "Actual encoded HTTP bodies; static gzip plus first identity overview; not Pi acceptance",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 80764
+    },
+    {
+      "name": "partial",
+      "healthSHA256": "dfc3aded6cf6f8074b12ecc7b15fef8fca5ef1105a41b668bcc72d78905ea2cb",
+      "scope": "Actual encoded HTTP bodies; static gzip plus first identity overview; not Pi acceptance",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 81997
+    },
+    {
+      "name": "maximum-markup",
+      "healthSHA256": "49533f8c6d262849aa6b3cb1ff3003a4c90f0a2280612a3ae5a074c437c29b5a",
+      "scope": "Actual encoded HTTP bodies; static gzip plus first identity overview; not Pi acceptance",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 145541
+    }
+  ]
+}

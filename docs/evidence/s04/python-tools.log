@@ -1,0 +1,8 @@
+python : process identity changed
+Au caractère Ligne:2 : 287
++ ... EXITCODE }; python scripts/python-tools.test.py *> out/s04/python-too ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (process identity changed:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS: external statistics and Python syntax; no system/package operation

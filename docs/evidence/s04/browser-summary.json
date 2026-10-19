@@ -1,0 +1,591 @@
+{
+  "scope": "exploratory native Windows/proxy run, NOT supported Linux or operator acceptance",
+  "stats": {
+    "startTime": "2026-10-18T21:31:21.081Z",
+    "duration": 211156.852,
+    "expected": 22,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+      "project": "chromium",
+      "status": "failed",
+      "duration": 351,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"gzip\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  65 |   });\n  66 |   const response = await page.goto(server.origin);\n> 67 |   expect(response.headers()[\"content-encoding\"]).toBe(\"gzip\");\n     |                                                  ^\n  68 |   expect(response.headers()[\"vary\"]).toBe(\"Accept-Encoding\");\n  69 |   expect(response.headers()[\"content-security-policy\"]).toContain(\n  70 |     \"connect-src 'self'\",\n    at C:\\src\\joy-pi-board\\scripts\\browser.spec.mjs:67:50"
+      ]
+    },
+    {
+      "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 15403,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T06/T10 independent real expiry after Board stops",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 30700,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 5659,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 10722,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 6627,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 662,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T04 actual React development StrictMode effect replay",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 6216,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+      "project": "chromium",
+      "status": "passed",
+      "duration": 258,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "153.0.8010.12"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+      "project": "firefox",
+      "status": "failed",
+      "duration": 1485,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"gzip\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  65 |   });\n  66 |   const response = await page.goto(server.origin);\n> 67 |   expect(response.headers()[\"content-encoding\"]).toBe(\"gzip\");\n     |                                                  ^\n  68 |   expect(response.headers()[\"vary\"]).toBe(\"Accept-Encoding\");\n  69 |   expect(response.headers()[\"content-security-policy\"]).toContain(\n  70 |     \"connect-src 'self'\",\n    at C:\\src\\joy-pi-board\\scripts\\browser.spec.mjs:67:50"
+      ]
+    },
+    {
+      "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 16289,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T06/T10 independent real expiry after Board stops",
+      "project": "firefox",
+      "status": "failed",
+      "duration": 8429,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Board could not be reached').first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Board could not be reached').first() with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Board could not be reached').first()\u001b[22m\n\n\n  170 |   await expect(\n  171 |     page.getByText(\"Board could not be reached\").first(),\n> 172 |   ).toBeVisible({ timeout: 8000 });\n      |     ^\n  173 |   await expect(\n  174 |     page.getByText(\"Stale observations\", { exact: true }),\n  175 |   ).toBeVisible();\n    at C:\\src\\joy-pi-board\\scripts\\browser.spec.mjs:172:5"
+      ]
+    },
+    {
+      "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 6179,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 10486,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 11284,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 660,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T04 actual React development StrictMode effect replay",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 6336,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+      "project": "firefox",
+      "status": "passed",
+      "duration": 350,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "155.0"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP",
+      "project": "webkit",
+      "status": "failed",
+      "duration": 423,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m\"gzip\"\u001b[39m\nReceived: \u001b[31mundefined\u001b[39m\n\n  65 |   });\n  66 |   const response = await page.goto(server.origin);\n> 67 |   expect(response.headers()[\"content-encoding\"]).toBe(\"gzip\");\n     |                                                  ^\n  68 |   expect(response.headers()[\"vary\"]).toBe(\"Accept-Encoding\");\n  69 |   expect(response.headers()[\"content-security-policy\"]).toContain(\n  70 |     \"connect-src 'self'\",\n    at C:\\src\\joy-pi-board\\scripts\\browser.spec.mjs:67:50"
+      ]
+    },
+    {
+      "title": "S03-T10 real partial, Health failure, recovery and maximum original markup",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 15651,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T06/T10 independent real expiry after Board stops",
+      "project": "webkit",
+      "status": "failed",
+      "duration": 8452,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": [
+        "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('Board could not be reached').first()\nExpected: visible\nTimeout: 8000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" getByText('Board could not be reached').first() with timeout 8000ms\u001b[22m\n\u001b[2m  - waiting for getByText('Board could not be reached').first()\u001b[22m\n\n\n  170 |   await expect(\n  171 |     page.getByText(\"Board could not be reached\").first(),\n> 172 |   ).toBeVisible({ timeout: 8000 });\n      |     ^\n  173 |   await expect(\n  174 |     page.getByText(\"Stale observations\", { exact: true }),\n  175 |   ).toBeVisible();\n    at C:\\src\\joy-pi-board\\scripts\\browser.spec.mjs:172:5"
+      ]
+    },
+    {
+      "title": "S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 5474,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 10457,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 17879,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T09/T12 long labels, 64 interfaces and untrusted issue text",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 876,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T04 actual React development StrictMode effect replay",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 6351,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "title": "S03-T07/T12 Health absent before first success remains a usable Board response",
+      "project": "webkit",
+      "status": "passed",
+      "duration": 454,
+      "annotations": [
+        {
+          "type": "engine",
+          "description": "26.6"
+        },
+        {
+          "type": "platform",
+          "description": "win32/x64; Node 24.21.0"
+        },
+        {
+          "type": "binary-sha256",
+          "description": "d61d1e2137526b9e4c1d73c81e27bae90d8a8487e035c19487db7970d3930f1d"
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "rawReportSHA256": "9a4ee67d15fcc497c63367fe4080bff01a5a70c19ec9402bca09dbab75f3a6ac"
+}

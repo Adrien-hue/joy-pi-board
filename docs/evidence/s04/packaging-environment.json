@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "resolved": "2026-10-18",
+  "registryIndex": "debian@sha256:a29215f6a35e51e22adffa17f89e9d2ef06214e64a2bad10d765c46aea49f11f",
+  "buildImageBase": "debian@sha256:918311b7b6c4c6f68b232ba516584925f6c78ad82b6fd534b98979df6438e483",
+  "arm64Base": "debian@sha256:a2ca65377c251208de42e1a2722cb949211236c161b634f6f3663754e2d06850",
+  "snapshot": "https://snapshot.debian.org/archive/debian/20261005T000000Z/",
+  "requested": {
+    "dpkg": "1.22.22",
+    "dpkg-dev": "1.22.22",
+    "debhelper": "13.24.2"
+  },
+  "compat": 13,
+  "status": "RESOLVED BASE; package closure and built image NOT YET VERIFIED"
+}

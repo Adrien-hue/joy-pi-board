@@ -1,6 +1,10 @@
 # Sprint 03 implementation and evidence
 
-Historical implementation ledger: 2026-09-25. The [2026-09-26 scheduling correction](#2026-09-26--early-cadence-callback-correction) below records the first S03 CI failure and its targeted fix; earlier measurements/manifests remain historical. **Current status (2026-09-27): implemented, CI verified; closure pending operator verification.** See the [corrected CI/operator addendum](#2026-09-27--verified-corrected-ci-and-operator-status) and [remaining checklist](#remaining-acceptance-checklist). No S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
+Historical implementation ledger: 2026-09-25. The [2026-09-26 scheduling correction](#2026-09-26--early-cadence-callback-correction) below records the first S03 CI failure and its targeted fix; earlier measurements/manifests remain historical. **Current status (2026-09-27): implemented, CI verified; closure pending operator verification.** See the [corrected CI/operator addendum](#2026-09-27--verified-corrected-ci-and-operator-status) and [remaining checklist](#remaining-acceptance-checklist). That dated assignment did not authorize S04, commit, push, tag, release or deployment. S00/S01/S02 retain their separate historical evidence; their CI does not validate this implementation.
+
+## 2026-10-18 transfer status
+
+The [approved deferral](decisions.md#d-2026-09-28--s03-operator-deferral-and-s04-preparation) moves remaining S03 operator checks to S04 candidate acceptance. The subsequent [S04 implementation instruction](decisions.md#d-2026-10-18--s04-software-implementation) permits software work despite these gaps. S03 is **not closed or fully validated**. Every unexecuted row below remains NOT RUN; historical wording prohibiting the start of S04 is superseded, not the acceptance oracle. The [S04 transferred matrix](sprint-04.md#transferred-s03-operator-checks) retains client/device/reader/native zoom/BFCache dependencies and candidate-dependent replay. A Pi origin cannot substitute for these clients. No historical result/artifact is promoted to the new candidate.
 
 ## Source and authorization
 

@@ -1,0 +1,83 @@
+{
+  "scope": "two dirty-tree Windows cross-builds; no ARM64 execution or package/physical acceptance",
+  "result": "PASS: selected and separate comparison binary/assets/inputs equal",
+  "artifacts": [
+    {
+      "id": "s04-dev-20261018-a",
+      "status": "DEVELOPMENT / NOT ACCEPTED",
+      "revision": "fcbb096e71bf6178145b7f370f5036b67a5e53eb",
+      "dirty": true,
+      "inputDigest": "1dbd968872485b61bf25d204cafe57ea282921bada6fc3a36b127ecf7c5c8d34",
+      "binary": {
+        "file": "joy-pi-board-linux-arm64",
+        "bytes": 10641567,
+        "sha256": "98184018347ef73e4b0625063e35fb2f99a33d3bb69f694e99cfcab5f1b99dec"
+      },
+      "assetsSHA256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2",
+      "provenanceSHA256": "0b08afd1c84b8608716be7d1a3d03ebaf5f3b6deb79698475cefcf4f86e9b37c",
+      "actualBuildTime": "2026-10-18T21:37:30.190Z"
+    },
+    {
+      "id": "s04-dev-20261018-b",
+      "status": "DEVELOPMENT / NOT ACCEPTED",
+      "revision": "fcbb096e71bf6178145b7f370f5036b67a5e53eb",
+      "dirty": true,
+      "inputDigest": "d440cba9e64e9022a70f7f44c7dfa95f1a55b2575d6e4f53d5c5956fb9b893b2",
+      "binary": {
+        "file": "joy-pi-board-linux-arm64",
+        "bytes": 10641567,
+        "sha256": "98184018347ef73e4b0625063e35fb2f99a33d3bb69f694e99cfcab5f1b99dec"
+      },
+      "assetsSHA256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2",
+      "provenanceSHA256": "cebd0d4f726d5535dc3317c529c5805643b5bf4933e659d6c9eb475d793d366a",
+      "actualBuildTime": "2026-10-18T21:40:53.970Z"
+    },
+    {
+      "id": "s04-compare-20261018-b",
+      "status": "DEVELOPMENT / NOT ACCEPTED",
+      "revision": "fcbb096e71bf6178145b7f370f5036b67a5e53eb",
+      "dirty": true,
+      "inputDigest": "d440cba9e64e9022a70f7f44c7dfa95f1a55b2575d6e4f53d5c5956fb9b893b2",
+      "binary": {
+        "file": "joy-pi-board-linux-arm64",
+        "bytes": 10641567,
+        "sha256": "98184018347ef73e4b0625063e35fb2f99a33d3bb69f694e99cfcab5f1b99dec"
+      },
+      "assetsSHA256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2",
+      "provenanceSHA256": "a2fd589ab58356849006e372d34ccc6b39318dbda8860705ba67cd952e2d6a31",
+      "actualBuildTime": "2026-10-18T21:40:55.746Z"
+    },
+    {
+      "id": "s04-dev-20261018-c",
+      "status": "DEVELOPMENT / NOT ACCEPTED",
+      "revision": "fcbb096e71bf6178145b7f370f5036b67a5e53eb",
+      "dirty": true,
+      "inputDigest": "b0525d484c9cfeb404c59a1dff96c7f38c338ea10bf927bffb8b841164955f9b",
+      "binary": {
+        "file": "joy-pi-board-linux-arm64",
+        "bytes": 10641567,
+        "sha256": "98184018347ef73e4b0625063e35fb2f99a33d3bb69f694e99cfcab5f1b99dec"
+      },
+      "assetsSHA256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2",
+      "provenanceSHA256": "25ddb3ffd38d3e728d0e1489a95da4d0db883677b46bcdcca5ec11b41bccbb1d",
+      "actualBuildTime": "2026-10-18T21:46:53.066Z"
+    },
+    {
+      "id": "s04-compare-20261018-c",
+      "status": "DEVELOPMENT / NOT ACCEPTED",
+      "revision": "fcbb096e71bf6178145b7f370f5036b67a5e53eb",
+      "dirty": true,
+      "inputDigest": "b0525d484c9cfeb404c59a1dff96c7f38c338ea10bf927bffb8b841164955f9b",
+      "binary": {
+        "file": "joy-pi-board-linux-arm64",
+        "bytes": 10641567,
+        "sha256": "98184018347ef73e4b0625063e35fb2f99a33d3bb69f694e99cfcab5f1b99dec"
+      },
+      "assetsSHA256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2",
+      "provenanceSHA256": "5e7f1359cf68197fbfb1d843a4c9662be74be98f5061f0b3667cd435ce6e5a88",
+      "actualBuildTime": "2026-10-18T21:46:54.869Z"
+    }
+  ],
+  "selected": "s04-dev-20261018-c",
+  "comparison": "s04-compare-20261018-c"
+}

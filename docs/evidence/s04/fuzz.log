@@ -1,0 +1,9 @@
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+fuzz: elapsed: 0s, gathering baseline coverage: 0/284 completed
+fuzz: elapsed: 0s, gathering baseline coverage: 284/284 completed, now fuzzing with 2 workers
+fuzz: elapsed: 3s, execs: 79778 (26588/sec), new interesting: 5 (total: 289)
+fuzz: elapsed: 6s, execs: 195033 (38419/sec), new interesting: 5 (total: 289)
+fuzz: elapsed: 9s, execs: 195033 (0/sec), new interesting: 5 (total: 289)
+fuzz: elapsed: 11s, execs: 195033 (0/sec), new interesting: 5 (total: 289)
+PASS
+ok  	github.com/Adrien-hue/joy-pi-board/internal/healthschema	11.149s

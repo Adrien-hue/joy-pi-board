@@ -133,7 +133,7 @@ Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'
 
 Bundle CSS/JS as external same-origin assets with no inline scripts/styles required. No external fonts/images, unsafe HTML injection or runtime remote resources. Vite development HMR may need a separately scoped dev-only policy; never weaken the production CSP to accommodate it. Test actual build output under this policy.
 
-S02 keeps identity bytes and no-store for index, assets, overview and Board errors; no new ETag/Last-Modified or compression negotiation. Preserve static GET/HEAD MIME and byte equality, CSP on HTML, and no remote resource references. S02 checks are tracked in the evidence ledger; rendered CSP/browser/mobile acceptance remains S03/S04. S04 retains the proposal for immutable caching of fingerprinted assets and precompressed deterministic gzip with identity fallback, correct MIME/Content-Encoding/Vary and actual delivered-size acceptance. No compression dependency/runtime tool or packaging is added in S02; P-06 measurement conventions remain deferred.
+S02 keeps identity bytes and no-store for index, assets, overview and Board errors; no new ETag/Last-Modified or compression negotiation. Preserve static GET/HEAD MIME and byte equality, CSP on HTML, and no remote resource references. S02 checks are tracked in the evidence ledger; rendered CSP/browser/mobile acceptance remains S03/S04. The approved S04 extension below retains no-store, adds deterministic static gzip with identity fallback and checks actual delivered bytes. Immutable caching is not adopted. S02 history remains identity-only; S04 measurement conventions are separately approved.
 
 ## Snapshot and envelope byte boundaries
 
@@ -158,3 +158,13 @@ All example files are standalone valid JSON with real timestamps and snapshot ob
 | [overview-never-success.json](examples/overview-never-success.json) | Failure before any success; no age header |
 
 Examples are illustrative data, not fabricated run results. Failure reason is tied to the attempted retrieval, not to any individual null measure. The response has no Board availability field: browser reachability is local state, described in the UX contract.
+
+## S04 static representations
+
+**Approved S04-R02, 2026-10-18.** This section supersedes earlier static identity-only descriptions; overview and Board-to-Health transport remain identity with unchanged envelope/consumer policy.
+
+Only the public embedded-manifest URLs (`/` and generated single-level JS/CSS assets) route. Gzip sidecars and manifest are private, including when explicitly requested. Exact paths, existing method/query/body policy, no-store, CSP, nosniff and no-referrer remain. GET and HEAD choose the same representation; HEAD writes no body. Ranges and conditionals are ignored, returning the complete selected representation with 200, no validators/Accept-Ranges/Content-Range.
+
+Absent or empty Accept-Encoding selects identity. Parse coding tokens case-insensitively, q default 1, allowed HTTP quality 0..1 with up to three decimals; empty comma members are ignored. Duplicate coding values use the lowest q. Explicit coding overrides wildcard; unknown valid codings do not add a representation. Identity defaults to q=1 unless explicitly excluded or excluded by wildcard q=0 without explicit identity. Gzip uses its explicit q or wildcard q, otherwise zero. Greatest positive q wins; gzip wins ties. Malformed tokens/parameters/q produce 400. If neither representation is acceptable, return bodyless 406.
+
+Responses use original MIME, Content-Encoding only for gzip, Vary: Accept-Encoding, and Content-Length of selected encoded bytes. Static errors clear encoding/length/CSP before formatting: existing safe identity JSON body only when identity is acceptable; otherwise bodyless with length 0 and no Content-Type. HEAD remains bodyless. Admission/shutdown 503 and invalid request-target 400 precede routing; static inventory failure 500 precedes route lookup; unknown/private URL 404 precedes method 405, then query/body 400, encoding 400/406, then representation read 500. None of these routes contacts Health. API errors retain their previous identity contract independently of static negotiation.

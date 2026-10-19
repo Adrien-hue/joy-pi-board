@@ -1,6 +1,6 @@
 # Validation and release strategy
 
-Status: **S00, S01 AND S02 COMPLETE; delivered software subsets PASS locally and in CI, full A/B/C product acceptance NOT RUN**. [S00 evidence](s00-evidence.md) records the local results and verified run 35527458889 for `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. S01 in-memory contract subsets are verified locally and in hosted run 35637699325 attempt 1 at `ccd1245a64fc372faa4ebc85eb000f78a01bd396`; [S01 evidence](s01-evidence.md) preserves local input provenance separately from CI. S02 is [complete with local and verified hosted CI evidence](sprint-02.md). Actual S02 test subsets are traced in [S02 evidence](s02-evidence.md); full product gates remain incomplete. [S03](sprint-03.md) is implemented and locally verified in the software/automated-engine subsets recorded below; required branded/minimum/mobile/manual evidence and new hosted CI keep closure pending. S04 physical tests remain NOT RUN. Normative for release evidence and requirement traceability (JPB-024). Product budgets are established in [the specification](specification-v0.1.0.md); durations/sampling/statistics remain **Proposed P-06**. Historical shell-only sizes remain separate from the preliminary S03 dashboard measurements. Historical documentary checks are in [documentation review](documentation-review.md).
+Status: **S00, S01 AND S02 COMPLETE; delivered software subsets PASS locally and in CI, full A/B/C product acceptance NOT RUN**. [S00 evidence](s00-evidence.md) records the local results and verified run 35527458889 for `b6e139c3378cd77fdcb4c5edc610977c08bbf72a`. S01 in-memory contract subsets are verified locally and in hosted run 35637699325 attempt 1 at `ccd1245a64fc372faa4ebc85eb000f78a01bd396`; [S01 evidence](s01-evidence.md) preserves local input provenance separately from CI. S02 is [complete with local and verified hosted CI evidence](sprint-02.md). Actual S02 test subsets are traced in [S02 evidence](s02-evidence.md); full product gates remain incomplete. [S03](sprint-03.md) is implemented and locally verified in the software/automated-engine subsets recorded below; corrected S03 CI is verified, while required branded/minimum/mobile/manual evidence remains pending and is explicitly transferred to S04 acceptance. [S04 software evidence](s04-evidence.md) records local results and limitations; S04 physical tests remain NOT RUN. Normative for release evidence and requirement traceability (JPB-024). Product budgets are established in [the specification](specification-v0.1.0.md); durations/sampling/statistics and compression procedures are **APPROVED S04-R02/R03**; physical execution remains NOT RUN. Historical shell-only sizes remain separate from the preliminary S03 dashboard measurements. Historical documentary checks are in [documentation review](documentation-review.md).
 
 Numeric expectations are adopted through [ADR-001](adr-001-exact-json-integers.md), not an open library proposal. S00 [shared fixture](../testdata/README.md) byte checks are not B-03 end-to-end validation. Future tests must cover original number tokens, uint64 bounds, nulls and schema-driven float/BigInt conversion across Health → Board → browser → display. S01 approves unknown-member tolerance under global structural checks, independently of numeric exactness.
 
@@ -98,7 +98,7 @@ Every row is currently **NOT RUN**. Preserve raw samples/screenshots/log extract
 | C-05 | Mobile/tablet/desktop UI at documented widths and ≥360 px; long fields/counters, keyboard and non-color cues. Disconnect WAN while retaining LAN and Health: load with cold cache and continue refresh; no remote fetches or fonts. Existing `.local` resolution is tested only if available; access by IP must work. Verify CSP/nosniff/referrer policy. | S04 |
 | C-06 | Journal contains startup/shutdown and significant failure/recovery transitions without snapshot/per-poll success logs. Re-check hashes after all runs; package install/upgrade does not replace the accepted binary with different bytes or require live Health. Complete evidence ledger and release review. | S04 |
 
-The operator may need to stop/start test services during **future** acceptance; this document does not execute or authorize deployment in this S03 implementation mission.
+The operator may need to stop/start test services during **future** acceptance; this document does not execute or authorize deployment in this S04 software implementation mission.
 
 ## Requirement traceability
 
@@ -226,7 +226,7 @@ Status: **S03 implemented, corrected CI verified; operator verification and clos
 
 The historical implementation instruction approved S03-R01/R02/R04 and the S03 P-06 presentation and preliminary size subset. The table above preserves the prepared oracles; it does not override the dated execution ledger below. Include stable IDs in future test names/comments or a maintained evidence map. Deterministic unit tests use fake streams/timers and barriers; real browser/network tests use readiness conditions and bounded observable waits. They must not depend on unbounded sleeps or claim fake-clock timings as platform measurements.
 
-The closure boundary is explicit: S03 owns browser-floor execution and software visual/mobile acceptance, while S04 owns installed ARM64/Pi real-Health repetition, compressed delivery and all physical C gates. Absence of Apple/minimum-version infrastructure is an evidence gap, not a passed portability check. All preparation-time environment inventory and source inspection is documentary evidence only.
+The original S03 closure obligations remain, but their unexecuted operator lane is explicitly transferred to S04 candidate acceptance. They do not block S04 software implementation. S04 also owns installed ARM64/Pi real-Health repetition, compressed delivery and all physical C gates. Absence of Apple/minimum-version infrastructure is an evidence gap, not a passed portability check. All preparation-time environment inventory and source inspection is documentary evidence only.
 
 ## S03 implementation traceability
 
@@ -245,3 +245,20 @@ The prepared matrix above is the full acceptance checklist, not a blanket PASS s
 | S03-T14 | source/asset/binary manifest, browser ledger, operator checklist | PENDING: exact-commit CI PASS, mandatory target/manual lanes incomplete. No complete A/B/C acceptance. |
 
 Requirements remain assigned to the prepared IDs above and the stable requirement table. Browser counts and screenshots do not waive unexecuted rows. P-06 physical/compression protocols, packaging/systemd and all Raspberry Pi acceptance remain S04/NOT RUN.
+
+## S04 software and acceptance trace
+
+R01–R04 and the P-06 physical/compression protocol are approved by the [2026-10-18 instruction](decisions.md#d-2026-10-18--s04-software-implementation); historical proposal headings above retain their anchors, not an unapproved status. Budgets are unchanged. [S04 task/gate matrix](sprint-04.md) covers every A-01–A-06, B-01–B-11 and C-01–C-06 row. [Actual S04 evidence](s04-evidence.md) is the status authority; [runbook](s04-runbook.md) gives executable commands.
+
+| S04 test | Tasks / requirements / gates | Evidence boundary |
+|---|---|---|
+| S04-T01 | S04-01/05; JPB-003/005/024/025; A-01–A-03 | Exact tool/lock checks, complete source regression, native/ARM64 builds and dirty input manifest; remote CI requires future commit. |
+| S04-T02 | S04-02/05; JPB-006/020/021; A-04/B-09 | Deterministic gzip/decompression/manifest and tamper tests; q/error/route/GET/HEAD/security cases; actual encoded-byte inventory. |
+| S04-T03 | S04-03/05; JPB-007/008/022/023; A-05/B-06/B-08/B-09 | Diagnostic parsing/default silence/limits/shared/cancelled/correlation and blocked sink tests; controlled external tool statistics. No physical performance PASS. |
+| S04-T04 | S04-04/05; JPB-003/006/023/024; A-06 | Recipe consumes exact binary; package extraction/generated-script/lintian/reproducibility in isolated Linux. Real-systemd lifecycle is separate; missing execution remains NOT RUN. |
+| S04-T05 | S04-05; JPB-013–019/024; B-01–B-11 | S01/S02 regression, S03 scheduling including early callbacks and production-engine runs with static compression. Historical and new source/binary identities distinguished. |
+| S04-T06 | S04-06–09; JPB-006–023; C-01–C-06 | Exact installed candidate, Pi environment/real Health and preserved raw measurements; NOT RUN. |
+| S04-T07 | S04-08; JPB-013/015/017/018/019; B-10/B-11/C-05 | Transferred S03-T05/T09/T11/T12/T14 real-browser/minimum/Safari/iOS/reader/native zoom/visibility/suspension/BFCache checks; NOT RUN for unexecuted scope. |
+| S04-T08 | S04-10; JPB-024/025; all A/B/C | All mandatory rows reviewed against exact immutable artifacts; acceptance decision separate from publication; NOT RUN. |
+
+A source test does not prove execution of ARM64 bytes. A native Windows engine run does not establish Pi performance, actual Safari/iOS or native accessibility. Package inspection does not prove installed systemd behavior. Re-run affected evidence for any source, asset, diagnostic or packaging change; never replace selected artifacts with a comparison rebuild.

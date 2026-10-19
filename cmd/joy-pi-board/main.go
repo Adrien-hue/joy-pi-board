@@ -18,7 +18,9 @@ import (
 	"github.com/Adrien-hue/joy-pi-board/internal/eventlog"
 	"github.com/Adrien-hue/joy-pi-board/internal/health"
 	"github.com/Adrien-hue/joy-pi-board/internal/httpapi"
+	"github.com/Adrien-hue/joy-pi-board/internal/httpui"
 	"github.com/Adrien-hue/joy-pi-board/internal/overview"
+	"github.com/Adrien-hue/joy-pi-board/internal/timing"
 	"github.com/Adrien-hue/joy-pi-board/web"
 )
 
@@ -71,6 +73,9 @@ func execute(args []string, output io.Writer, env func(string) (string, bool), s
 	if _, err = fs.ReadFile(assets, "index.html"); err != nil {
 		return &exitError{1, "embedded interface unavailable", false}
 	}
+	if _, err = httpui.Inventory(assets); err != nil {
+		return &exitError{1, "embedded interface unavailable", false}
+	}
 	provider := health.New(cfg.HealthURL)
 	defer provider.Close()
 	listener, err := net.Listen("tcp", cfg.Listen)
@@ -83,6 +88,9 @@ func execute(args []string, output io.Writer, env func(string) (string, bool), s
 	logs.Lifecycle("starting", "", identity)
 	coordinator := overview.New(provider, nil, logs)
 	handler := httpapi.New(assets, coordinator)
+	if cfg.DiagnosticTiming {
+		handler.Timing = timing.New(logs.Timing)
+	}
 	defer handler.Stop()
 	server := httpapi.Server(handler)
 	server.ErrorLog = log.New(logs, "", 0)
@@ -118,6 +126,9 @@ func execute(args []string, output io.Writer, env func(string) (string, bool), s
 		_ = server.Close()
 	}
 	logs.Lifecycle("stopped", "", "")
+	if handler.Timing != nil {
+		logs.TimingSummary(handler.Timing.Summary())
+	}
 	flushed := make(chan struct{})
 	go func() { logs.Flush(ctx); close(flushed) }()
 	select {

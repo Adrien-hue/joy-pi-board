@@ -11,7 +11,7 @@ permissions:
 jobs:
   foundation:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -38,7 +38,7 @@ jobs:
           node scripts/tasks.mjs tools
       - name: Locked install without restored dependency caches
         run: npm --prefix web ci --cache "$RUNNER_TEMP/npm-s00"
-      - name: Check S00-S03 sources, HTTP contracts and tests, frontend before Go embed
+      - name: Check S00-S04 sources, HTTP contracts and tools, frontend before Go embed
         run: npm --prefix web run check
       - name: Bounded Health schema fuzzing (S01)
         run: npm --prefix web run fuzz
@@ -54,6 +54,22 @@ jobs:
           npm --prefix web run missing-dist
           npm --prefix web run sizes
           git diff --exit-code
+      - name: External S04 measurement tools and private ARM64 artifact
+        run: |
+          node scripts/build-measurement.mjs
+          python3 scripts/python-tools.test.py
+          node scripts/artifact.mjs development ci-${GITHUB_RUN_ID}
+      - name: S04 isolated archive checks and comparison (not service lifecycle)
+        run: |
+          docker build --platform linux/amd64 -f packaging/Dockerfile -t board-package-test packaging
+          docker image inspect board-package-test > out/packaging-image.json
+          docker create --name board-package-test --network none --env ARTIFACT_ID=ci-${GITHUB_RUN_ID} --mount type=bind,source="$PWD",target=/src,readonly board-package-test sh -ec 'python3 /src/packaging/build.py --artifact /src/out/artifacts/$ARTIFACT_ID --output /work/one --test-only; python3 /src/packaging/build.py --artifact /src/out/artifacts/$ARTIFACT_ID --output /work/two --test-only; python3 /src/packaging/compare.py /work/one /work/two > /work/reproducibility.json'
+          docker start -a board-package-test
+          package_status=$(docker inspect --format '{{.State.ExitCode}}' board-package-test)
+          docker cp board-package-test:/work out/packaging
+          docker rm board-package-test
+          test "$package_status" = 0
+          git diff --exit-code
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         if: always()
         with:
@@ -65,6 +81,9 @@ jobs:
             out/joy-pi-board-linux-arm64
             out/s01-parser/contract.mjs
             out/s01-interop/
+            out/measurement/
+            out/artifacts/
+            out/packaging/
           retention-days: 7
 
   race:

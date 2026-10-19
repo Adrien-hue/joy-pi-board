@@ -1,0 +1,5 @@
+# systemd EnvironmentFile syntax, not a shell script. Empty values are invalid.
+# Compiled defaults (unchanged):
+# JOY_PI_BOARD_LISTEN=0.0.0.0:8081
+# JOY_PI_BOARD_HEALTH_URL=http://127.0.0.1:8080/v1/snapshot
+# Diagnostics have no environment setting. Use a temporary ExecStart drop-in.

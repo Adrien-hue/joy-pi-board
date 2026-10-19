@@ -1,0 +1,240 @@
+
+> joy-pi-board-web@0.1.0-s00 browser
+> node ../scripts/tasks.mjs browser
+
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+vite v8.3.0 building client environment for production...
+transforming...
+✓ 30 modules transformed.
+rendering chunks...
+computing gzip size...
+out/s03-strictmode/strictmode.mjs  1,038.15 kB │ gzip: 208.73 kB
+
+✓ built in 178ms
+
+Running 27 tests using 1 worker
+
+npm.cmd : (node:21448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+Au caractère Ligne:2 : 362
++ ... EXITCODE }; npm.cmd --prefix web run browser *> out/s04/browser.log;  ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ((node:21448) Wa... env being set.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   1 [chromium] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP (351ms)
+(node:36020) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   2 [chromium] › scripts\browser.spec.mjs:117:1 › S03-T10 real partial, Health failure, recovery and maximum original markup (15.4s)
+  ✓   3 [chromium] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops (30.7s)
+  ✓   4 [chromium] › scripts\browser.spec.mjs:183:1 › S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot (5.7s)
+  ✓   5 [chromium] › scripts\browser.spec.mjs:208:1 › S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network (10.7s)
+  ✓   6 [chromium] › scripts\browser.spec.mjs:241:1 › S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser (6.6s)
+  ✓   7 [chromium] › scripts\browser.spec.mjs:265:1 › S03-T09/T12 long labels, 64 interfaces and untrusted issue text (662ms)
+  ✓   8 [chromium] › scripts\browser.spec.mjs:307:1 › S03-T04 actual React development StrictMode effect replay (6.2s)
+  ✓   9 [chromium] › scripts\browser.spec.mjs:334:1 › S03-T07/T12 Health absent before first success remains a usable Board response (258ms)
+(node:17252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  10 [firefox] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP (1.5s)
+(node:30784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  11 [firefox] › scripts\browser.spec.mjs:117:1 › S03-T10 real partial, Health failure, recovery and maximum original markup (16.3s)
+  ✘  12 [firefox] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops (8.4s)
+(node:31424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  13 [firefox] › scripts\browser.spec.mjs:183:1 › S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot (6.2s)
+  ✓  14 [firefox] › scripts\browser.spec.mjs:208:1 › S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network (10.5s)
+  ✓  15 [firefox] › scripts\browser.spec.mjs:241:1 › S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser (11.3s)
+  ✓  16 [firefox] › scripts\browser.spec.mjs:265:1 › S03-T09/T12 long labels, 64 interfaces and untrusted issue text (660ms)
+  ✓  17 [firefox] › scripts\browser.spec.mjs:307:1 › S03-T04 actual React development StrictMode effect replay (6.3s)
+  ✓  18 [firefox] › scripts\browser.spec.mjs:334:1 › S03-T07/T12 Health absent before first success remains a usable Board response (350ms)
+(node:33948) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  19 [webkit] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP (423ms)
+(node:36460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  20 [webkit] › scripts\browser.spec.mjs:117:1 › S03-T10 real partial, Health failure, recovery and maximum original markup (15.7s)
+  ✘  21 [webkit] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops (8.5s)
+(node:1384) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  22 [webkit] › scripts\browser.spec.mjs:183:1 › S03-T05 synthetic lifecycle rejects old freshness and waits for a future slot (5.5s)
+  ✓  23 [webkit] › scripts\browser.spec.mjs:208:1 › S03-T02/T07 intercepted invalid Board envelope masks immediately; HTTP differs from network (10.5s)
+  ✓  24 [webkit] › scripts\browser.spec.mjs:241:1 › S03-T03/T10 shared valid corpus through Health HTTP, Board and production browser (17.9s)
+  ✓  25 [webkit] › scripts\browser.spec.mjs:265:1 › S03-T09/T12 long labels, 64 interfaces and untrusted issue text (876ms)
+  ✓  26 [webkit] › scripts\browser.spec.mjs:307:1 › S03-T04 actual React development StrictMode effect replay (6.4s)
+  ✓  27 [webkit] › scripts\browser.spec.mjs:334:1 › S03-T07/T12 Health absent before first success remains a usable Board response (454ms)
+
+
+  1) [chromium] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "gzip"
+    Received: undefined
+
+      65 |   });
+      66 |   const response = await page.goto(server.origin);
+    > 67 |   expect(response.headers()["content-encoding"]).toBe("gzip");
+         |                                                  ^
+      68 |   expect(response.headers()["vary"]).toBe("Accept-Encoding");
+      69 |   expect(response.headers()["content-security-policy"]).toContain(
+      70 |     "connect-src 'self'",
+        at C:\src\joy-pi-board\scripts\browser.spec.mjs:67:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "gzip"
+    Received: undefined
+
+      65 |   });
+      66 |   const response = await page.goto(server.origin);
+    > 67 |   expect(response.headers()["content-encoding"]).toBe("gzip");
+         |                                                  ^
+      68 |   expect(response.headers()["vary"]).toBe("Accept-Encoding");
+      69 |   expect(response.headers()["content-security-policy"]).toContain(
+      70 |     "connect-src 'self'",
+        at C:\src\joy-pi-board\scripts\browser.spec.mjs:67:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [firefox] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Board could not be reached').first()
+    Expected: visible
+    Timeout: 8000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Board could not be reached').first() with timeout 8000ms
+      - waiting for getByText('Board could not be reached').first()
+
+
+      170 |   await expect(
+      171 |     page.getByText("Board could not be reached").first(),
+    > 172 |   ).toBeVisible({ timeout: 8000 });
+          |     ^
+      173 |   await expect(
+      174 |     page.getByText("Stale observations", { exact: true }),
+      175 |   ).toBeVisible();
+        at C:\src\joy-pi-board\scripts\browser.spec.mjs:172:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [webkit] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: "gzip"
+    Received: undefined
+
+      65 |   });
+      66 |   const response = await page.goto(server.origin);
+    > 67 |   expect(response.headers()["content-encoding"]).toBe("gzip");
+         |                                                  ^
+      68 |   expect(response.headers()["vary"]).toBe("Accept-Encoding");
+      69 |   expect(response.headers()["content-security-policy"]).toContain(
+      70 |     "connect-src 'self'",
+        at C:\src\joy-pi-board\scripts\browser.spec.mjs:67:50
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace out\browser-results\browser-S03-T09-T10-T12-re-1afbe-sive-keyboard-and-local-CSP-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [webkit] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops 
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByText('Board could not be reached').first()
+    Expected: visible
+    Timeout: 8000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByText('Board could not be reached').first() with timeout 8000ms
+      - waiting for getByText('Board could not be reached').first()
+
+
+      170 |   await expect(
+      171 |     page.getByText("Board could not be reached").first(),
+    > 172 |   ).toBeVisible({ timeout: 8000 });
+          |     ^
+      173 |   await expect(
+      174 |     page.getByText("Stale observations", { exact: true }),
+      175 |   ).toBeVisible();
+        at C:\src\joy-pi-board\scripts\browser.spec.mjs:172:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit\error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace out\browser-results\browser-S03-T06-T10-indepe-f1ef3-al-expiry-after-Board-stops-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+    [firefox] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+    [firefox] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops 
+    [webkit] › scripts\browser.spec.mjs:44:1 › S03-T09/T10/T12 real HTTP, exact values, responsive keyboard and local CSP 
+    [webkit] › scripts\browser.spec.mjs:164:1 › S03-T06/T10 independent real expiry after Board stops 
+  22 passed (3.5m)
+C:\src\joy-pi-board\.tools\node-v24.21.0-win-x64\node.exe C:\src\joy-pi-board\web\node_modules\playwright\cli.js test 
+--config web/playwright.config.ts exited 1

@@ -1,0 +1,10 @@
+✔ S04 tooling: nearest-rank, incomplete/corrupt diagnostic rejection (2.8435ms)
+✔ S04 tooling: controlled load counts errors and retains raw samples (83.2799ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 179.0894

@@ -11,6 +11,7 @@ import (
 
 	"github.com/Adrien-hue/joy-pi-board/internal/health"
 	"github.com/Adrien-hue/joy-pi-board/internal/healthschema"
+	"github.com/Adrien-hue/joy-pi-board/internal/timing"
 )
 
 const AttemptBudget = time.Second
@@ -92,6 +93,7 @@ type View struct {
 	cache    cached
 }
 type flight struct {
+	timing   *timing.Flight
 	sequence uint64
 	start    Reading
 	deadline time.Duration
@@ -146,12 +148,17 @@ func (c *Coordinator) Demand(ctx context.Context) (View, error) {
 		work, cancel := context.WithCancel(context.Background())
 		c.sequence++
 		f = &flight{sequence: c.sequence, start: start, deadline: start.Tick + AttemptBudget, done: make(chan struct{}), cancel: cancel}
+		f.timing = timing.NewFlight(ctx, f.sequence)
+		work = timing.WithFlight(work, f.timing)
 		f.timer = c.clock.Until(f.deadline)
 		c.active = f
 		c.workers++
 		go c.supervise(f)
 		go c.work(work, f)
+	} else {
+		f.timing.Share()
 	}
+	timing.Associate(ctx, f.timing)
 	c.waiters++
 	c.mu.Unlock()
 	defer func() { c.mu.Lock(); c.waiters--; c.mu.Unlock() }()
@@ -266,3 +273,5 @@ func (c *Coordinator) Stop() {
 }
 
 func (c *Coordinator) Now() Reading { return c.clock.Now() }
+
+func (v View) Successful() bool { return v.sequence != 0 && v.reason == "" && v.cache.snapshot.Valid() }

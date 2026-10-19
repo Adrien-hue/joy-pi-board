@@ -12,9 +12,11 @@ import (
 	"github.com/Adrien-hue/joy-pi-board/internal/httpui"
 	"github.com/Adrien-hue/joy-pi-board/internal/httpwire"
 	"github.com/Adrien-hue/joy-pi-board/internal/overview"
+	"github.com/Adrien-hue/joy-pi-board/internal/timing"
 )
 
 type Handler struct {
+	Timing   *timing.Recorder
 	service  *overview.Coordinator
 	assets   http.Handler
 	mu       sync.Mutex
@@ -37,18 +39,27 @@ func (h *Handler) Stop() {
 }
 
 func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	start := time.Now()
+	success := false
+	if h.Timing != nil && r.URL.Path == "/api/v1/overview" {
+		ctx, q := timing.Begin(r.Context())
+		r = r.WithContext(ctx)
+		tracked := &statusWriter{ResponseWriter: w}
+		w = tracked
+		defer func() { h.Timing.Finish(q, start, tracked.status, r.Context().Err() != nil, success) }()
+	}
 	httpwire.Headers(w)
 	h.mu.Lock()
 	if h.stopping || h.requests >= 32 {
 		h.mu.Unlock()
-		httpwire.Error(w, r, 503)
+		routeError(w, r, 503)
 		return
 	}
 	h.requests++
 	h.mu.Unlock()
 	defer func() { h.mu.Lock(); h.requests--; h.mu.Unlock() }()
 	if r.URL.IsAbs() || r.URL.Host != "" || r.URL.Opaque != "" || !strings.HasPrefix(r.URL.Path, "/") {
-		httpwire.Error(w, r, 400)
+		routeError(w, r, 400)
 		return
 	}
 	if r.URL.Path != "/api/v1/overview" || r.URL.EscapedPath() != r.URL.Path {
@@ -120,7 +131,28 @@ func (h *Handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set(overview.AgeHeader, response.Age)
 	}
 	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write(response.Body)
+	_, writeErr := w.Write(response.Body)
+	success = writeErr == nil && view.Successful()
+}
+
+type statusWriter struct {
+	http.ResponseWriter
+	status int
+}
+
+func (w *statusWriter) WriteHeader(s int) { w.status = s; w.ResponseWriter.WriteHeader(s) }
+func (w *statusWriter) Write(b []byte) (int, error) {
+	if w.status == 0 {
+		w.WriteHeader(200)
+	}
+	return w.ResponseWriter.Write(b)
+}
+func routeError(w http.ResponseWriter, r *http.Request, status int) {
+	if r.URL.Path == "/api/v1/overview" && r.URL.EscapedPath() == r.URL.Path {
+		httpwire.Error(w, r, status)
+	} else {
+		httpui.Error(w, r, status)
+	}
 }
 
 func (*Handler) fail(w http.ResponseWriter, r *http.Request, err error) {

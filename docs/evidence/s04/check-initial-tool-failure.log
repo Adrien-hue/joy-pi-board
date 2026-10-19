@@ -1,0 +1,73 @@
+
+> joy-pi-board-web@0.1.0-s00 check
+> node ../scripts/tasks.mjs check
+
+Exact toolchains: {"go":"1.27.1","node":"24.21.0","npm":"11.19.0"}; GOTOOLCHAIN=local
+Installed npm dependency tree is consistent.
+
+> joy-pi-board-web@0.1.0-s00 format:check
+> prettier --check src index.html *.json *.ts *.tsx *.js ../scripts/*.mjs ../toolchains.json ../.github/workflows/*.yml
+
+Checking formatting...
+All matched files use Prettier code style!
+
+> joy-pi-board-web@0.1.0-s00 typecheck
+> tsc --noEmit
+
+
+> joy-pi-board-web@0.1.0-s00 test
+> vitest run
+
+
+ RUN  v5.0.1 C:/src/joy-pi-board/web
+
+
+ Test Files  5 passed (5)
+      Tests  591 passed (591)
+   Start at  19:25:54
+   Duration  677ms (import 45%, tests 29%, transform 23%, worker 3%)
+
+✔ Health reference fixture retains the exact pinned Git blob (1.2745ms)
+✔ future numeric cases retain their original token bytes without Number parsing (4.8372ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.5847
+✔ S04 tooling: nearest-rank, incomplete/corrupt diagnostic rejection (1.8002ms)
+✖ S04 tooling: controlled load counts errors and retains raw samples (77.0532ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 172.1236
+
+✖ failing tests:
+
+test at scripts\measure.test.mjs:36:1
+✖ S04 tooling: controlled load counts errors and retains raw samples (77.0532ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async TestContext.<anonymous> (file:///C:/src/joy-pi-board/scripts/measure.test.mjs:58:5)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+npm.cmd : C:\src\joy-pi-board\.tools\node-v24.21.0-win-x64\node.exe --test scripts/measure.test.mjs exited 1
+Au caractère Ligne:2 : 243
++ ... d internal; npm.cmd --prefix web run check *> out/s04/check.log; if ( ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\src\joy-pi-b...st.mjs exited 1:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

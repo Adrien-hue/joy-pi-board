@@ -10,6 +10,7 @@ import {
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { prepareAssets } from "./assets.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const web = join(root, "web");
@@ -88,6 +89,7 @@ function frontend() {
     [join(web, "node_modules/vite/bin/vite.js"), "build"],
     { cwd: web },
   );
+  prepareAssets(join(web, "dist"));
 }
 
 function requireDist() {
@@ -241,6 +243,7 @@ try {
       lint();
       npm(["test"]);
       execute(process.execPath, ["--test", "scripts/fixtures.test.mjs"]);
+      execute(process.execPath, ["--test", "scripts/measure.test.mjs"]);
       frontend();
       checkGo();
       contract();
