@@ -1,0 +1,4 @@
+E: joy-pi-board: statically-linked-binary [usr/bin/joy-pi-board]
+E: joy-pi-board: unstripped-binary-or-object [usr/bin/joy-pi-board]
+W: joy-pi-board: copyright-without-copyright-notice
+W: joy-pi-board: no-manual-page [usr/bin/joy-pi-board]

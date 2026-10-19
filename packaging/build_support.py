@@ -3,8 +3,8 @@ import subprocess
 import sys
 
 
-def run_logged(command, *, cwd, env, log_path):
-    """Retain complete output and expose the actual failure in the CI console."""
+def run_logged(command, *, cwd, env, log_path, check=True):
+    """Expose failures; check=False lets callers save evidence before failing."""
     with log_path.open("w", encoding="utf-8") as log:
         result = subprocess.run(
             command, cwd=cwd, env=env, stdout=log, stderr=subprocess.STDOUT
@@ -14,4 +14,6 @@ def run_logged(command, *, cwd, env, log_path):
               file=sys.stderr, end="")
         print(f"{command[0]} exited {result.returncode}; full log: {log_path}",
               file=sys.stderr)
-        raise SystemExit(result.returncode)
+        if check:
+            raise SystemExit(result.returncode)
+    return result

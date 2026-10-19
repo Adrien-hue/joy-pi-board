@@ -48,6 +48,30 @@ class BuildLogTests(unittest.TestCase):
             self.assertEqual(log.read_text(encoding="utf-8").strip(), "controlled success")
             self.assertEqual(stderr.getvalue(), "")
 
+    def test_validation_failure_exposes_report_and_returns_status_for_evidence(self):
+        with tempfile.TemporaryDirectory() as directory:
+            log = pathlib.Path(directory) / "lintian.log"
+            stderr = io.StringIO()
+            with contextlib.redirect_stderr(stderr):
+                result = support.run_logged(
+                    [sys.executable, "-c",
+                     "import sys; print('E: controlled validation failure'); sys.exit(2)"],
+                    cwd=directory, env=os.environ.copy(), log_path=log, check=False,
+                )
+            self.assertEqual(result.returncode, 2)
+            self.assertIn("E: controlled validation failure", stderr.getvalue())
+            self.assertIn(log.read_text(encoding="utf-8"), stderr.getvalue())
+
+    def test_validation_success_returns_status_and_retains_warnings(self):
+        with tempfile.TemporaryDirectory() as directory:
+            log = pathlib.Path(directory) / "lintian.log"
+            result = support.run_logged(
+                [sys.executable, "-c", "print('W: controlled warning')"],
+                cwd=directory, env=os.environ.copy(), log_path=log, check=False,
+            )
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(log.read_text(encoding="utf-8").strip(), "W: controlled warning")
+
 
 if __name__ == "__main__":
     unittest.main()

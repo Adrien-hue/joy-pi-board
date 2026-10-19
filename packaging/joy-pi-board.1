@@ -1,0 +1,78 @@
+.TH JOY-PI-BOARD 1 "2026-10-19" "Joy Pi Board 0.1.0" "User Commands"
+.SH NAME
+joy-pi-board \- present Joy Pi Health observations on a local network
+.SH SYNOPSIS
+.B joy-pi-board
+.RI [ "\-\-listen IP:port" ]
+.RI [ "\-\-health-url URL" ]
+.RB [ \-\-diagnostic-timing ]
+.br
+.B joy-pi-board \-\-help
+.br
+.B joy-pi-board \-\-version
+.SH DESCRIPTION
+Joy Pi Board serves an embedded web dashboard and a read-only overview API.
+It presents observations from Joy Pi Health and does not collect system metrics
+or access sensors. The interface starts and remains available when Health is
+unavailable. No Node runtime, external asset server or local asset directory is
+required.
+.SH OPTIONS
+Options may appear only once. Unknown options and positional arguments are
+rejected. Value options accept either a separate argument or an equals sign.
+.TP
+.BI \-\-listen " IP:port"
+Bind to a numeric IPv4 or bracketed IPv6 address and a decimal port from 0 to
+65535. Port 0 requests an automatically assigned port. Default: 0.0.0.0:8081.
+Use an unprivileged port with the packaged service.
+.TP
+.BI \-\-health-url " URL"
+Health snapshot URL. Requires HTTP, an explicit host and port from 1 to 65535,
+and the path /v1/snapshot. Credentials, queries and fragments are forbidden.
+Default: http://127.0.0.1:8080/v1/snapshot.
+.TP
+.B \-\-diagnostic-timing
+Temporarily emit bounded request timing diagnostics to the log output.
+Disabled by default; takes no value and has no environment equivalent.
+At most 4096 request records are admitted per process, with loss and truncation
+counters. Missing, dropped or truncated samples invalidate measurements.
+There is no diagnostic endpoint, system collector or internal persistence.
+This option cannot be combined with help or version.
+.TP
+.B \-\-help, \-h
+Print help and exit without binding or contacting Health. Must stand alone.
+.TP
+.B \-\-version
+Print version, revision and build time, then exit without binding or contacting
+Health. Must stand alone. A target version does not imply release acceptance.
+.SH ENVIRONMENT
+.B JOY_PI_BOARD_LISTEN
+and
+.B JOY_PI_BOARD_HEALTH_URL
+provide the corresponding option values. An explicit flag takes precedence
+over a present environment variable, which takes precedence over the default.
+An empty value is invalid. Help and version do not validate these variables.
+.SH FILES
+.TP
+.I /etc/default/joy-pi-board
+Administrator configuration, read by the packaged systemd unit as an
+EnvironmentFile. It uses systemd syntax and is not sourced as a shell script.
+Direct invocation of the binary does not read this file.
+.TP
+.I /usr/lib/systemd/system/joy-pi-board.service
+Packaged service running as the dedicated unprivileged joy-pi-board account.
+Installation does not enable or start it; authorized operators choose these
+actions explicitly. There is no Health startup dependency.
+.TP
+.I /usr/share/doc/joy-pi-board/
+Operation guide, build provenance, asset inventory and third-party notices.
+.SH DIAGNOSTICS
+Logs go to standard error; the packaged service sends them to journald.
+Default logging covers lifecycle and significant provider transitions.
+SIGINT and SIGTERM initiate graceful shutdown under a five-second budget.
+.SH EXIT STATUS
+0 indicates normal completion. 2 indicates invalid startup configuration.
+1 indicates another failure, such as inability to bind the listener.
+.SH SEE ALSO
+.BR systemd.service (5),
+.BR systemd.exec (5),
+.BR journalctl (1)

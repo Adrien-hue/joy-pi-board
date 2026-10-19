@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Archive construction only. Never installs, starts services or executes maintainer scripts."""
-import argparse, datetime, hashlib, json, os, pathlib, re, shutil, subprocess, sys
+import argparse, datetime, gzip, hashlib, json, os, pathlib, re, shutil, subprocess, sys
 sys.dont_write_bytecode = True
 from build_support import run_logged
 p=argparse.ArgumentParser()
@@ -70,6 +70,8 @@ put("usr/share/doc/joy-pi-board/copyright",copyright_text.encode())
 put("usr/share/doc/joy-pi-board/build.json",(artifact/"provenance.json").read_bytes())
 put("usr/share/doc/joy-pi-board/assets.json",(artifact/"assets.json").read_bytes())
 put("usr/share/doc/joy-pi-board/README", (root/"README.md").read_bytes())
+put("usr/share/man/man1/joy-pi-board.1", (root/"joy-pi-board.1").read_bytes())
+put("usr/share/lintian/overrides/joy-pi-board", (root/"lintian-overrides").read_bytes())
 if (artifact/"THIRD-PARTY-NOTICES").exists():put("usr/share/doc/joy-pi-board/THIRD-PARTY-NOTICES",(artifact/"THIRD-PARTY-NOTICES").read_bytes())
 else:raise SystemExit("Missing third-party notices")
 epoch=str(manifest["sourceDateEpoch"])
@@ -86,14 +88,17 @@ installed=extract/"usr/bin/joy-pi-board"
 if installed.read_bytes()!=binary.read_bytes():raise SystemExit("Packaged binary mutated")
 # Capture the actual generated scripts, not just source templates.
 control=extract/"DEBIAN"
-for script in ["postinst","prerm","postrm"]:
+for script in ["preinst","postinst","prerm","postrm"]:
     f=control/script
     if f.exists():subprocess.run(["sh","-n",str(f)],check=True)
 if "/etc/default/joy-pi-board" not in (control/"conffiles").read_text():raise SystemExit("Missing conffile")
+if gzip.decompress((extract/"usr/share/man/man1/joy-pi-board.1.gz").read_bytes()) != (root/"joy-pi-board.1").read_bytes():raise SystemExit("Packaged manual page mismatch")
+if (extract/"usr/share/lintian/overrides/joy-pi-board").read_bytes() != (root/"lintian-overrides").read_bytes():raise SystemExit("Packaged lintian overrides mismatch")
 contents=subprocess.check_output(["dpkg-deb","-c",str(package)],text=True)
 (out/"contents.txt").write_text(contents)
-with (out/"lintian.log").open("w") as log:
-    lint=subprocess.run(["lintian","--allow-root",str(package)],stdout=log,stderr=subprocess.STDOUT)
+lint=run_logged(["lintian","--allow-root","--show-overrides",str(package)],cwd=work,env=env,log_path=out/"lintian.log",check=False)
+# Keep warnings and the two narrowly scoped overrides visible even on success.
+if not lint.returncode:print((out/"lintian.log").read_text(encoding="utf-8"),end="")
 report={"scope":"archive build/extraction only; no maintainer execution or systemd lifecycle","distribution":not a.test_only,"status":manifest["status"],"id":manifest["id"],"binarySHA256":digest(installed.read_bytes()),"package":package.name,"packageSHA256":digest(package.read_bytes()),"toolsSHA256":digest(tools.encode()),"lintianExit":lint.returncode}
 (out/"package-evidence.json").write_text(json.dumps(report,indent=2)+"\n")
 (out/"SHA256SUMS").write_text(report["packageSHA256"]+"  "+package.name+"\n")

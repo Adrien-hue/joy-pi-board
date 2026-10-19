@@ -71,6 +71,8 @@ python3 packaging/compare.py /work/one /work/two
 
 Archive inspection is not execution. ARM64 ELF inspection on amd64 does not prove ARM64 runtime behavior. A chroot/container without real systemd does not prove service lifecycle.
 
+Review the two path-specific Lintian overrides shipped in `usr/share/lintian/overrides/joy-pi-board`: the approved static runtime and preservation of the frozen executable's symbols. `--show-overrides` makes these decisions visible in lintian.log and the CI console; all other errors still fail validation. The test-only copyright warning remains visible until established distribution metadata exists. Check the installed manual page under `usr/share/man/man1/joy-pi-board.1.gz`; packaging compares its decompressed bytes with the source manual. These policy exceptions do not waive lifecycle or Pi acceptance.
+
 ## Isolated service lifecycle
 
 Use a disposable **ARM64 VM** with real systemd PID 1, snapshot restoration available, no writable host/Pi data sharing, and no pre-existing Board account/package. Explicitly verify VM identity, mounts, OS/architecture and PID 1. Install only test prerequisites in that guest. A human must attest that no host block device or writable host data is exposed; filesystem checks alone cannot prove hypervisor isolation.

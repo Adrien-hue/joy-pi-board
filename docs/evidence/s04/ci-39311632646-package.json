@@ -1,0 +1,11 @@
+{
+  "scope": "archive build/extraction only; no maintainer execution or systemd lifecycle",
+  "distribution": false,
+  "status": "DEVELOPMENT / NOT ACCEPTED",
+  "id": "ci-39311632646",
+  "binarySHA256": "64e962dd55e823f990bf7b4f21f6d4999b5584af691309e72e2f997cb17777fe",
+  "package": "joy-pi-board_0.1.0-1+dev.ci-39311632646_arm64.deb",
+  "packageSHA256": "98fc642984f02f3a339b32113192a365659b8ab92fe88b2592bf1732f640e0d9",
+  "toolsSHA256": "e0c2df777fa04ddd629697ad4dccf54d72d17e7b3ef82955aff18b7612612560",
+  "lintianExit": 2
+}
