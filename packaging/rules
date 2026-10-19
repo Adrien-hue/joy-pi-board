@@ -11,6 +11,9 @@ override_dh_auto_install:
 override_dh_strip:
 override_dh_dwz:
 override_dh_strip_nondeterminism:
+# The payload contains a static Go executable and no shared libraries.
+# Do not scan it with target objdump or generate shlibs/ldconfig metadata.
+override_dh_makeshlibs:
 override_dh_shlibdeps:
 override_dh_installsystemd:
 	dh_installsystemd --no-enable --no-start

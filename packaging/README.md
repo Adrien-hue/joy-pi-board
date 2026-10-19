@@ -2,6 +2,8 @@
 
 Private artifacts are not accepted releases. Record the exact package/binary hashes and candidate status before installation. Package construction consumes a supplied frozen binary and never compiles or strips it.
 
+The payload contains a static Go executable and no shared libraries. The recipe therefore skips both dh_makeshlibs and dh_shlibdeps; it does not generate shlibs metadata or an ldconfig trigger. Adding shared libraries or dynamic linking requires revisiting these overrides. Source provenance, supplied-binary checksums and extracted-byte equality remain mandatory.
+
 The package uses /usr/bin/joy-pi-board, /usr/lib/systemd/system/joy-pi-board.service and the dpkg conffile /etc/default/joy-pi-board. The dedicated system account has no login, home or device groups. There is no Health service/package dependency or production Node runtime.
 
 Installation does not enable or start Board. After verifying the package and configuration, an authorized operator explicitly starts it, then optionally enables it. HTTP readiness, not systemd active status, is the readiness oracle. Defaults remain 0.0.0.0:8081 and http://127.0.0.1:8080/v1/snapshot. Flag > present environment > default; an empty value is invalid. EnvironmentFile uses systemd syntax, not shell expansion. Choose an unprivileged listener port.

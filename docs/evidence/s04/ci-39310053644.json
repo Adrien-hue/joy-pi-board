@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-19",
+  "runId": 39310053644,
+  "attempt": 1,
+  "event": "push",
+  "sha": "491204eb0bce909fc3bbd539f480c858e2984e0b",
+  "conclusion": "cancelled",
+  "jobs": [
+    {
+      "id": 118256993675,
+      "name": "foundation",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118256994034,
+      "name": "race",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 118256994312,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "cancelled"
+    }
+  ],
+  "failure": {
+    "jobId": 118256993675,
+    "step": "S04 isolated archive checks and comparison (not service lifecycle)",
+    "helper": "dh_makeshlibs",
+    "missingProgram": "aarch64-linux-gnu-objdump",
+    "dpkgBuildpackageExit": 2,
+    "log": "ci-39310053644-build.log",
+    "packageInventory": "ci-39310053644-packages.lock"
+  },
+  "correction": "Skip dh_makeshlibs for the static executable-only package; existing shlibdeps/strip overrides and binary identity checks retained.",
+  "validation": "Corrected Debian archive build NOT RUN locally; Docker Linux engine unavailable. No service execution, CI rerun or Pi access.",
+  "archiveInspection": {
+    "artifactId": 12215442885,
+    "archiveSHA256": "f079c5c87ff1d936bb9fafcd6f119c30c4796b171d632ae60e00565df9bcb99b",
+    "binarySHA256": "9ddbc8896b1ee18e5ff1d9b8b37671ed1b4b3745965e71663786436adf7f5dbd",
+    "elf": {
+      "class": 64,
+      "endianness": "little",
+      "type": "ET_EXEC",
+      "machine": "AArch64",
+      "PT_INTERP": false,
+      "PT_DYNAMIC": false
+    },
+    "payloadFileCount": 7,
+    "payloadELFCount": 1,
+    "binaryMatchesProvenanceAndStagedCopy": true,
+    "scope": "Read-only archive inspection; no package/service/ARM64 execution",
+    "binaryMatchesArtifact": true
+  },
+  "retainedFilesSHA256": {
+    "ci-39310053644-build.log": "0b35db1c688e1d99d62d8d28751f03b13e4181fb7c6f6f08c5a7bd30caf030c7",
+    "ci-39310053644-packages.lock": "e0c2df777fa04ddd629697ad4dccf54d72d17e7b3ef82955aff18b7612612560"
+  }
+}
