@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Archive construction only. Never installs, starts services or executes maintainer scripts."""
-import argparse, datetime, hashlib, json, os, pathlib, re, shutil, subprocess
+import argparse, datetime, hashlib, json, os, pathlib, re, shutil, subprocess, sys
+sys.dont_write_bytecode = True
+from build_support import run_logged
 p=argparse.ArgumentParser()
 p.add_argument("--artifact",required=True);p.add_argument("--output",required=True)
 p.add_argument("--metadata");p.add_argument("--test-only",action="store_true")
@@ -73,8 +75,9 @@ else:raise SystemExit("Missing third-party notices")
 epoch=str(manifest["sourceDateEpoch"])
 for path in work.rglob("*"):os.utime(path,(int(epoch),int(epoch)))
 env={**os.environ,"SOURCE_DATE_EPOCH":epoch,"LC_ALL":"C.UTF-8","TZ":"UTC","DEB_BUILD_OPTIONS":"nostrip noautodbgsym"}
-with (out/"build.log").open("w") as log:
-    subprocess.run(["dpkg-buildpackage","-b","-us","-uc","-a","arm64","-d"],cwd=work,env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
+tools=subprocess.check_output(["dpkg-query","-W","-f=${binary:Package}\t${Version}\n"],text=True)
+(out/"packages.lock").write_text(tools)
+run_logged(["dpkg-buildpackage","-b","-us","-uc","-a","arm64","-d"],cwd=work,env=env,log_path=out/"build.log")
 packages=list(out.glob("*.deb"))
 if len(packages)!=1:raise SystemExit("Unexpected package/debug output")
 package=packages[0];extract=out/"extracted"
@@ -89,8 +92,6 @@ for script in ["postinst","prerm","postrm"]:
 if "/etc/default/joy-pi-board" not in (control/"conffiles").read_text():raise SystemExit("Missing conffile")
 contents=subprocess.check_output(["dpkg-deb","-c",str(package)],text=True)
 (out/"contents.txt").write_text(contents)
-tools=subprocess.check_output(["dpkg-query","-W","-f=${binary:Package}\t${Version}\n"],text=True)
-(out/"packages.lock").write_text(tools)
 with (out/"lintian.log").open("w") as log:
     lint=subprocess.run(["lintian","--allow-root",str(package)],stdout=log,stderr=subprocess.STDOUT)
 report={"scope":"archive build/extraction only; no maintainer execution or systemd lifecycle","distribution":not a.test_only,"status":manifest["status"],"id":manifest["id"],"binarySHA256":digest(installed.read_bytes()),"package":package.name,"packageSHA256":digest(package.read_bytes()),"toolsSHA256":digest(tools.encode()),"lintianExit":lint.returncode}

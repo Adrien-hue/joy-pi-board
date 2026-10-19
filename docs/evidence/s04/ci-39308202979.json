@@ -1,0 +1,333 @@
+{
+  "date": "2026-10-19",
+  "runId": 39308202979,
+  "attempt": 1,
+  "event": "push",
+  "sha": "4fd1ebc0e8c825a7b573d976ccad7347d6bffad0",
+  "conclusion": "failure",
+  "jobs": [
+    {
+      "id": 118250650131,
+      "name": "race",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39308202979,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record race platform and compiler",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s00-race\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Native Linux race detector, frontend built first",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    },
+    {
+      "id": 118250650311,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39308202979,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record browser host and exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s03-browser\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Install locked Playwright engine revisions on supported Linux",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build embedded production app and exercise all three engines",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 118250650452,
+      "name": "foundation",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_id": 39308202979,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record actual hosted environment and enforce exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Locked install without restored dependency caches",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Check S00-S04 sources, HTTP contracts and tools, frontend before Go embed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Bounded Health schema fuzzing (S01)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Native and Linux ARM64 binaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Embedded binary, S02 unavailable overview and missing-dist checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "External S04 measurement tools and private ARM64 artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "S04 isolated archive checks and comparison (not service lifecycle)",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12214837309,
+      "name": "board-check-evidence",
+      "size_in_bytes": 19049684,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12214837309",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12214837309/zip",
+      "expired": false,
+      "created_at": "2026-10-19T19:10:18Z",
+      "expires_at": "2026-10-26T19:10:16Z",
+      "updated_at": "2026-10-19T19:10:18Z",
+      "digest": "sha256:b5bdc046fdabbb02b4f5cb9d1f438ee68815030775a2640c890416b525186351",
+      "workflow_run": {
+        "id": 39308202979,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "4fd1ebc0e8c825a7b573d976ccad7347d6bffad0"
+      }
+    },
+    {
+      "id": 12214043925,
+      "name": "board-browser-evidence",
+      "size_in_bytes": 9609774,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12214043925",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12214043925/zip",
+      "expired": false,
+      "created_at": "2026-10-19T19:12:12Z",
+      "expires_at": "2026-10-26T19:12:10Z",
+      "updated_at": "2026-10-19T19:12:12Z",
+      "digest": "sha256:2f5d135e158489103f480770039ccf0853dedb30ca59d7e9cdd3fdb1a28d7cbf",
+      "workflow_run": {
+        "id": 39308202979,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "4fd1ebc0e8c825a7b573d976ccad7347d6bffad0"
+      }
+    }
+  ],
+  "downloadVerified": {
+    "artifactId": 12214837309,
+    "sha256": "b5bdc046fdabbb02b4f5cb9d1f438ee68815030775a2640c890416b525186351",
+    "buildLogPresent": false,
+    "packagingImageId": "sha256:f46a439676d0c7aa91356ddd6a745489ec13d0aab5a2fb1e77830b7aa21f601d"
+  },
+  "scope": "Read-only GitHub inspection; no CI rerun or package execution. Debian error remains undetermined."
+}

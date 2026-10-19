@@ -64,10 +64,12 @@ jobs:
           docker build --platform linux/amd64 -f packaging/Dockerfile -t board-package-test packaging
           docker image inspect board-package-test > out/packaging-image.json
           docker create --name board-package-test --network none --env ARTIFACT_ID=ci-${GITHUB_RUN_ID} --mount type=bind,source="$PWD",target=/src,readonly board-package-test sh -ec 'python3 /src/packaging/build.py --artifact /src/out/artifacts/$ARTIFACT_ID --output /work/one --test-only; python3 /src/packaging/build.py --artifact /src/out/artifacts/$ARTIFACT_ID --output /work/two --test-only; python3 /src/packaging/compare.py /work/one /work/two > /work/reproducibility.json'
-          docker start -a board-package-test
+          package_attach_status=0
+          docker start -a board-package-test || package_attach_status=$?
           package_status=$(docker inspect --format '{{.State.ExitCode}}' board-package-test)
           docker cp board-package-test:/work out/packaging
           docker rm board-package-test
+          test "$package_attach_status" = 0
           test "$package_status" = 0
           git diff --exit-code
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

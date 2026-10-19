@@ -2,6 +2,8 @@
 
 Status: **SOFTWARE IMPLEMENTED; VALIDATION INCOMPLETE; NOT CLOSED; release NO-GO**. Date: 2026-10-18. The user's current instruction approves S04-R01–R04 and S04-01–S04-05 software and isolated guest tests, replacing documentary-only restrictions. No primary-host/Pi package installation, account/service creation or operation, Pi connection, network change, commit, push, tag, release or deployment was performed.
 
+Update 2026-10-19: the [first S04 CI run and packaging diagnostics fix](#2026-10-19--first-s04-ci-and-packaging-failure-diagnostics) below supersede the earlier pending-CI statements for commit 4fd1ebc0 only. Original local evidence and limitations remain historical.
+
 ## Source and preserved history
 
 Repository identity: `Adrien-hue/joy-pi-board`. Initial tree clean at `fcbb096e71bf6178145b7f370f5036b67a5e53eb`, the previously committed S04 preparation. Work in this assignment is uncommitted and dirty, with exact inputs recorded by development provenance. There is no new commit SHA or remote CI result to attribute to these changes.
@@ -75,6 +77,19 @@ For a clean candidate, first complete Linux checks and packaging metadata/enviro
 
 S04-06–S04-10, C-01–C-06 and transferred S03-T05/T09/T11/T12/T14 operator scope remain NOT RUN. Required inputs are target/access/OS/architecture, storage/power/cooling, Health version/service state, Board collisions/configuration, downtime/restoration plan, load host and real client/device/reader availability. See [runbook](s04-runbook.md). S04 is not closed and release GO is not granted.
 
-## Final repository checks
+## 2026-10-18 final repository checks
 
 437 local Markdown links/anchors checked with no missing target; requirement/task/gate references reviewed together. `git diff --check` passes. All 122 selected development input hashes still match the working files. Existing application toolchains/lockfiles, fixture bytes, S00/S01/S02 evidence and tracked historical evidence artifacts are unchanged. Packaging text uses LF endings. The diff is confined to authorized S04 runtime seams, tests, external tools, packaging/CI and English documentation/evidence; specification changes only the authorization row, without budget changes. No commit was created.
+
+
+## 2026-10-19 — First S04 CI and packaging failure diagnostics
+
+Inspected [run 39308202979](https://github.com/Adrien-hue/joy-pi-board/actions/runs/39308202979), attempt 1, push event, exact source `4fd1ebc0e8c825a7b573d976ccad7347d6bffad0`. The local tree was clean at that commit before this follow-up; no commit/push/rerun was performed by this assignment. GitHub reports `race` (118250650131) and `browser` (118250650311) successful; `foundation` (118250650452) passed its source/fuzz/build/smoke/measurement stages and failed the isolated archive step. Overall CI is **FAIL**, not a candidate acceptance result. These job results do not accept real browsers, devices, systemd or Pi.
+
+The Docker image did build: actual amd64/Linux image configuration ID `sha256:f46a439676d0c7aa91356ddd6a745489ec13d0aab5a2fb1e77830b7aa21f601d` (no registry RepoDigest). The foundation log records installation of dpkg-dev 1.22.22 and debhelper 13.24.2 from the selected snapshot. Do not equate the local image ID with a published registry manifest digest or a complete retained transitive package lock.
+
+The Python traceback exposes only `dpkg-buildpackage` exit **2**. Its detailed output went to `/work/one/build.log`. `docker start -a` then exited nonzero and GitHub's fail-fast shell stopped before `docker cp`, so the actual Debian cause was lost with the disposable runner. Downloaded artifact **12214837309**, `board-check-evidence`, SHA-256 **b5bdc046fdabbb02b4f5cb9d1f438ee68815030775a2640c890416b525186351**, matches GitHub metadata; its ZIP contains `packaging-image.json` but no packaging work directory or build.log. Root cause of the Debian build remains **UNDETERMINED**. No speculative tool/version/recipe substitution is made.
+
+This follow-up corrects error visibility and evidence retention: the build helper preserves the log, prints original output on failure and propagates its exit code; the package inventory is captured before the build. CI captures Docker's failure status, copies `/work`, removes its own stopped test container, then fails without masking the error. A failed build will therefore supply the actual log and package versions. Two controlled Python-child tests cover success and exit-2 failure with stdout/stderr retention; no Debian/maintainer/service code executes in these tests. The actual workflow status/copy/removal fragment also passes simulated exit-0 and exit-2 cases in Git Bash with a shell-only Docker stub; no real container is used. Python tool checks, workflow formatting and `git diff --check` pass locally. [Run/job/artifact metadata](evidence/s04/ci-39308202979.json) preserves the read-only inspection; the downloaded archive and controlled workflow results remain under `out/s04-ci-fix/`.
+
+Local Docker Linux remains unavailable, so **the Debian build itself is not fixed or revalidated yet**. Obtain the saved log from a surviving disposable container, or execute updated CI/isolated packaging using a new artifact identity (packaging inputs changed). The final 2026-10-18 input-hash statement above describes that historical delivery, not these modified packaging sources. No prior development identity is overwritten. Full package validation, generated-script execution/lifecycle, Pi and transferred operator gates remain open; no release GO.

@@ -13,3 +13,4 @@ for name in ["build.py","postinst","rules"]:
 compile(pathlib.Path("packaging/build.py").read_text(),"packaging/build.py","exec")
 compile(pathlib.Path("scripts/process-samples.py").read_text(),"scripts/process-samples.py","exec")
 print("PASS: external statistics and Python syntax; no system/package operation")
+subprocess.run([sys.executable,"packaging/test_build_support.py"],check=True)
