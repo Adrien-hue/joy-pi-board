@@ -1,0 +1,12 @@
+Package: joy-pi-board
+Version: 0.1.0-1+dev.ci-39313804438
+Architecture: arm64
+Maintainer: Internal packaging test fixture <fixture@example.invalid>
+Installed-Size: 10438
+Depends: adduser
+Section: web
+Priority: optional
+Homepage: https://github.com/Adrien-hue/joy-pi-board
+Description: Joy Pi Home LAN overview
+ Embedded read-only presentation of Joy Pi Health observations.
+ No Health availability or Node runtime is required.

@@ -1,0 +1,60 @@
+[
+    {
+        "Id": "sha256:d2fddecaa22e7ab0e534a681abc892c37ec92eba95dcd4d80c36c1cdbc0f1508",
+        "RepoTags": [
+            "board-package-test:latest"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-10-19T19:50:04.926864256Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Config": {
+            "Hostname": "",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "bash"
+            ],
+            "Image": "",
+            "Volumes": null,
+            "WorkingDir": "/work",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": null
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 456466482,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/wdk3kgqtjkp1w7rvy4x2doamk/diff:/var/lib/docker/overlay2/62e0e156520d1e501833cd513b08031518c82428e4466aea57f18f77068da173/diff",
+                "MergedDir": "/var/lib/docker/overlay2/zfpgt3i9dgebkune7kiy7h7vh/merged",
+                "UpperDir": "/var/lib/docker/overlay2/zfpgt3i9dgebkune7kiy7h7vh/diff",
+                "WorkDir": "/var/lib/docker/overlay2/zfpgt3i9dgebkune7kiy7h7vh/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:15f1c8eb1ab18eae260c7fb6296434cbe1ff0e1e30fd814ae92a80dd54005e62",
+                "sha256:1a2551c6ff046bd6038633f03edc38d07f720a30a5b401c95bacbbab717963c2",
+                "sha256:b191eb32c6692c79395fc0fd9225a7d1eb00976aae95e4f3af1aade801850704"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-19T19:50:07.12582768Z"
+        }
+    }
+]

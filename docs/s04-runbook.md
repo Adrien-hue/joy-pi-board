@@ -1,6 +1,6 @@
 # S04 build and acceptance runbook
 
-Status: software commands delivered; packaging environment, installed lifecycle and Pi acceptance incomplete. See [evidence](s04-evidence.md) and the [approved work package](sprint-04.md). Commands below are procedures, not evidence that they ran. No primary-host/Pi installation or service operation is authorized by the current assignment.
+Status: software/archive CI verified at `5bc101e`; installed lifecycle and Pi acceptance incomplete. See [evidence](s04-evidence.md#2026-10-20--verified-green-ci-and-vm-preparation), [VM preparation](s04-vm-validation.md) and the [approved work package](sprint-04.md). Commands below are procedures, not evidence that they ran. No primary-host/Pi installation or service operation is authorized by the current assignment.
 
 ## Build and identity without a Pi
 
@@ -42,6 +42,8 @@ Use an unused candidate ID and Debian revision. Local existing frozen revisions 
 
 ## Locked packaging and archive checks
 
+The original environment-lock status is historical input metadata: [CI 39313804438](evidence/s04/ci-39313804438/README.md) now retains the actual built image configuration ID, full transitive inventory and two identical test archives. No local Docker execution is inferred, and the image ID is not a registry manifest digest. Use the dated evidence record for verified closure, preserving the original input file and its checksum.
+
 [environment-lock.json](../packaging/environment-lock.json) records the resolved Debian OCI base digests and dated snapshot. The base digest is verified registry metadata; **the derived image and full transitive package closure have not been executed/verified locally**. The Dockerfile uses the signed immutable snapshot with exact dpkg/dpkg-dev/debhelper checks. Do not fall back to a moving mirror or silently choose another version on failure. Retain apt error details; review any replacement.
 
 In a disposable Linux build environment with a working container engine, the following performs builds and archive extraction only. Source is mounted read-only; the container has no writable host data mount:
@@ -74,6 +76,8 @@ Archive inspection is not execution. ARM64 ELF inspection on amd64 does not prov
 Review the two path-specific Lintian overrides shipped in `usr/share/lintian/overrides/joy-pi-board`: the approved static runtime and preservation of the frozen executable's symbols. `--show-overrides` makes these decisions visible in lintian.log and the CI console; all other errors still fail validation. The test-only copyright warning remains visible until established distribution metadata exists. Check the installed manual page under `usr/share/man/man1/joy-pi-board.1.gz`; packaging compares its decompressed bytes with the source manual. These policy exceptions do not waive lifecycle or Pi acceptance.
 
 ## Isolated service lifecycle
+
+Start with [the prepared VM matrix and prerequisites](s04-vm-validation.md). VM-F01 found no removal stop path in the generated green-CI package; this must be resolved before A-06 acceptance. The two identical reproducibility archives are not an upgrade pair: supply two distinct, correctly ordered package versions with verified hashes. The default command below is inert; execute only after guest isolation and recovery are verified. Do not run Python with `-O`, because the current harness uses assertions.
 
 Use a disposable **ARM64 VM** with real systemd PID 1, snapshot restoration available, no writable host/Pi data sharing, and no pre-existing Board account/package. Explicitly verify VM identity, mounts, OS/architecture and PID 1. Install only test prerequisites in that guest. A human must attest that no host block device or writable host data is exposed; filesystem checks alone cannot prove hypervisor isolation.
 

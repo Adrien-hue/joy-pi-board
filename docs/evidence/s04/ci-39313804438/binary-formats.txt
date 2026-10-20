@@ -1,0 +1,2 @@
+out/joy-pi-board:             ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=e7vuZs2aJuIc836Hmnal/n4tnRNprtiy_ijL5y2Uk/eeGHM_qmQVku60XlK8rs/EjucjFfQ3ByEvkUX1WAn, BuildID[sha1]=8f3ec4875ff739a0a8c6e54e37576fb5d9eaa2b6, with debug_info, not stripped
+out/joy-pi-board-linux-arm64: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), statically linked, Go BuildID=e-TyCqJ2TYOy7Q5UCzm6/jny5yaTaHAZuZ3MNCuGv/h2O7uEXJeYDCtUBxrDnz/2GWBHWeAWI58jq14usiO, BuildID[sha1]=69da829b8425e35a19f789b3e4de057c68bfe16a, with debug_info, not stripped

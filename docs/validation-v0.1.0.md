@@ -6,6 +6,8 @@ Numeric expectations are adopted through [ADR-001](adr-001-exact-json-integers.m
 
 ## Evidence and release rules
 
+Update 2026-10-20: [CI 39313804438 evidence](evidence/s04/ci-39313804438/README.md) verifies the S04 source/automated-engine/archive subsets at `5bc101e`, not full A/B/C completion. A-06 remains OPEN: [VM-01–VM-10](s04-vm-validation.md#matrix-and-evidence-oracles) are NOT RUN and VM-F01 identifies a missing removal stop path in the generated package. A static review finding is not a runtime FAIL or PASS. Resolve it and run the actual isolated-systemd cases before candidate acceptance; all Pi and transferred S03 operator gates remain NOT RUN.
+
 Each run records test ID, PASS/FAIL/NOT RUN, UTC date, operator/CI URL, Board source commit, exact binary SHA-256, package SHA-256 if applicable, toolchain/lockfile identities, OS/kernel/architecture, configuration, Health commit/version, client/load settings, raw evidence and any exception. Record compiler flags and embedded asset manifest/checksums in build metadata. A mock is identified as a mock. Hardware model/OS are operator evidence, not fabricated Health API fields.
 
 Release requires **Class A PASS, Class B PASS and Class C PASS**, with every required check executed and passing. A waiver or unexecuted required check does not count as PASS. Relevant P-xx choices must be ratified or replaced explicitly before their dependent gates can be accepted. An unexecuted physical check remains NOT RUN, not inferred PASS from a mock, developer workstation, cross-build or Health's own hardware release status.

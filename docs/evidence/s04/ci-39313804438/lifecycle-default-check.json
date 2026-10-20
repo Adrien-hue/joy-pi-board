@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-20",
+  "command": [
+    "python",
+    "packaging/lifecycle.py"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "NOT RUN: requires --execute, --vm-id, two packages, output and isolated ARM64 VM marker; no action taken\n",
+  "scope": "Default refusal only on Windows host; no --execute, no package/service/VM operation"
+}

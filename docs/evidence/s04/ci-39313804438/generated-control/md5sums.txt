@@ -1,0 +1,10 @@
+cf7d03bfd195ff79faa6d7e3d9ad7506  usr/bin/joy-pi-board
+b0862c5acd7c760f6ea2e887645167d7  usr/lib/systemd/system/joy-pi-board.service
+ca5b759d72e5cdf78d8f9ce0dd6f7928  usr/share/doc/joy-pi-board/README
+18d243ac0fa4cfcd24b4b83df3c8dab0  usr/share/doc/joy-pi-board/THIRD-PARTY-NOTICES.gz
+f12bd05e60b0eb0066570c9a2ac074f7  usr/share/doc/joy-pi-board/assets.json
+2660747c53f35b9d39bdbb675c19f046  usr/share/doc/joy-pi-board/build.json.gz
+f62302f209bce14f2412b48c4abe7e73  usr/share/doc/joy-pi-board/changelog.Debian.gz
+2bd5ed07b042c0cdacfa8ffad853b4f2  usr/share/doc/joy-pi-board/copyright
+1a9937b4ba5079df44a9516c73f67e87  usr/share/lintian/overrides/joy-pi-board
+6592a431704d80ae045c5314f8951470  usr/share/man/man1/joy-pi-board.1.gz

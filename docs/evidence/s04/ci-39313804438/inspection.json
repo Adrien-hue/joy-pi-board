@@ -1,0 +1,218 @@
+{
+  "scope": "Read-only archive verification; no ARM64/maintainer/systemd execution",
+  "archiveChecksumsVerified": {
+    "board-check-evidence": "18e2fbbcabb3054da054b1a108840572cd56e8b723f76eecc4d58c61d58cc699",
+    "board-browser-evidence": "f02125385ddeebf2a40cc04846f41ec373f4fac4d53f68d1c875217bdfe5ed48"
+  },
+  "binarySHA256": "16bb1670c81638329b01ad7c83cc219c1957bb5ee1765b4a1091680f8dbbcb03",
+  "packageSHA256": "915f35240b9f9e6194bfbcee71fa2e4dcd98d475a606b8f635918ebe3fbb55dd",
+  "identicalPackages": true,
+  "bothExtractedBinariesMatchArtifact": true,
+  "artifactChecksumsVerified": true,
+  "staticELF64ARM64": true,
+  "manualMatchesSource": true,
+  "toolInventorySHA256": "e0c2df777fa04ddd629697ad4dccf54d72d17e7b3ef82955aff18b7612612560",
+  "browserStats": {
+    "startTime": "2026-10-19T19:47:50.103Z",
+    "duration": 255714.49599999998,
+    "expected": 27,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sizesSummary": [
+    {
+      "name": "complete",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 80768,
+      "overviewIdentityBytes": 951
+    },
+    {
+      "name": "partial",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 82001,
+      "overviewIdentityBytes": 2184
+    },
+    {
+      "name": "maximum-markup",
+      "jsCSSGzipBytes": 79522,
+      "initialBytes": 145545,
+      "overviewIdentityBytes": 65728
+    }
+  ],
+  "retainedMembers": [
+    {
+      "archiveMember": "packaging-image.json",
+      "path": "packaging-image.json",
+      "sha256": "8e1123c9b4b4646423be0332d9e201fd08443468558300087685676e5f29263c"
+    },
+    {
+      "archiveMember": "runner-image.txt",
+      "path": "runner-image.txt",
+      "sha256": "7bf7f6d259969ccd18bc917bdabf5b9f157491b474a952432daa39b023c73eb6"
+    },
+    {
+      "archiveMember": "standalone-smoke.json",
+      "path": "standalone-smoke.json",
+      "sha256": "a7190125c167eb17418d8519684299b40c176095d7e4aa332661ef5e035d0382"
+    },
+    {
+      "archiveMember": "s01-interop.json",
+      "path": "s01-interop.json",
+      "sha256": "05c8f0885a5d6255b907699e12bc00f1921bed8a8019066c8f11d882a53846ba"
+    },
+    {
+      "archiveMember": "s02-http-interop.json",
+      "path": "s02-http-interop.json",
+      "sha256": "12c691e00a6c3411dae7bea310d727e9e3fa6892fc95053224d081a4a07a29fe"
+    },
+    {
+      "archiveMember": "s01-parser-sizes.json",
+      "path": "s01-parser-sizes.json",
+      "sha256": "f38133d2e6a240dd81d044233dec85332e62f9a32f97dd260ec8b99e43b040a1"
+    },
+    {
+      "archiveMember": "binary-formats.txt",
+      "path": "binary-formats.txt",
+      "sha256": "dc84cf1a8d572677b808b21d3292dd343dc2df5e900d019c42c5e54a7698dc37"
+    },
+    {
+      "archiveMember": "artifacts/ci-39313804438/provenance.json",
+      "path": "artifact/provenance.json",
+      "sha256": "9373ffc71617f8767ebd10a70a721a2df8d89b0b69f9d1ce51c5ec443754f364"
+    },
+    {
+      "archiveMember": "artifacts/ci-39313804438/assets.json",
+      "path": "artifact/assets.json",
+      "sha256": "6135b0215c9bc6c2cc1d9f1edf412c253155f1c518bfdf67a262c0320ac083a2"
+    },
+    {
+      "archiveMember": "artifacts/ci-39313804438/SHA256SUMS",
+      "path": "artifact/SHA256SUMS",
+      "sha256": "6ef1daeeedfa1f08f35d59d66844b51425b849d5906b54d0d68f3ffe367bc613"
+    },
+    {
+      "archiveMember": "artifacts/ci-39313804438/THIRD-PARTY-NOTICES",
+      "path": "artifact/THIRD-PARTY-NOTICES",
+      "sha256": "a4a08e2c8935316ec2a695dce57854e9b2af33045071d206b32eb232e0ab413f"
+    },
+    {
+      "archiveMember": "packaging/one/build.log",
+      "path": "package-one/build.log",
+      "sha256": "30ce25a176a33471cc8c1cd1b132044cc72557ed357096c158c95a15a0dc58d5"
+    },
+    {
+      "archiveMember": "packaging/one/lintian.log",
+      "path": "package-one/lintian.log",
+      "sha256": "235baf8dfd5ed407337eb51745875392cbfb890e570240c92c6134044941abf9"
+    },
+    {
+      "archiveMember": "packaging/one/package-evidence.json",
+      "path": "package-one/package-evidence.json",
+      "sha256": "916861becb93117d25704038141fda83812bd910443bfde6e03f78fe9f2521e0"
+    },
+    {
+      "archiveMember": "packaging/one/packages.lock",
+      "path": "package-one/packages.lock",
+      "sha256": "e0c2df777fa04ddd629697ad4dccf54d72d17e7b3ef82955aff18b7612612560"
+    },
+    {
+      "archiveMember": "packaging/one/contents.txt",
+      "path": "package-one/contents.txt",
+      "sha256": "e075a90a74205581d6365cbc53c468c9b13bdbb070ff153ec802576ec5c4f7a7"
+    },
+    {
+      "archiveMember": "packaging/one/SHA256SUMS",
+      "path": "package-one/SHA256SUMS",
+      "sha256": "d60a749f981083a52f076fb6cffa73ea02a528fb47d8a6fb8ca3d16cc7a990a2"
+    },
+    {
+      "archiveMember": "packaging/two/package-evidence.json",
+      "path": "package-two/package-evidence.json",
+      "sha256": "916861becb93117d25704038141fda83812bd910443bfde6e03f78fe9f2521e0"
+    },
+    {
+      "archiveMember": "packaging/two/lintian.log",
+      "path": "package-two/lintian.log",
+      "sha256": "235baf8dfd5ed407337eb51745875392cbfb890e570240c92c6134044941abf9"
+    },
+    {
+      "archiveMember": "packaging/two/SHA256SUMS",
+      "path": "package-two/SHA256SUMS",
+      "sha256": "d60a749f981083a52f076fb6cffa73ea02a528fb47d8a6fb8ca3d16cc7a990a2"
+    },
+    {
+      "archiveMember": "packaging/reproducibility.json",
+      "path": "reproducibility.json",
+      "sha256": "c42e63695298ad0693ebe0eeeaa3a443993b522a1d9c58f78246b96b1cd5540f"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/conffiles",
+      "path": "generated-control/conffiles.txt",
+      "sha256": "e7c11ed4e9473a22e63261b70171ed468daf1800864dad88e0170f3cf58bb6fe"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/control",
+      "path": "generated-control/control.txt",
+      "sha256": "0185f36f715f276c1777faec8742f4038312168149fcc6674bc54d4835c96e4d"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/md5sums",
+      "path": "generated-control/md5sums.txt",
+      "sha256": "4da93b1053963a4786d83b788c2c64187c526464e83aa6d37f3fb6ef872c0745"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/preinst",
+      "path": "generated-control/preinst.txt",
+      "sha256": "dcfd9e9ab01583ce9312c104181366dc3a2b967407fa8fa50373744637520ace"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/postinst",
+      "path": "generated-control/postinst.txt",
+      "sha256": "e9da04f72e295b69fa97e87c02841a2d26e7212d8ff9acd22954d51da0826095"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/DEBIAN/postrm",
+      "path": "generated-control/postrm.txt",
+      "sha256": "a60726c3b687c5318cdf3c218256eab0241dc2e1a9547b61b13ac4d4688d4071"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/usr/lib/systemd/system/joy-pi-board.service",
+      "path": "installed-unit.txt",
+      "sha256": "9f4dba3e512dc53684ac38d4683fcdeaacb53d7510681f7d3a76c7b93a0d0646"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/usr/share/lintian/overrides/joy-pi-board",
+      "path": "installed-overrides.txt",
+      "sha256": "8e7939bdab21e3bc457b3a1c8769e1da3c8d2d558f95a221b5cfb4f11a09ee87"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/etc/default/joy-pi-board",
+      "path": "installed-environment.txt",
+      "sha256": "55190bb55ee627a8924784574afbec47e51b2fd3c1325bd5e5ed7aaf0616c114"
+    },
+    {
+      "archiveMember": "packaging/one/extracted/usr/share/man/man1/joy-pi-board.1.gz",
+      "path": "installed-manual.1.gz",
+      "sha256": "30730c70c67c758ebb3d4f695262ccbf968b28e28a7026facc6b1d5601422747"
+    },
+    {
+      "archiveMember": "browser-report.json",
+      "path": "browser/browser-report.json",
+      "sha256": "01542165de55ffafe9e1a2de602dbadb59f1dce05f70c7b33e3ed935646ed74a"
+    },
+    {
+      "archiveMember": "browser-host.txt",
+      "path": "browser/browser-host.txt",
+      "sha256": "d7694407239236b2ffaa8e95a16b392504c7cac0ebed86a64a4c748c1d783263"
+    },
+    {
+      "archiveMember": "dashboard-sizes.json",
+      "path": "browser/dashboard-sizes.json",
+      "sha256": "5b7ddd8c7566481bbbef774ce8ac9205cbf7d65644ef3291aa7ef1645d606f94"
+    }
+  ],
+  "lifecycleFinding": "No prerm in selected package; preinst stops only upgrade; postrm remove only reloads. Removal-stop/orphan guarantee not established.",
+  "verifiedOn": "2026-10-20",
+  "overviewIdentityBodiesVerified": true
+}

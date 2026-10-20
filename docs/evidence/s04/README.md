@@ -1,5 +1,7 @@
 # S04 retained local evidence
 
+The later [green CI 39313804438 archive](ci-39313804438/README.md), captured on 2026-10-20, is separate from the historical local evidence below. It records software/archive PASS and prepared, unexecuted VM lifecycle work, including VM-F01.
+
 These records identify dirty-tree DEVELOPMENT / NOT ACCEPTED software checks on 2026-10-18. See [the evidence ledger](../../s04-evidence.md) for scope, incidents and missing validation.
 
 - `artifacts.json`: selected development build and separate comparison, exact binary/assets/input hashes; no package or ARM64 runtime claim.

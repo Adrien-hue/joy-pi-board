@@ -1,0 +1,330 @@
+{
+  "date": "2026-10-19",
+  "sha": "5bc101e22a3093f0da3c0e6a7c50fee000dfa5da",
+  "conclusion": "success",
+  "verified": true,
+  "url": "https://github.com/Adrien-hue/joy-pi-board/actions/runs/39313804438",
+  "runId": 39313804438,
+  "attempt": 1,
+  "event": "push",
+  "jobs": [
+    {
+      "id": 118269942304,
+      "name": "browser",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39313804438,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record browser host and exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s03-browser\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Install locked Playwright engine revisions on supported Linux",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build embedded production app and exercise all three engines",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19
+        }
+      ]
+    },
+    {
+      "id": 118269942467,
+      "name": "foundation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39313804438,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record actual hosted environment and enforce exact tools",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Locked install without restored dependency caches",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Check S00-S04 sources, HTTP contracts and tools, frontend before Go embed",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Bounded Health schema fuzzing (S01)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Native and Linux ARM64 binaries",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Embedded binary, S02 unavailable overview and missing-dist checks",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "External S04 measurement tools and private ARM64 artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "S04 isolated archive checks and comparison (not service lifecycle)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27
+        }
+      ]
+    },
+    {
+      "id": 118269942527,
+      "name": "race",
+      "status": "completed",
+      "conclusion": "success",
+      "run_id": 39313804438,
+      "logs_url": null,
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Record race platform and compiler",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Run npm --prefix web ci --cache \"$RUNNER_TEMP/npm-s00-race\"",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Native Linux race detector, frontend built first",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Post Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12
+        },
+        {
+          "name": "Post Run actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 14
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12217690034,
+      "name": "board-check-evidence",
+      "size_in_bytes": 66415450,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12217690034",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12217690034/zip",
+      "expired": false,
+      "created_at": "2026-10-19T19:50:24Z",
+      "expires_at": "2026-10-26T19:50:20Z",
+      "updated_at": "2026-10-19T19:50:24Z",
+      "digest": "sha256:18e2fbbcabb3054da054b1a108840572cd56e8b723f76eecc4d58c61d58cc699",
+      "workflow_run": {
+        "id": 39313804438,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "5bc101e22a3093f0da3c0e6a7c50fee000dfa5da"
+      }
+    },
+    {
+      "id": 12215654520,
+      "name": "board-browser-evidence",
+      "size_in_bytes": 9610232,
+      "url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12215654520",
+      "archive_download_url": "https://api.github.com/repos/Adrien-hue/joy-pi-board/actions/artifacts/12215654520/zip",
+      "expired": false,
+      "created_at": "2026-10-19T19:52:07Z",
+      "expires_at": "2026-10-26T19:52:06Z",
+      "updated_at": "2026-10-19T19:52:07Z",
+      "digest": "sha256:f02125385ddeebf2a40cc04846f41ec373f4fac4d53f68d1c875217bdfe5ed48",
+      "workflow_run": {
+        "id": 39313804438,
+        "repository_id": 1378229646,
+        "head_repository_id": 1378229646,
+        "head_branch": "main",
+        "head_sha": "5bc101e22a3093f0da3c0e6a7c50fee000dfa5da"
+      }
+    }
+  ],
+  "scope": "Exact-source CI success; development/test-only artifacts, not candidate acceptance or real-systemd lifecycle.",
+  "verifiedOn": "2026-10-20"
+}

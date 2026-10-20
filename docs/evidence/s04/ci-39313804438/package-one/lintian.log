@@ -1,0 +1,10 @@
+W: joy-pi-board: copyright-without-copyright-notice
+N: S04-R01/R04: the standalone CGO_ENABLED=0 Go executable deliberately has
+N: no shared-library runtime dependency. Revisit if the runtime linkage
+N: changes.
+O: joy-pi-board: statically-linked-binary [usr/bin/joy-pi-board]
+N: Packaging must preserve the frozen, checksum-identified executable byte
+N: for byte, including its symbols. Stripping here would invalidate
+N: acceptance. Revisit if a future reviewed artifact build changes the
+N: selected bytes.
+O: joy-pi-board: unstripped-binary-or-object [usr/bin/joy-pi-board]
