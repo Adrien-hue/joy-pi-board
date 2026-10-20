@@ -2,7 +2,7 @@
 """Archive construction only. Never installs, starts services or executes maintainer scripts."""
 import argparse, datetime, gzip, hashlib, json, os, pathlib, re, shutil, subprocess, sys
 sys.dont_write_bytecode = True
-from build_support import run_logged
+from build_support import run_logged, verify_removal_hook
 p=argparse.ArgumentParser()
 p.add_argument("--artifact",required=True);p.add_argument("--output",required=True)
 p.add_argument("--metadata");p.add_argument("--test-only",action="store_true")
@@ -60,6 +60,7 @@ date=datetime.datetime.fromtimestamp(manifest["sourceDateEpoch"],datetime.timezo
 (debian/"changelog").write_text(f"joy-pi-board ({version}) unstable; urgency=medium\n\n  * Private artifact {manifest['id']}; {manifest['status']}.\n\n -- {maintainer}  {date}\n")
 shutil.copyfile(root/"rules",debian/"rules");(debian/"rules").chmod(0o755)
 shutil.copyfile(root/"postinst",debian/"joy-pi-board.postinst");(debian/"joy-pi-board.postinst").chmod(0o755)
+shutil.copyfile(root/"prerm",debian/"joy-pi-board.prerm");(debian/"joy-pi-board.prerm").chmod(0o755)
 shutil.copyfile(root/"joy-pi-board.service",debian/"joy-pi-board.service")
 payload=work/"payload"
 def put(path,data,mode=0o644):
@@ -88,6 +89,7 @@ installed=extract/"usr/bin/joy-pi-board"
 if installed.read_bytes()!=binary.read_bytes():raise SystemExit("Packaged binary mutated")
 # Capture the actual generated scripts, not just source templates.
 control=extract/"DEBIAN"
+verify_removal_hook(control,root/"prerm")
 for script in ["preinst","postinst","prerm","postrm"]:
     f=control/script
     if f.exists():subprocess.run(["sh","-n",str(f)],check=True)

@@ -1,6 +1,6 @@
 # Sprint 04 — Packaging and Raspberry Pi candidate acceptance
 
-Status: **SOFTWARE IMPLEMENTED; VALIDATION INCOMPLETE; NOT CLOSED**. Preparation on 2026-09-28/2026-10-18 is historical. The **2026-10-18 user implementation instruction approves S04-R01–R04 and S04-01–S04-05 software work**, superseding preparation-only restrictions. [S04 evidence](s04-evidence.md) owns executed results; [runbook](s04-runbook.md) owns delivered commands. Software/archive checks passed in verified CI 39313804438 at `5bc101e`; [VM validation](s04-vm-validation.md) is PREPARED / NOT RUN with VM-F01 removal-stop review open. Real-systemd lifecycle, candidate freeze, Pi and transferred operator acceptance remain outstanding. Development artifacts are NOT ACCEPTED; no release GO.
+Status: **SOFTWARE IMPLEMENTED; VALIDATION INCOMPLETE; NOT CLOSED**. Preparation on 2026-09-28/2026-10-18 is historical. The **2026-10-18 user implementation instruction approves S04-R01–R04 and S04-01–S04-05 software work**, superseding preparation-only restrictions. [S04 evidence](s04-evidence.md) owns executed results; [runbook](s04-runbook.md) owns delivered commands. Software/archive checks passed in verified CI 39313804438 at `5bc101e`; [VM validation](s04-vm-validation.md) is PREPARED / NOT RUN with VM-F01 corrected in source, pending new CI and real-systemd validation. Real-systemd lifecycle, candidate freeze, Pi and transferred operator acceptance remain outstanding. Development artifacts are NOT ACCEPTED; no release GO.
 
 ## Authorization and starting point
 

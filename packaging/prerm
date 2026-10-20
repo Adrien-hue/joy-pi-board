@@ -1,0 +1,21 @@
+#!/bin/sh
+set -eu
+# VM-F01: stop before dpkg removes the unit/executable. Never start or enable.
+# Alternate-root/offline operations must not contact the host service manager.
+if [ "$1" = remove ] && [ -z "${DPKG_ROOT:-}" ] && [ -d /run/systemd/system ]; then
+    deb-systemd-invoke stop joy-pi-board.service
+    # policy-rc.d may decline an operation without a failing helper exit.
+    # Do not report successful removal while a service is still running.
+    state=$(systemctl show --property=ActiveState --value joy-pi-board.service)
+    case "$state" in
+        inactive|failed) ;;
+        *) echo "Board is not stopped; package removal aborted" >&2; exit 1 ;;
+    esac
+    main_pid=$(systemctl show --property=MainPID --value joy-pi-board.service)
+    control_pid=$(systemctl show --property=ControlPID --value joy-pi-board.service)
+    if [ "$main_pid" != 0 ] || [ "$control_pid" != 0 ]; then
+        echo "Board still has a service process; package removal aborted" >&2
+        exit 1
+    fi
+fi
+#DEBHELPER#

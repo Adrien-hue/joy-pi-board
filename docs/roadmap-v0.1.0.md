@@ -4,7 +4,7 @@ Status: **S00 COMPLETE; S01 COMPLETE; S02 COMPLETE; S03 IMPLEMENTED, CI VERIFIED
 
 Dependency chain: **documentary baseline → S00 foundations → S01 Health contract → S02 overview/resilience → S03 usable overview → S04 packaging/acceptance**. Independent review may occur earlier; a dependent completion gate cannot be skipped.
 
-Update 2026-10-20: [S04 green CI](s04-evidence.md#2026-10-20--verified-green-ci-and-vm-preparation) verifies source/engine/archive work at `5bc101e`, including two identical test packages. The next independent gate is [VM lifecycle validation](s04-vm-validation.md), currently NOT RUN, with VM-F01 removal-stop review unresolved. Missing real distribution metadata blocks a distributable package; VM availability/isolation blocks VM execution. Candidate freeze, Pi and deferred S03 operator acceptance remain open. These dependencies do not invalidate preserved software CI.
+Update 2026-10-20: [S04 green CI](s04-evidence.md#2026-10-20--verified-green-ci-and-vm-preparation) verifies source/engine/archive work at `5bc101e`, including two identical test packages. The next independent gate is [VM lifecycle validation](s04-vm-validation.md), currently NOT RUN, with VM-F01 corrected in source but new CI and real-systemd validation still pending. Missing real distribution metadata blocks a distributable package; VM availability/isolation blocks VM execution. Candidate freeze, Pi and deferred S03 operator acceptance remain open. These dependencies do not invalidate preserved software CI.
 
 | Sprint | Objective / scope | Dependencies | Deliverables | Verifiable completion criteria |
 |---|---|---|---|---|

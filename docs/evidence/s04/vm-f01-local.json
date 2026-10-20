@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-20",
+  "baseCommit": "48a9958b2d49d561f7fe3a982b43c7919ec3f888",
+  "sourceState": "uncommitted packaging/CI correction; no artifact built",
+  "platform": "win32",
+  "python": "3.11.9",
+  "checks": {
+    "externalPythonTools": "PASS",
+    "unittestCases": 8,
+    "embeddedStubCompilation": "PASS",
+    "containerToolDefault": "NOT RUN refusal; no action taken",
+    "prermShellSyntax": "PASS via sh -n; not execution",
+    "workflowPrettier": "PASS"
+  },
+  "notRun": [
+    "Debian construction of correction",
+    "generated-prerm command-stub container cases (16)",
+    "real-systemd lifecycle",
+    "Pi acceptance"
+  ],
+  "files": [
+    {
+      "path": "packaging/prerm",
+      "sha256": "8adb7aec1c70d504e1f524b980eedc1d9a2677261c4faa32930e230d475baa30"
+    },
+    {
+      "path": "packaging/build.py",
+      "sha256": "4c2016b495d7649dfec72b9659a473a1a872427e1c76314ab3beb5fd71d8d59a"
+    },
+    {
+      "path": "packaging/build_support.py",
+      "sha256": "e363cee753ddff98c69bbd1785e32184d7c0383a4ed63b4c10441d2f021e454b"
+    },
+    {
+      "path": "packaging/test_build_support.py",
+      "sha256": "117cfefc27cee82ae606981a6df7e0f4fb63a482a756880f75f4e50d8a501d48"
+    },
+    {
+      "path": "packaging/test_prerm_container.py",
+      "sha256": "f89dfee763eaf1d9dcb00c1e53c9b5f9133daaf7c16a135e3da682d7c254df84"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "f3c9e3c02d3f5153750b56973020b3ff0169845b22e7104d75c2d0675fe77f8f"
+    }
+  ]
+}

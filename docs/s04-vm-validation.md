@@ -1,6 +1,8 @@
 # S04 disposable ARM64 VM validation package
 
 Prepared 2026-10-20. Status: **PREPARED; EXECUTION NOT RUN; A-06 OPEN**.
+
+Update 2026-10-20: VM-F01 is **CORRECTED IN SOURCE; NEW CI AND REAL-SYSTEMD VALIDATION PENDING**. The explicit [prerm](../packaging/prerm) stops before file removal and rejects failed/incomplete stops. Extracted-hook inspection and isolated-container stub tests were added without weakening VM-06. The generated-script finding below applies to the preserved green-CI package at `5bc101e`, not a newly built corrected archive. See [correction evidence](s04-evidence.md#2026-10-20--vm-f01-removal-stop-source-correction).
 The user's request to archive green CI and prepare VM validation permits this
 read-only review and planning. Existing authorization permits package/service
 execution only in a verified disposable isolated guest. No VM identity, access,
@@ -25,10 +27,10 @@ Therefore the source assertion that removal stops Board is not established by
 the generated package. A running process can outlive removal of its executable;
 an orphan is a risk inferred from these scripts, not an observed VM result.
 
-Keep the existing harness's active-service removal and orphan assertions. In an
-isolated snapshot, reproduce VM-06 and retain the result; if confirmed, correct
-the package stop path, run exact-source CI on a new revision, and repeat the
-lifecycle matrix using newly identified artifacts. Do not pre-stop Board to
+Keep the existing harness's active-service removal and orphan assertions. After
+the source correction passes new exact-source CI, execute VM-06 and the matrix
+using newly identified corrected archives in isolated snapshots. Retain a
+historical-package reproduction separately if performed. Do not pre-stop Board to
 make this case pass. VM-F01 blocks A-06 acceptance and candidate promotion until
 resolved; it does not invalidate the recorded source/archive CI results.
 

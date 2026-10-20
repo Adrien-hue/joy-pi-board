@@ -86,3 +86,7 @@ Remaining S03 operator checks do not block this implementation and remain mandat
 ## D-2026-10-20 — Green CI archive and VM preparation
 
 **APPROVED by the user's "ok go" after the next-step proposal, resumed on 2026-10-20.** Archive verified CI 39313804438 at 5bc101e, update the evidence/status documents and prepare the isolated ARM64 VM campaign. This does not accept development artifacts or authorize primary-host/Pi operations, publication or Git writes. Existing execution authorization still requires a verified disposable guest; no guest/access/isolation record has been supplied. The [VM work package](s04-vm-validation.md) records missing inputs, per-case NOT RUN results and VM-F01. It does not waive the removal-stop requirement or the need for established distribution metadata.
+
+## D-2026-10-20 — VM-F01 software correction
+
+**APPROVED by the user's subsequent "go"** to the removal-stop correction proposal. Add an explicit removal hook, archive inspection and controlled tests without changing automatic start/enable behavior. The hook must fail removal if the requested stop fails or the unit still reports processes/activity. Maintainer control-flow execution is confined to the verified disposable CI container with command stubs; actual lifecycle acceptance still requires a verified isolated ARM64 VM. [Correction evidence](s04-evidence.md#2026-10-20--vm-f01-removal-stop-source-correction) separates local inspection tests, pending new CI and NOT RUN real-systemd validation. Existing primary-host/Pi and Git/publication restrictions remain applicable.

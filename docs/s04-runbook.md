@@ -77,6 +77,8 @@ Review the two path-specific Lintian overrides shipped in `usr/share/lintian/ove
 
 ## Isolated service lifecycle
 
+VM-F01 now has a source correction in `packaging/prerm`, pending new exact-commit archive/stub CI and real-systemd VM-06. The preserved `5bc101e` package predates this correction and must not be relabelled. CI additionally records `packaging-container.json`, copies it into the stopped disposable container before starting it, and runs `python3 /src/packaging/test_prerm_container.py --execute` after archive checks. The resulting `prerm-stub-tests.json` records simulated commands/cases, not installed-service behavior. Do not run that execution command on the primary host or use its synthetic systemd sentinel as a lifecycle environment.
+
 Start with [the prepared VM matrix and prerequisites](s04-vm-validation.md). VM-F01 found no removal stop path in the generated green-CI package; this must be resolved before A-06 acceptance. The two identical reproducibility archives are not an upgrade pair: supply two distinct, correctly ordered package versions with verified hashes. The default command below is inert; execute only after guest isolation and recovery are verified. Do not run Python with `-O`, because the current harness uses assertions.
 
 Use a disposable **ARM64 VM** with real systemd PID 1, snapshot restoration available, no writable host/Pi data sharing, and no pre-existing Board account/package. Explicitly verify VM identity, mounts, OS/architecture and PID 1. Install only test prerequisites in that guest. A human must attest that no host block device or writable host data is exposed; filesystem checks alone cannot prove hypervisor isolation.
